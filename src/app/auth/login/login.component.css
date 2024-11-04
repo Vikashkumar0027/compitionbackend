@@ -1,0 +1,35 @@
+.containerBox {
+   
+    
+    /* background-image: url('src/assets/img/alpha.png'); */
+    
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+  .btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .backClr {
+    
+    background-color: hsl(151.6deg 100% 50% / 35%);
+
+  }
+
+  .company_logo img{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+ }

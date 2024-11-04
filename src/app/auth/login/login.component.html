@@ -1,0 +1,43 @@
+<div class="container h-100">
+    <div class="row justify-content-center align-items-center min-vh-100">
+      <div class="col-md-6 p-5 col-sm-12 my-3">
+        <figure class="figure">
+          <img width="114px" height="76px" src="assets/icon/image 16.png" class="figure-img img-fluid rounded" alt="Logo">
+        </figure>
+        <h3> Welcome to Compitition </h3>
+        <p>Compitition: where document creation meets simplicity. Perfect your PDFs with just a few clicks.</p>
+  
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <input type="text" class="form-control p-2 ps-3 rounded-pill inputarea" id="exampleInputEmail1"
+              formControlName="email" placeholder="Username" aria-describedby="emailHelp">
+            <div *ngIf="submitted && f['email'].errors">
+              <span class="text-danger" *ngIf="f['email'].errors['required'] ">Please enter Username</span>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <input type="password" class="form-control p-2 ps-3 rounded-pill" id="exampleInputPassword1"
+              placeholder="Password" formControlName="password">
+            <div *ngIf="submitted && f['password'].errors">
+              <span class="text-danger" *ngIf="f['password'].errors['required']">Please enter Password</span>
+              <span class="text-danger" *ngIf="f['password'].errors['minlength'] ">Password must be at least 3
+                characters</span>
+            </div>
+          </div>
+  
+          <button type="submit" class="btn mt-4 w-100 p-2 rounded-pill" [disabled]="submitted"
+            style="background-color: #00C1D0;">{{ submitted ? 'Wait...' : 'Log in' }}</button>
+          <p class="text-center mt-2"> Don't have an account? <a routerLink="/signUp" style="color: #00C1D0;">Create an
+              account</a></p>
+        </form>
+      </div>
+  
+      <div class="col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
+        <figure class="figure company_logo">
+          <img src="assets/images/liveClass.png" class="figure-img img-fluid rounded" alt="Login image"
+            style="max-width: 100%; height: auto;">
+        </figure>
+      </div>
+    </div>
+  </div>
