@@ -13,4 +13,5 @@ export class LoginService {
   login(data:any): Observable<any>{
     return this.http.post<any>(featureInterface.login, data);
    }
+   
 }

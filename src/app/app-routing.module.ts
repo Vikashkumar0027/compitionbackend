@@ -6,7 +6,12 @@ import { SignupComponent } from './auth/signup/signup.component';
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full' },
   {path:'login',component:LoginComponent},
-  {path:'sinup',component:SignupComponent},
+  {path:'signUp',component:SignupComponent},
+  {path:'dashboard',
+    loadChildren: () => 
+       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+      //  canActivate: [DashboardGuard]
+ }
 ];
 
 @NgModule({

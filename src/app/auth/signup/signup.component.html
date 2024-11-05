@@ -1,1 +1,48 @@
-<p>signup works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 my-3">
+        <figure class="figure" >
+          <img width="114px" height="76px" src="assets/icon/image 16.png" class="figure-img img-fluid rounded">
+        </figure>
+        <h3> Welcome To <br> Compitition </h3>
+        <p>Compitition: This teaching app makes it easy to download PDFs, view online classes, and take online tests.</p>
+  
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <input type="text" class="form-control p-2 ps-3 rounded-pill inputarea" id="exampleInputEmail1" placeholder="Username"
+              aria-describedby="emailHelp" formControlName="userName">
+              <div *ngIf="submitted && f['userName'].errors">
+                <span style="color: red;" *ngIf="f['userName'].errors['required'] ">Please enter Username</span>
+            </div>
+          </div>
+          <div class="mb-3">
+  
+            <input type="email" class="form-control p-2 ps-3 rounded-pill" id="exampleInputPassword1"
+              placeholder="E-mail" formControlName="email">
+              <div *ngIf="submitted && f['email'].errors">
+                <span style="color: red;" *ngIf="f['email'].errors['required'] ">Please enter email</span>
+            </div>
+          </div>
+          <div class="mb-3">
+  
+            <input type="password" class="form-control p-2 ps-3 rounded-pill" id="exampleInputPassword1"
+              placeholder="Password" formControlName="password">
+              <div *ngIf="submitted && f['password'].errors">
+                <span style="color: red;" *ngIf="f['password'].errors['required'] ">Please enter Password</span>
+            </div>
+          </div>
+  
+          <button type="submit" class="btn mt-4 w-100 p-2  rounded-pill "
+            style="background-color:#00C1D0;">Submit</button>
+          <p class="text-center mt-2"> Already have an account ? <a routerLink="/login">Login</a></p>
+        </form>
+  
+      </div>
+      <div class="col-md-6">
+        <figure class="figure company_logo ">
+          <img src="assets/images/liveClass.png" class="figure-img img-fluid rounded">
+        </figure>
+      </div>
+    </div>
+  </div>
+  
