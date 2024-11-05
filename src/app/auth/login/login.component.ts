@@ -44,13 +44,13 @@ export class LoginComponent implements OnInit {
     }
        if(this.form.valid){
         const data = {
-          "email": this.form.value.email.trim(),
-          "password": this.form.value.password.trim()
+          email: this.form.value.email.trim(),
+          password: this.form.value.password.trim()
         };
         this.loginService.login(data).subscribe(res=>{
          
           if(res.success == true){
-            localStorage.setItem('token',res.token);
+            localStorage.setItem('compytkns',res.token);
 
           this.globalService.showToast('You are now logged in!');
             this.route.navigateByUrl('/dashboard')

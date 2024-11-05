@@ -1,0 +1,11 @@
+<div class="app-dashborad">
+    <app-header (sidenavToggled)="sideNavStatus = $event;"></app-header>
+    <div class="main">
+      <div class="left-contents" [ngClass]="{'app-side-nav-open':sideNavStatus}">
+        <app-side-nav [sideNavStatus]="sideNavStatus"></app-side-nav>
+      </div>
+      <div class="right-contents">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>

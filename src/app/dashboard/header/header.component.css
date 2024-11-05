@@ -1,0 +1,36 @@
+nav {
+    height: 100%;
+}
+
+.side-nav-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 60px;
+    background-color: #3884bd !important;
+    height: 52px;
+    border-radius: 50% !important;
+}
+
+.side-nav-button:hover {
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 30%;
+}
+.navbar {
+    background: #FFF !important;
+    border-radius: 40px;
+}
+.navbar-brand {
+    color: #000;
+    font-weight: 600;
+}
+.profile-logo .btn-outline-light {
+    background-color: #3884bd;
+    border: 0;
+    border-radius: 39px;
+    margin-right: 9px;
+    padding: 11px 32px;
+    color: #fff;
+}

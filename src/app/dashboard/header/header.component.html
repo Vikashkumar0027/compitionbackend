@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand navbar-dark bg-primary px-2">
+    <div class="side-nav-button p-2 me-3 text-light" (click)="SideNavToggle()">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <div class="container-fluid" *ngIf="data.add_logo">
+        <img *ngIf="data?.add_logo" [src]="data.add_logo" height="53px" alt="Centered image">
+        <!-- width="196px" <img src="assets/img/alfa-logo.jpg" alt="Centered image"> -->
+        <!-- <a class="navbar-brand" href="#">Alpha Environmental</a> -->
+    </div>
+    <!-- <a class="navbar-brand px-4" href="#"><h2><strong><b>Alpha</b></strong></h2></a> -->
+
+    <div class="navbar-collapse">
+        <!-- <ul class="navbar-nav me-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    Menu 1
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item" href="#">Child 1</a></li>
+                    <li><a class="dropdown-item" href="#">Child 2</a></li>
+                    <li><a class="dropdown-item" href="#">Child 3</a></li>
+                    <li><a class="dropdown-item" href="#">Child 4</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    Menu 2
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item" href="#">Child 1</a></li>
+                    <li><a class="dropdown-item" href="#">Child 2</a></li>
+                    <li><a class="dropdown-item" href="#">Child 3</a></li>
+                    <li><a class="dropdown-item" href="#">Child 4</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    Menu 3
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item" href="#">Child 1</a></li>
+                    <li><a class="dropdown-item" href="#">Child 2</a></li>
+                    <li><a class="dropdown-item" href="#">Child 3</a></li>
+                    <li><a class="dropdown-item" href="#">Child 4</a></li>
+                </ul>
+            </li>
+
+        </ul> -->
+    </div>
+
+    <!-- <form class="d-flex me-5">
+        <input class="form-control me-2" type="search" placeholder="Search">
+        <button class="btn btn-outline-light" type="submit">Search</button>
+    </form> -->
+    <!-- {{ userName }} -->
+    <div class="profile-logo dropstart">
+        <button class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
+            {{data?.name | titlecase}}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark">
+            <!-- <li><a href="#" class="dropdown-item">Sign Up</a></li> -->
+            <li><a [routerLink]="['/dashboard/profile']" class="dropdown-item">Your Profile</a></li>
+            <li><a [routerLink]="['/dashboard/changePassword']" class="dropdown-item">Change Password</a></li>
+            <li><a href="javascript:void(0);" (click)="logOut()" class="dropdown-item">Log Out</a></li>
+        </ul>
+    </div>
+</nav>
