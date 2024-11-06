@@ -20,11 +20,11 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     NgbModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
-    BrowserAnimationsModule,
     ReactiveFormsModule
   ],
   providers: [],
