@@ -1,0 +1,89 @@
+<div class="container-fluid">
+    <!-- Breadcrumb for Navigation -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Company</li>
+      </ol>
+    </nav>
+  
+    <!-- Card Section -->
+    <h1 class="h3 mb-3 text-gray-800">Company</h1>
+  
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+  
+            <input type="text" class="form-control" placeholder="Search Company" aria-label="Search" name="searchCompany">
+  
+          </div>
+        </div>
+      </div>
+  
+      <!-- Table Section -->
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Logo</th>
+                <th scope="col">Subscription</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let list of data; let i = index;">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ list?.name | titlecase }}</td>
+                <td>{{ list?.email }}</td>
+                <td><img *ngIf="list?.add_logo" [src]="list?.add_logo" width="100px" alt="Company Logo">
+                  <span *ngIf="!list?.add_logo">--</span>
+                </td>
+                <td class="text-end">
+                  <button *ngIf="list?.subscription" class="btn btn-outline-success btn-sm m-1" title="Subscription Done">
+                    <i class="fa-solid fa-check"></i> Subscribed
+                  </button>
+                  <button *ngIf="!list?.subscription" class="btn btn-outline-danger btn-sm m-1"
+                    title="Subscription Not Done">
+                    <i class="fa-solid fa-xmark"></i> Not Subscribed
+                  </button>
+                </td>
+                <td class="text-start">
+                  <button *ngIf="list?.status === 'active'" class="btn btn-outline-success btn-sm m-1"
+                    title="Subscription Done">
+                    <i class="fa-solid fa-check"></i> Active
+                  </button>
+                  <button *ngIf="list?.status === 'inactive'" class="btn btn-outline-danger btn-sm m-1"
+                    title="Subscription Not Done">
+                    <i class="fa-solid fa-xmark"></i> Inactive
+                  </button>
+                </td>
+                <td>
+                  <button title="Edit" type="button" class="btn btn-outline-primary btn-sm m-1" (click)="edit(list)">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <!-- <button title="Delete" type="button" class="btn btn-outline-danger btn-sm m-1" (click)="deletes(list)">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button> -->
+                  <!-- (click)="resetPassAert(list)" -->
+                  <button title="Reset password" class="btn btn-outline-success btn-sm m-1 m-1 btn-circle"
+                    >
+                    <i class="fa-solid fa-repeat"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Loading Spinner -->
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)" template="<img src='https://i.gifer.com/ZZ5H.gif' />">
+  </ngx-spinner>
