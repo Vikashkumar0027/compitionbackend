@@ -15,55 +15,14 @@ import { ConfirmModalComponent } from '../../../common-component/confirm-modal/c
 })
 export class SubadminComponent implements OnInit {
 
-  job:any[]=[
-    {
-      "id":1,
-        "name": "Vikash",
-        "email": "React Pharma",
-        "group": "narayanpur bhojpur bihar 802201",
-        "access": "17 may 2119",
-        "password": "nutan",
-    },
-    {
-      "id":1,
-        "name": "Vikash",
-        "email": "React Pharma",
-        "group": "narayanpur bhojpur bihar 802201",
-        "access": "17 may 2119",
-        "password": "nutan",
-    },
-    {
-      "id":1,
-        "name": "Vikash",
-        "email": "React Pharma",
-        "group": "narayanpur bhojpur bihar 802201",
-        "access": "17 may 2119",
-        "password": "nutan",
-    },
-    {
-      "id":1,
-        "name": "Vikash",
-        "email": "React Pharma",
-        "group": "narayanpur bhojpur bihar 802201",
-        "access": "17 may 2119",
-        "password": "nutan",
-    },
-    {
-      "id":1,
-        "name": "Vikash",
-        "email": "React Pharma",
-        "group": "narayanpur bhojpur bihar 802201",
-        "access": "17 may 2119",
-        "password": "nutan",
-    },
-]
 
 data:any[]=[];
 searchCompany:any;
 private activeModal:any;
 
 // @ViewChild(LoginComponent) loginModaComponent: LoginComponent | undefined;
-  constructor(private route:Router,
+  constructor(
+    private route:Router,
     private modalService: NgbModal,
     // private userService:UserService,
     private commonService:CommonService,
@@ -82,11 +41,9 @@ private activeModal:any;
   try {
     this.spinner.show();
     this.subAdminService.subAdminList().subscribe(res=>{
-    // console.log(res);
+    console.log(res);
     if(res.success){
-      this.data=res.message;
-      // const filtOut = res.data.filter((x:any) => x.email != 'vk112004@gmail.com');
-      // this.data = filtOut;
+      this.data=res.response;
     }
     this.spinner.hide();
   },err=>{
@@ -130,7 +87,7 @@ private activeModal:any;
     //data transfer to child NgbModalRef
     this.activeModal.result.then(
       (result:any) => {
-        if (result == 'Add') {
+        if (result == 'Edit') {
           this.getList();
         }
       },

@@ -48,9 +48,9 @@ export class LoginComponent implements OnInit {
           password: this.form.value.password.trim()
         };
         this.loginService.login(data).subscribe(res=>{
-         
+         console.log(res);
           if(res.success == true){
-            localStorage.setItem('compytkns',res.token);
+            localStorage.setItem('compytkns',res.response);
 
           this.globalService.showToast('You are now logged in!');
             this.route.navigateByUrl('/dashboard')

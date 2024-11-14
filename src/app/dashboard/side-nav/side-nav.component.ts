@@ -63,6 +63,7 @@ export class SideNavComponent implements OnInit {
   list:any[]=[
     {number:'1',name:'Dashboard',icon:'fa-solid fa-house', url: '/dashboard/home'},
     {number:'2',name:'Sub Admin',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/subAdmin'},
+    {number:'3',name:'Course',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/course'},
   ]; 
 
   // newUserList = [

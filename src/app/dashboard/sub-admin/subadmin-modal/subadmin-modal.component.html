@@ -1,1 +1,84 @@
-<p>subadmin-modal works!</p>
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{user}} Sub Admin</h4>
+
+    <button type="button" class="btn btn-primary close" aria-label="Close" (click)="modalClose()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+
+  <div class="modal-body">
+<!-- (ngSubmit)="onSubmit()" -->
+ <div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="exampleFormControlname" class="form-label">Name: </label>
+        <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="name">
+      </div>
+      <div *ngIf="submitted && f['name'].errors">
+        <span style="color: red;" *ngIf="f['name'].errors['required'] ">Please enter Name</span>
+    </div>
+
+  
+
+      <div class="mb-3">
+        <label for="exampleFormControlAddress" class="form-label">Email: </label>
+        <input type="email" class="form-control" id="exampleFormControlAddress" placeholder="" formControlName="email">
+      </div>
+      <div *ngIf="submitted && f['email'].errors">
+        <span style="color: red;" *ngIf="f['email'].errors['required'] ">Please enter email</span>
+    </div>
+      <div class="mb-3">
+        <label for="exampleFormControlAddress" class="form-label">Phone: </label>
+        <input type="number" class="form-control" id="exampleFormControlAddress" placeholder="" formControlName="phone">
+      </div>
+      <div *ngIf="submitted && f['phone'].errors">
+        <span style="color: red;" *ngIf="f['phone'].errors['required'] ">Please enter phone</span>
+    </div>
+
+    <div *ngIf="user !== 'Edit'">
+        <div class="mb-3">
+          <label for="exampleFormControlAddress" class="form-label">Password: </label>
+          <input type="number" class="form-control" id="exampleFormControlAddress" placeholder="" formControlName="password">
+        </div>
+        <div *ngIf="submitted && f['password'].errors">
+          <span style="color: red;" *ngIf="f['password'].errors['required'] ">Please enter password</span>
+      </div>
+    </div>
+
+     
+    <div class="mb-3">
+      <label for="images" class="form-label">Logo </label>
+      <input type="file" class="form-control" id="images" rows="3" formControlName="labDocument" accept="image/*" (change)="onFileChange($event)">
+    </div>
+
+    <div class="mb-3">
+        <label cLabel for="exampleFormControlStatus">Status</label><br>
+        <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>
+          <option [disabled]="true">Select Status</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && f['status'].errors">
+        <span style="color: red;" *ngIf="f['status'].errors['required'] ">Please select Status</span>
+    </div>
+      <!-- <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+        Save</button> -->
+<div class="modal-footer">
+<div class="d-grid">
+    <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+        Save</button>
+  </div>
+
+</div>
+
+</form>
+ </div>
+   
+
+  </div>
+ 
+
+
+

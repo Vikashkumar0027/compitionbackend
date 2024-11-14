@@ -6,9 +6,18 @@
         <li class="breadcrumb-item active" aria-current="page">Company</li>
       </ol>
     </nav>
+
+    <div class="row align-items-center">
+      <div class="col-md-4">
+        <h1 class="h3 mb-lg-3 text-gray-800">Company</h1>
+      </div>
+      <div class="col-md-8 mb-3 text-md-end">
+        <button type="button" class="btn btn-outline-primary" (click)="modalData()">Add SubAdmin</button>
+      </div>
+    </div>
   
     <!-- Card Section -->
-    <h1 class="h3 mb-3 text-gray-800">Company</h1>
+    <!-- <h1 class="h3 mb-3 text-gray-800">Company</h1> -->
   
     <div class="card shadow mb-4">
       <div class="card-header py-3">
@@ -30,8 +39,9 @@
                 <th scope="col">S.No</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
+                <th scope="col">Phone</th>
                 <th scope="col">Logo</th>
-                <th scope="col">Subscription</th>
+                 <!--   <th scope="col">Subscription</th> -->
                 <th scope="col">Status</th>
                 <th scope="col">Action</th>
               </tr>
@@ -41,10 +51,11 @@
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ list?.name | titlecase }}</td>
                 <td>{{ list?.email }}</td>
-                <td><img *ngIf="list?.add_logo" [src]="list?.add_logo" width="100px" alt="Company Logo">
-                  <span *ngIf="!list?.add_logo">--</span>
+                <td>{{ list?.phone }}</td>
+                <td><img *ngIf="list?.logo" [src]="list?.logo" width="100px" alt="Company Logo">
+                  <span *ngIf="!list?.logo">--</span>
                 </td>
-                <td class="text-end">
+                <!-- <td class="text-end">
                   <button *ngIf="list?.subscription" class="btn btn-outline-success btn-sm m-1" title="Subscription Done">
                     <i class="fa-solid fa-check"></i> Subscribed
                   </button>
@@ -52,7 +63,7 @@
                     title="Subscription Not Done">
                     <i class="fa-solid fa-xmark"></i> Not Subscribed
                   </button>
-                </td>
+                </td> -->
                 <td class="text-start">
                   <button *ngIf="list?.status === 'active'" class="btn btn-outline-success btn-sm m-1"
                     title="Subscription Done">

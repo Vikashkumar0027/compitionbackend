@@ -41,7 +41,7 @@ this.sidenavToggled.emit(this.menuStatus);
   }
   
   logOut(){
-    localStorage.removeItem('token');
+    localStorage.removeItem('compytkns');
     this.route.navigate(['']);
   }
 

@@ -1,1 +1,86 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+/* *{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+}
+ul{
+    list-style: none;
+}
+
+
+.nav-bar{
+    background-color:#343a40 ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+.nav-bar a{
+    color: white;
+}
+.top-nav li {
+    display: inline-block;
+    padding:15px 15px 15px 0px;
+}
+.title{
+    padding-left: 15px;
+    font-size:20px;
+}
+.wrraper {
+    display: flex;
+}
+.left-content {
+    background-color: white;
+    flex: 3;
+    min-height: 90vh;
+}
+.side-menu{
+    margin-top: 20px;
+}
+.side-menu li {
+    border-bottom: dashed 1px rgb(223, 216, 216);
+}
+.side-menu a{
+    display: block;
+    padding: 10px 15px;
+    columns: #343a40;
+    text-decoration: none;
+}
+.right-content {
+    padding: 20px;
+    flex:12;
+}
+
+:host {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 0.5em;
+    z-index: 1200;
+}
+table tr th{
+    text-align: center;
+    vertical-align: middle;
+}
+table tr td {
+    vertical-align: middle;
+} */
+
+ngx-spinner{
+    img{
+        width: 65px;
+    }
+}
+
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

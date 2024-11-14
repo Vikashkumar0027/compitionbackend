@@ -13,9 +13,8 @@ const routes: Routes = [
     children:[
       {path:'',component:HomeComponent},
       {path:'home',component:HomeComponent},
-      {path: 'subAdmin',loadChildren: () =>import('./sub-admin/sub-admin.module').then((m) => m.SubAdminModule), 
-        // canActivate: [CheckSubPlanGuard]
-        } ,
+      {path: 'subAdmin',loadChildren: () =>import('./sub-admin/sub-admin.module').then((m) => m.SubAdminModule)} ,
+      {path: 'course',loadChildren: () =>import('./course/course.module').then((m) => m.CourseModule)} ,
     ]
   }
 ];
