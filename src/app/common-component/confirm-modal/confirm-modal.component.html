@@ -1,1 +1,38 @@
-<p>confirm-modal works!</p>
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{modalContent?.heading}}</h4>
+    <button type="button" class="btn btn-primary close" aria-label="Close" (click)="modalClose()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+  </div>
+  <div class="modal-body" *ngIf="!resetpassword">
+    {{modalContent.message}}
+  </div>
+
+  <div class="modal-body"  *ngIf="resetpassword">
+    <div class="row">
+      <div class="col-8">  Your new Password is <strong> {{modalContent.message}} </strong> </div>
+      <div class="col-4">
+         <!-- <button fill="clear"><i class="fa-thin fa-copy"></i></button> -->
+
+         <span type="button"> 
+         <div class="ms-2"
+         (click)="copyMail(modalContent.message)" >
+        <i title="Copy" class="fa-regular fa-copy"></i>
+        </div>
+      </span>
+
+        </div>
+    </div>
+  
+
+   
+  </div>
+             
+   <div class="modal-footer"> 
+    <button type="submit" class="btn btn-primary"  (click)="cancel()" *ngIf="modalContent.cancel">{{modalContent.cancel}}</button>
+    <button type="submit" class="btn btn-danger" (click)="ok()" *ngIf="modalContent.ok">{{modalContent.ok}}</button>
+  </div>
+  
+  
+  

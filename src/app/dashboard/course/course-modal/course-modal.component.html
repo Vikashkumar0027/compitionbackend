@@ -1,0 +1,115 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{user}} Course</h4>
+
+    <button type="button" class="btn btn-primary close" aria-label="Close" (click)="modalClose()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+
+  <div class="modal-body">
+<!-- (ngSubmit)="onSubmit()" -->
+ <div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="exampleFormControlname" class="form-label">Course Name: </label>
+        <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="title">
+      </div>
+      <div *ngIf="submitted && f['title'].errors">
+        <span style="color: red;" *ngIf="f['title'].errors['required'] ">Please enter Course Name</span>
+    </div>
+
+
+    <div class="mb-3">
+        <label for="exampleFormCovideo_details" class="form-label">Video Details: </label>
+        <input type="text" class="form-control" id="exampleFormCovideo_details"  placeholder="Please Enter Video Detail Seperated By Comma ','" formControlName="video_details">
+      </div>
+      <div *ngIf="submitted && f['video_details'].errors">
+        <span style="color: red;" *ngIf="f['video_details'].errors['required'] ">Please enter video Details</span>
+    </div>
+
+    
+    <div class="mb-3">
+        <label for="exampleFormsub_title" class="form-label">Subtitle: </label>
+        <input type="text" class="form-control" id="exampleFormsub_title" placeholder="Please Enter SubTitle Seperated By Comma ','" formControlName="sub_title">
+      </div>
+      <div *ngIf="submitted && f['sub_title'].errors">
+        <span style="color: red;" *ngIf="f['sub_title'].errors['required'] ">Please enter Sub Title</span>
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleFormPrice" class="form-label">Price: </label>
+        <input type="number" class="form-control" id="exampleFormPrice" placeholder="" formControlName="price">
+      </div>
+      <div *ngIf="submitted && f['price'].errors">
+        <span style="color: red;" *ngIf="f['price'].errors['required'] ">Please enter  Price</span>
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleFormPrice" class="form-label">Discount in Percentage: </label>
+        <input type="number" class="form-control" id="exampleFormPrice" step="0.01" min="0" max="100" placeholder="Enter discount (0-100)" formControlName="discount">
+      </div>
+      <div *ngIf="f['discount'].errors?.['invalidDecimal']" class="text-danger">
+        Please enter a number with up to two digits before the decimal and at most two decimal places.
+      </div>
+      <div *ngIf="submitted && f['discount'].errors">
+        <span style="color: red;" *ngIf="f['discount'].errors['required'] ">Please enter Discount</span>
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleFormPrice" class="form-label">Description: </label>
+        <input type="text" class="form-control" id="exampleFormPrice" placeholder="" formControlName="description">
+      </div>
+      <div *ngIf="submitted && f['description'].errors">
+        <span style="color: red;" *ngIf="f['description'].errors['required'] ">Please enter description</span>
+    </div>
+
+
+    <div class="mb-3">
+      <label for="images" class="form-label">Logo </label>
+      <input type="file" class="form-control" id="images" rows="3" formControlName="image" accept="image/*" (change)="onFileChange($event)" >
+    </div>
+  
+
+
+    <div class="mb-3">
+        <label cLabel for="exampleFormControlType">Type</label><br>
+        <select cSelect id="exampleFormControlType" class="form-control" formControlName='type'>
+          <option [disabled]="true">Select Type</option>
+          <option value="free">Free Course</option>
+          <option value="paid">Paid Course</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && f['type'].errors">
+        <span style="color: red;" *ngIf="f['type'].errors['required'] ">Please select type</span>
+    </div>
+    <div class="mb-3">
+        <label cLabel for="exampleFormControlStatus">Status</label><br>
+        <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>
+          <option [disabled]="true">Select Status</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && f['status'].errors">
+        <span style="color: red;" *ngIf="f['status'].errors['required'] ">Please select Status</span>
+    </div>
+      <!-- <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+        Save</button> -->
+<div class="modal-footer">
+<div class="d-grid">
+    <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+        Save</button>
+  </div>
+
+</div>
+
+</form>
+ </div>
+   
+
+  </div>
+ 
+
+
+

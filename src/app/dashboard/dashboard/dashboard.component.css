@@ -56,7 +56,8 @@ app-header {
 }
 
 .right-contents {
-    width: 100%;
+    width: 80%;
+    /* width: 100%; */
     background: #EFEFEF;
     padding: 25px 20px;
     border-radius: 40px;

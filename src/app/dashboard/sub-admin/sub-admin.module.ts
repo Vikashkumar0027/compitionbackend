@@ -5,11 +5,12 @@ import { SubAdminRoutingModule } from './sub-admin-routing.module';
 import { SubadminComponent } from './subadmin/subadmin.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { SubadminModalComponent } from './subadmin-modal/subadmin-modal.component';
 
 
 @NgModule({
   declarations: [
-    SubadminComponent
+    SubadminComponent,SubadminModalComponent
   ],
   imports: [
     CommonModule,

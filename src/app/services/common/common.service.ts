@@ -12,18 +12,18 @@ export class CommonService {
   constructor( private route:Router,
     private global:GlobalService) { }
   isLoggedIn(){
-    return localStorage.getItem('token')!=null;   //it will return false otherWise its will be true
+    return localStorage.getItem('compytkns')!=null;   //it will return false otherWise its will be true
    }
 
    async jwtToken(){
-    this.tokens =  localStorage.getItem('token')
+    this.tokens =  localStorage.getItem('compytkns')
       return jwt_decode(this.tokens);
    }
 
    async tokenOutOfValid(data:any){
     console.log(data);
     if(data.error.msg== 'Token is not valid'){
-      localStorage.removeItem('token');
+      localStorage.removeItem('compytkns');
       this.route.navigate(['']);
       this.global.showToastErorr(data.error.msg);
     }

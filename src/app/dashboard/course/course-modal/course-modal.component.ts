@@ -1,16 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { CourseService } from '../../../services/course/course.service';
 import { CommonService } from '../../../services/common/common.service';
 import { GlobalService } from '../../../services/global/global.service';
-import { SubAdminService } from '../../../services/subAdmin/sub-admin.service';
+
 
 @Component({
-  selector: 'app-subadmin-modal',
-  templateUrl: './subadmin-modal.component.html',
-  styleUrl: './subadmin-modal.component.css'
+  selector: 'app-course-modal',
+  templateUrl: './course-modal.component.html',
+  styleUrl: './course-modal.component.css'
 })
-export class SubadminModalComponent implements OnInit {
+export class CourseModalComponent implements OnInit {
+ 
   submitted:boolean=false;
   form:FormGroup;
   userList:any[]=[];
@@ -24,17 +26,26 @@ export class SubadminModalComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private activeModal: NgbActiveModal,
-    private subadminService:SubAdminService,
+    private couseService:CourseService,
     private commonService:CommonService,
     private global:GlobalService
   ) { 
     this.form = this.fb.group({
-      name: ['', Validators.required],
-      email:new FormControl('',[Validators.required]),
-      phone:new FormControl('',[Validators.required]),
-      password:new FormControl('',[Validators.required]),
-      status:new FormControl('active',[Validators.required]),
-      labDocument:new FormControl(''),
+      title: ['', Validators.required],
+      video_details: ['', Validators.required],
+      sub_title: ['', Validators.required],
+      price: ['', Validators.required],
+      discount: ['', [
+        Validators.required,
+        Validators.min(0),
+        Validators.max(100),
+        this.maxTwoDigitsValidator
+      ]],
+      description: ['', Validators.required],
+      type: ['', Validators.required],
+      image: ['', Validators.required],
+      status:  ['active', Validators.required],
+
     });
   }
 
@@ -44,6 +55,19 @@ export class SubadminModalComponent implements OnInit {
     this.patchDataFunction();
   }
 
+  // Custom validator to restrict to two decimal places
+  maxTwoDigitsValidator(control: any) {
+    const value = control.value;
+    if (value) {
+      // Regular expression to check the value
+      const regex = /^(\d{1,2}(\.\d{0,2})?)?$/;
+      
+      if (!regex.test(value.toString())) {
+        return { invalidDecimal: true };
+      }
+    }
+    return null;
+  }
  
 
 
@@ -54,16 +78,20 @@ export class SubadminModalComponent implements OnInit {
   patchDataFunction(){
     if(this.user == 'Edit'){
       console.log(this.user);
-      // console.log('patch data Input',this.patchData.labDocument)
-      // password: this.patchData.password
 
-      this.form.get('password')?.setValidators([]); // Clear validators for password
+      // this.form.get('password')?.setValidators([]); // Clear validators for password image: this.patchData.status,
 
-      this.selectedItems =this.patchData.assign_to;
+      const vdoDetail = this.patchData.video_details.join(',');
+      const sub_Title = this.patchData.sub_title.join(',');
+
       const patch = {
-        name: this.patchData.name,
-        phone: this.patchData.phone,
-        email: this.patchData.email,
+        title: this.patchData.title,
+        video_details: vdoDetail,
+        sub_title: sub_Title,
+        price: this.patchData.price,
+        discount:this.patchData.discount,
+        description: this.patchData.description,
+        type: this.patchData.type,
         status: this.patchData.status,
       };
       this.form.patchValue(patch);
@@ -133,19 +161,22 @@ setTimeout(() => {
 
   addData(){
     // const data = this.form.value;
-    // {"name":"Inderjeet","email":"inder@gmail.com","password":"123456","phone":"7838659597","logo":"sunflower.png","status":"active"}
-    
+    const vdoDetail = this.form.value.video_details.split(',');
+    const sub_title = this.form.value.sub_title.split(',');
 let formData = new FormData();
 
-(this.file == undefined) ? formData.append('logo', '') : formData.append('logo', this.file);
+(this.file == undefined) ? formData.append('image', '') : formData.append('image', this.file);
 
-formData.append('name', this.form.value.name);
-formData.append('email', this.form.value.email);
-formData.append('phone', this.form.value.phone);
-formData.append('password', this.form.value.password);
+formData.append('title', this.form.value.title);
+formData.append('video_details', vdoDetail);
+formData.append('sub_title', sub_title);
+formData.append('price', this.form.value.price);
+formData.append('discount', this.form.value.discount);
+formData.append('type', this.form.value.type);
+formData.append('description', this.form.value.description);
 formData.append('status', this.form.value.status);
 
-    this.subadminService.createSubAdmin(formData).subscribe(res=>{
+    this.couseService.courseCreate(formData).subscribe(res=>{
 
       // console.log('data update',res)
       if(res.success ){
@@ -162,18 +193,23 @@ formData.append('status', this.form.value.status);
 
   editData(){
     // const data = this.form.value;
-    let formData = new FormData();
+    console.log(this.form.value)
+     const vdoDetail = this.form.value.video_details.split(',');
+     const sub_title = this.form.value.sub_title.split(',');
+let formData = new FormData();
+(this.file == undefined) ? formData.append('image', this.patchData.image) : formData.append('image', this.file);
 
-    (this.file == undefined) ? formData.append('logo', this.patchData.logo) : formData.append('logo', this.file);
-    
-
-      formData.append('name', this.form.value.name);
-      formData.append('email', this.form.value.email);
-      formData.append('phone', this.form.value.phone);
-      formData.append('status', this.form.value.status);
+formData.append('title', this.form.value.title);
+formData.append('video_details', vdoDetail);
+formData.append('sub_title', sub_title);
+formData.append('price', this.form.value.price);
+formData.append('discount', this.form.value.discount);
+formData.append('type', this.form.value.type);
+formData.append('description', this.form.value.description);
+formData.append('status', this.form.value.status);
    
     const _id = this.patchData._id;
-    this.subadminService.subAdminUpdate(formData,_id).subscribe(res=>{
+    this.couseService.courseUpdate(formData,_id).subscribe(res=>{
 
       // console.log('data update',res)
       if(res.success){
