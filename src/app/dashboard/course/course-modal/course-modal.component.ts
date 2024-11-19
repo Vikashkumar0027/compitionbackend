@@ -143,9 +143,9 @@ setTimeout(() => {
     this.submitted = true;
     this.submit = false;
     console.log(this.form.value);
-    if(this.form.invalid){
-      return;
-    }
+    // if(this.form.invalid){
+    //   return;
+    // }
     console.log(this.form.value);
     if(this.user == 'Add'){
       // alert('add');
@@ -153,6 +153,11 @@ setTimeout(() => {
       // console.log('form value',this.form.value);
     }else{
       // alert('edit');
+      const imageControl = this.form.get('image');
+      if (imageControl) {
+        imageControl.setValidators([]);  // Remove all validators
+        imageControl.updateValueAndValidity();  // Revalidate the control
+      }
       this.editData();
 
     }
@@ -160,16 +165,25 @@ setTimeout(() => {
   }
 
   addData(){
+      if(this.form.invalid){
+      return;
+    }
     // const data = this.form.value;
     const vdoDetail = this.form.value.video_details.split(',');
     const sub_title = this.form.value.sub_title.split(',');
+    console.log(vdoDetail,sub_title)
 let formData = new FormData();
 
 (this.file == undefined) ? formData.append('image', '') : formData.append('image', this.file);
 
+for (let i = 0; i < vdoDetail.length; i++) {
+  formData.append(`video_details[]`, vdoDetail[i]);
+  }
+  for (let i = 0; i < sub_title.length; i++) {
+  formData.append(`sub_title[]`, sub_title[i]);
+  }
+
 formData.append('title', this.form.value.title);
-formData.append('video_details', vdoDetail);
-formData.append('sub_title', sub_title);
 formData.append('price', this.form.value.price);
 formData.append('discount', this.form.value.discount);
 formData.append('type', this.form.value.type);
@@ -192,6 +206,9 @@ formData.append('status', this.form.value.status);
   }
 
   editData(){
+    if(this.form.invalid){
+      return;
+    }
     // const data = this.form.value;
     console.log(this.form.value)
      const vdoDetail = this.form.value.video_details.split(',');
@@ -199,9 +216,14 @@ formData.append('status', this.form.value.status);
 let formData = new FormData();
 (this.file == undefined) ? formData.append('image', this.patchData.image) : formData.append('image', this.file);
 
+for (let i = 0; i < vdoDetail.length; i++) {
+  formData.append(`video_details[]`, vdoDetail[i]);
+  }
+  for (let i = 0; i < sub_title.length; i++) {
+  formData.append(`sub_title[]`, sub_title[i]);
+  }
 formData.append('title', this.form.value.title);
-formData.append('video_details', vdoDetail);
-formData.append('sub_title', sub_title);
+
 formData.append('price', this.form.value.price);
 formData.append('discount', this.form.value.discount);
 formData.append('type', this.form.value.type);

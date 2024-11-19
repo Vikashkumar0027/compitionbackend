@@ -8,9 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class CourseService {
 
-  
   constructor(private http: HttpClient) { }
-
 
   courseList(): Observable<any>{
     return this.http.get<any>(`${featureInterface.courseList}`);
@@ -28,8 +26,4 @@ export class CourseService {
     return this.http.delete<any>(`${featureInterface.courseDelete}/${id}`);
   }
   
-
-  // resetPassword(data:any): Observable<any>{
-  //   return this.http.post<any>(featureInterface.resetPassCompany,data);
-  // }
 }
