@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfirmModalComponent } from '../../../common-component/confirm-modal/confirm-modal.component';
+import { AddsubjectComponent } from '../addsubject/addsubject.component';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonService } from '../../../services/common/common.service';
 import { GlobalService } from '../../../services/global/global.service';
 import { CourseService } from '../../../services/course/course.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ConfirmModalComponent } from '../../../common-component/confirm-modal/confirm-modal.component';
-import { CourseModalComponent } from '../course-modal/course-modal.component';
 
 @Component({
-  selector: 'app-course',
-  templateUrl: './course.component.html',
-  styleUrl: './course.component.css'
+  selector: 'app-subject',
+  templateUrl: './subject.component.html',
+  styleUrl: './subject.component.css'
 })
-export class CourseComponent implements OnInit {
+export class SubjectComponent implements OnInit {
 
+  
   data:any[]=[];
   searchCompany:any;
   private activeModal:any;
@@ -55,7 +56,7 @@ export class CourseComponent implements OnInit {
     }
   
     modalData(){
-      this.activeModal = this.modalService.open(CourseModalComponent, {
+      this.activeModal = this.modalService.open(AddsubjectComponent, {
         size: 'lg',
         backdrop: 'static',
         keyboard: false,
@@ -75,7 +76,7 @@ export class CourseComponent implements OnInit {
   
     edit(data:any){
       // console.log(data)
-      this.activeModal = this.modalService.open(CourseModalComponent, {
+      this.activeModal = this.modalService.open(AddsubjectComponent, {
         size: 'lg',
         backdrop: 'static',
         keyboard: false,
@@ -123,53 +124,7 @@ export class CourseComponent implements OnInit {
     }
   
   
-    // resetPassAert(param:any){
-     
-    //   const activeModal = this.modalService.open(ConfirmModalComponent, {
-    //     size: '',
-    //     backdrop: 'static',
-    //     keyboard: false,
-    //   });
-      
-    //   const contentObj = {
-    //     heading: 'Reset Password!',
-    //     message: 'Are you sure want to change password ?',
-    //     cancel: 'Cancel',
-    //     ok: 'Yes',
-    //   }
-  
-    //   activeModal.componentInstance.modalContent = contentObj;
-      
-    //   activeModal.componentInstance.resetpassword = false;
-    //   activeModal.result.then(
-    //     (result) => {
-       
-  
-    //       if (result === 'Ok') {
-           
-    //        this.resetPassword(param);   
-    //       }
-    //     },
-    //     (reason) => {}
-    //   );
-    // }
-  
-    // resetPassword(data:any){
-    //   const formData = { "email": data.email};
-    //   console.log(formData);
-    //   this.spinner.show();
-    //   this.subAdminService.resetPassword(formData).subscribe(res=> {
-    //     // console.log(res.msg);
-    //     if(res.success){
-    //       this.spinner.hide();
-    //       this.showPassWord(res.msg);
-    //     }
-    //   },
-    //   (err)=> {
-    //     this.spinner.hide();
-    //    this.global.showToastErorr('somthing went wrong')
-    //   })
-    // }
+   
   
     showPassWord(msg:any){
       const activeModal = this.modalService.open(ConfirmModalComponent, {
@@ -208,5 +163,6 @@ export class CourseComponent implements OnInit {
       // dashboard/course/subject/454
       this.route.navigate(['/','dashboard','course','subject',list._id]);
     }
+
 
 }

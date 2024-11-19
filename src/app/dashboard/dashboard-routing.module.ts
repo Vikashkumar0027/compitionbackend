@@ -15,6 +15,8 @@ const routes: Routes = [
       {path:'home',component:HomeComponent},
       {path: 'subAdmin',loadChildren: () =>import('./sub-admin/sub-admin.module').then((m) => m.SubAdminModule)} ,
       {path: 'course',loadChildren: () =>import('./course/course.module').then((m) => m.CourseModule)} ,
+      {path: 'course/subject/:id',loadChildren: () =>import('./subject/subject.module').then((m) => m.SubjectModule)} ,
+      {path: 'subject/chapter/:id',loadChildren: () =>import('./chapter/chapter.module').then((m) => m.ChapterModule)} ,
     ]
   }
 ];
