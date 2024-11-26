@@ -1,16 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonService } from '../../../services/common/common.service';
-import { ChapterService } from '../../../services/chapter/chapter.service';
+import { PrevoiusPaperService } from '../../../services/previousPaper/prevoius-paper.service';
 import { GlobalService } from '../../../services/global/global.service';
 
 @Component({
-  selector: 'app-addchapter',
-  templateUrl: './addchapter.component.html',
-  styleUrl: './addchapter.component.css'
+  selector: 'app-modal-set',
+  templateUrl: './modal-set.component.html',
+  styleUrl: './modal-set.component.css'
 })
-export class AddchapterComponent implements OnInit {
+export class ModalSetComponent {
   submitted:boolean=false;
   form:FormGroup;
   userList:any[]=[];
@@ -21,18 +21,19 @@ export class AddchapterComponent implements OnInit {
   submit:boolean=true;
   @Input() public user:any;
   @Input() public patchData:any;
-  @Input() public subjectId:any;
+  @Input() public previousPpeperId:any;
+  // @Input() public subjectId:any;
   constructor(
     private fb: FormBuilder,
     private activeModal: NgbActiveModal,
     // private couseService:CourseService,
     private commonService:CommonService,
-    private chapterService:ChapterService,
+
+    private previousPaperService:PrevoiusPaperService,
     private global:GlobalService
   ) { 
     this.form = this.fb.group({
       name: ['', Validators.required],
-      vdoid: ['', Validators.required],
       pdf: ['', Validators.required],
       status:['active', Validators.required]
     });
@@ -72,7 +73,6 @@ export class AddchapterComponent implements OnInit {
 
       const patch = {
         name: this.patchData.name,
-        vdoid: this.patchData.video,
         status: this.patchData.status,
       };
       this.form.patchValue(patch);
@@ -153,11 +153,9 @@ setTimeout(() => {
 
 formData.append('pdf', this.file); 
 formData.append('name', this.form.value.name);
-formData.append('video', this.form.value.vdoid);
-formData.append('subjectId', this.subjectId);
 formData.append('status', this.form.value.status);
 
-    this.chapterService.chapterCreate(formData).subscribe(res=>{
+    this.previousPaperService.previousPdfUpdateAdd(formData,this.previousPpeperId).subscribe(res=>{
 
       // console.log('data update',res)
       if(res.success ){
@@ -182,23 +180,20 @@ let formData = new FormData();
 (this.file == undefined) ? formData.append('pdf', this.patchData.pdf) : formData.append('pdf', this.file);
 
 formData.append('name', this.form.value.name);
-formData.append('video', this.form.value.vdoid);
-formData.append('subjectId', this.subjectId);
 formData.append('status', this.form.value.status);
    
     const _id = this.patchData._id;
-    this.chapterService.chapterUpdate(formData,_id).subscribe(res=>{
+    // this.syllabusService.syllabusUpdate(formData,_id).subscribe(res=>{
 
-      // console.log('data update',res)
-      if(res.success){
-        this.global.showToast(res.response);
-        this.activeModal.close('Edit');
-      }
+    //   console.log('data update',res)
+    //   if(res.success){
+    //     this.global.showToast(res.response);
+    //     this.activeModal.close('Edit');
+    //   }
 
-    },err=>{
-      this.commonService.tokenOutOfValid(err)
-      console.log(err)
-    })
+    // },err=>{
+    //   this.commonService.tokenOutOfValid(err)
+    //   console.log(err)
+    // })
   }
 }
-

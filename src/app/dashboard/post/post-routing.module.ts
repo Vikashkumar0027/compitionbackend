@@ -1,19 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ChapterComponent } from './chapter/chapter.component';
+import { PostComponent } from './post/post.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: ChapterComponent,
-    data: {
-      title:'chapter'
-    },
-  }
+  {path:'',component:PostComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ChapterRoutingModule { }
+export class PostRoutingModule { }

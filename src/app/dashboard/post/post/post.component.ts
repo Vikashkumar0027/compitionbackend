@@ -1,20 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonService } from '../../../services/common/common.service';
 import { GlobalService } from '../../../services/global/global.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ChapterService } from '../../../services/chapter/chapter.service';
-import { AddchapterComponent } from '../addchapter/addchapter.component';
+import { PostService } from '../../../services/post/post.service';
+import { ModalPostComponent } from '../modal-post/modal-post.component';
 import { ConfirmModalComponent } from '../../../common-component/confirm-modal/confirm-modal.component';
 
 @Component({
-  selector: 'app-chapter',
-  templateUrl: './chapter.component.html',
-  styleUrl: './chapter.component.css'
+  selector: 'app-post',
+  templateUrl: './post.component.html',
+  styleUrl: './post.component.css'
 })
-export class ChapterComponent implements OnInit{
-  subjectId:any;
+export class PostComponent {
   data:any[]=[];
   searchCompany:any;
   private activeModal:any;
@@ -23,19 +22,16 @@ export class ChapterComponent implements OnInit{
     constructor(
       private route:Router,
       private modalService: NgbModal,
-      // private userService:UserService,
       private commonService:CommonService,
       private global:GlobalService,
-      // private courseService:CourseService,
-      private chapterService:ChapterService,
+      // private syllabusService:SyllabusService,
+      private postService:PostService,
       private spinner: NgxSpinnerService,
       private activatedRoute: ActivatedRoute
       )
     {}
   
     ngOnInit(): void {
-      this.subjectId = this.activatedRoute.snapshot.paramMap.get('id');
-      console.log(this.subjectId);
       this.getList();
     }
   
@@ -43,7 +39,7 @@ export class ChapterComponent implements OnInit{
     getList(){
     try {
       this.spinner.show();
-      this.chapterService.chapterList(this.subjectId).subscribe(res=>{
+      this.postService.postList().subscribe(res=>{
       console.log(res);
       if(res.success){
         this.data=res.response;
@@ -59,13 +55,12 @@ export class ChapterComponent implements OnInit{
     }
   
     modalData(){
-      this.activeModal = this.modalService.open(AddchapterComponent, {
+      this.activeModal = this.modalService.open(ModalPostComponent, {
         size: 'lg',
         backdrop: 'static',
         keyboard: false,
       });
       this.activeModal.componentInstance.user = 'Add';
-      this.activeModal.componentInstance.subjectId = this.subjectId;
   
       //data transfer to child NgbModalRef
       this.activeModal.result.then(
@@ -80,14 +75,13 @@ export class ChapterComponent implements OnInit{
   
     edit(data:any){
       // console.log(data)
-      this.activeModal = this.modalService.open(AddchapterComponent, {
+      this.activeModal = this.modalService.open(ModalPostComponent, {
         size: 'lg',
         backdrop: 'static',
         keyboard: false,
       });
       this.activeModal.componentInstance.user = 'Edit';
       this.activeModal.componentInstance.patchData = data;
-      this.activeModal.componentInstance.subjectId = this.subjectId;
   
       //data transfer to child NgbModalRef
       this.activeModal.result.then(
@@ -151,7 +145,7 @@ export class ChapterComponent implements OnInit{
   
     async deletefunction(id:any){
       // alert(id)
-      this.chapterService.chapterDelete(id).subscribe(res => {
+      this.postService.postDelete(id).subscribe(res => {
         // console.log(res);
         if(res.success){
           this.getList();
@@ -163,10 +157,4 @@ export class ChapterComponent implements OnInit{
        })
   
     }
-
-    // chapter(list:any){
-    //   // dashboard/subject/chapter
-    //   this.route.navigate(['/','dashboard','subject','chapter',list._id]);
-    // }
-
 }

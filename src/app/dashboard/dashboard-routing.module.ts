@@ -17,6 +17,9 @@ const routes: Routes = [
       {path: 'course',loadChildren: () =>import('./course/course.module').then((m) => m.CourseModule)} ,
       {path: 'course/subject/:id',loadChildren: () =>import('./subject/subject.module').then((m) => m.SubjectModule)} ,
       {path: 'subject/chapter/:id',loadChildren: () =>import('./chapter/chapter.module').then((m) => m.ChapterModule)} ,
+      {path: 'syllabus',loadChildren: () =>import('./syllabus/syllabus.module').then((m) => m.SyllabusModule)} ,
+      {path: 'previous_paper',loadChildren: () =>import('./previous-paper/previous-paper.module').then((m) => m.PreviousPaperModule)} ,
+      {path: 'post',loadChildren: () =>import('./post/post.module').then((m) => m.PostModule)} ,
     ]
   }
 ];

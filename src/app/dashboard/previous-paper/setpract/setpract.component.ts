@@ -3,18 +3,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonService } from '../../../services/common/common.service';
 import { GlobalService } from '../../../services/global/global.service';
+import { PrevoiusPaperService } from '../../../services/previousPaper/prevoius-paper.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ChapterService } from '../../../services/chapter/chapter.service';
-import { AddchapterComponent } from '../addchapter/addchapter.component';
+import { ModalSetComponent } from '../modal-set/modal-set.component';
 import { ConfirmModalComponent } from '../../../common-component/confirm-modal/confirm-modal.component';
 
 @Component({
-  selector: 'app-chapter',
-  templateUrl: './chapter.component.html',
-  styleUrl: './chapter.component.css'
+  selector: 'app-setpract',
+  templateUrl: './setpract.component.html',
+  styleUrl: './setpract.component.css'
 })
-export class ChapterComponent implements OnInit{
-  subjectId:any;
+export class SetpractComponent implements OnInit {
+ previouspaperId:any;
   data:any[]=[];
   searchCompany:any;
   private activeModal:any;
@@ -23,19 +23,16 @@ export class ChapterComponent implements OnInit{
     constructor(
       private route:Router,
       private modalService: NgbModal,
-      // private userService:UserService,
       private commonService:CommonService,
       private global:GlobalService,
-      // private courseService:CourseService,
-      private chapterService:ChapterService,
+      private previousPaperService:PrevoiusPaperService,
       private spinner: NgxSpinnerService,
       private activatedRoute: ActivatedRoute
       )
     {}
   
     ngOnInit(): void {
-      this.subjectId = this.activatedRoute.snapshot.paramMap.get('id');
-      console.log(this.subjectId);
+      this.previouspaperId = this.activatedRoute.snapshot.paramMap.get('id');
       this.getList();
     }
   
@@ -43,10 +40,10 @@ export class ChapterComponent implements OnInit{
     getList(){
     try {
       this.spinner.show();
-      this.chapterService.chapterList(this.subjectId).subscribe(res=>{
+      this.previousPaperService.previousView(this.previouspaperId).subscribe(res=>{
       console.log(res);
       if(res.success){
-        this.data=res.response;
+        this.data=res.response.previousExam;
       }
       this.spinner.hide();
     },err=>{
@@ -59,13 +56,13 @@ export class ChapterComponent implements OnInit{
     }
   
     modalData(){
-      this.activeModal = this.modalService.open(AddchapterComponent, {
+      this.activeModal = this.modalService.open(ModalSetComponent, {
         size: 'lg',
         backdrop: 'static',
         keyboard: false,
       });
       this.activeModal.componentInstance.user = 'Add';
-      this.activeModal.componentInstance.subjectId = this.subjectId;
+      this.activeModal.componentInstance.previousPpeperId = this.previouspaperId;
   
       //data transfer to child NgbModalRef
       this.activeModal.result.then(
@@ -80,14 +77,13 @@ export class ChapterComponent implements OnInit{
   
     edit(data:any){
       // console.log(data)
-      this.activeModal = this.modalService.open(AddchapterComponent, {
+      this.activeModal = this.modalService.open(ModalSetComponent, {
         size: 'lg',
         backdrop: 'static',
         keyboard: false,
       });
       this.activeModal.componentInstance.user = 'Edit';
       this.activeModal.componentInstance.patchData = data;
-      this.activeModal.componentInstance.subjectId = this.subjectId;
   
       //data transfer to child NgbModalRef
       this.activeModal.result.then(
@@ -121,7 +117,7 @@ export class ChapterComponent implements OnInit{
         
   
           if (result === 'Ok') {
-            this.deletefunction(param._id);     
+            this.deletefunction(param.id);     
           }
         },
         (reason) => {}
@@ -151,7 +147,7 @@ export class ChapterComponent implements OnInit{
   
     async deletefunction(id:any){
       // alert(id)
-      this.chapterService.chapterDelete(id).subscribe(res => {
+      this.previousPaperService.previousPdfDelete(this.previouspaperId,id).subscribe(res => {
         // console.log(res);
         if(res.success){
           this.getList();
@@ -163,10 +159,5 @@ export class ChapterComponent implements OnInit{
        })
   
     }
-
-    // chapter(list:any){
-    //   // dashboard/subject/chapter
-    //   this.route.navigate(['/','dashboard','subject','chapter',list._id]);
-    // }
 
 }

@@ -3,16 +3,16 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Subject</li>
+        <li class="breadcrumb-item active" aria-current="page">Previous Paper</li>
       </ol>
     </nav>
 
     <div class="row align-items-center">
       <div class="col-md-4">
-        <h1 class="h3 mb-lg-3 text-gray-800"> Chapter</h1>
+        <h1 class="h3 mb-lg-3 text-gray-800"> Set</h1>
       </div>
       <div class="col-md-8 mb-3 text-md-end">
-        <button type="button" class="btn btn-outline-primary" (click)="modalData()">Add Chapter</button>
+        <button type="button" class="btn btn-outline-primary" (click)="modalData()">Add Set</button>
       </div>
     </div>
   
@@ -37,9 +37,9 @@
             <thead>
               <tr>
         <th scope="col">S.N.</th>
-        <th scope="col">Name</th>
-        <th scope="col">Notes</th>
-        <th scope="col">Status</th>
+        <th scope="col">Set Name</th>
+        <th scope="col">Pdf set</th>
+        <!-- <th scope="col">Status</th> -->
         <th scope="col">Action</th>
               </tr>
             </thead>
@@ -48,14 +48,13 @@
           <th scope="row" class="text-center">{{i+1}}</th>
           <td class="text-center">{{list?.name}} </td>
           <td class="text-center">
-            <!-- <img [src]="list?.image" width="200px" /> -->
-            <a [href]="list.pdf" target="_blank">View notes</a> 
+            <a [href]="list.pdf" target="_blank">View Set</a> 
           </td>
-          <td class="text-center">{{list?.status}}</td>
+          <!-- <td class="text-center">{{list?.status}}</td> -->
           <td class="text-center">
-            <button title="Edit" type="button" class="btn btn-outline-primary btn-sm m-1" (click)="edit(list)">
+            <!-- <button title="Edit" type="button" class="btn btn-outline-primary btn-sm m-1" (click)="edit(list)">
               <i class="fa-solid fa-pen-to-square"></i>
-            </button>
+            </button> -->
             <button title="Delete" type="button" class="btn btn-outline-danger btn-sm m-1" (click)="deletes(list)">
               <i class="fa-solid fa-trash-can"></i>
             </button>

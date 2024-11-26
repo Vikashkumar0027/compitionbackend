@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SubjectRoutingModule } from './subject-routing.module';
-import { SubjectComponent } from './subject/subject.component';
+import { SyllabusRoutingModule } from './syllabus-routing.module';
+import { SyllabusComponent } from './syllabus/syllabus.component';
+import { ModalSyllabusComponent } from './modal-syllabus/modal-syllabus.component';
 import { CommonComponentModule } from '../../common-component/common-component.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { AddsubjectComponent } from './addsubject/addsubject.component';
 
 
 @NgModule({
   declarations: [
-    SubjectComponent,
-    AddsubjectComponent
+    SyllabusComponent,
+    ModalSyllabusComponent
   ],
   imports: [
     CommonModule,
-    SubjectRoutingModule,CommonComponentModule,
+    SyllabusRoutingModule,CommonComponentModule,
     ReactiveFormsModule,
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
   ]
 })
-export class SubjectModule { }
+export class SyllabusModule { }
