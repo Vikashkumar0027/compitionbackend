@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     private globalService:GlobalService
   ){
     this.form = this.fb.group({
-      email:new FormControl('',[Validators.required]),
+      email:new FormControl('inder@gmail.com',[Validators.required]),
       password:new FormControl('',[Validators.required,Validators.minLength(3)])
     })
   }

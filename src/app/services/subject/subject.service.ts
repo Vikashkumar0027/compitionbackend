@@ -12,8 +12,8 @@ export class SubjectService {
   constructor(private http: HttpClient) { }
 
 
-  subjectList(): Observable<any>{
-    return this.http.get<any>(`${featureInterface.subjectList}`);
+  subjectList(id:any): Observable<any>{
+    return this.http.get<any>(`${featureInterface.subjectList}/${id}`);
   }
 
   subjectCreate(data:any): Observable<any>{
@@ -27,4 +27,6 @@ export class SubjectService {
   subjectDelete(id:any): Observable<any>{
     return this.http.delete<any>(`${featureInterface.subjectDelete}/${id}`);
   }
+
+  
 }

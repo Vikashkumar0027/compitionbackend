@@ -2,15 +2,15 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonService } from '../../../services/common/common.service';
-import { ChapterService } from '../../../services/chapter/chapter.service';
+import { PostService } from '../../../services/post/post.service';
 import { GlobalService } from '../../../services/global/global.service';
 
 @Component({
-  selector: 'app-addchapter',
-  templateUrl: './addchapter.component.html',
-  styleUrl: './addchapter.component.css'
+  selector: 'app-modal-post',
+  templateUrl: './modal-post.component.html',
+  styleUrl: './modal-post.component.css'
 })
-export class AddchapterComponent implements OnInit {
+export class ModalPostComponent implements OnInit {
   submitted:boolean=false;
   form:FormGroup;
   userList:any[]=[];
@@ -21,19 +21,19 @@ export class AddchapterComponent implements OnInit {
   submit:boolean=true;
   @Input() public user:any;
   @Input() public patchData:any;
-  @Input() public subjectId:any;
+  // @Input() public subjectId:any;
   constructor(
     private fb: FormBuilder,
     private activeModal: NgbActiveModal,
     // private couseService:CourseService,
     private commonService:CommonService,
-    private chapterService:ChapterService,
+
+    private postService:PostService,
     private global:GlobalService
   ) { 
     this.form = this.fb.group({
-      name: ['', Validators.required],
-      vdoid: ['', Validators.required],
-      pdf: ['', Validators.required],
+      title: ['', Validators.required],
+      image: ['', Validators.required],
       status:['active', Validators.required]
     });
   }
@@ -71,8 +71,7 @@ export class AddchapterComponent implements OnInit {
       // this.form.get('password')?.setValidators([]); // Clear validators for password image: this.patchData.status,
 
       const patch = {
-        name: this.patchData.name,
-        vdoid: this.patchData.video,
+        title: this.patchData.title,
         status: this.patchData.status,
       };
       this.form.patchValue(patch);
@@ -152,12 +151,10 @@ setTimeout(() => {
 // (this.file == undefined) ? formData.append('image', '') : formData.append('image', this.file);
 
 formData.append('pdf', this.file); 
-formData.append('name', this.form.value.name);
-formData.append('video', this.form.value.vdoid);
-formData.append('subjectId', this.subjectId);
+formData.append('title', this.form.value.title);
 formData.append('status', this.form.value.status);
 
-    this.chapterService.chapterCreate(formData).subscribe(res=>{
+    this.postService.postAdd(formData).subscribe(res=>{
 
       // console.log('data update',res)
       if(res.success ){
@@ -181,13 +178,11 @@ formData.append('status', this.form.value.status);
 let formData = new FormData();
 (this.file == undefined) ? formData.append('pdf', this.patchData.pdf) : formData.append('pdf', this.file);
 
-formData.append('name', this.form.value.name);
-formData.append('video', this.form.value.vdoid);
-formData.append('subjectId', this.subjectId);
+formData.append('title', this.form.value.title);
 formData.append('status', this.form.value.status);
    
     const _id = this.patchData._id;
-    this.chapterService.chapterUpdate(formData,_id).subscribe(res=>{
+    this.postService.postUpdate(formData,_id).subscribe(res=>{
 
       // console.log('data update',res)
       if(res.success){
@@ -201,4 +196,3 @@ formData.append('status', this.form.value.status);
     })
   }
 }
-

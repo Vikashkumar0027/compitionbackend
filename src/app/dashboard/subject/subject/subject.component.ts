@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmModalComponent } from '../../../common-component/confirm-modal/confirm-modal.component';
 import { AddsubjectComponent } from '../addsubject/addsubject.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonService } from '../../../services/common/common.service';
 import { GlobalService } from '../../../services/global/global.service';
 import { CourseService } from '../../../services/course/course.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SubjectService } from '../../../services/subject/subject.service';
 
 @Component({
   selector: 'app-subject',
@@ -15,7 +16,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class SubjectComponent implements OnInit {
 
-  
+  courseId:any;
   data:any[]=[];
   searchCompany:any;
   private activeModal:any;
@@ -27,12 +28,16 @@ export class SubjectComponent implements OnInit {
       // private userService:UserService,
       private commonService:CommonService,
       private global:GlobalService,
-      private courseService:CourseService,
+      // private courseService:CourseService,
+      private subjectService:SubjectService,
       private spinner: NgxSpinnerService,
+      private activatedRoute: ActivatedRoute
       )
     {}
   
     ngOnInit(): void {
+      this.courseId = this.activatedRoute.snapshot.paramMap.get('id');
+      console.log(this.courseId);
       this.getList();
     }
   
@@ -40,7 +45,7 @@ export class SubjectComponent implements OnInit {
     getList(){
     try {
       this.spinner.show();
-      this.courseService.courseList().subscribe(res=>{
+      this.subjectService.subjectList(this.courseId).subscribe(res=>{
       console.log(res);
       if(res.success){
         this.data=res.response;
@@ -62,6 +67,7 @@ export class SubjectComponent implements OnInit {
         keyboard: false,
       });
       this.activeModal.componentInstance.user = 'Add';
+      this.activeModal.componentInstance.courseId = this.courseId;
   
       //data transfer to child NgbModalRef
       this.activeModal.result.then(
@@ -83,6 +89,7 @@ export class SubjectComponent implements OnInit {
       });
       this.activeModal.componentInstance.user = 'Edit';
       this.activeModal.componentInstance.patchData = data;
+      this.activeModal.componentInstance.courseId = this.courseId;
   
       //data transfer to child NgbModalRef
       this.activeModal.result.then(
@@ -146,7 +153,7 @@ export class SubjectComponent implements OnInit {
   
     async deletefunction(id:any){
       // alert(id)
-      this.courseService.courseDelete(id).subscribe(res => {
+      this.subjectService.subjectDelete(id).subscribe(res => {
         // console.log(res);
         if(res.success){
           this.getList();
@@ -159,9 +166,9 @@ export class SubjectComponent implements OnInit {
   
     }
 
-    subject(list:any){
-      // dashboard/course/subject/454
-      this.route.navigate(['/','dashboard','course','subject',list._id]);
+    chapter(list:any){
+      // dashboard/subject/chapter
+      this.route.navigate(['/','dashboard','subject','chapter',list._id]);
     }
 
 

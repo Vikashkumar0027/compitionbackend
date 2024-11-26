@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{user}} Subject</h4>
+    <h4 class="modal-title" id="modal-basic-title">{{user}} Post</h4>
 
     <button type="button" class="btn btn-primary close" aria-label="Close" (click)="modalClose()">
       <span aria-hidden="true">&times;</span>
@@ -12,18 +12,22 @@
  <div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-3">
-        <label for="exampleFormControlname" class="form-label">Subject Name: </label>
-        <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="name">
+        <label for="exampleFormControlname" class="form-label">Post Name: </label>
+        <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="title">
       </div>
-      <div *ngIf="submitted && f['name'].errors">
-        <span style="color: red;" *ngIf="f['name'].errors['required'] ">Please enter Subject Name</span>
+      <div *ngIf="submitted && f['title'].errors">
+        <span style="color: red;" *ngIf="f['title'].errors['required'] ">Please enter Post Name</span>
     </div>
+    
 
-
+    <!-- accept="image/*" -->
     <div class="mb-3">
-      <label for="images" class="form-label">Logo </label>
-      <input type="file" class="form-control" id="images" rows="3" formControlName="image" accept="image/*" (change)="onFileChange($event)" >
+      <label for="images" class="form-label">Post Image </label>
+      <input type="file" class="form-control" id="images" rows="3" formControlName="image" (change)="onFileChange($event)" accept="image/*">
     </div>
+    <div *ngIf="submitted && f['image'].errors">
+      <span style="color: red;" *ngIf="f['image'].errors['required'] ">Please uploads Post image </span>
+  </div>
   
 
     <div class="mb-3">
