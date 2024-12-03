@@ -31,6 +31,7 @@ const domain = 'http://43.225.53.245:4500/';
   //  previous Paper crude
   export let previousCreate = domain+'admin/exam/create';
   export let previousList = domain+'admin/exam/list';
+  export let previousPdfAdd = domain+'admin/pdfadd';
   export let previousPdfUpdate = domain+'admin/pdfupdate';
   export let previousPdfDelete = domain+'admin/pdfdelete';
   export let previousUpdate = domain+'admin/exam/update';

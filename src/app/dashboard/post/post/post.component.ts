@@ -47,7 +47,7 @@ export class PostComponent {
       this.spinner.hide();
     },err=>{
       this.spinner.hide();
-      this.commonService.tokenOutOfValid(err)
+      this.commonService.tokenOutOfValid(err);
     })
     } catch (error) {
       this.spinner.hide();
