@@ -83,7 +83,8 @@ export class SetpractComponent implements OnInit {
         keyboard: false,
       });
       this.activeModal.componentInstance.user = 'Edit';
-      this.activeModal.componentInstance.patchData = data;
+      this.activeModal.componentInstance.patchData = data; 
+      this.activeModal.componentInstance.previousPpeperId = this.previouspaperId;
   
       //data transfer to child NgbModalRef
       this.activeModal.result.then(

@@ -35,7 +35,7 @@ export class ModalSetComponent {
     this.form = this.fb.group({
       name: ['', Validators.required],
       pdf: ['', Validators.required],
-      status:['active', Validators.required]
+      // status:['active', Validators.required]
     });
   }
 
@@ -73,7 +73,7 @@ export class ModalSetComponent {
 
       const patch = {
         name: this.patchData.name,
-        status: this.patchData.status,
+        // status: this.patchData.status,
       };
       this.form.patchValue(patch);
     }
@@ -153,9 +153,9 @@ setTimeout(() => {
 
 formData.append('pdf', this.file); 
 formData.append('name', this.form.value.name);
-formData.append('status', this.form.value.status);
+// formData.append('status', this.form.value.status);
 
-    this.previousPaperService.previousPdfUpdateAdd(formData,this.previousPpeperId).subscribe(res=>{
+    this.previousPaperService.previousPdfAdd(formData,this.previousPpeperId).subscribe(res=>{
 
       // console.log('data update',res)
       if(res.success ){
@@ -180,20 +180,20 @@ let formData = new FormData();
 (this.file == undefined) ? formData.append('pdf', this.patchData.pdf) : formData.append('pdf', this.file);
 
 formData.append('name', this.form.value.name);
-formData.append('status', this.form.value.status);
+// formData.append('status', this.form.value.status);
    
-    const _id = this.patchData._id;
-    // this.syllabusService.syllabusUpdate(formData,_id).subscribe(res=>{
+    const _id = this.patchData.id;
+    this.previousPaperService.previousPdfUpdate(formData,this.previousPpeperId,_id).subscribe(res=>{
 
-    //   console.log('data update',res)
-    //   if(res.success){
-    //     this.global.showToast(res.response);
-    //     this.activeModal.close('Edit');
-    //   }
+      console.log('data update',res)
+      if(res.success){
+        this.global.showToast(res.response);
+        this.activeModal.close('Edit');
+      }
 
-    // },err=>{
-    //   this.commonService.tokenOutOfValid(err)
-    //   console.log(err)
-    // })
+    },err=>{
+      this.commonService.tokenOutOfValid(err)
+      console.log(err)
+    })
   }
 }

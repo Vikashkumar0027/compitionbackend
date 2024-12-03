@@ -23,8 +23,11 @@ export class PrevoiusPaperService {
   previousUpdate(data:any, id:any): Observable<any>{
     return this.http.patch<any>(`${featureInterface.previousUpdate}/${id}`,data);
   }
-  previousPdfUpdateAdd(data:any, id:any): Observable<any>{
-    return this.http.patch<any>(`${featureInterface.previousPdfUpdate}/${id}`,data);
+  previousPdfAdd(data:any, id:any): Observable<any>{
+    return this.http.post<any>(`${featureInterface.previousPdfAdd}/${id}`,data);
+  }
+  previousPdfUpdate(data:any, previousId:any,id:any): Observable<any>{
+    return this.http.patch<any>(`${featureInterface.previousPdfUpdate}/${previousId}/${id}`,data);
   }
 
   previousDelete(id:any): Observable<any>{

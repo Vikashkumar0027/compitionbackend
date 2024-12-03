@@ -22,10 +22,10 @@ export class CommonService {
 
    async tokenOutOfValid(data:any){
     console.log(data);
-    if(data.error.msg== 'Token is not valid'){
+    if(data.error.message== 'Unauthorized Token !!'){
       localStorage.removeItem('compytkns');
       this.route.navigate(['']);
-      this.global.showToastErorr(data.error.msg);
+      this.global.showToastErorr('Session Expired!');
     }
   }
 }

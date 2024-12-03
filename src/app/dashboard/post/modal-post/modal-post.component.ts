@@ -129,7 +129,7 @@ setTimeout(() => {
       // console.log('form value',this.form.value);
     }else{
       // alert('edit');
-      const imageControl = this.form.get('pdf');
+      const imageControl = this.form.get('image');
       if (imageControl) {
         imageControl.setValidators([]);  // Remove all validators
         imageControl.updateValueAndValidity();  // Revalidate the control
@@ -150,7 +150,7 @@ setTimeout(() => {
 
 // (this.file == undefined) ? formData.append('image', '') : formData.append('image', this.file);
 
-formData.append('pdf', this.file); 
+formData.append('image', this.file); 
 formData.append('title', this.form.value.title);
 formData.append('status', this.form.value.status);
 
@@ -176,8 +176,7 @@ formData.append('status', this.form.value.status);
     // const data = this.form.value;
     console.log(this.form.value)
 let formData = new FormData();
-(this.file == undefined) ? formData.append('pdf', this.patchData.pdf) : formData.append('pdf', this.file);
-
+(this.file == undefined) ? formData.append(this.patchData.image, this.patchData.pdf) : formData.append('image', this.file);
 formData.append('title', this.form.value.title);
 formData.append('status', this.form.value.status);
    
