@@ -9,7 +9,7 @@ const routes: Routes = [
   {path:'',component:TestBatchComponent},
   {path:'subject/:id',component:TestSubjectComponent},
   {path:'setlist/:id',component:TestSetListComponent},
-  {path:'qestion/:id',component:TestQuestionComponent},
+  {path:'qestion',component:TestQuestionComponent},
 
 ];
 

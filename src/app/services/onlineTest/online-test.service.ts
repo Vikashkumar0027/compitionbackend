@@ -67,5 +67,23 @@ setTestList(id:any) : Observable<any> {
     return this._http.delete<any>( `${featureInterface.setTestDelete}/${id}`);
   }
 
+  setTestView(id: any)  : Observable<any>{
+    return this._http.get<any>( `${featureInterface.setTestView}/${id}`);
+  }
+
+  // add question
+
+  addQuestion(param: any,id:any) : Observable<any>{
+    return this._http.post<any>(`${featureInterface.addQuestion}/${id}`,param);
+  }
+  updateQuestion(param: any,id:any,questionId:any) : Observable<any>{
+    return this._http.patch<any>(`${featureInterface.updateQuestion}/${id}/${questionId}`,param);
+  }
+
+  deleteQuestion(id: any,questionId:any)  : Observable<any>{
+    return this._http.delete<any>( `${featureInterface.deleteQuestion}/${id}/${questionId}`);
+  }
+
+
  
 }

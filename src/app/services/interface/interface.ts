@@ -71,3 +71,10 @@ export let setTestList = domain+'admin/subjectset';
 export let setTestAdd = domain+'admin/testsetlist/create';
 export let setTestUpdate = domain+'admin/testsetlist/update';
 export let setTestDelete = domain+'admin/testsetlist/delete';
+export let setTestView = domain+'admin/testsetlist/view';
+
+
+// add Question
+export let addQuestion = domain+'admin/question';
+export let updateQuestion = domain+'admin/question';
+export let deleteQuestion = domain+'admin/questiondelete';
