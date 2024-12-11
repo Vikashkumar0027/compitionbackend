@@ -20,6 +20,8 @@ const routes: Routes = [
       {path: 'syllabus',loadChildren: () =>import('./syllabus/syllabus.module').then((m) => m.SyllabusModule)} ,
       {path: 'previous_paper',loadChildren: () =>import('./previous-paper/previous-paper.module').then((m) => m.PreviousPaperModule)} ,
       {path: 'post',loadChildren: () =>import('./post/post.module').then((m) => m.PostModule)} ,
+      {path: 'privilage',loadChildren: () =>import('./privilage/privilage.module').then((m) => m.PrivilageModule)} ,
+      {path: 'online-test',loadChildren: () =>import('./online-test/online-test.module').then((m) => m.OnlineTestModule)} ,
     ]
   }
 ];

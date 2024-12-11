@@ -8,6 +8,10 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HomeComponent } from './home/home.component';
+// import { TestBatchComponent } from './onlineTest/test-batch/test-batch.component';
+// import { TestSubjectComponent } from './onlineTest/test-subject/test-subject.component';
+// import { TestSetListComponent } from './onlineTest/test-set-list/test-set-list.component';
+// import { TestQuestionComponent } from './onlineTest/test-question/test-question.component';
 
 
 @NgModule({
@@ -15,7 +19,7 @@ import { HomeComponent } from './home/home.component';
     DashboardComponent,
     HeaderComponent,
     SideNavComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     CommonModule,

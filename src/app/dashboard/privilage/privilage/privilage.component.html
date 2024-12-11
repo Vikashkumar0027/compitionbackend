@@ -1,0 +1,83 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{heading}}</h1>
+        <a (click)="modalData()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-plus fa-sm text-white-50"></i> Create</a>
+    </div>
+    <!-- DataTales Example -->
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{{tableHeading}}</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table *ngIf="PrivilegeListData; else noDataFound" class="table table-bordered" id="dataTable"
+                            width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Privilege Title</th>
+                                    <th>Access</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Privilege Title</th>
+                                    <th>Access</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr *ngFor="let pldata of PrivilegeListData; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{pldata.name | titlecase }}</td>
+                                    <td>
+                                        <ul *ngFor="let access of pldata.access"> <b>{{ access.name | titlecase}}</b>
+                                            <!-- <i class="text-success" *ngIf="access.checked"> &#10003;</i>
+                                            <i class="text-danger" *ngIf="!access.checked"> &#10007;</i> -->
+                                            <li class="d-inline p-2" *ngFor="let option of access.options"> {{
+                                                option.name }}
+                                                <i class="text-success" *ngIf="option.checked">&#10003;</i>
+                                                <i class="text-danger" *ngIf="!option.checked">&#10007;</i>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td [ngClass]="{
+                                        'text-success': pldata.status === 'active',
+                                        'text-danger': pldata.status === 'inactive'
+                                      }">{{pldata.status | uppercase}}</td>
+                                    <td>
+                                        <button (click)="editPrivilege(pldata)" type="button"
+                                            class="btn btn-link btn-sm m-1" title="Edit"><i
+                                                class="fas fa-edit"></i></button>
+                                        <button (click)="deletePrivilege(pldata)" type="button"
+                                            class="btn btn-link text-danger btn-sm m-1" title="Delete"> <i
+                                                class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <ng-template #noDataFound>
+                            <div>
+                                No data found!.
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+       
