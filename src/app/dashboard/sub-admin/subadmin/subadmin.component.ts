@@ -205,4 +205,9 @@ private activeModal:any;
 
   // }
 
+  copyMail(param:string){
+    this.global.copyMessage(param);
+    this.global.showToast('copied');
+ }
+
 }

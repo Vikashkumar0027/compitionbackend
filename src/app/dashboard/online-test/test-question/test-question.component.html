@@ -1,0 +1,212 @@
+<div >
+    <!-- *ngIf="seListInfo" -->
+    <div class="card" >
+        <div class="card-body">
+            <table >
+                <tbody>
+                    <tr>
+                        <th scope="row">Name of Question Set</th>
+                        <td> {{seListInfo?.qps_title}}  </td>
+                      </tr>
+
+                    <tr>
+                        <th scope="row">Course-module</th>
+                        <td>{{seListInfo?.module_name}}  </td>
+                      </tr>
+                    <tr>
+                        <th scope="row">Course</th>
+                        <td>{{seListInfo?.course_name}}  </td>
+                      </tr>
+                   
+                    <!-- <tr>
+                        <th scope="row">Language</th>
+                        <td>{{seListInfo?.language}}  </td>
+                      </tr>
+                    <tr>
+                        <th scope="row">Chapter Title</th>
+                        <td>{{seListInfo?.chapter_title}}  </td>
+                      </tr> -->
+    
+                </tbody>
+              </table>
+    
+        </div>
+      </div>
+    
+    
+      <div class="card mt-4" >
+        <div class="card-header">
+         <!-- Question List -->
+         <div class="row">
+            <div class="col">
+              <h4 class="card-title mb-0" id="traffic">
+                Questions List
+              </h4>
+            </div>
+            <div class="col d-none d-md-block" sm="7">
+              <button cButton class="float-end" color="primary"
+                (click)="addNewQuestion(target)">
+                + Add Question
+              </button>
+            </div>
+        </div>
+        </div>
+    
+    
+        <div class="card-body">
+          <table>
+              <thead>
+              <tr>
+              <th scope="col">S.no</th>
+              <th scope="col"> Question</th>
+              <th scope="col">Class</th>
+               <th scope="col">Action</th>
+          </tr>
+              </thead>
+            
+              <tbody>
+              <tr *ngFor="let list of questionList?.result.result; let i= index">
+               <td>{{i+1}}</td>
+              <!-- <td [innerHTML]="list.question"></td> -->
+              <td><ckeditor [editor]="Editor" [config]="{ toolbar: [ ] }" class="customs"
+                [disabled]="true" [(ngModel)]="list.question"></ckeditor></td>
+              <!-- <td>{{list.question}}</td> -->
+              <td>{{questionList.course.course_name}}</td>
+              <td>
+                <!-- [cModalToggle]="verticallyCenteredModal.id" -->
+                  <button color="warning" class="text-white me-2"   cButton  (click)="edit(list, target)" ><i class="fa-regular fa-pen-to-square"></i></button>
+                  <button cButton color="danger" class="text-white" (click)="deleteId(list)" ><i class="fa-solid fa-trash-can"></i></button>
+              </td>
+              </tr>
+              </tbody>
+              </table>
+              <!-- <spinner class="spinner" *ngIf="loader " ></spinner> -->
+      </div>
+    
+      <div class="card-header" style="background-color: aquamarine;">
+      <h2 *ngIf="!isedit"> Add Question</h2>
+      <h2 *ngIf="isedit"> Edit Question</h2>
+      </div>
+        <div class="card-body">
+          <!-- <span class="errorMsg">Image size not be greater than 400px x 400px, Other wise give error.</span> -->
+          <div #target id="item" class="topicbg">
+          
+                <form #f1="ngForm" (ngSubmit)="questionSubmit(f1)">
+
+              <!-- <div class="row"> -->
+                <!-- <angular-editor [(ngModel)]="htmlContent" ></angular-editor> -->
+              <div class=" mb-3">
+                <div class="form-group">
+                <label for="topic_id" class="control-label mb-2"><strong>Question*</strong></label>
+                  <!-- <textarea name="question" id="topic_id" ngModel #question="ngModel"  class="form-control" type="text" required ></textarea> -->
+                  <!-- <angular-editor [config]="config" name="question" id="topic_id" ngModel #question="ngModel"  class="form-control" type="text" required  ></angular-editor> -->
+                  <ckeditor [editor]="Editor" [config]="editorConfig"  name="question" id="topic_id" ngModel #question="ngModel"  class="form-control" type="text" required ></ckeditor>
+                </div>
+          
+                <div *ngIf="formSubmitted && !question.valid  ">
+                  <p class="errorMsg">Please enter question</p>
+                </div>
+    
+              <!-- </div> -->
+            
+    
+
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6 mb-3">
+                    <div class="form-group">
+                      <label for="topic_video" class="control-label "><strong>Option 1</strong></label>
+                      
+                        <!-- <angular-editor [config]="config" name="option1" value="" id="option1" class="form-control" type="text" ngModel #option1="ngModel" required ></angular-editor> -->
+                        <ckeditor [editor]="Editor" [config]="editorConfig" name="option1" value="" id="option1" class="form-control" type="text" ngModel #option1="ngModel" required ></ckeditor>
+                      </div>
+    
+                      <div *ngIf="formSubmitted && !option1.valid  ">
+                        <p class="errorMsg">Please enter option1</p>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6 mb-3">
+                        <div class="form-group">
+                          <label for="topic_video" class="control-label "><strong>Option 2</strong></label>
+                           
+                            <!-- <angular-editor [config]="config" name="option2" value="" id="option2" class="form-control" type="text" ngModel #option2="ngModel" required ></angular-editor> -->
+                            <ckeditor [editor]="Editor" [config]="editorConfig" name="option2" value="" id="option2" class="form-control" type="text" ngModel #option2="ngModel" required ></ckeditor>
+                          </div>
+        
+                          <div *ngIf="formSubmitted && !option2.valid  ">
+                            <p class="errorMsg">Please enter option2</p>
+                          </div>
+                        </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6 mb-3">
+                    <div class="form-group">
+                      <label for="topic_video" class="control-label "><strong>Option 3</strong></label>
+                    
+                        <!-- <angular-editor [config]="config" name="option3" value="" id="option3" class="form-control" type="text" ngModel #option3="ngModel" required ></angular-editor> -->
+                        <ckeditor [editor]="Editor" [config]="editorConfig" name="option3" value="" id="option3" class="form-control" type="text" ngModel #option3="ngModel" required  ></ckeditor>
+                      </div>
+    
+                      <div *ngIf="formSubmitted && !option3.valid ">
+                        <p class="errorMsg">Please enter option3</p>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6 mb-3">
+                        <div class="form-group">
+                          <label for="topic_video" class="control-label "><strong>Option 4</strong></label>
+                           
+                            <!-- <angular-editor [config]="config" name="option4" value="" id="option4" class="form-control" type="text" ngModel #option4="ngModel" required ></angular-editor> -->
+                            <ckeditor [editor]="Editor" [config]="editorConfig" name="option4" value="" id="option4" class="form-control" type="text" ngModel #option4="ngModel" required ></ckeditor>
+                          </div>
+        
+                          <div *ngIf="formSubmitted && !option2.valid  ">
+                            <p class="errorMsg">Please enter option4</p>
+                          </div>
+                        </div>
+              </div>
+                <div class="row">
+
+                    <div class="col-sm-6 mb-3">
+                        <div class="form-group">
+                            <label cLabel for="exampleFormControlAnswer"><strong>Right Option</strong></label><br>
+                              <select cSelect id="exampleFormControlAnswer" class="form-control" name="answer" ngModel #answer="ngModel" required
+                                >
+                                <option [disabled]="true" [selected]="true">Select</option>
+                                <option value="0"> Option 1 </option>
+                                <option value="1">Option 2</option>
+                                <option value="2">Option 3</option>
+                                <option value="3">Option 4</option>
+                              </select>
+                        </div>
+                          <div *ngIf="formSubmitted && !answer.valid ">
+                            <p class="errorMsg">Right Option is required</p>
+                          </div>
+                      </div>
+                      <div class="col-sm-6 submitbutton">
+                        <button  cButton (click)="resetForm()" color="danger" >Reset</button>&nbsp;&nbsp;
+                        <button  cButton type="submit" color="primary" >Submit</button>
+                        </div>
+                </div>
+              
+            </form>
+          
+            <div id="TextBoxDiv1"></div>
+            </div>
+        </div>
+      </div>
+    
+    </div>
+    
+    
+    
+    
+ 
+    
+    
+ 
+    
+    

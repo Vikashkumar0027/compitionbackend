@@ -43,3 +43,31 @@ const domain = 'http://43.225.53.245:4500/';
   export let postList = domain+'admin/post/list';
   export let postUpdate = domain+'admin/post/update';
   export let postDelete = domain+'admin/post/delete';
+
+
+  /* Privilege CRUD*/
+export let PrivilegeList = domain+'';
+export let PrivilegeMenuList = domain+'';
+export let PrivilegeAdd = domain+'';
+export let PrivilegeUpdate = domain+'';
+export let PrivilegeDelete = domain+'';
+
+
+// Online Test = Bactch crude
+export let batchTestList = domain+'admin/testbatch/list';
+export let batchTestAdd = domain+'admin/testbatch/create';
+export let batchTestUpdate = domain+'admin/testbatch/update';
+export let batchTestDelete = domain+'admin/testbatch/delete';
+
+// Online Test = Bactch Subject
+// export let subjectTestList = domain+'/user/subjectlist';
+export let subjectTestList = domain+'admin/batchsubject';
+export let subjectTestAdd = domain+'admin/testsubject/create';
+export let subjectTestUpdate = domain+'admin/testsubject/update';
+export let subjectTestDelete = domain+'admin/testsubject/delete';
+
+// online test setlist
+export let setTestList = domain+'admin/subjectset';
+export let setTestAdd = domain+'admin/testsetlist/create';
+export let setTestUpdate = domain+'admin/testsetlist/update';
+export let setTestDelete = domain+'admin/testsetlist/delete';

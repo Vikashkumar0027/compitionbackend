@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
       this.globalService.showToastErorr('Please fill out all required fields.');
       return;
     }
+    this.submitted=false;
        if(this.form.valid){
         const data = {
           email: this.form.value.email.trim(),
@@ -51,7 +52,6 @@ export class LoginComponent implements OnInit {
          console.log(res);
           if(res.success == true){
             localStorage.setItem('compytkns',res.response);
-
           this.globalService.showToast('You are now logged in!');
             this.route.navigateByUrl('/dashboard')
             .then(() => {

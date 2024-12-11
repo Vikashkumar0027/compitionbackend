@@ -1,0 +1,149 @@
+
+<div *ngIf="onlineModalType == 'batch'" >
+
+
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{user}} Batch</h4>
+  
+      <button type="button" class="btn btn-primary close" aria-label="Close" (click)="modalClose()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  
+    <div class="modal-body">
+  <!-- (ngSubmit)="onSubmit()" -->
+   <div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+          <label for="exampleFormControlname" class="form-label">Batch Name: </label>
+          <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="title">
+        </div>
+        <div *ngIf="submitted && f['title'].errors">
+          <span style="color: red;" *ngIf="f['title'].errors['required'] ">Please enter Batch Name</span>
+      </div>
+      
+      <div class="mb-3">
+        <label for="exampleFormPrice" class="form-label">Price: </label>
+        <input type="number" class="form-control" id="exampleFormPrice" placeholder="" formControlName="price">
+      </div>
+      <div *ngIf="submitted && f['price'].errors">
+        <span style="color: red;" *ngIf="f['price'].errors['required'] ">Please enter  Price</span>
+    </div>
+  
+    <div class="mb-3" >
+      <label for="exampleFormPrice" class="form-label">Discount in Percentage: </label>
+     <div class="input-group">
+      <input type="number" class="form-control" id="exampleFormPrice" step="0.01" min="0" max="100" placeholder="Enter discount (0-100)" formControlName="discount" (input)="onPercentageTwoDigit()">
+      <span class="input-group-text">%</span>
+     </div>
+    </div>
+    <div *ngIf="f['discount'].errors?.['invalidDecimal']" class="text-danger">
+      Please enter a number with up to two digits before the decimal and at most two decimal places.
+    </div>
+    <div *ngIf="submitted && f['discount'].errors">
+      <span style="color: red;" *ngIf="f['discount'].errors['required'] ">Please enter Discount</span>
+  </div>
+  
+  
+  <div class="mb-3">
+    <label for="exampleFormPrice" class="form-label">Description: </label>
+    <input type="text" class="form-control" id="exampleFormPrice" placeholder="" formControlName="description">
+  </div>
+  <div *ngIf="submitted && f['description'].errors">
+    <span style="color: red;" *ngIf="f['description'].errors['required'] ">Please enter description</span>
+  </div>
+  
+      <div class="mb-3">
+          <label cLabel for="exampleFormControltype">Type</label><br>
+          <select cSelect id="exampleFormControltype" class="form-control" formControlName='type'>
+            <option [disabled]="true">Select Type</option>
+            <option value="free">Free</option>
+            <option value="paid">Paid</option>
+          </select>
+        </div>
+        <div *ngIf="submitted && f['type'].errors">
+          <span style="color: red;" *ngIf="f['type'].errors['required'] ">Please select type</span>
+      </div>
+  
+      <div class="mb-3">
+          <label cLabel for="exampleFormControlStatus">Status</label><br>
+          <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>
+            <option [disabled]="true">Select Status</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+        <div *ngIf="submitted && f['status'].errors">
+          <span style="color: red;" *ngIf="f['status'].errors['required'] ">Please select Status</span>
+      </div>
+        <!-- <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+          Save</button> -->
+  <div class="modal-footer">
+  <div class="d-grid">
+      <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+          Save</button>
+    </div>
+  
+  </div>
+  
+  </form>
+   </div>
+     
+  
+    </div>
+
+</div>
+
+<!-- subject Form -->
+
+<div *ngIf="onlineModalType == 'subject'" >
+
+
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{user}} Subject</h4>
+  
+      <button type="button" class="btn btn-primary close" aria-label="Close" (click)="modalClose()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  
+    <div class="modal-body">
+   <div>
+    <form [formGroup]="subForm" (ngSubmit)="onSubjectSubmit()">
+      <div class="mb-3">
+          <label for="exampleFormControlname" class="form-label">Subject Name: </label>
+          <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="name">
+        </div>
+        <div *ngIf="submitted && fs['name'].errors">
+          <span style="color: red;" *ngIf="fs['name'].errors['required'] ">Please enter Subject Name</span>
+      </div>
+      
+  
+      <div class="mb-3">
+          <label cLabel for="exampleFormControlStatus">Status</label><br>
+          <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>
+            <option [disabled]="true">Select Status</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+        <div *ngIf="submitted && fs['status'].errors">
+          <span style="color: red;" *ngIf="fs['status'].errors['required'] ">Please select Status</span>
+      </div>
+  <div class="modal-footer">
+  <div class="d-grid">
+      <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+          Save</button>
+    </div>
+  
+  </div>
+  
+  </form>
+   </div>
+     
+  
+    </div>
+
+</div>
+
+ 

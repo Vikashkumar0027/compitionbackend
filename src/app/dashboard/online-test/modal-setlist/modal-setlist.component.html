@@ -1,0 +1,65 @@
+
+
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{user}} Set</h4>
+    
+        <button type="button" class="btn btn-primary close" aria-label="Close" (click)="modalClose()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    
+      <div class="modal-body">
+    <!-- (ngSubmit)="onSubmit()" -->
+     <div>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="exampleFormControlname" class="form-label">Set Name: </label>
+            <input type="text" class="form-control" id="exampleFormControlname" placeholder="Set 1" formControlName="name">
+          </div>
+          <div *ngIf="submitted && f['name'].errors">
+            <span style="color: red;" *ngIf="f['name'].errors['required'] ">Please enter Set Name</span>
+        </div>
+        
+        <div class="mb-3">
+          <label for="exampleFormPrice" class="form-label">Total Time: </label>
+          <input type="number" class="form-control" id="exampleFormPrice" placeholder="enter time in minutes like 120 for 2hr" formControlName="time">
+        </div>
+        <div *ngIf="submitted && f['time'].errors">
+          <span style="color: red;" *ngIf="f['time'].errors['required'] ">Please enter time</span>
+      </div>
+    
+      <div class="mb-3" >
+        <label for="exampleFormmarks" class="form-label">Marks per Question: </label>
+        <input type="number" class="form-control" id="exampleFormmarks" placeholder="1" formControlName="marks">
+
+      </div>
+      <div *ngIf="submitted && f['marks'].errors">
+        <span style="color: red;" *ngIf="f['marks'].errors['required'] ">Please enter marks per Question</span>
+    </div>
+    
+        <div class="mb-3">
+            <label cLabel for="exampleFormControlStatus">Status</label><br>
+            <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>
+              <option [disabled]="true">Select Status</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+          </div>
+          <div *ngIf="submitted && f['status'].errors">
+            <span style="color: red;" *ngIf="f['status'].errors['required'] ">Please select Status</span>
+        </div>
+    <div class="modal-footer">
+    <div class="d-grid">
+        <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+            Save</button>
+      </div>
+    
+    </div>
+    
+    </form>
+     </div>
+       
+    
+      </div>
+  
