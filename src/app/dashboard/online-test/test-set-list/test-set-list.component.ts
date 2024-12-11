@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonService } from '../../../services/common/common.service';
 import { GlobalService } from '../../../services/global/global.service';
@@ -163,8 +163,15 @@ export class TestSetListComponent {
     }
 
     setList(list:any){
+
+      const data ={subjectId:this.courseid, setId:list._id};
+      const navData:NavigationExtras = {
+        queryParams:{
+          data:JSON.stringify(data)
+        }
+      }
       // dashboard/course/subject/454
       // alert('nothing else')
-      this.route.navigate(['/','dashboard','online-test','qestion',list._id]);
+      this.route.navigate(['/','dashboard','online-test','qestion'],navData);
     }
 }

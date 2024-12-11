@@ -48,7 +48,7 @@
             <tbody>
         <tr *ngFor="let list of data let i = index;">
           <th scope="row" class="text-center">{{i+1}}</th>
-          <td class="text-center">{{list?.name}} </td>
+          <td class="text-center">{{list?.name}}({{list?.type}}) </td>
           <td class="text-center">{{list?.amount}} </td>
           <td class="text-center">{{list?.discount}} </td>
           <td class="text-center">{{list?.description}} </td>

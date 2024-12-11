@@ -5,6 +5,10 @@ import { CommonService } from '../../../services/common/common.service';
 // import Editor from 'ckeditor5-custom-build/build/ckeditor';
 import Editor from '../../../../../ckeditor5-custom-build/build/ckeditor';
 import { NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { GlobalService } from '../../../services/global/global.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmModalComponent } from '../../../common-component/confirm-modal/confirm-modal.component';
 @Component({
   selector: 'app-test-question',
   templateUrl: './test-question.component.html',
@@ -22,6 +26,7 @@ export class TestQuestionComponent implements OnInit {
     isedit:boolean=false;
     htmlContent = '';
     public Editor:any = Editor;
+    public placeholderText = 'Start typing your content here...';
     public editorConfig = {
       toolbar: {
         items: ['heading', '|', 'bold', 'italic','MathType','|','Alignment',
@@ -47,28 +52,55 @@ export class TestQuestionComponent implements OnInit {
         shouldNotGroupWhenFull: true,
       },
     };
+
+    setlistData:any;
   
     @ViewChild('f1') fillForm!: NgForm;
 setList:any;
   constructor(
     private activatedRoute:ActivatedRoute,
     private questionListService:OnlineTestService,
+    private onlineService:OnlineTestService,
     private commonService:CommonService,
     private route: ActivatedRoute,
+    private spinner: NgxSpinnerService,
+    private global:GlobalService,
+    private modalService: NgbModal,
   ){
 
   }
-
+id:any;
   ngOnInit(): void {
-    this.setList = this.activatedRoute.snapshot.paramMap.get('id');
-    const navdata:any = this.route.snapshot.queryParams;   
-    this.seListInfo = JSON.parse(navdata.data);
-     this. getQuestionListing();
+    // this.setList = this.activatedRoute.snapshot.paramMap.get('id');
+
+    const data:any = this.activatedRoute.snapshot.queryParams;
+    this.id = JSON.parse(data.data);
+console.log(this.id);
+    // const navdata:any = this.route.snapshot.queryParams;   
+    // this.seListInfo = JSON.parse(navdata.data);
+    //  this. getQuestionListing();
+
+    this.setListIngView();
    }
 
-      
-   setListIng(){
 
+   setListIngView(){
+    try {
+      this.spinner.show();
+      this.onlineService.setTestView(this.id.setId).subscribe(res=>{
+      console.log(res);
+      if(res.success){
+        this.setlistData=res.response;
+        this.questionList=res.response.questions;
+      }
+      this.spinner.hide();
+    },err=>{
+      this.spinner.hide();
+      this.commonService.tokenOutOfValid(err);
+    })
+    } catch (error) {
+      this.spinner.hide();
+    }
    }
  
    getQuestionListing(){
@@ -101,15 +133,16 @@ setList:any;
      // console.log('reactive form',formds.value);
      const correctAnswer = formds.value.answer;
      console.log('correct answer', correctAnswer);
-     const data ={ "set_id":this.seListInfo._id, "question":formds.value.question, 
+     const data ={ "question":formds.value.question, 
      "options": [ {"option":formds.value.option1,"correct": false}, {"option":formds.value.option2,"correct": false}, {"option":formds.value.option3,"correct": false}, {"option":formds.value.option4,"correct": false} ] };
  
        data.options[formds.value.answer].correct = true;
-     console.log('correct dsata answer', data);
+       const formData ={'questions': [ {...data}]}
+     console.log('correct dsata answer', formData);
  
  
      if(!this.isedit){
-       this.addQuestion(data);
+       this.addQuestion(formData);
      }else{
        this.EditQuestionData(data);
      }
@@ -117,34 +150,34 @@ setList:any;
    }
  
    addQuestion(data:any){
-    //  this.questionListService.addList(data).subscribe(res => {
-    //    console.log('result api of adding',res);
-    //    if(res.success){
-    //      this.fillForm.reset();
-    //      this. getQuestionListing();
-    //    }
-    //  },
-    //  (err)=>{
-    //    alert('Somthing went wrong');
-    //    console.log('Topic List Api Error',err.error);
-    //    this.commonService.tokenDelete(err.error.msg);
-    //  })
+     this.onlineService.addQuestion(data,this.id.setId).subscribe(res => {
+       console.log('result api of adding',res);
+       if(res.success){
+         this.fillForm.reset();
+         this.setListIngView();
+       }
+     },
+     (err)=>{
+       alert('Somthing went wrong');
+       console.log('Topic List Api Error',err.error);
+      //  this.commonService.tokenDelete(err.error.msg);
+     })
    }
  
    EditQuestionData(data:any){
-    //  this.questionListService.updateApi(this.editIdi,data).subscribe(res => {
-    //    console.log("result of edit api",res);
-    //    if(res.success){
-    //      this.fillForm.reset();
-    //      this. getQuestionListing();
+     this.onlineService.updateQuestion(data,this.id.setId,this.editIdi).subscribe(res => {
+       console.log("result of edit api",res);
+       if(res.success){
+         this.fillForm.reset();
+         this.setListIngView();
      
-    //          }
-    //  },
-    //  (err)=>{
-    //    alert('Somthing went wrong');
-    //    console.log('Topic List Api Error',err.error);
-    //    this.commonService.tokenDelete(err.error.msg);
-    //  })
+             }
+     },
+     (err)=>{
+       alert('Somthing went wrong');
+       console.log('Topic List Api Error',err.error);
+      //  this.commonService.tokenDelete(err.error.msg);
+     })
    }
  
    
@@ -174,7 +207,7 @@ setList:any;
      el.scrollIntoView();
      console.log(data);
      this.isedit=true;
-     this.editIdi=data._id;
+     this.editIdi=data.id;
      // console.log('edit data',data)
      const answerIndex = data?.options.findIndex((x:any) => x.correct == true);
      const patchData = {
@@ -191,21 +224,45 @@ setList:any;
  
    deleteId(param:any){
      console.log('Delete data',param);
-     this.deleteIdi = param?._id;
+    //  this.deleteIdi = param?.id;
+     const activeModal = this.modalService.open(ConfirmModalComponent, {
+      size: '',
+      backdrop: 'static',
+      keyboard: false,
+    });
+    //data transfer to child
+    const contentObj = {
+      heading: 'Delete!',
+      message: 'Are you sure want to Delete ?',
+      cancel: 'Cancel',
+      ok: 'Delete'
+    }
+    activeModal.componentInstance.modalContent = contentObj;
+    activeModal.componentInstance.resetpassword = false;
+    activeModal.result.then(
+      (result) => {
+      
+
+        if (result === 'Ok') {
+          this.delete1(param?.id);     
+        }
+      },
+      (reason) => {}
+    );
    }
  
-   delete1(){
-    //  this.questionListService.deleteApi(this.deleteIdi).subscribe(res => {
-    //    console.log('this.delete',res);
-    //    if(res.success){
-    //      this. getQuestionListing();
-    //      this.resetForm();
-    //    }
-    //  },
-    //  (err)=>{
-    //    console.log('Topic List Api Error',err.error);
-    //    this.commonService.tokenDelete(err.error.msg);
-    //  })
+   delete1(deletId:any){
+     this.onlineService.deleteQuestion(this.id.setId,deletId).subscribe(res => {
+       console.log('this.delete',res);
+       if(res.success){
+        this.setListIngView();
+         this.resetForm();
+       }
+     },
+     (err)=>{
+       console.log('Topic List Api Error',err.error);
+      //  this.commonService.tokenDelete(err.error.msg);
+     })
    }
 
 
