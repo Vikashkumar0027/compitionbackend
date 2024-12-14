@@ -22,6 +22,7 @@ const routes: Routes = [
       {path: 'post',loadChildren: () =>import('./post/post.module').then((m) => m.PostModule)} ,
       {path: 'privilage',loadChildren: () =>import('./privilage/privilage.module').then((m) => m.PrivilageModule)} ,
       {path: 'online-test',loadChildren: () =>import('./online-test/online-test.module').then((m) => m.OnlineTestModule)} ,
+      {path: 'user',loadChildren: () =>import('./user/user.module').then((m) => m.UserModule)} ,
     ]
   }
 ];

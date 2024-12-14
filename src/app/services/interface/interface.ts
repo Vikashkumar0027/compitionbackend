@@ -78,3 +78,15 @@ export let setTestView = domain+'admin/testsetlist/view';
 export let addQuestion = domain+'admin/question';
 export let updateQuestion = domain+'admin/question';
 export let deleteQuestion = domain+'admin/questiondelete';
+
+// user
+export let userList = domain+'admin/user/list';
+export let userAdd = domain+'admin/user/create';
+export let userUpdate = domain+'admin/user/update';
+export let userDelete = domain+'admin/user/delete';
+export let userView = domain+'admin/user/view';
+
+// previlage
+export let previlageAdminLst = domain+'admin/privilege/list';
+export let previlageLst = domain+'admin/adminprivilege';
+

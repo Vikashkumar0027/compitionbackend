@@ -15,10 +15,10 @@
                 <select formControlName="name" class="form-select">
                     <option value="">Select Title</option>
                     <!-- data._id -->
-                    <option *ngFor="let data of RoleListData" [value]="data.name">{{data.name | titlecase }}</option>
+                    <!-- <option *ngFor="let data of RoleListData" [value]="data.name">{{data.name | titlecase }}</option> -->
                 </select>
-                <span *ngIf="privilegeForm.controls['name'].touched && privilegeForm.controls['name'].invalid"
-                    class="alert-danger">Field shouldn't be blank</span>
+                <!-- <span *ngIf="privilegeForm.controls['name'].touched && privilegeForm.controls['name'].invalid"
+                    class="alert-danger">Field shouldn't be blank</span> -->
             </div>
 
             <!-- <div class="form-group">
@@ -32,16 +32,16 @@
             </div> -->
             <div class="form-group">
                 <label>Access</label>
-                <p *ngIf="!PrivilegeMenuListData?.modules">Loading...</p>
+                <!-- <p *ngIf="!PrivilegeMenuListData">Loading...</p> -->
                 <div class="form-group form-check border-bottom border-primary"
-                    *ngFor="let lst of PrivilegeMenuListData?.modules; let i = index">
+                    *ngFor="let lst of PrivilegeMenuListDataq; let i = index">
                     <input type="checkbox" class="form-check-input" id="{{lst?.name|lowercase}}" [value]="lst?.name"
                         (click)="accessFn($event)" [checked]="lst?.checked">
                     <label class="form-check-label fw-bold" for="{{lst?.name|lowercase}}">
                         {{lst?.name | titlecase}}
                     </label>
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col ml-3" *ngFor="let access of lst.options; let j = index">
                             <input type="checkbox" class="form-check-input" id="{{j+lst.name|lowercase}}"
                                 (click)="subAccessFn(lst?.name,$event)" [value]="access?.name"
@@ -50,11 +50,11 @@
                                 {{access.name | titlecase}}
                             </label>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
-            <div *ngIf="userType == 'Edit'" class="form-group">
+            <div  class="form-group">
                 <label>Satus</label>
                 <select formControlName="status" id="status" class="form-select">
                     <option value="active">Active</option>

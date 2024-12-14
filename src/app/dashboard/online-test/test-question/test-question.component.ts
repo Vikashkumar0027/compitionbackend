@@ -265,5 +265,12 @@ console.log(this.id);
      })
    }
 
+   viewData:any;
+   viewQuestion(list:any){
+      console.log(list);
+      this.viewData=list;
+
+   }
+
 
 }

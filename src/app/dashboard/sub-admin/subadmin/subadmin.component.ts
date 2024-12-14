@@ -20,6 +20,8 @@ data:any[]=[];
 searchCompany:any;
 private activeModal:any;
 
+
+
 // @ViewChild(LoginComponent) loginModaComponent: LoginComponent | undefined;
   constructor(
     private route:Router,
@@ -54,6 +56,9 @@ private activeModal:any;
     this.spinner.hide();
   }
   }
+
+
+
 
   modalData(){
     this.activeModal = this.modalService.open(SubadminModalComponent, {

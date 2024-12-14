@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 // import { Observable } from 'rxjs';
 import *as featureInterface from '../interface/interface';
 
@@ -10,9 +10,24 @@ import *as featureInterface from '../interface/interface';
 })
 export class PrivilageService {
 
+  private _sidebar = new BehaviorSubject<any>(null);
+  
+  get sideBarAccess(){
+    return this._sidebar.asObservable();
+  }
+
   constructor(private _http: HttpClient,
     private route:Router
   ) { }
+
+  udateSideBarData(val:any){
+    this._sidebar.next(val);
+   }
+
+
+  previlageLst() : Observable<any> {
+    return this._http.get<any>( `${featureInterface.previlageLst}`);
+  }
 
 
   PrivilegeList() : Observable<any> {

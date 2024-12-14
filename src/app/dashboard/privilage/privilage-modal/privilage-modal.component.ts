@@ -13,6 +13,184 @@ export class PrivilageModalComponent {
   @Input() userType:any;
   @Input() modalTitle: string = '';
   @Input() PrivilegeMenuListData: any;
+  PrivilegeMenuListDataq:any[] = [
+    {
+      "name": "Dashboard",
+      "checked": false,
+      "options": [
+        {
+          "name": "add",
+          "checked": false
+        },
+        {
+          "name": "view",
+          "checked": false
+        },
+        {
+          "name": "edit",
+          "checked": false
+        },
+        {
+          "name": "delete",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "name": "Privilege",
+      "checked": false,
+      "options": [
+        {
+          "name": "add",
+          "checked": false
+        },
+        {
+          "name": "view",
+          "checked": false
+        },
+        {
+          "name": "edit",
+          "checked": false
+        },
+        {
+          "name": "delete",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "name": "Role",
+      "checked": false,
+      "options": [
+        {
+          "name": "add",
+          "checked": false
+        },
+        {
+          "name": "view",
+          "checked": false
+        },
+        {
+          "name": "edit",
+          "checked": false
+        },
+        {
+          "name": "delete",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "checked": false,
+      "options": [
+        {
+          "name": "add",
+          "checked": false
+        },
+        {
+          "name": "view",
+          "checked": false
+        },
+        {
+          "name": "edit",
+          "checked": false
+        },
+        {
+          "name": "delete",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "name": "Company",
+      "checked": false,
+      "options": [
+        {
+          "name": "add",
+          "checked": false
+        },
+        {
+          "name": "view",
+          "checked": false
+        },
+        {
+          "name": "edit",
+          "checked": false
+        },
+        {
+          "name": "delete",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "name": "Subscription",
+      "checked": false,
+      "options": [
+        {
+          "name": "add",
+          "checked": false
+        },
+        {
+          "name": "view",
+          "checked": false
+        },
+        {
+          "name": "edit",
+          "checked": false
+        },
+        {
+          "name": "delete",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "name": "Vendor",
+      "checked": false,
+      "options": [
+        {
+          "name": "add",
+          "checked": false
+        },
+        {
+          "name": "view",
+          "checked": false
+        },
+        {
+          "name": "edit",
+          "checked": false
+        },
+        {
+          "name": "delete",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "name": "ContactUs",
+      "checked": false,
+      "options": [
+        {
+          "name": "add",
+          "checked": false
+        },
+        {
+          "name": "view",
+          "checked": false
+        },
+        {
+          "name": "edit",
+          "checked": false
+        },
+        {
+          "name": "delete",
+          "checked": false
+        }
+      ]
+    }
+  ]
   @Input() RoleListData: any;
 
   // privilegeService = inject(PrivilegeService);

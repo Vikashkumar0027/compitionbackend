@@ -5,17 +5,17 @@
             <table >
                 <tbody>
                     <tr>
-                        <th scope="row">Name of Question Set</th>
-                        <td> {{seListInfo?.qps_title}}  </td>
+                        <th scope="row">Name of Course:- </th>
+                        <td> {{setlistData?.batchName}}  </td>
                       </tr>
 
                     <tr>
-                        <th scope="row">Course-module</th>
-                        <td>{{seListInfo?.module_name}}  </td>
+                        <th scope="row">Subject:- </th>
+                        <td>{{setlistData?.subjectId.name}}  </td>
                       </tr>
                     <tr>
-                        <th scope="row">Course</th>
-                        <td>{{seListInfo?.course_name}}  </td>
+                        <th scope="row">SetList:- </th>
+                        <td>{{setlistData?.name}}  </td>
                       </tr>
                    
                     <!-- <tr>
@@ -77,6 +77,11 @@
                
                   <button title="Edit" type="button" class="btn btn-outline-primary btn-sm m-1" (click)="edit(list, target)" ><i class="fa-regular fa-pen-to-square"></i></button>
                   <button title="Delete" type="button" class="btn btn-outline-danger btn-sm m-1" (click)="deleteId(list)" ><i class="fa-solid fa-trash-can"></i></button>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="viewQuestion(list)">
+ View
+</button>
+
               </td>
               </tr>
               </tbody>
@@ -208,7 +213,44 @@
     
     
  
-    
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" *ngIf="viewData">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Question:-</h1>
+         <ckeditor [editor]="Editor" [config]="{ toolbar: [ ] }" class="customs"
+                [disabled]="true" [(ngModel)]="viewData.question"></ckeditor>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" *ngIf="viewData">
+      <!-- <div *ngFor="let lst of viewData.options; let i =index" >
+      {{i+1}}.  <ckeditor [editor]="Editor" [config]="{ toolbar: [ ] }" class="customs"
+        [disabled]="true" [(ngModel)]="lst.option"></ckeditor>
+        <input type="checkbox" [(ngModel)]="lst.correct">
+      </div> -->
+      <div *ngFor="let lst of viewData.options; let i = index" style="display: flex; align-items: center; margin-bottom: 10px;">
+        <span style="margin-right: 10px;">{{i + 1}}.</span>
+        
+        <ckeditor 
+          [editor]="Editor" 
+          [config]="{ toolbar: [ ] }" 
+          class="customs"
+          [disabled]="true" 
+          [(ngModel)]="lst.option" 
+          style="flex: 1; margin-right: 10px;">
+        </ckeditor>
+        
+        <div *ngIf="lst.correct"><input type="checkbox" [(ngModel)]="lst.correct" style="margin-left: 10px;"></div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     
  
     
