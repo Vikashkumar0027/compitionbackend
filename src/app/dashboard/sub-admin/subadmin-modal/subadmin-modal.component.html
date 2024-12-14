@@ -52,6 +52,22 @@
       <input type="file" class="form-control" id="images" rows="3" formControlName="labDocument" accept="image/*" (change)="onFileChange($event)">
     </div>
 
+    <div class="form-group">
+      <label>Access</label>
+      <!-- <p *ngIf="!PrivilegeMenuListData">Loading...</p> -->
+      <div class="form-group form-check border-bottom border-primary"
+          *ngFor="let lst of PrivilegeMenuListDataq; let i = index">
+          <input type="checkbox" class="form-check-input" id="{{lst?.module|lowercase}}" [value]="lst?.module"
+              (click)="accessFn($event)" [checked]="lst?.checked">
+          <label class="form-check-label fw-bold" for="{{lst?.module|lowercase}}">
+              {{lst?.module | titlecase}}
+          </label>
+
+      </div>
+  </div>
+
+
+
     <div class="mb-3">
         <label cLabel for="exampleFormControlStatus">Status</label><br>
         <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>

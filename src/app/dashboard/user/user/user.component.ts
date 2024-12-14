@@ -1,24 +1,22 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonService } from '../../../services/common/common.service';
 import { GlobalService } from '../../../services/global/global.service';
-import { OnlineTestService } from '../../../services/onlineTest/online-test.service';
+import { UserService } from '../../../services/user/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ModalBatchComponent } from '../modal-batch/modal-batch.component';
+import { UserModalComponent } from '../user-modal/user-modal.component';
 import { ConfirmModalComponent } from '../../../common-component/confirm-modal/confirm-modal.component';
-import { ModalSetlistComponent } from '../modal-setlist/modal-setlist.component';
 
 @Component({
-  selector: 'app-test-set-list',
-  templateUrl: './test-set-list.component.html',
-  styleUrl: './test-set-list.component.css'
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrl: './user.component.css'
 })
-export class TestSetListComponent {
+export class UserComponent {
   data:any[]=[];
   searchCompany:any;
   private activeModal:any;
-  courseid:any;
   
   // @ViewChild(LoginComponent) loginModaComponent: LoginComponent | undefined;
     constructor(
@@ -26,27 +24,25 @@ export class TestSetListComponent {
       private modalService: NgbModal,
       private commonService:CommonService,
       private global:GlobalService,
-      private onlineService:OnlineTestService,
+      // private syllabusService:SyllabusService,
+      private userService:UserService,
       private spinner: NgxSpinnerService,
       private activatedRoute: ActivatedRoute
       )
     {}
   
     ngOnInit(): void {
-      this.courseid = this.activatedRoute.snapshot.paramMap.get('id');
       this.getList();
     }
   
-    details:any;
   
     getList(){
     try {
       this.spinner.show();
-      this.onlineService.setTestList(this.courseid).subscribe(res=>{
+      this.userService.userList().subscribe(res=>{
       console.log(res);
       if(res.success){
-        this.data=res.response.findSetList;
-        this.details=res.response.subjectData
+        this.data=res.response;
       }
       this.spinner.hide();
     },err=>{
@@ -59,13 +55,12 @@ export class TestSetListComponent {
     }
   
     modalData(){
-      this.activeModal = this.modalService.open(ModalSetlistComponent, {
+      this.activeModal = this.modalService.open(UserModalComponent, {
         size: 'lg',
         backdrop: 'static',
         keyboard: false,
       });
       this.activeModal.componentInstance.user = 'Add';
-      this.activeModal.componentInstance.subjectId = this.courseid;
   
       //data transfer to child NgbModalRef
       this.activeModal.result.then(
@@ -80,14 +75,13 @@ export class TestSetListComponent {
   
     edit(data:any){
       // console.log(data)
-      this.activeModal = this.modalService.open(ModalSetlistComponent, {
+      this.activeModal = this.modalService.open(UserModalComponent, {
         size: 'lg',
         backdrop: 'static',
         keyboard: false,
       });
       this.activeModal.componentInstance.user = 'Edit';
       this.activeModal.componentInstance.patchData = data;
-      this.activeModal.componentInstance.subjectId = this.courseid;
   
       //data transfer to child NgbModalRef
       this.activeModal.result.then(
@@ -151,7 +145,7 @@ export class TestSetListComponent {
   
     async deletefunction(id:any){
       // alert(id)
-      this.onlineService.setTestDelete(id).subscribe(res => {
+      this.userService.userDelete(id).subscribe(res => {
         // console.log(res);
         if(res.success){
           this.getList();
@@ -162,18 +156,5 @@ export class TestSetListComponent {
         this.global.showToastErorr('somthing went wrong')
        })
   
-    }
-
-    setList(list:any){
-
-      const data ={subjectId:this.courseid, setId:list._id};
-      const navData:NavigationExtras = {
-        queryParams:{
-          data:JSON.stringify(data)
-        }
-      }
-      // dashboard/course/subject/454
-      // alert('nothing else')
-      this.route.navigate(['/','dashboard','online-test','qestion'],navData);
     }
 }

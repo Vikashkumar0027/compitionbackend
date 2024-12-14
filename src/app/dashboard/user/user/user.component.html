@@ -3,16 +3,16 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{{details?.batchName}}</li>
+        <li class="breadcrumb-item active" aria-current="page">User</li>
       </ol>
     </nav>
 
     <div class="row align-items-center">
       <div class="col-md-4">
-        <h1 class="h3 mb-lg-3 text-gray-800">{{details?.name}}</h1>
+        <h1 class="h3 mb-lg-3 text-gray-800"> User</h1>
       </div>
       <div class="col-md-8 mb-3 text-md-end">
-        <button type="button" class="btn btn-outline-primary" (click)="modalData()">Add SetList</button>
+        <button type="button" class="btn btn-outline-primary" (click)="modalData()">Add User</button>
       </div>
     </div>
   
@@ -37,24 +37,24 @@
             <thead>
               <tr>
         <th scope="col">S.N.</th>
-        <th scope="col">Set Name</th>
-        <th scope="col">Marks/Q</th>
-        <th scope="col">Time</th>
-        <th scope="col">Question List</th>
+        <th scope="col">User Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">mobile N.</th>
+        <th scope="col">Image</th>
         <th scope="col">Status</th>
         <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-        <tr *ngFor="let list of data let i = index;">
+        <tr *ngFor="let list of data let i = index; ">
           <th scope="row" class="text-center">{{i+1}}</th>
           <td class="text-center">{{list?.name}} </td>
-          <td class="text-center">{{list?.marksPerQues}} </td>
-          <td class="text-center">{{list?.totalTime}} </td>
-          <td class="text-center"><button title="Delete" type="button" class="btn btn-outline-info btn-sm m-1" (click)="setList(list)">
-            Question list
-          </button></td>
-          
+          <td class="text-center">{{list?.email}} </td>
+          <td class="text-center">{{list?.number}} </td>
+          <td class="text-center">
+            <img [src]="list?.image" width="50px" /><br>
+            <a [href]="list.image" target="_blank">View</a> 
+          </td>
           <td class="text-center">{{list?.status}}</td>
           <td class="text-center">
             <button title="Edit" type="button" class="btn btn-outline-primary btn-sm m-1" (click)="edit(list)">
@@ -63,7 +63,9 @@
             <button title="Delete" type="button" class="btn btn-outline-danger btn-sm m-1" (click)="deletes(list)">
               <i class="fa-solid fa-trash-can"></i>
             </button>
-            
+            <!-- <button title="Delete" type="button" class="btn btn-outline-info btn-sm m-1" (click)="chapter(list)">
+              Chapter
+            </button> -->
 
           </td>
 
