@@ -90,3 +90,19 @@ export let userView = domain+'admin/user/view';
 export let previlageAdminLst = domain+'admin/privilege/list';
 export let previlageLst = domain+'admin/adminprivilege';
 
+
+
+
+
+export let sidebar = [
+  {number:'1',name:'Dashboard',icon:'fa-solid fa-house', url: '/dashboard/home'},
+  {number:'2',name:'Sub Admin',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/subAdmin'},
+  // {number:'70',name:'Privilage',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/privilage'},
+  {number:'7',name:'User',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/user'},
+  {number:'3',name:'Course',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/course'},
+  {number:'4',name:'Syllabus',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/syllabus'},
+  {number:'5',name:'Previous Paper',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/previous_paper'},
+  {number:'6',name:'Post',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/post'},
+  {number:'8',name:'Online Test',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/online-test'},
+]; 
+

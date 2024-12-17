@@ -2,7 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from '../../services/profile/profile.service';
 import { CommonService } from '../../services/common/common.service';
+import { PrivilageService } from '../../services/privilage/privilage.service';
+import { SidenavService } from '../../services/sidnav/sidenav.service';
 
+// import *as featureInterface from '../../services/interface/interface';
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
@@ -60,17 +63,19 @@ export class SideNavComponent implements OnInit {
   //   // {number:'7',name:'Home',icon:'fa-solid fa-house', url: '/tabs/courses'},
   // ];
 
-  list:any[]=[
-    {number:'1',name:'Dashboard',icon:'fa-solid fa-house', url: '/dashboard/home'},
-    {number:'2',name:'Sub Admin',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/subAdmin'},
-    // {number:'70',name:'Privilage',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/privilage'},
-    {number:'7',name:'User',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/user'},
-    {number:'3',name:'Course',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/course'},
-    {number:'4',name:'Syllabus',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/syllabus'},
-    {number:'5',name:'Previous Paper',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/previous_paper'},
-    {number:'6',name:'Post',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/post'},
-    {number:'8',name:'Online Test',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/online-test'},
-  ]; 
+  list:any[] = []
+
+  // list:any[]=[
+  //   {number:'1',name:'Dashboard',icon:'fa-solid fa-house', url: '/dashboard/home'},
+  //   {number:'2',name:'Sub Admin',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/subAdmin'},
+  //   // {number:'70',name:'Privilage',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/privilage'},
+  //   {number:'7',name:'User',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/user'},
+  //   {number:'3',name:'Course',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/course'},
+  //   {number:'4',name:'Syllabus',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/syllabus'},
+  //   {number:'5',name:'Previous Paper',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/previous_paper'},
+  //   {number:'6',name:'Post',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/post'},
+  //   {number:'8',name:'Online Test',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/online-test'},
+  // ]; 
 
   // newUserList = [
   //   {number:'14',name:'Subscription',icon:'fa-solid fa-handshake-angle', url: '/dashboard/subscription'},
@@ -80,26 +85,57 @@ export class SideNavComponent implements OnInit {
   constructor(
     private route: Router,
     private profileService:ProfileService,
-    private commonService:CommonService
+    private commonService:CommonService,
+    private privalageService:PrivilageService,
+    private sidenavService:SidenavService,
   ){
     this.router = this.route.url
   }
 
-  ngOnInit(): void {
-    // this.getTokenType();
-    // this.profileService.profile.subscribe(res=>{
-    //   this.data=res;
-    //   if(!this.data.subscription){
-    //     (this.jwtData.type == "admin" ) ? this.list = [...this.adminList] : this.list = [...this.newUserList];
+ async ngOnInit() {
+   
+
+    this.sidenavService.realSideBarAccess.subscribe(async res => {
+      if(!res.length){
+        this.list = res;
+      }else{
+        this.list = await this.commonService.previlageListApiDatat();
+        console.log(this.list)
+      }
+
+    // if(!this.list.length){
+ 
+    //   this.list = await this.commonService.previlageListApiDatat();
+    //    }
+   
+    
+    // this.privalageService.sideBarAccess.subscribe(res=>{
+    //   console.log(res);
+    //   if(!res){
+    //     this. privilageList();
     //   }else{
-    //     if(this.jwtData.type == 'company'){
-    //       this.list = [...this.subscribeList];
-    //     }else{
-    //       this.list = [...this.adminList];
-    //     }
+    //     this.list = this.filterList(this.list, res);
+    //     this.sidenavService.udateRealSideBarData(this.list);
     //   }
-    // })
+     })
   }
+
+  //  filterList(list: any[], list2: any[]) {l
+  //   return list.filter(item => {
+  //     const list2Item = list2.find(l2Item => l2Item.module === item.name);
+  //     return list2Item ? list2Item.checked : false;
+  //   });
+  // }
+
+  // privilageList(){
+  //   this.privalageService.previlageLst().subscribe(res=>{
+  //     console.log(res);
+  //     this.privalageService.udateSideBarData(res.response[0].previleges);
+  //   },err=>{
+  //     console.log(err)
+  //   })
+  //     }
+
 // jwtData:any;
 //    async getTokenType(){
 //       const jwt: any = await this.commonService.jwtToken();
