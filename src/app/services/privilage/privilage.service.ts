@@ -21,6 +21,7 @@ export class PrivilageService {
   ) { }
 
   udateSideBarData(val:any){
+    //updateSideBar
     this._sidebar.next(val);
    }
 
