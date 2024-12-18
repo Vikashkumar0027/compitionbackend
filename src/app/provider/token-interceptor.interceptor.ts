@@ -16,7 +16,7 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
     private route:Router) {
       // setTimeout(() => {
         this.token = localStorage.getItem('compytkns');
-        console.log(this.token);
+        // console.log(this.token);
       // });
     }
 

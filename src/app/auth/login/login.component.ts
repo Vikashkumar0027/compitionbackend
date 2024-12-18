@@ -11,6 +11,8 @@ import { GlobalService } from '../../services/global/global.service';
 })
 export class LoginComponent implements OnInit {
 
+
+  islogin:boolean=false;
   submitted:boolean=false;
   form: FormGroup;
 
@@ -36,6 +38,11 @@ export class LoginComponent implements OnInit {
     return this.form.controls
   }
 
+  login(){
+    // this.route.navigate(['/','dashboard','home'])
+    window.location.reload();
+  }
+
   onSubmit(){
     this.submitted=true;
     if(this.form.invalid){
@@ -49,15 +56,21 @@ export class LoginComponent implements OnInit {
           password: this.form.value.password.trim()
         };
         this.loginService.login(data).subscribe(res=>{
-         console.log(res);
-          if(res.success == true){
+        //  console.log(res);
+        this.form.reset();
+          if(res.success){
+            this.islogin = true;
             localStorage.setItem('compytkns',res.response);
-            this.route.navigate(['/dashboard/home']);
-            // this.route.navigateByUrl('/dashboard/home');
-            // .then(() => {
-              //   window.location.reload();
-              //   });
+            // this.route.navigate(['/','dashboard','home']);
+            // this.route.navigateByUrl('/dashboard/home').then(() => {
+            //     window.location.reload();
+            //     });
               this.globalService.showToast('You are now logged in!');
+              setTimeout(() => {
+                this.route.navigateByUrl('./dashboard/home').then(() => {
+                      window.location.reload();
+                      });
+              },200);
           }
         },(err)=>{
           // this.globalService.showToastErorr(err.error.msg);
@@ -66,10 +79,10 @@ export class LoginComponent implements OnInit {
 
         
          }
-         this.form.reset();
-          setTimeout(() => {
-            this.submitted = false; 
-          }, 2000); 
+        
+          // setTimeout(() => {
+          //   this.submitted = false; 
+          // }, 2000); 
   }
 
 
