@@ -25,6 +25,9 @@ const routes: Routes = [
       {path: 'privilage',loadChildren: () =>import('./privilage/privilage.module').then((m) => m.PrivilageModule),canActivate:[subadminGuard]} ,
       {path: 'online-test',loadChildren: () =>import('./online-test/online-test.module').then((m) => m.OnlineTestModule),canActivate:[subadminGuard]} ,
       {path: 'user',loadChildren: () =>import('./user/user.module').then((m) => m.UserModule),canActivate:[subadminGuard]} ,
+      {path: 'book',loadChildren: () =>import('./book/book.module').then((m) => m.BookModule),canActivate:[subadminGuard]} ,
+      {path: 'payment',loadChildren: () =>import('./payment/payment.module').then((m) => m.PaymentModule),canActivate:[subadminGuard]} ,
+      // ,canActivate:[subadminGuard]
     ]
   }
 ];

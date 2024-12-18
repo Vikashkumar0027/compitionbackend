@@ -1,0 +1,97 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{user}} Book</h4>
+
+    <button type="button" class="btn btn-primary close" aria-label="Close" (click)="modalClose()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+
+  <div class="modal-body">
+<!-- (ngSubmit)="onSubmit()" -->
+ <div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="exampleFormControlname" class="form-label">Book Name: </label>
+        <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="title">
+      </div>
+      <div *ngIf="submitted && f['title'].errors">
+        <span style="color: red;" *ngIf="f['title'].errors['required'] ">Please enter book name</span>
+    </div>
+
+
+    <div class="mb-3">
+        <label for="exampleFormControlauthor" class="form-label">Author: </label>
+        <input type="text" class="form-control" id="exampleFormControlauthor" placeholder="" formControlName="author">
+      </div>
+      <div *ngIf="submitted && f['author'].errors">
+        <span style="color: red;" *ngIf="f['author'].errors['required'] ">Please enter author name</span>
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleFormControlauthor" class="form-label">Description: </label>
+        <textarea type="text" class="form-control" id="exampleFormControlauthor" placeholder="" formControlName="description"></textarea>
+      </div>
+      <div *ngIf="submitted && f['description'].errors">
+        <span style="color: red;" *ngIf="f['description'].errors['required'] ">Please enter description </span>
+    </div>
+    
+
+    <!-- accept="image/*" -->
+    <div class="mb-3">
+      <label for="pdf" class="form-label">Book Pdf </label>
+      <input type="file" class="form-control" id="pdf" rows="3" formControlName="pdf" (change)="onFileChangePdf($event)" accept="pdf/*">
+    </div>
+    <div *ngIf="submitted && f['pdf'].errors">
+      <span style="color: red;" *ngIf="f['pdf'].errors['required'] ">Please uploads pdf </span>
+  </div>
+  
+    <div class="mb-3">
+      <label for="images" class="form-label">Post Image </label>
+      <input type="file" class="form-control" id="images" rows="3" formControlName="cover_image" (change)="onFileChange($event)" accept="image/*">
+    </div>
+    <div *ngIf="submitted && f['cover_image'].errors">
+      <span style="color: red;" *ngIf="f['cover_image'].errors['required'] ">Please uploads image </span>
+  </div>
+  
+
+    <div class="mb-3">
+        <label cLabel for="exampleFormControllanguage">Language</label><br>
+        <select cSelect id="exampleFormControllanguage" class="form-control" formControlName='language'>
+          <option [disabled]="true">Select language</option>
+          <option value="hindi">Hindi</option>
+          <option value="english">English</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && f['language'].errors">
+        <span style="color: red;" *ngIf="f['language'].errors['required'] ">Please select language</span>
+    </div>
+
+
+    <div class="mb-3">
+        <label cLabel for="exampleFormControlStatus">Status</label><br>
+        <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>
+          <option [disabled]="true">Select Status</option>
+          <option value="Published">Published</option>
+          <option value="Unpublished">Unpublished</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && f['status'].errors">
+        <span style="color: red;" *ngIf="f['status'].errors['required'] ">Please select Status</span>
+    </div>
+      <!-- <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+        Save</button> -->
+<div class="modal-footer">
+<div class="d-grid">
+    <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+        Save</button>
+  </div>
+
+</div>
+
+</form>
+ </div>
+   
+
+  </div>
+ 

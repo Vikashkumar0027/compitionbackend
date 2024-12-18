@@ -4,6 +4,8 @@ import { ProfileService } from '../../services/profile/profile.service';
 import { CommonService } from '../../services/common/common.service';
 import { PrivilageService } from '../../services/privilage/privilage.service';
 import { SidenavService } from '../../services/sidnav/sidenav.service';
+// import * as CryptoJS from 'crypto-js';
+// import jwt_decode from 'jwt-decode';
 
 // import *as featureInterface from '../../services/interface/interface';
 @Component({
@@ -63,7 +65,10 @@ export class SideNavComponent implements OnInit {
   //   // {number:'7',name:'Home',icon:'fa-solid fa-house', url: '/tabs/courses'},
   // ];
 
-  list:any[] = []
+  list:any[] = [];
+
+  decryptedData:any;
+  token:any;
 
   // list:any[]=[
   //   {number:'1',name:'Dashboard',icon:'fa-solid fa-house', url: '/dashboard/home'},
@@ -93,10 +98,9 @@ export class SideNavComponent implements OnInit {
   }
 
  async ngOnInit() {
-   
 
     this.sidenavService.realSideBarAccess.subscribe(async res => {
-      if(!res.length){
+      if(res.length || res){
         this.list = res;
       }else{
         this.list = await this.commonService.previlageListApiDatat();
@@ -143,6 +147,19 @@ export class SideNavComponent implements OnInit {
 //       console.log(jwt.admin.type);
 //       this.jwtData=jwt.admin;
 //   }
+
+
+// dpcript(){
+//   this.token = localStorage.getItem('compytkns');
+//   const encruKey ="thisismyCompetitionApplication";
+//   const bytes = CryptoJS.AES.decrypt(this.token, encruKey);
+//   // Convert the decrypted bytes to string (utf8)
+//   this.decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+//   console.log('Decrypted Data:', this.decryptedData);
+//   const decodedToken:any = jwt_decode(this.decryptedData);
+//   console.log(decodedToken);
+//   this.commonService.udateAdminType(decodedToken.data);
+// }
   
   routes(param:any){
     this.router = param;

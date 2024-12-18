@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PrivilageService } from '../../services/privilage/privilage.service';
+// import * as CryptoJS from 'crypto-js';
+// import jwt_decode from 'jwt-decode';
+import { CommonService } from '../../services/common/common.service';
+
+ // cripto-js setup
+  // npm install crypto-js --save
+  // npm i --save-dev @types/crypto-js
 
 @Component({
   selector: 'app-dashboard',
@@ -9,19 +16,27 @@ import { PrivilageService } from '../../services/privilage/privilage.service';
 export class DashboardComponent  implements OnInit {
   title = 'alfaBackend';
   sideNavStatus: boolean =false;
-
-  constructor( private privilageService:PrivilageService) { }
+  decryptedData:any;
+  token:any;
+  constructor( private privilageService:PrivilageService,
+    private commonService:CommonService,
+  ) { }
 
   ngOnInit(): void {
-    this.privilageList();
+  //  this.dpcript();
   }
 
-  privilageList(){
-    this.privilageService.previlageLst().subscribe(res=>{
-      console.log(res);
-      this.privilageService.udateSideBarData(res.response[0].previleges);
-    },err=>{
-      console.log(err)
-    })
-  }
+  // dpcript(){
+  //   this.token = localStorage.getItem('compytkns');
+  //   const encruKey ="thisismyCompetitionApplication";
+  //   const bytes = CryptoJS.AES.decrypt(this.token, encruKey);
+  //   // Convert the decrypted bytes to string (utf8)
+  //   this.decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+  //   console.log('Decrypted Data:', this.decryptedData);
+  //   const decodedToken:any = jwt_decode(this.decryptedData);
+  //   console.log(decodedToken);
+  //   this.commonService.udateAdminType(decodedToken.data);
+  // }
+
+  
 }

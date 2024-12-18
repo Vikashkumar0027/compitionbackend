@@ -5,6 +5,7 @@ import { CommonService } from '../../../services/common/common.service';
 import { GlobalService } from '../../../services/global/global.service';
 import { SubAdminService } from '../../../services/subAdmin/sub-admin.service';
 
+import *as featureInterface from '../../../services/interface/interface'
 @Component({
   selector: 'app-subadmin-modal',
   templateUrl: './subadmin-modal.component.html',
@@ -19,41 +20,43 @@ export class SubadminModalComponent implements OnInit {
    dropdownSettings={};
 
    selectedAccessArray:any[] = [];
-PrivilegeMenuListDataq:any[] = [
-  {
-    "module": "Dashboard",
-    "checked": false,
-  },
-  {
-    "module": "Sub Admin",
-    "checked": false,
+   PrivilegeMenuListDataq:any[] = featureInterface.selectSideBar;
+
+// PrivilegeMenuListDataq:any[] = [
+//   {
+//     "module": "Dashboard",
+//     "checked": false,
+//   },
+//   {
+//     "module": "Sub Admin",
+//     "checked": false,
   
-  },
-  {
-    "module": "User",
-    "checked": false,
-  },
-  {
-    "module": "Course",
-    "checked": false,
-  },
-  {
-    "module": "Syllabus",
-    "checked": false,
-  },
-  {
-    "module": "Previous Paper",
-    "checked": false,
-  },
-  {
-    "module": "Post",
-    "checked": false,
-  },
-  {
-    "module": "Online Test",
-    "checked": false,
-  }
-]
+//   },
+//   {
+//     "module": "User",
+//     "checked": false,
+//   },
+//   {
+//     "module": "Course",
+//     "checked": false,
+//   },
+//   {
+//     "module": "Syllabus",
+//     "checked": false,
+//   },
+//   {
+//     "module": "Previous Paper",
+//     "checked": false,
+//   },
+//   {
+//     "module": "Post",
+//     "checked": false,
+//   },
+//   {
+//     "module": "Online Test",
+//     "checked": false,
+//   }
+// ]
 
   submit:boolean=true;
   @Input() public user:any;

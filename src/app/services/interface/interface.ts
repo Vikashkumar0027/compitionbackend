@@ -85,13 +85,66 @@ export let userAdd = domain+'admin/user/create';
 export let userUpdate = domain+'admin/user/update';
 export let userDelete = domain+'admin/user/delete';
 export let userView = domain+'admin/user/view';
+// book
+export let bookList = domain+'admin/book/list';
+export let bookAdd = domain+'admin/book/create';
+export let bookUpdate = domain+'admin/book/update';
+export let bookDelete = domain+'admin/book/delete';
+export let bookView = domain+'admin/book/view';
 
 // previlage
 export let previlageAdminLst = domain+'admin/privilege/list';
 export let previlageLst = domain+'admin/adminprivilege';
 
 
+// payment
+export let paymentLst = domain+'admin/payment/list';
+export let paymentView = domain+'admin/payment/view';
 
+
+export let selectSideBar = [
+  {
+    "module": "Dashboard",
+    "checked": false,
+  },
+  {
+    "module": "Sub Admin",
+    "checked": false,
+  
+  },
+  {
+    "module": "User",
+    "checked": false,
+  },
+  {
+    "module": "Course",
+    "checked": false,
+  },
+  {
+    "module": "Syllabus",
+    "checked": false,
+  },
+  {
+    "module": "Previous Paper",
+    "checked": false,
+  },
+  {
+    "module": "Post",
+    "checked": false,
+  },
+  {
+    "module": "Online Test",
+    "checked": false,
+  },
+  {
+    "module": "Book",
+    "checked": false,
+  },
+  {
+    "module": "Payment",
+    "checked": false,
+  }
+]
 
 
 export let sidebar = [
@@ -104,5 +157,7 @@ export let sidebar = [
   {number:'5',name:'Previous Paper',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/previous_paper'},
   {number:'6',name:'Post',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/post'},
   {number:'8',name:'Online Test',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/online-test'},
+  {number:'9',name:'Book',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/book'},
+  {number:'10',name:'Payment',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/payment'},
 ]; 
 
