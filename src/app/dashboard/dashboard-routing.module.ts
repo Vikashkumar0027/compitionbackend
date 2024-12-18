@@ -6,15 +6,10 @@ import { subadminGuard } from '../guard/subadmin/subadmin.guard';
 
 const routes: Routes = [
   {
-    path: '',
-    component: DashboardComponent,
-    data: {
-      title:'dashboard'
-    },
-    children:[
-      // {path:'',component:HomeComponent},
-      {path: '', redirectTo: 'home', pathMatch: 'full'},
-      {path:'home',component:HomeComponent ,canActivate:[subadminGuard]},
+    path: '',component: DashboardComponent,data: {title:'dashboard'},children:[
+      {path:'',component:HomeComponent},
+      // {path: '', redirectTo: 'home', pathMatch: 'full'},,canActivate:[subadminGuard]
+      {path:'home',component:HomeComponent },
       {path: 'subAdmin',loadChildren: () =>import('./sub-admin/sub-admin.module').then((m) => m.SubAdminModule) ,canActivate:[subadminGuard]} ,
       {path: 'course',loadChildren: () =>import('./course/course.module').then((m) => m.CourseModule) ,canActivate:[subadminGuard]} ,
       {path: 'course/subject/:id',loadChildren: () =>import('./subject/subject.module').then((m) => m.SubjectModule),canActivate:[subadminGuard]} ,
@@ -29,7 +24,8 @@ const routes: Routes = [
       {path: 'payment',loadChildren: () =>import('./payment/payment.module').then((m) => m.PaymentModule),canActivate:[subadminGuard]} ,
       // ,canActivate:[subadminGuard]
     ]
-  }
+  },
+  {path: '**', redirectTo: 'dashboard',pathMatch: 'full'}
 ];
 
 @NgModule({

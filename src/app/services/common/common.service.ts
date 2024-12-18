@@ -50,7 +50,7 @@ export class CommonService {
     console.log(data);
     if(data.error.message== 'Unauthorized Token !!'){
       localStorage.removeItem('compytkns');
-      this.route.navigate(['']);
+      this.route.navigate(['./login']);
       this.global.showToastErorr('Session Expired!');
     }
   }
@@ -72,9 +72,9 @@ export class CommonService {
     const bytes = CryptoJS.AES.decrypt(this.token, encruKey);
     // Convert the decrypted bytes to string (utf8)
     this.decryptedData = bytes.toString(CryptoJS.enc.Utf8);
-    console.log('Decrypted Data:', this.decryptedData);
+    // console.log('Decrypted Data:', this.decryptedData);
     const decodedToken:any = jwt_decode(this.decryptedData);
-    console.log(decodedToken);
+    // console.log(decodedToken);
 
   
     return new Promise((resolve, reject) => {
@@ -101,7 +101,7 @@ export class CommonService {
         },
         (err) => {
           console.log(err);
-          this.tokenOutOfValid(err);
+          // this.tokenOutOfValid(err);
           reject(err); // Reject if the API request fails
         }
       );
