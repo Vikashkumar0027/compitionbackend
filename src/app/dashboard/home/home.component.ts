@@ -25,14 +25,14 @@ export class HomeComponent implements OnInit{
    
   }
 
-  privilageList(){
-this.privilageService.previlageLst().subscribe(res=>{
-  console.log(res);
-  this.privilageService.udateSideBarData(res.response[0].previleges);
-},err=>{
-  console.log(err)
-})
-  }
+//   privilageList(){
+// this.privilageService.previlageLst().subscribe(res=>{
+//   console.log(res);
+//   this.privilageService.udateSideBarData(res.response[0].previleges);
+// },err=>{
+//   console.log(err)
+// })
+//   }
 
 
 }

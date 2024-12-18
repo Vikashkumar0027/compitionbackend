@@ -2,15 +2,15 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonService } from '../../../services/common/common.service';
-import { PostService } from '../../../services/post/post.service';
+import { BookService } from '../../../services/book/book.service';
 import { GlobalService } from '../../../services/global/global.service';
 
 @Component({
-  selector: 'app-modal-post',
-  templateUrl: './modal-post.component.html',
-  styleUrl: './modal-post.component.css'
+  selector: 'app-book-modal',
+  templateUrl: './book-modal.component.html',
+  styleUrl: './book-modal.component.css'
 })
-export class ModalPostComponent implements OnInit {
+export class BookModalComponent implements OnInit {
   submitted:boolean=false;
   form:FormGroup;
   userList:any[]=[];
@@ -28,13 +28,17 @@ export class ModalPostComponent implements OnInit {
     // private couseService:CourseService,
     private commonService:CommonService,
 
-    private postService:PostService,
+    private bookService:BookService,
     private global:GlobalService
   ) { 
     this.form = this.fb.group({
       title: ['', Validators.required],
-      image: ['', Validators.required],
-      status:['active', Validators.required]
+      author: ['', Validators.required],
+      description: ['', Validators.required],
+      pdf: ['', Validators.required],
+      cover_image: ['', Validators.required],
+      language:['hindi', Validators.required],
+      status:['Published', Validators.required]
     });
   }
 
@@ -42,20 +46,6 @@ export class ModalPostComponent implements OnInit {
    
     // this.getUserList();
     this.patchDataFunction();
-  }
-
-  // Custom validator to restrict to two decimal places
-  maxTwoDigitsValidator(control: any) {
-    const value = control.value;
-    if (value) {
-      // Regular expression to check the value
-      const regex = /^(\d{1,2}(\.\d{0,2})?)?$/;
-      
-      if (!regex.test(value.toString())) {
-        return { invalidDecimal: true };
-      }
-    }
-    return null;
   }
  
 
@@ -72,6 +62,9 @@ export class ModalPostComponent implements OnInit {
 
       const patch = {
         title: this.patchData.title,
+        author: this.patchData.author,
+        description: this.patchData.description,
+        language: this.patchData.language,
         status: this.patchData.status,
       };
       this.form.patchValue(patch);
@@ -114,30 +107,60 @@ setTimeout(() => {
       }
       reader.readAsDataURL(event.target.files[0]);
     }
-    
     let fileList: FileList = event.target.files;  
     let file: File = fileList[0];
+ }
+
+  private pdf: any;
+  onFileChangePdf(event:any) {
+    this.pdf = event.target.files[0];
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (event:any) => {
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+    let fileList: FileList = event.target.files;  
+    let pdf: File = fileList[0];
  }
 
  onSubmit() {
     this.submitted = true;
     this.submit = false;
     console.log(this.form.value);
+    this.todayFormateDate();
     if(this.user == 'Add'){
       // alert('add');
       this.addData();
       // console.log('form value',this.form.value);
     }else{
       // alert('edit');
-      const imageControl = this.form.get('image');
-      if (imageControl) {
+      const imageControl = this.form.get('cover_image');
+      const pdfControl = this.form.get('pdf');
+      if (imageControl && pdfControl) {
         imageControl.setValidators([]);  // Remove all validators
         imageControl.updateValueAndValidity();  // Revalidate the control
+        pdfControl.setValidators([]);
+        pdfControl.updateValueAndValidity(); 
       }
       this.editData();
 
     }
 
+  }
+
+
+  formattedDate: any;
+  todayFormateDate(){
+    const currentDate = new Date();
+    
+    // Get the day, month, and year
+    const day = ("0" + currentDate.getDate()).slice(-2);
+    const month = ("0" + (currentDate.getMonth() + 1)).slice(-2); // Month is zero-based
+    const year = currentDate.getFullYear();
+
+    // Format date as 'dd-MM-yyyy'
+    this.formattedDate = `${day}-${month}-${year}`;
   }
 
   addData(){
@@ -150,11 +173,16 @@ setTimeout(() => {
 
 // (this.file == undefined) ? formData.append('image', '') : formData.append('image', this.file);
 
-formData.append('image', this.file); 
+formData.append('cover_image', this.file); 
+formData.append('pdf', this.pdf); 
 formData.append('title', this.form.value.title);
+formData.append('author', this.form.value.author);
+formData.append('description', this.form.value.description);
+formData.append('publish_date', this.formattedDate);
+formData.append('language', this.form.value.language);
 formData.append('status', this.form.value.status);
 
-    this.postService.postAdd(formData).subscribe(res=>{
+    this.bookService.bookAdd(formData).subscribe(res=>{
 
       // console.log('data update',res)
       if(res.success ){
@@ -175,14 +203,21 @@ formData.append('status', this.form.value.status);
     }
     // const data = this.form.value;
     console.log(this.form.value)
-  let formData = new FormData();
-(this.file == undefined) ? formData.append('image', this.patchData.image) : formData.append('image', this.file);
+let formData = new FormData();
+(this.file == undefined) ? formData.append('cover_image', this.patchData.cover_image) : formData.append('cover_image', this.file);
+
+(this.pdf == undefined) ? formData.append('pdf', this.patchData.pdf) : formData.append('pdf', this.pdf);
+
 
 formData.append('title', this.form.value.title);
+formData.append('author', this.form.value.author);
+formData.append('description', this.form.value.description);
+formData.append('publish_date', this.formattedDate);
+formData.append('language', this.form.value.language);
 formData.append('status', this.form.value.status);
    
     const _id = this.patchData._id;
-    this.postService.postUpdate(formData,_id).subscribe(res=>{
+    this.bookService.bookUpdate(formData,_id).subscribe(res=>{
 
       // console.log('data update',res)
       if(res.success){

@@ -52,11 +52,12 @@ export class LoginComponent implements OnInit {
          console.log(res);
           if(res.success == true){
             localStorage.setItem('compytkns',res.response);
-          this.globalService.showToast('You are now logged in!');
-            this.route.navigateByUrl('/dashboard')
-            .then(() => {
-              window.location.reload();
-              });
+            this.route.navigate(['/dashboard/home']);
+            // this.route.navigateByUrl('/dashboard/home');
+            // .then(() => {
+              //   window.location.reload();
+              //   });
+              this.globalService.showToast('You are now logged in!');
           }
         },(err)=>{
           // this.globalService.showToastErorr(err.error.msg);
