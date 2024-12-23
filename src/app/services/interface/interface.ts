@@ -6,6 +6,9 @@ const domain = 'http://43.225.53.245:4500/';
  export let subAdminList = domain+'admin/list';
  export let subAdminUpdate = domain+'admin/update';
 
+//  change Pass
+ export let changePass = domain+'admin/changepassword';
+
 //course crude
  export let courseCreate = domain+'admin/batch/create';
  export let courseList = domain+'admin/batch/list';

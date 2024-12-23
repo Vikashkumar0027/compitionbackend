@@ -8,16 +8,21 @@ import {
 import { Observable } from 'rxjs';
 import { CommonService } from '../services/common/common.service';
 import { Router } from '@angular/router';
+import { LoginService } from '../services/login/login.service';
 
 @Injectable()
 export class TokenInterceptorInterceptor implements HttpInterceptor {
  token:any;
-  constructor(private commonService:CommonService, 
+  constructor(private commonService:CommonService, private loginService:LoginService,
     private route:Router) {
-      // setTimeout(() => {
+      this.loginService.tokens.subscribe(res => {
+        this.token = res;
+      })
+     
+      if(!this.token){
         this.token = localStorage.getItem('compytkns');
-        // console.log(this.token);
-      // });
+      }
+
     }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {

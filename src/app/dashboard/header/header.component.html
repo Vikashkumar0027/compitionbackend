@@ -58,8 +58,8 @@
         </button>
         <ul class="dropdown-menu dropdown-menu-dark">
             <!-- <li><a href="#" class="dropdown-item">Sign Up</a></li> -->
-            <li><a [routerLink]="['/dashboard/profile']" class="dropdown-item">Your Profile</a></li>
-            <li><a [routerLink]="['/dashboard/changePassword']" class="dropdown-item">Change Password</a></li>
+            <li><a (click)="profileModal()" class="dropdown-item">Your Profile</a></li>
+            <li><a (click)="changePassModal()" class="dropdown-item">Change Password</a></li>
             <li><a href="javascript:void(0);" (click)="logOut()" class="dropdown-item">Log Out</a></li>
         </ul>
     </div>

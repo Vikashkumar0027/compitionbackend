@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login/login.service';
 import { GlobalService } from '../../services/global/global.service';
+import { CommonService } from '../../services/common/common.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private route:Router,
     private loginService:LoginService,
-    private globalService:GlobalService
+    private globalService:GlobalService,
+    private commonService:CommonService
   ){
     this.form = this.fb.group({
       email:new FormControl('inder@gmail.com',[Validators.required]),
@@ -61,16 +63,20 @@ export class LoginComponent implements OnInit {
           if(res.success){
             this.islogin = true;
             localStorage.setItem('compytkns',res.response);
+            this.loginService.udateToken(res.response);
+            this.commonService.isDataLoaded = false;
             // this.route.navigate(['/','dashboard','home']);
             // this.route.navigateByUrl('/dashboard/home').then(() => {
             //     window.location.reload();
             //     });
               this.globalService.showToast('You are now logged in!');
-              setTimeout(() => {
-                this.route.navigateByUrl('./dashboard/home').then(() => {
-                      window.location.reload();
-                      });
-              },200);
+              this.route.navigateByUrl('./dashboard/home');
+              // setTimeout(() => {
+              //   this.route.navigateByUrl('./dashboard/home')
+              //   .then(() => {
+              //         window.location.reload();
+              //         });
+              // },200);
           }
         },(err)=>{
           // this.globalService.showToastErorr(err.error.msg);

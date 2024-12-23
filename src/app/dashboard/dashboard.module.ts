@@ -8,6 +8,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HomeComponent } from './home/home.component';
+import { CommonComponentModule } from '../common-component/common-component.module';
 // import { TestBatchComponent } from './onlineTest/test-batch/test-batch.component';
 // import { TestSubjectComponent } from './onlineTest/test-subject/test-subject.component';
 // import { TestSetListComponent } from './onlineTest/test-set-list/test-set-list.component';
@@ -23,7 +24,7 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule,
+    DashboardRoutingModule,CommonComponentModule,
     ReactiveFormsModule,FormsModule,
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
   ]

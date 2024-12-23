@@ -25,6 +25,10 @@ export class PrivilageService {
     this._sidebar.next(val);
    }
 
+   changePassword(param: any) : Observable<any>{
+    return this._http.post<any>(`${featureInterface.changePass}`,param);
+  }
+
 
   previlageLst() : Observable<any> {
     return this._http.get<any>( `${featureInterface.previlageLst}`);
@@ -45,6 +49,8 @@ export class PrivilageService {
   PrivilegeAdd(param: any) : Observable<any>{
     return this._http.post<any>(`${featureInterface.PrivilegeAdd}`,param);
   }
+ 
+
  
   PrivilegeUpdate(param: any,id:any) : Observable<any>{
     return this._http.patch<any>(`${featureInterface.PrivilegeUpdate}/${id}`,param);
