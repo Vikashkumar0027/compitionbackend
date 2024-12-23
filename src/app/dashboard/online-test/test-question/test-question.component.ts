@@ -197,10 +197,10 @@ console.log(this.id);
    }
  
    resetForm(){
-    //  this.isedit=false;
-    //  this.fillForm.reset();
-    //  this.formSubmitted = false;
-    //  this.editIdi='';
+     this.isedit=false;
+     this.fillForm.reset();
+     this.formSubmitted = false;
+     this.editIdi='';
    }
  
    edit(data:any ,el: HTMLElement){

@@ -17,6 +17,7 @@ export class TestSubjectComponent {
   data:any[]=[];
   searchCompany:any;
   private activeModal:any;
+  batchName:any;
   testCourseId:any;
   // @ViewChild(LoginComponent) loginModaComponent: LoginComponent | undefined;
     constructor(
@@ -43,7 +44,8 @@ export class TestSubjectComponent {
       this.onlineService.subjectTestList(this.testCourseId).subscribe(res=>{
       console.log(res);
       if(res.success){
-        this.data=res.response;
+        this.batchName = res.response.batchName;
+        this.data=res.response.findSubject;
       }
       this.spinner.hide();
     },err=>{

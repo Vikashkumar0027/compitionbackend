@@ -101,7 +101,7 @@ export class CommonService {
         },
         (err) => {
           console.log(err);
-          // this.tokenOutOfValid(err);
+          this.tokenOutOfValid(err);
           reject(err); // Reject if the API request fails
         }
       );
