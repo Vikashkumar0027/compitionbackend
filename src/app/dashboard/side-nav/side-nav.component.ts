@@ -94,11 +94,11 @@ export class SideNavComponent implements OnInit {
     private privalageService:PrivilageService,
     private sidenavService:SidenavService,
   ){
-    this.router = this.route.url
+    this.router = this.route.url;
   }
 
  async ngOnInit() {
-
+  this.list = await this.commonService.previlageListApiDatat();
     this.sidenavService.realSideBarAccess.subscribe(async res => {
       if(res.length || res){
         this.list = res;

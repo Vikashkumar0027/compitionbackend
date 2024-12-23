@@ -1,0 +1,57 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Change Password</h4>
+
+    <button type="button" class="btn btn-primary close" aria-label="Close" (click)="modalClose()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+
+  <div class="modal-body">
+<!-- (ngSubmit)="onSubmit()" -->
+ <div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="exampleFormControlname" class="form-label">Old Password: </label>
+        <input type="text" class="form-control" id="exampleFormControlname" placeholder="Enter Your Old Password" formControlName="oldPass">
+      </div>
+      <div *ngIf="submitted && f['oldPass'].errors">
+        <span style="color: red;" *ngIf="f['oldPass'].errors['required'] ">Please enter Old Password</span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlname" class="form-label">New Password: </label>
+        <input type="text" class="form-control" id="exampleFormControlname" placeholder="Enter new Password" formControlName="newPass">
+      </div>
+      <div *ngIf="submitted && f['newPass'].errors">
+        <span style="color: red;" *ngIf="f['newPass'].errors['required'] ">Please enter new Password</span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlname" class="form-label">Confirm New Password: </label>
+        <input type="text" class="form-control" id="exampleFormControlname" placeholder="Enter Confirm Password" formControlName="cnfPass">
+      </div>
+      <div *ngIf="form.hasError('passwordMismatch') && form.get('cnfPass')?.touched">
+        <span style="color: red;">Confirm Passwords do not match!</span>
+      </div>
+      <div *ngIf="submitted && f['cnfPass'].errors">
+        <span style="color: red;" *ngIf="f['cnfPass'].errors['required'] ">Please enter confirm Password</span>
+    </div>
+    
+
+
+  
+
+   
+<div class="modal-footer">
+<div class="d-grid">
+    <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+        Save</button>
+  </div>
+
+</div>
+
+</form>
+ </div>
+   
+
+  </div>
+ 

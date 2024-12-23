@@ -7,6 +7,7 @@ import { SidenavService } from '../sidnav/sidenav.service';
 import { BehaviorSubject } from 'rxjs';
 import jwt_decode from "jwt-decode";
 import * as CryptoJS from 'crypto-js';
+import { LoginService } from '../login/login.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,7 +28,8 @@ export class CommonService {
   constructor( private route:Router,
     private global:GlobalService,
   private privalageService:PrivilageService,
-  private sidenavService:SidenavService
+  private sidenavService:SidenavService,
+  private loginService:LoginService
   ) { }
 // admiData:any
 //   udateAdminType(val:any){
@@ -68,43 +70,36 @@ export class CommonService {
 
 
     this.token = localStorage.getItem('compytkns');
+    this.loginService.udateToken( this.token);
     const encruKey ="thisismyCompetitionApplication";
     const bytes = CryptoJS.AES.decrypt(this.token, encruKey);
-    // Convert the decrypted bytes to string (utf8)
     this.decryptedData = bytes.toString(CryptoJS.enc.Utf8);
-    // console.log('Decrypted Data:', this.decryptedData);
     const decodedToken:any = jwt_decode(this.decryptedData);
-    // console.log(decodedToken);
 
   
     return new Promise((resolve, reject) => {
-      this.privalageService.previlageLst().subscribe(
-        async (res) => {
+      setTimeout(() => {
+        this.privalageService.previlageLst().subscribe((res) => {
           console.log(res);
-  
-          try {
-            // Assuming filterList is an async function and returns a promise
-
-            // console.log(decodedToken);
+          // try {
             (decodedToken.data.type == "SubAdmin") ?
-              this.sliderAccess = await this.filterList(this.list, res.response[0].previleges) :
+              this.sliderAccess =  this.filterList(this.list, res.response[0].previleges) :
          this.sliderAccess = this.list;
             
-            
-         
             this.sidenavService.udateRealSideBarData(this.sliderAccess);
             resolve(this.sliderAccess); // Return the filtered access list
-          } catch (error) {
-            console.error('Error in filterList', error);
-            reject(error); // Reject the promise if filterList fails
-          }
+          // } catch (error) {
+          //   console.error('Error in filterList', error);
+          //   reject(error); // Reject the promise if filterList fails
+          // }
         },
         (err) => {
           console.log(err);
           this.tokenOutOfValid(err);
           reject(err); // Reject if the API request fails
         }
-      );
+      ); 
+      });
     });
   }
 
