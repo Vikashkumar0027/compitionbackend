@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { PrivilageService } from '../../services/privilage/privilage.service';
 import { CommonService } from '../../services/common/common.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +14,8 @@ export class ProfileComponent implements OnInit {
   profileDetail:any;
   constructor(private activeModal: NgbActiveModal,
     private privilageService:PrivilageService,
-    private commonService:CommonService
+    private commonService:CommonService,
+    private spinner: NgxSpinnerService
   ){
   }
 
@@ -25,12 +27,15 @@ export class ProfileComponent implements OnInit {
       this.getDetail();
   }
   getDetail(){
+    this.spinner.show();
     this.privilageService.previlageLst().subscribe(res=>{
       console.log(res);
-      if(res.success){
-        this.profileDetail = res.response;
+      this.spinner.hide();
+      if(res.success && res?.response?.length){
+        this.profileDetail = res.response[0];
       }
     },err=>{
+      this.spinner.hide();
       console.log(err);
       this.commonService.tokenOutOfValid(err);
     })

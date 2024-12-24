@@ -80,7 +80,8 @@ export class LoginComponent implements OnInit {
           }
         },(err)=>{
           // this.globalService.showToastErorr(err.error.msg);
-          this.globalService.showToastErorr('Wrong Username or Password, Please try again!');
+          (err?.status=="0")? this.globalService.showToastErorr('Check Internate!') : this.globalService.showToastErorr(err.error.message);
+          
         })
 
         

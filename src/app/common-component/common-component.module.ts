@@ -4,6 +4,7 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChangePassComponent } from './change-pass/change-pass.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -14,7 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
     ProfileComponent
   ],
   imports: [
-    CommonModule,FormsModule,ReactiveFormsModule
+    CommonModule,FormsModule,ReactiveFormsModule, NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
   ],
   exports:[
     ChangePassComponent,ProfileComponent
