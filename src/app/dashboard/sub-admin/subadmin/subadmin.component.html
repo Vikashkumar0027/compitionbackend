@@ -52,8 +52,8 @@
                 <td>{{ list?.name | titlecase }}</td>
                 <td>{{ list?.email }}</td>
                 <td>{{ list?.phone }}</td>
-                <td><img *ngIf="list?.logo" [src]="list?.logo" width="100px" alt="Company Logo">
-                  <span *ngIf="!list?.logo">--</span>
+                <td>
+                  <img *ngIf="list?.logo" [src]="list?.logo" width="100px" alt="{{ list?.name | titlecase }}" (error)="onImageError($event)">
                 </td>
                 <!-- <td class="text-end">
                   <button *ngIf="list?.subscription" class="btn btn-outline-success btn-sm m-1" title="Subscription Done">
@@ -83,10 +83,12 @@
                   <!-- <button title="Delete" type="button" class="btn btn-outline-danger btn-sm m-1" (click)="deletes(list)">
                     <i class="fa-solid fa-trash-can"></i>
                   </button> -->
-                  <p class="copy">
-                    <a class="mb-0 d-block" (click)="copyMail(list?.compID)">cmpny Id<img [src]="['assets/images/copy.svg']" alt="">
+                  <!-- <p class="copy"> -->
+                    <a class="btn btn-outline-warning btn-sm m-1" (click)="copyMail(list?.compID)" title="Company Id">
+                      <i class="fa-solid fa-copy"></i>
+                      <!-- <img [src]="['assets/images/copy.svg']" alt=""> -->
                     </a>
-                </p>
+                <!-- </p> -->
                   <!-- (click)="resetPassAert(list)" -->
                   <button title="Reset password" class="btn btn-outline-success btn-sm m-1 m-1 btn-circle"
                     >

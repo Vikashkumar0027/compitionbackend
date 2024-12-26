@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
     
     this.profileService.profile.subscribe(res=>{
       this.data=res;
+      console.log('profile details:',this.data);
     })
     this.getDecodedToken();
     this.showData();
@@ -31,8 +32,8 @@ export class HeaderComponent implements OnInit {
   }
 
   SideNavToggle(){
-this.menuStatus = !this.menuStatus;
-this.sidenavToggled.emit(this.menuStatus);
+    this.menuStatus = !this.menuStatus;
+    this.sidenavToggled.emit(this.menuStatus);
   }
 
   async getDecodedToken(){
@@ -65,4 +66,8 @@ this.sidenavToggled.emit(this.menuStatus);
     // }
     // )
    }
+   onImageError(event: Event): void {
+    const imgElement = event.target as HTMLImageElement;
+    imgElement.src = 'assets/images/sucessKey-logo.jpg';
+  }
 }

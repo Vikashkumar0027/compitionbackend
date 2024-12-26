@@ -157,4 +157,9 @@ export class UserComponent {
        })
   
     }
+
+    onImageError(event: Event): void {
+      const imgElement = event.target as HTMLImageElement;
+      imgElement.src = 'assets/images/sucessKey-logo.jpg';
+    }
 }

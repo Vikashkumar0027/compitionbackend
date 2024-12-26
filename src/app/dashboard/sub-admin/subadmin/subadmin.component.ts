@@ -215,4 +215,9 @@ private activeModal:any;
     this.global.showToast('copied');
  }
 
+ onImageError(event: Event): void {
+  const imgElement = event.target as HTMLImageElement;
+  imgElement.src = 'assets/images/sucessKey-logo.jpg';
+}
+
 }

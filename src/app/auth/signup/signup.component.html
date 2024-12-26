@@ -1,11 +1,19 @@
-<div class="container">
-    <div class="row">
-      <div class="col-md-6 my-3">
+<div class="main-bg container h-100">
+  <div class="row justify-content-center align-items-center min-vh-100">
+    
+    <div class="col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
+      <figure class="figure company_logo ">
+        <img src="assets/images/liveClass.png" class="figure-img img-fluid rounded" style="max-width: 100%; height: auto;">
+      </figure>
+    </div>
+
+    <div class="col-md-6 p-5 col-sm-12 my-3">
         <figure class="figure" >
-          <img width="114px" height="76px" src="assets/icon/image 16.png" class="figure-img img-fluid rounded">
+          <!-- <img width="114px" height="76px" src="assets/images/logo.png" class="figure-img img-fluid rounded"> -->
+          <img width="114px" height="76px" src="assets/images/sucessKey-logo.jpg" class="figure-img img-fluid rounded">
         </figure>
-        <h3> Welcome To <br> Compitition </h3>
-        <p>Compitition: This teaching app makes it easy to download PDFs, view online classes, and take online tests.</p>
+        <h3> Welcome to SuccessKey </h3>
+        <p>SuccessKey: This teaching app makes it easy to download PDFs, view online classes, and take online tests.</p>
   
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="mb-3">
@@ -25,7 +33,7 @@
           </div>
           <div class="mb-3">
   
-            <input type="password" class="form-control p-2 ps-3 rounded-pill" id="exampleInputPassword1"
+            <input type="password" class="form-control p-2 ps-3 rounded-pill" id="exampleInputconfPassword1"
               placeholder="Password" formControlName="password">
               <div *ngIf="submitted && f['password'].errors">
                 <span style="color: red;" *ngIf="f['password'].errors['required'] ">Please enter Password</span>
@@ -38,11 +46,7 @@
         </form>
   
       </div>
-      <div class="col-md-6">
-        <figure class="figure company_logo ">
-          <img src="assets/images/liveClass.png" class="figure-img img-fluid rounded">
-        </figure>
-      </div>
+      
     </div>
   </div>
   

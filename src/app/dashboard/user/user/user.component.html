@@ -39,7 +39,7 @@
         <th scope="col">S.N.</th>
         <th scope="col">User Name</th>
         <th scope="col">Email</th>
-        <th scope="col">mobile N.</th>
+        <th scope="col">Mobile (#)</th>
         <th scope="col">Image</th>
         <th scope="col">Status</th>
         <th scope="col">Action</th>
@@ -47,16 +47,35 @@
             </thead>
             <tbody>
         <tr *ngFor="let list of data let i = index; ">
-          <th scope="row" class="text-center">{{i+1}}</th>
-          <td class="text-center">{{list?.name}} </td>
-          <td class="text-center">{{list?.email}} </td>
-          <td class="text-center">{{list?.number}} </td>
-          <td class="text-center">
-            <img [src]="list?.image" width="50px" /><br>
-            <a [href]="list.image" target="_blank">View</a> 
+          <th scope="row">{{i+1}}</th>
+          <td>
+            <span *ngIf="list?.name; else noName">{{ list?.name }}</span>
+            <ng-template #noName>
+              <span class="text-danger">No Name Available</span>
+            </ng-template>
           </td>
-          <td class="text-center">{{list?.status}}</td>
-          <td class="text-center">
+          <td>
+            <span *ngIf="list?.email; else noEmail">{{ list?.email }}</span>
+            <ng-template #noEmail>
+              <span class="text-danger">No Email Available</span>
+            </ng-template>
+          </td>
+          <td>{{list?.number}} </td>
+          <td>
+            <img [src]="list?.image" width="75px" (error)="onImageError($event)"/>
+          </td>
+          <!-- <td>{{list?.status}}</td> -->
+          <td class="text-start">
+            <button *ngIf="list?.status === 'Active'" class="btn btn-outline-success btn-sm m-1"
+              title="Subscription Done">
+              <i class="fa-solid fa-check"></i> Active
+            </button>
+            <button *ngIf="list?.status === 'Inactive'" class="btn btn-outline-danger btn-sm m-1"
+              title="Subscription Not Done">
+              <i class="fa-solid fa-xmark"></i> Inactive
+            </button>
+          </td>
+          <td>
             <button title="Edit" type="button" class="btn btn-outline-primary btn-sm m-1" (click)="edit(list)">
               <i class="fa-solid fa-pen-to-square"></i>
             </button>

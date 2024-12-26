@@ -36,16 +36,16 @@
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
-               <th scope="col">S.N.</th>
-        <th scope="col">Title</th>
-        <th scope="col">Video Details</th>
-        <th scope="col">Subtitle</th>
-        <th scope="col">Price</th>
-        <th scope="col">Discount</th>
-        <th scope="col">Description</th>
-        <th scope="col">Image</th>
-        <th scope="col">Status</th>
-        <th scope="col">Action</th>
+                  <th scope="col">#</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">Title</th>
+                  <!-- <th scope="col">Video Details</th> -->
+                  <th scope="col">Subtitle</th>
+                  <th scope="col">Price</th>
+                  <!-- <th scope="col">Discount</th> -->
+                  <!-- <th scope="col">Description</th> -->
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -54,22 +54,33 @@
               
         <tr *ngFor="let list of data let i = index; ">
           <th scope="row">{{i+1}}</th>
-          <td><b>{{list?.title}}</b>({{list?.type}}) </td>
-          <!-- <td>{{list?.video_details}} </td> -->
-          <td>
-            <!-- {{list?.video_details}} -->
+          <td><img [src]="list?.image" width="75px" (error)="onImageError($event)"/></td>
+          <td>{{list?.title}}
+            <span class="text-danger" *ngIf="list?.type == 'paid'; else freeCo">({{ list?.type }})</span>
+            <ng-template #freeCo>
+              <span class="text-success">(Free)</span>
+            </ng-template>
+          </td>
+          <!-- <td>
             <li *ngFor="let item of list?.video_details">{{ item }}</li>
-               </td>
+          </td> -->
           <td>
-            <!-- {{list?.sub_title}}  -->
             <li *ngFor="let item of list?.sub_title">{{ item }}</li>
           </td>
-          <td>{{list?.price}} </td>
-          <td>{{list?.discount}}% </td>
-          <td>{{list?.description}} </td>
+          <td>₹ {{list?.price}} </td>
+          <!-- <td>{{list?.discount}}% </td> -->
+          <!-- <td>{{list?.description}} </td> -->
        
-          <td><img [src]="list?.image" /></td>
-          <td>{{list?.status}}</td>
+          <td class="text-start">
+            <button *ngIf="list?.status === 'active'" class="btn btn-outline-success btn-sm m-1"
+              title="Subscription Done">
+              <i class="fa-solid fa-check"></i> Published
+            </button>
+            <button *ngIf="list?.status === 'inactive'" class="btn btn-outline-danger btn-sm m-1"
+              title="Subscription Not Done">
+              <i class="fa-solid fa-xmark"></i> Unpublished
+            </button>
+          </td>
 
           <td>
             <!-- <button color="warning" class="text-white" (click)="edit(list)" cButton><i class="fa-regular fa-pen-to-square"></i></button> &nbsp; 

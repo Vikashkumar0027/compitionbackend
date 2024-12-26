@@ -1,12 +1,12 @@
-<div class="container h-100">
+<div class="main-bg container h-100">
     <div class="row justify-content-center align-items-center min-vh-100">
       <div class="col-md-6 p-5 col-sm-12 my-3">
         <figure class="figure">
-          <img width="114px" height="76px" src="assets/images/logo.png" class="figure-img img-fluid rounded" alt="Logo">
+          <!-- <img width="114px" height="76px" src="assets/images/logo.png" class="figure-img img-fluid rounded" alt="Logo"> -->
+          <img width="114px" height="76px" src="assets/images/sucessKey-logo.jpg" class="figure-img img-fluid rounded">
         </figure>
-        <h3> Welcome to Compitition </h3>
-        <p>Compitition: This teaching app makes it easy to download PDFs, view online classes, and take online tests.</p>
-        <!-- <p>Lynko: where document creation meets simplicity. Perfect your PDFs with just a few clicks.</p> -->
+        <h3> Welcome to SuccessKey </h3>
+        <p>SuccessKey: This teaching app makes it easy to download PDFs, view online classes, and take online tests.</p>
         <div *ngIf="!islogin">
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="mb-3">
@@ -29,14 +29,12 @@
     
             <button type="submit" class="btn mt-4 w-100 p-2 rounded-pill" [disabled]="submitted"
               style="background-color: #00C1D0;">{{ submitted ? 'Wait...' : 'Log in' }}</button>
-            <p class="text-center mt-2"> Don't have an account? <a routerLink="/signUp" style="color: #00C1D0;">Create an
-                account</a></p>
+            <p class="text-center mt-2"> Don't have an account? <a routerLink="/signUp" style="color: #00C1D0;">Signup</a></p>
           </form>
         </div>
 
         <div *ngIf="islogin">
-         <button class="btn mt-4 w-100 p-2 rounded-pill" (click)="login()"
-         style="background-color: #00C1D0;">Login!</button> 
+         <button class="btn mt-4 w-100 p-2 rounded-pill button-bg" (click)="login()">Login!</button> 
         </div>
       </div>
   
