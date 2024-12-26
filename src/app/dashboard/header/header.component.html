@@ -4,8 +4,7 @@
     </div>
 
     <div class="container-fluid" *ngIf="data?.add_logo">
-        <img *ngIf="data?.add_logo" [src]="data.add_logo" height="53px" alt="Centered image">
-  
+        <img *ngIf="data?.add_logo" [src]="data.add_logo" height="53px" alt="Centered image" (error)="onImageError($event)">
     </div>
 
     <div class="navbar-collapse">
@@ -54,7 +53,7 @@
     <!-- {{ userName }} -->
     <div class="profile-logo dropstart">
         <button class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
-            {{data?.name | titlecase}}
+            {{ data?.name | titlecase }}
         </button>
         <ul class="dropdown-menu dropdown-menu-dark">
             <!-- <li><a href="#" class="dropdown-item">Sign Up</a></li> -->

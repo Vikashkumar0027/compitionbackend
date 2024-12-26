@@ -208,5 +208,8 @@ export class CourseComponent implements OnInit {
       // dashboard/course/subject/454
       this.route.navigate(['/','dashboard','course','subject',list._id]);
     }
-
+    onImageError(event: Event): void {
+      const imgElement = event.target as HTMLImageElement;
+      imgElement.src = 'assets/images/sucessKey-logo.jpg';
+    }
 }

@@ -9,7 +9,8 @@ nav {
     font-size: 1.5rem;
     cursor: pointer;
     width: 60px;
-    background-color: #3884bd !important;
+    /* background-color: #3884bd !important; */
+    background-color: #00C1D0 !important;
     height: 52px;
     border-radius: 50% !important;
 }
@@ -27,7 +28,8 @@ nav {
     font-weight: 600;
 }
 .profile-logo .btn-outline-light {
-    background-color: #3884bd;
+    /* background-color: #3884bd; */
+    background-color: #00C1D0;
     border: 0;
     border-radius: 39px;
     margin-right: 9px;

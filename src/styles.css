@@ -84,3 +84,11 @@ ngx-spinner{
     justify-content: space-between;
     align-items: center;
 }
+
+/* Css by nutan */
+.main-bg {
+    background-color: #bfc9d2;
+}
+.button-bg{
+    background-color:#00C1D0;
+ }
