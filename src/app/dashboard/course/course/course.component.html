@@ -51,7 +51,6 @@
             <tbody>
               <tr *ngFor="let list of data; let i = index;">
                 
-              
         <tr *ngFor="let list of data let i = index; ">
           <th scope="row">{{i+1}}</th>
           <td><img [src]="list?.image" width="75px" (error)="onImageError($event)"/></td>
