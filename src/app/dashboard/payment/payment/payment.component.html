@@ -1,1 +1,66 @@
-<p>payment works!</p>
+<div class="container-fluid">
+    <!-- Breadcrumb for Navigation -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Payment</li>
+      </ol>
+    </nav>
+
+    <div class="row align-items-center">
+      <div class="col-md-4">
+        <h1 class="h3 mb-lg-3 text-gray-800"> Payment</h1>
+      </div>
+      <div class="col-md-8 mb-3 text-md-end">
+        <!-- <button type="button" class="btn btn-outline-primary" (click)="modalData()">Add Book</button> -->
+      </div>
+    </div>
+  
+    <!-- Card Section -->
+    <!-- <h1 class="h3 mb-3 text-gray-800">Company</h1> -->
+  
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+  
+            <input type="text" class="form-control" placeholder="Search Company" aria-label="Search" name="searchCompany">
+  
+          </div>
+        </div>
+      </div>
+  
+      <!-- Table Section -->
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+        <th scope="col">S.N.</th>
+        <th scope="col">User Name</th>
+        <th scope="col">Course</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Type</th>
+        <th scope="col">Tansaction Id</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr *ngFor="let list of data let i = index; ">
+          <th scope="row" class="text-center">{{i+1}}</th>
+          <td class="text-center"><u>{{list?.userName}}</u> </td>
+          <td class="text-center"><u>{{list?.batchName}}</u> </td>
+          
+          <td class="text-center">{{list?.amount}}</td>
+          <td class="text-center">{{list?.type}}</td>
+          <td class="text-center">{{list?.Trans_id}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Loading Spinner -->
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)" template="<img src='https://i.gifer.com/ZZ5H.gif' />">
+  </ngx-spinner>

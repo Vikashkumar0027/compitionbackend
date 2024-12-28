@@ -26,7 +26,7 @@ export class PaymentComponent implements OnInit {
     this.paymentService.paymentLst().subscribe(res=>{
       console.log(res);
       if(res.success){
-        this.data=res.response;
+        this.data=res.response.list;
       }
       this.spinner.hide();
     },err=>{

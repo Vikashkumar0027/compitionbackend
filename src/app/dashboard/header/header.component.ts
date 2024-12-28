@@ -6,6 +6,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalComponent } from '../../common-component/confirm-modal/confirm-modal.component';
 import { ChangePassComponent } from '../../common-component/change-pass/change-pass.component';
 import { ProfileComponent } from '../../common-component/profile/profile.component';
+import { PrivilageService } from '../../services/privilage/privilage.service';
+// import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-header',
@@ -17,24 +19,38 @@ export class HeaderComponent implements OnInit {
   menuStatus:boolean=false;
   userName: any;
   data:any={};
+  profileDetail:any;
   private activeModal:any;
 
   constructor(
     private commonService:CommonService,
     private route:Router,
     private profileService:ProfileService,
-     private modalService: NgbModal
+     private modalService: NgbModal,
+      private privilageService:PrivilageService,
+      // private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
     
-    this.profileService.profile.subscribe(res=>{
-      this.data=res;
-      console.log('profile details:',this.data);
-    })
     this.getDecodedToken();
     this.showData();
+    this.getDetail();
+  }
 
+  getDetail(){
+    // this.spinner.show();
+    this.privilageService.previlageLst().subscribe(res=>{
+      console.log(res);
+      // this.spinner.hide();
+      if(res.success && res?.response?.length){
+        this.profileDetail = res.response[0];
+      }
+    },err=>{
+      // this.spinner.hide();
+      console.log(err);
+      this.commonService.tokenOutOfValid(err);
+    })
   }
 
   SideNavToggle(){
