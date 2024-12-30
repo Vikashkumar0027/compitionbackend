@@ -7,6 +7,9 @@ import { SyllabusService } from '../../../services/syllabus/syllabus.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ModalSyllabusComponent } from '../modal-syllabus/modal-syllabus.component';
 import { ConfirmModalComponent } from '../../../common-component/confirm-modal/confirm-modal.component';
+import * as pdfjsLib from 'pdfjs-dist';
+// import { PDFDocumentProxy } from 'pdfjs-dist';
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/pdfjs/pdf.worker.mjs';
 
 @Component({
   selector: 'app-syllabus',
@@ -39,10 +42,26 @@ export class SyllabusComponent implements OnInit {
     getList(){
     try {
       this.spinner.show();
-      this.syllabusService.syllabusList().subscribe(res=>{
+      // const pages = await this.getNumberOfPages(this.pdfUrl);
+      this.syllabusService.syllabusList().subscribe(async res=>{
       console.log(res);
-      if(res.success){
-        this.data=res.response;
+      // if(res.success){
+      //   this.data=res.response;
+      // }
+      // this.spinner.hide();
+      if (res.success) {
+        this.data = await Promise.all(
+          res.response.map(async (item: any) => ({
+            ...item,
+            pageNumber: item.pdf 
+              ? await this.getNumberOfPages(item.pdf).catch((error) => {
+                  console.error(`Error fetching pages for PDF: ${item.pdf}`, error);
+                  return null; // Fallback for errors
+                })
+              : null,
+          }))
+        );
+        console.log(this.data);
       }
       this.spinner.hide();
     },err=>{
@@ -156,6 +175,12 @@ export class SyllabusComponent implements OnInit {
         this.global.showToastErorr('somthing went wrong')
        })
   
+    }
+
+    async getNumberOfPages(pdfUrl: string): Promise<number> {
+      const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+      // console.log(pdf);
+      return pdf.numPages;
     }
 
 }

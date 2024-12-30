@@ -36,23 +36,37 @@
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
-        <th scope="col">S.N.</th>
+        <th scope="col">#</th>
         <th scope="col">Name</th>
         <th scope="col">Notes</th>
+        <th scope="col">No. of Pages</th>
         <th scope="col">Status</th>
         <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
         <tr *ngFor="let list of data let i = index; ">
-          <th scope="row" class="text-center">{{i+1}}</th>
-          <td class="text-center">{{list?.name}} </td>
-          <td class="text-center">
+          <th scope="row">{{i+1}}</th>
+          <td>{{list?.name | titlecase}} </td>
+          <td>
             <!-- <img [src]="list?.image" width="200px" /> -->
-            <a [href]="list.pdf" target="_blank">View notes</a> 
+            <a class="btn btn-outline-primary" [href]="list.pdf" target="_blank" title="View Notes"><i class="fa-solid fa-note-sticky"></i></a> 
           </td>
-          <td class="text-center">{{list?.status}}</td>
-          <td class="text-center">
+          <td>
+            {{ list?.pageNumber }}
+          </td>
+          
+          <td class="text-start">
+            <button *ngIf="list?.status === 'active'" class="btn btn-outline-success btn-sm m-1"
+              title="Subscription Done">
+              <i class="fa-solid fa-check"></i> Active
+            </button>
+            <button *ngIf="list?.status === 'inactive'" class="btn btn-outline-danger btn-sm m-1"
+              title="Subscription Not Done">
+              <i class="fa-solid fa-xmark"></i> Inactive
+            </button>
+          </td>
+          <td>
             <button title="Edit" type="button" class="btn btn-outline-primary btn-sm m-1" (click)="edit(list)">
               <i class="fa-solid fa-pen-to-square"></i>
             </button>

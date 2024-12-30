@@ -3,13 +3,14 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Test Batch</li>
+        <li class="breadcrumb-item active" aria-current="page">Online Test</li>
       </ol>
     </nav>
 
     <div class="row align-items-center">
       <div class="col-md-4">
-        <h1 class="h3 mb-lg-3 text-gray-800"> Test Batch</h1>
+        <!-- <h1 class="h3 mb-lg-3 text-gray-800"> Test Batch</h1> -->
+        <h1 class="h3 mb-lg-3 text-gray-800">Online Test</h1>
       </div>
       <div class="col-md-8 mb-3 text-md-end">
         <button type="button" class="btn btn-outline-primary" (click)="modalData()">Add Batch</button>
@@ -21,11 +22,29 @@
   
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <div class="row align-items-center">
-          <div class="col-md-8">
-  
-            <input type="text" class="form-control" placeholder="Search Company" aria-label="Search" name="searchCompany">
-  
+        <div class="row align-items-center py-3">
+          <div class="col-md-12 d-flex gap-3">
+            
+            <div class="form-group">
+              <label for="searchTest" class="form-label">Search test by name</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="searchTest" name="searchTest" placeholder="Search test">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="start_date" class="form-label">Choose type</label>
+              <select class="form-select" id="type" name="type">
+                <option value="free">Free</option>
+                <option value="paid">Paid</option>
+              </select>
+            </div>
+           
+            <div class="form-group">
+            <button class="btn btn-outline-primary mt-4" type="submit">
+              <i class="fa fa-search"></i> <!-- Search icon from Bootstrap Icons -->
+            </button>
+          </div>
           </div>
         </div>
       </div>
@@ -39,30 +58,43 @@
         <th scope="col">S.N.</th>
         <th scope="col">Batch Name</th>
         <th scope="col">Amount</th>
-        <th scope="col">Discount</th>
-        <th scope="col">Discription</th>
+        <th scope="col">Discount (%)</th>
+        <!-- <th scope="col">Discription</th> -->
         <th scope="col">Status</th>
         <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
         <tr *ngFor="let list of data let i = index;">
-          <th scope="row" class="text-center">{{i+1}}</th>
-          <td class="text-center">{{list?.name}}({{list?.type}}) </td>
-          <td class="text-center">{{list?.amount}} </td>
-          <td class="text-center">{{list?.discount}} </td>
-          <td class="text-center">{{list?.description}} </td>
+          <th scope="row">{{i+1}}</th>
+          <td>{{list?.name}}
+            <small class="text-danger" *ngIf="list?.type == 'paid'; else other">(paid)</small>
+            <ng-template #other>
+              <small class="text-success">({{list?.type}})</small>
+            </ng-template> </td>
+          <td>₹{{list?.amount}} </td>
+          <td>{{list?.discount}} </td>
+          <!-- <td>{{list?.description}} </td> -->
           
-          <td class="text-center">{{list?.status}}</td>
-          <td class="text-center">
+          <td class="text-start">
+            <button *ngIf="list?.status === 'active'" class="btn btn-outline-success btn-sm m-1"
+              title="Active">
+              <i class="fa-solid fa-check"></i> Active
+            </button>
+            <button *ngIf="list?.status === 'inactive'" class="btn btn-outline-danger btn-sm m-1"
+              title="Inactive">
+              <i class="fa-solid fa-xmark"></i> Inactive
+            </button>
+          </td>
+          <td>
             <button title="Edit" type="button" class="btn btn-outline-primary btn-sm m-1" (click)="edit(list)">
               <i class="fa-solid fa-pen-to-square"></i>
             </button>
             <button title="Delete" type="button" class="btn btn-outline-danger btn-sm m-1" (click)="deletes(list)">
               <i class="fa-solid fa-trash-can"></i>
             </button>
-            <button title="Delete" type="button" class="btn btn-outline-info btn-sm m-1" (click)="subject(list)">
-              Subject
+            <button title="View subject" type="button" class="btn btn-outline-info btn-sm m-1" (click)="subject(list)">
+              <i class="fa-solid fa-eye"></i>
             </button>
 
           </td>

@@ -3,7 +3,8 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{{batchName}}</li>
+        <li class="breadcrumb-item"><a href="dashboard/online-test">Online Test</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{batchName |uppercase}}</li>
       </ol>
     </nav>
 
@@ -16,8 +17,67 @@
       </div>
     </div>
   
-    <!-- Card Section -->
-    <!-- <h1 class="h3 mb-3 text-gray-800">Company</h1> -->
+    <div class="container my-4">
+      <div class="row">
+        <!-- Question Paper Details -->
+        <div class="col-lg-12 col-md-12">
+          <div class="card mb-3 shadow">
+            <div class="card-body">
+              <!-- <h5 class="card-title">{{ details?.name | uppercase }} 
+                <button *ngIf="details?.status === 'active'" class="btn btn-outline-success btn-sm m-1"
+                title="Active">
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <button *ngIf="details?.status === 'inactive'" class="btn btn-outline-danger btn-sm m-1"
+                title="Inactive">
+                <i class="fa-solid fa-xmark"></i>
+              </button></h5>
+              -  <span class="badge bg-info ms-2">{{ details?.previousExam.length}} Sets</span> -->
+              <ul class="list-group list-group-flush">
+                <!-- <li class="list-group-item">
+                  <strong>Added Date: {{ details?.date | date: 'YYYY/MM/DD' }}</strong> - 
+                  
+                  <span class="badge bg-info ms-2">{{ details?.previousExam.length}} Sets</span>
+                </li> -->
+                <li class="list-group-item">
+                  <strong>2022</strong> - Physics
+                  <span class="badge bg-info ms-2">3 Sets</span>
+                </li>
+                <li class="list-group-item">
+                  <strong>2021</strong> - Chemistry
+                  <span class="badge bg-info ms-2">1 Set</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Set Tiles -->
+        <div class="col-lg-12 col-md-12">
+          <div class="row g-3">
+            <!-- Set Tile 1 -->
+            <div class="col-md-4 col-lg-3" *ngFor="let list of data let i = index;">
+              <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                  <h6 class="card-title">Set {{i+1}}</h6>
+                  <p class="text-muted small">{{list?.name}}</p>
+                  <p class="text-muted small"><a class="btn btn-outline-secondary btn-sm ms-2" [href]="list.pdf" target="_blank">View Set</a> </p>
+                  <!-- <button class="btn btn-primary btn-sm">Download</button>
+                  <button class="btn btn-outline-secondary btn-sm ms-2">View</button> -->
+                  <button title="Edit" type="button" class="btn btn-outline-primary btn-sm  ms-2" (click)="edit(list)">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <button title="Delete" type="button" class="btn btn-outline-danger btn-sm  ms-2" (click)="deletes(list)">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
   
     <div class="card shadow mb-4">
       <div class="card-header py-3">
@@ -55,7 +115,7 @@
             <button title="Delete" type="button" class="btn btn-outline-danger btn-sm m-1" (click)="deletes(list)">
               <i class="fa-solid fa-trash-can"></i>
             </button>
-            <button title="Delete" type="button" class="btn btn-outline-info btn-sm m-1" (click)="setList(list)">
+            <button title="Set List" type="button" class="btn btn-outline-info btn-sm m-1" (click)="setList(list)">
               Set list
             </button>
 

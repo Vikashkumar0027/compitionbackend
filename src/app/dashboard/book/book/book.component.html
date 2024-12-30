@@ -36,9 +36,9 @@
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
-        <th scope="col">S.N.</th>
+        <th scope="col">#</th>
+        <th scope="col">Cover Page</th>
         <th scope="col">Book Name</th>
-        <th scope="col">Image/pdf</th>
         <th scope="col">Author</th>
         <th scope="col">Description</th>
         <th scope="col">Status</th>
@@ -47,23 +47,35 @@
             </thead>
             <tbody>
         <tr *ngFor="let list of data let i = index; ">
-          <th scope="row" class="text-center">{{i+1}}</th>
-          <td class="text-center"><u>{{list?.title}}</u> ({{list?.language}})</td>
-          <td class="text-center">
-            <img [src]="list?.cover_image" width="100px" /><br>
-            <a [href]="list.cover_image" target="_blank">View</a> <br>
-            <a [href]="list.pdf" target="_blank">Pdf</a> 
+          <th scope="row">{{i+1}}</th>
+          <td>
+            <a [href]="list.cover_image" title="View Cover Page" target="_blank"><img [src]="list?.cover_image" (error)="onImageError($event)" width="100px" /></a>
           </td>
-          <td class="text-center">{{list?.author}}</td>
-          <td class="text-center">{{list?.description}}</td>
-          <td class="text-center">{{list?.status}}</td>
-          <td class="text-center">
+          <td>{{list?.title | titlecase}}  
+            <small class="text-danger" *ngIf="list?.language == 'hindi'; else other">(Hindi)</small>
+            <ng-template #other>
+              <small class="text-info">({{list?.language}})</small>
+            </ng-template></td>
+          
+          <td class="text-warning">~{{list?.author | titlecase }}</td>
+          <td>{{list?.description}}</td>
+          <td>
+            <button *ngIf="list?.status === 'Published'" class="btn btn-outline-success btn-sm m-1"
+            title="Published">
+            <i class="fa-solid fa-check"></i> Published
+          </button>
+          <button *ngIf="list?.status === 'Unpublished'" class="btn btn-outline-danger btn-sm m-1"
+            title="Unpublished">
+            <i class="fa-solid fa-xmark"></i> Unpublished
+          </button></td>
+          <td>
             <button title="Edit" type="button" class="btn btn-outline-primary btn-sm m-1" (click)="edit(list)">
               <i class="fa-solid fa-pen-to-square"></i>
             </button>
             <button title="Delete" type="button" class="btn btn-outline-danger btn-sm m-1" (click)="deletes(list)">
               <i class="fa-solid fa-trash-can"></i>
             </button>
+            <a  title="View PDF" class="btn btn-outline-info btn-sm m-1" [href]="list.pdf" target="_blank"> <i class="fa-solid fa-file"></i></a> 
             <!-- <button title="Delete" type="button" class="btn btn-outline-info btn-sm m-1" (click)="chapter(list)">
               Chapter
             </button> -->

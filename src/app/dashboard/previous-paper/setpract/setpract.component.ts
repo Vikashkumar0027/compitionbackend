@@ -15,6 +15,7 @@ import { ConfirmModalComponent } from '../../../common-component/confirm-modal/c
 })
 export class SetpractComponent implements OnInit {
  previouspaperId:any;
+  details: any | null = null;
   data:any[]=[];
   searchCompany:any;
   private activeModal:any;
@@ -41,9 +42,11 @@ export class SetpractComponent implements OnInit {
     try {
       this.spinner.show();
       this.previousPaperService.previousView(this.previouspaperId).subscribe(res=>{
-      console.log(res);
-      if(res.success){
-        this.data=res.response.previousExam;
+        if(res.success){
+          this.details = res.response;
+          console.log('nknk',this.details);
+
+        this.data = res.response.previousExam;
       }
       this.spinner.hide();
     },err=>{
