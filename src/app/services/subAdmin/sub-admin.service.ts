@@ -10,6 +10,10 @@ export class SubAdminService {
   constructor(private http: HttpClient) { }
 
 
+  dashboard(): Observable<any>{
+    return this.http.get<any>(`${featureInterface.dashboard}`);
+  }
+  
   subAdminList(): Observable<any>{
     return this.http.get<any>(`${featureInterface.subAdminList}`);
   }

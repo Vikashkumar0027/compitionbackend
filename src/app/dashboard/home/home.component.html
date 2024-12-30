@@ -17,7 +17,7 @@
     </div>
   
     <div class="row g-4">
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-3 col-md-6 col-sm-6" *ngIf="dashboardData?.subAdminCount">
             <div class="card text-white" style="background-color: #3d6cb9; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
                 <div class="card-body">
                     <div class="row align-items-center">
@@ -29,7 +29,7 @@
                         <div class="col-8">
                             <div class="numbers">
                                 <p class="card-category mb-1 fw-bold">Sub Admin</p>
-                                <p class="card-title h5">15</p>
+                                <p class="card-title h5">{{dashboardData?.subAdminCount}}</p>
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,12 @@
                 </div> -->
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
+
+        <!-- <span *ngIf="!dashboardData?.subAdminCount"> -->
+
+        
+
+        <div class="col-lg-3 col-md-6 col-sm-6" *ngIf="!dashboardData?.subAdminCount">
             <div class="card text-white" style="background-color: #00d1ff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
                 <div class="card-body">
                     <div class="row align-items-center">
@@ -51,7 +56,7 @@
                         <div class="col-8">
                             <div class="numbers">
                                 <p class="card-category mb-1 fw-bold">Payment</p>
-                                <p class="card-title h5">₹1,345</p>
+                                <p class="card-title h5">₹{{dashboardData?.paymentCount}}</p>
                             </div>
                         </div>
                     </div>
@@ -61,7 +66,8 @@
                 </div> -->
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
+
+        <div class="col-lg-3 col-md-6 col-sm-6" *ngIf="!dashboardData?.subAdminCount">
             <div class="card text-white" style="background-color: #3d6cb9; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
                 <div class="card-body">
                     <div class="row align-items-center">
@@ -72,8 +78,8 @@
                         </div>
                         <div class="col-8">
                             <div class="numbers">
-                                <p class="card-category mb-1 fw-bold">Test Papers</p>
-                                <p class="card-title h5">23</p>
+                                <p class="card-category mb-1 fw-bold">Test Batch</p>
+                                <p class="card-title h5">{{dashboardData?.testBatchCount}}</p>
                             </div>
                         </div>
                     </div>
@@ -83,7 +89,170 @@
                 </div> -->
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-3 col-md-6 col-sm-6" *ngIf="!dashboardData?.subAdminCount">
+            <div class="card text-white" style="background-color: #3d6cb9; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <div class="icon-big text-center">
+                                <i class="fa fa-book text-light" style="font-size: 2.5rem;"></i>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="numbers">
+                                <p class="card-category mb-1 fw-bold">Test Subject</p>
+                                <p class="card-title h5">{{dashboardData?.testSubjectCount}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="card-footer text-center text-white-50" style="border-top: 1px solid rgba(255, 255, 255, 0.2);">
+                    <i class="fa fa-clock-o"></i> In the Last Hour
+                </div> -->
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6" *ngIf="!dashboardData?.subAdminCount">
+            <div class="card text-white" style="background-color: #3d6cb9; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <div class="icon-big text-center">
+                                <i class="fa fa-book text-light" style="font-size: 2.5rem;"></i>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="numbers">
+                                <p class="card-category mb-1 fw-bold">Test Set List</p>
+                                <p class="card-title h5">{{dashboardData?.testSetListCount}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="card-footer text-center text-white-50" style="border-top: 1px solid rgba(255, 255, 255, 0.2);">
+                    <i class="fa fa-clock-o"></i> In the Last Hour
+                </div> -->
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6" *ngIf="!dashboardData?.subAdminCount">
+            <div class="card text-white" style="background-color: #3d6cb9; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <div class="icon-big text-center">
+                                <i class="fa fa-book text-light" style="font-size: 2.5rem;"></i>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="numbers">
+                                <p class="card-category mb-1 fw-bold">User</p>
+                                <p class="card-title h5">{{dashboardData?.userCount}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="card-footer text-center text-white-50" style="border-top: 1px solid rgba(255, 255, 255, 0.2);">
+                    <i class="fa fa-clock-o"></i> In the Last Hour
+                </div> -->
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6" *ngIf="!dashboardData?.subAdminCount">
+            <div class="card text-white" style="background-color: #3d6cb9; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <div class="icon-big text-center">
+                                <i class="fa fa-book text-light" style="font-size: 2.5rem;"></i>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="numbers">
+                                <p class="card-category mb-1 fw-bold">Course</p>
+                                <p class="card-title h5">{{dashboardData?.batchCount}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="card-footer text-center text-white-50" style="border-top: 1px solid rgba(255, 255, 255, 0.2);">
+                    <i class="fa fa-clock-o"></i> In the Last Hour
+                </div> -->
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6" *ngIf="!dashboardData?.subAdminCount">
+            <div class="card text-white" style="background-color: #3d6cb9; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <div class="icon-big text-center">
+                                <i class="fa fa-book text-light" style="font-size: 2.5rem;"></i>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="numbers">
+                                <p class="card-category mb-1 fw-bold">Syllabus</p>
+                                <p class="card-title h5">{{dashboardData?.syllabusCount}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="card-footer text-center text-white-50" style="border-top: 1px solid rgba(255, 255, 255, 0.2);">
+                    <i class="fa fa-clock-o"></i> In the Last Hour
+                </div> -->
+            </div>
+        </div>
+
+
+        <div class="col-lg-3 col-md-6 col-sm-6" *ngIf="!dashboardData?.subAdminCount">
+            <div class="card text-white" style="background-color: #3d6cb9; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <div class="icon-big text-center">
+                                <i class="fa fa-book text-light" style="font-size: 2.5rem;"></i>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="numbers">
+                                <p class="card-category mb-1 fw-bold">Post</p>
+                                <p class="card-title h5">{{dashboardData?.postCount}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="card-footer text-center text-white-50" style="border-top: 1px solid rgba(255, 255, 255, 0.2);">
+                    <i class="fa fa-clock-o"></i> In the Last Hour
+                </div> -->
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6" *ngIf="!dashboardData?.subAdminCount">
+            <div class="card text-white" style="background-color: #3d6cb9; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <div class="icon-big text-center">
+                                <i class="fa fa-book text-light" style="font-size: 2.5rem;"></i>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="numbers">
+                                <p class="card-category mb-1 fw-bold">Previous Paper</p>
+                                <p class="card-title h5">{{dashboardData?.previousYearCount}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="card-footer text-center text-white-50" style="border-top: 1px solid rgba(255, 255, 255, 0.2);">
+                    <i class="fa fa-clock-o"></i> In the Last Hour
+                </div> -->
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-3 col-md-6 col-sm-6" *ngIf="!dashboardData?.subAdminCount">
             <div class="card text-white" style="background-color: #00d1ff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
                 <div class="card-body">
                     <div class="row align-items-center">
@@ -95,7 +264,7 @@
                         <div class="col-8">
                             <div class="numbers">
                                 <p class="card-category mb-1 fw-bold">Books</p>
-                                <p class="card-title h5">120</p>
+                                <p class="card-title h5">{{dashboardData?.bookCount}}</p>
                             </div>
                         </div>
                     </div>
@@ -105,6 +274,7 @@
                 </div> -->
             </div>
         </div>
+    <!-- </span> -->
     </div>
     
 </div>

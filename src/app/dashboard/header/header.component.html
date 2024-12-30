@@ -3,8 +3,8 @@
         <i class="fa-solid fa-bars"></i>
     </div>
 
-    <div class="container-fluid" *ngIf="profileDetail.logo">
-        <img *ngIf="profileDetail.logo" [src]="profileDetail.logo" height="53px" alt="Centered image" (error)="onImageError($event)">
+    <div class="container-fluid" *ngIf="profileDetail?.logo">
+        <img *ngIf="profileDetail?.logo" [src]="profileDetail?.logo" height="53px" alt="Centered image" (error)="onImageError($event)">
     </div>
 
     <div class="navbar-collapse">

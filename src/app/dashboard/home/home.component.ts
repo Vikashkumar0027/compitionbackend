@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PrivilageService } from '../../services/privilage/privilage.service';
+import { SubAdminService } from '../../services/subAdmin/sub-admin.service';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +10,16 @@ import { PrivilageService } from '../../services/privilage/privilage.service';
 export class HomeComponent implements OnInit{
 
   sliderAccess:any[] =[];
+  dashboardData:any;
   constructor(
-    private privilageService:PrivilageService
+    private privilageService:PrivilageService,
+    private subAdminService:SubAdminService
   ) {
     
    }
 
   ngOnInit(): void {
+    this.getDashboard();
     // this.privilageService.sideBarAccess.subscribe(res=>{
     //   console.log(res);
     //  if(!res){
@@ -34,5 +38,15 @@ export class HomeComponent implements OnInit{
 // })
 //   }
 
+getDashboard(){
+  this.subAdminService.dashboard().subscribe(res=>{
+    console.log(res);
+    if(res.success){
+      this.dashboardData = res.response;
+    }
+  },err=>{
+    console.log(err);
+  })
+}
 
 }
