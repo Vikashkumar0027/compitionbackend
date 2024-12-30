@@ -12,7 +12,7 @@
         <h1 class="h3 mb-lg-3 text-gray-800"> Previous paper</h1>
       </div>
       <div class="col-md-8 mb-3 text-md-end">
-        <button type="button" class="btn btn-outline-primary" (click)="modalData()">Add Previous paper Title</button>
+        <button type="button" class="btn btn-outline-primary" (click)="modalData()">Add Previous Paper</button>
       </div>
     </div>
   
@@ -36,30 +36,41 @@
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
-        <th scope="col">S.N.</th>
+        <th scope="col">#</th>
         <th scope="col">Name</th>
         <!-- <th scope="col">Notes</th> -->
+        <th scope="col">No. of Sets</th>
         <th scope="col">Status</th>
         <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
         <tr *ngFor="let list of data let i = index; ">
-          <th scope="row" class="text-center">{{i+1}}</th>
-          <td class="text-center">{{list?.name}} </td>
-          <!-- <td class="text-center">
+          <th scope="row" >{{i+1}}</th>
+          <td >{{list?.name | titlecase}} </td>
+          <td >{{list?.previousExam.length }} </td>
+          <!-- <td >
             <a [href]="list.pdf" target="_blank">View notes</a> 
           </td> -->
-          <td class="text-center">{{list?.status}}</td>
-          <td class="text-center">
+          <td class="text-start">
+            <button *ngIf="list?.status === 'active'" class="btn btn-outline-success btn-sm m-1"
+              title="Subscription Done">
+              <i class="fa-solid fa-check"></i> Active
+            </button>
+            <button *ngIf="list?.status === 'inactive'" class="btn btn-outline-danger btn-sm m-1"
+              title="Subscription Not Done">
+              <i class="fa-solid fa-xmark"></i> Inactive
+            </button>
+          </td>
+          <td >
             <button title="Edit" type="button" class="btn btn-outline-primary btn-sm m-1" (click)="edit(list)">
               <i class="fa-solid fa-pen-to-square"></i>
             </button>
             <button title="Delete" type="button" class="btn btn-outline-danger btn-sm m-1" (click)="deletes(list)">
               <i class="fa-solid fa-trash-can"></i>
             </button>
-            <button title="Delete" type="button" class="btn btn-outline-info btn-sm m-1" (click)="set(list)">
-              Setlist
+            <button title="Delete" type="button" title="Setlist" class="btn btn-outline-info btn-sm m-1" (click)="set(list)">
+              <i class="fa fa-tasks" aria-hidden="true"></i>
             </button>
 
           </td>
