@@ -104,6 +104,11 @@ export let previlageLst = domain+'admin/adminprivilege';
 export let paymentLst = domain+'admin/payment/list';
 export let paymentView = domain+'admin/payment/view';
 
+//dashBoard
+export let dashboard = domain+'admin/dashboard';
+
+
+
 
 export let selectSideBar = [
   {
