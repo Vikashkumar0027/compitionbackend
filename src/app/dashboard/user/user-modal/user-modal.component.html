@@ -12,14 +12,14 @@
  <div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-3">
-        <label for="exampleFormControlname" class="form-label">User Name: </label>
+        <label for="exampleFormControlname" class="form-label">User Name* </label>
         <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="name">
       </div>
       <div *ngIf="submitted && f['name'].errors">
         <span style="color: red;" *ngIf="f['name'].errors['required'] ">Please enter User Name</span>
     </div>
     <div class="mb-3">
-        <label for="exampleFormControlname" class="form-label">User email: </label>
+        <label for="exampleFormControlname" class="form-label">User email* </label>
         <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="email">
       </div>
       <div *ngIf="submitted && f['email'].errors">
@@ -27,7 +27,7 @@
     </div>
 
     <div class="mb-3">
-        <label for="exampleFormControlname" class="form-label">Mobile Number: </label>
+        <label for="exampleFormControlname" class="form-label">Mobile Number* </label>
         <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="number">
       </div>
       <div *ngIf="submitted && f['number'].errors">
@@ -35,7 +35,7 @@
     </div>
 
     <div class="mb-3" *ngIf="user == 'Add'">
-        <label for="exampleFormControlname" class="form-label">Password: </label>
+        <label for="exampleFormControlname" class="form-label">Password* </label>
         <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="password">
       </div>
       <div *ngIf="submitted && f['password'].errors">
@@ -45,7 +45,7 @@
 
     <!-- accept="image/*" -->
     <div class="mb-3">
-      <label for="images" class="form-label">Post Image </label>
+      <label for="images" class="form-label">Post Image<span *ngIf="user == 'Add'">*</span> </label>
       <input type="file" class="form-control" id="images" rows="3" formControlName="image" (change)="onFileChange($event)" accept="image/*">
     </div>
     <div *ngIf="submitted && f['image'].errors">
@@ -54,7 +54,7 @@
   
 
     <div class="mb-3">
-        <label cLabel for="exampleFormControlStatus">Status</label><br>
+        <label cLabel for="exampleFormControlStatus">Status*</label><br>
         <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>
           <option [disabled]="true">Select Status</option>
           <option value="Active">Active</option>
