@@ -12,7 +12,7 @@
  <div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-3">
-        <label for="exampleFormControlname" class="form-label">Syllbus Name: </label>
+        <label for="exampleFormControlname" class="form-label">Syllbus Name* </label>
         <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="name">
       </div>
       <div *ngIf="submitted && f['name'].errors">
@@ -22,7 +22,7 @@
 
     <!-- accept="image/*" -->
     <div class="mb-3">
-      <label for="images" class="form-label">Syllabus Pdf </label>
+      <label for="images" class="form-label">Syllabus Pdf<span *ngIf="user == 'Add'">*</span> </label>
       <input type="file" class="form-control" id="images" rows="3" formControlName="pdf" (change)="onFileChange($event)" >
     </div>
     <div *ngIf="submitted && f['pdf'].errors">
@@ -31,7 +31,7 @@
   
 
     <div class="mb-3">
-        <label cLabel for="exampleFormControlStatus">Status</label><br>
+        <label cLabel for="exampleFormControlStatus">Status*</label><br>
         <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>
           <option [disabled]="true">Select Status</option>
           <option value="active">Active</option>

@@ -12,7 +12,7 @@
  <div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-3">
-        <label for="exampleFormControlname" class="form-label">Course Name: </label>
+        <label for="exampleFormControlname" class="form-label">Course Name*: </label>
         <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="title">
       </div>
       <div *ngIf="submitted && f['title'].errors">
@@ -21,7 +21,7 @@
 
 
     <div class="mb-3">
-        <label for="exampleFormCovideo_details" class="form-label">Video Details: </label>
+        <label for="exampleFormCovideo_details" class="form-label">Video Details*: </label>
         <input type="text" class="form-control" id="exampleFormCovideo_details"  placeholder="Please Enter Video Detail Seperated By Comma ','" formControlName="video_details">
       </div>
       <div *ngIf="submitted && f['video_details'].errors">
@@ -30,7 +30,7 @@
 
     
     <div class="mb-3">
-        <label for="exampleFormsub_title" class="form-label">Subtitle: </label>
+        <label for="exampleFormsub_title" class="form-label">Subtitle*: </label>
         <input type="text" class="form-control" id="exampleFormsub_title" placeholder="Please Enter SubTitle Seperated By Comma ','" formControlName="sub_title">
       </div>
       <div *ngIf="submitted && f['sub_title'].errors">
@@ -38,7 +38,7 @@
     </div>
 
     <div class="mb-3">
-        <label for="exampleFormPrice" class="form-label">Price: </label>
+        <label for="exampleFormPrice" class="form-label">Price*: </label>
         <input type="number" class="form-control" id="exampleFormPrice" placeholder="" formControlName="price">
       </div>
       <div *ngIf="submitted && f['price'].errors">
@@ -46,7 +46,7 @@
     </div>
 
     <div class="mb-3">
-        <label for="exampleFormPrice" class="form-label">Discount in Percentage: </label>
+        <label for="exampleFormPrice" class="form-label">Discount in Percentage*: </label>
         <input type="number" class="form-control" id="exampleFormPrice" step="0.01" min="0" max="100" placeholder="Enter discount (0-100)" formControlName="discount">
       </div>
       <div *ngIf="f['discount'].errors?.['invalidDecimal']" class="text-danger">
@@ -57,23 +57,23 @@
     </div>
 
     <div class="mb-3">
-        <label for="exampleFormPrice" class="form-label">Description: </label>
+        <label for="exampleFormPrice" class="form-label">Description*: </label>
         <input type="text" class="form-control" id="exampleFormPrice" placeholder="" formControlName="description">
       </div>
       <div *ngIf="submitted && f['description'].errors">
         <span style="color: red;" *ngIf="f['description'].errors['required'] ">Please enter description</span>
     </div>
-
+    <!-- Edit -->
 
     <div class="mb-3">
-      <label for="images" class="form-label">Course Image </label>
+      <label for="images" class="form-label">Course Image<span *ngIf="user!='Edit'">*</span> </label>
       <input type="file" class="form-control" id="images" rows="3" formControlName="image" accept="image/*" (change)="onFileChange($event)" >
     </div>
   
 
 
     <div class="mb-3">
-        <label cLabel for="exampleFormControlType">Type</label><br>
+        <label cLabel for="exampleFormControlType">Type*</label><br>
         <select cSelect id="exampleFormControlType" class="form-control" formControlName='type'>
           <option [disabled]="true">Select Type</option>
           <option value="free">Free Course</option>
@@ -84,7 +84,7 @@
         <span style="color: red;" *ngIf="f['type'].errors['required'] ">Please select type</span>
     </div>
     <div class="mb-3">
-        <label cLabel for="exampleFormControlStatus">Status</label><br>
+        <label cLabel for="exampleFormControlStatus">Status*</label><br>
         <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>
           <option [disabled]="true">Select Status</option>
           <option value="active">Active</option>
