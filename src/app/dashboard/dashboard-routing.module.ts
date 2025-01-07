@@ -22,7 +22,7 @@ const routes: Routes = [
       {path: 'user',loadChildren: () =>import('./user/user.module').then((m) => m.UserModule),canActivate:[subadminGuard]} ,
       {path: 'book',loadChildren: () =>import('./book/book.module').then((m) => m.BookModule),canActivate:[subadminGuard]} ,
       {path: 'payment',loadChildren: () =>import('./payment/payment.module').then((m) => m.PaymentModule),canActivate:[subadminGuard]} ,
-      // ,canActivate:[subadminGuard]
+      {path: 'live_class',loadChildren: () =>import('./live-class/live-class.module').then((m) => m.LiveClassModule),canActivate:[subadminGuard]} ,
     ]
   },
   {path: '**', redirectTo: 'dashboard',pathMatch: 'full'}

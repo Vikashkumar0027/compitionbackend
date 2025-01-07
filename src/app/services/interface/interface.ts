@@ -107,6 +107,11 @@ export let paymentView = domain+'admin/payment/view';
 //dashBoard
 export let dashboard = domain+'admin/dashboard';
 
+// liveStrema
+export let createLive = domain+'admin/livestream/create';
+export let listLive = domain+'admin/livestream/list';
+export let patchLive = domain+'admin/livestream/patch';
+export let deleteLive = domain+'admin/livestream/delete';
 
 
 
@@ -151,6 +156,10 @@ export let selectSideBar = [
   {
     "module": "Payment",
     "checked": false,
+  },
+  {
+    "module": "Live Class",
+    "checked": false,
   }
 ]
 
@@ -167,5 +176,7 @@ export let sidebar = [
   {number:'8',name:'Online Test',icon:'fa-regular fa-pen-to-square', url: '/dashboard/online-test'},
   {number:'9',name:'Book',icon:'fa-solid fa-book', url: '/dashboard/book'},
   {number:'10',name:'Payment',icon:'fa-brands fa-paypal', url: '/dashboard/payment'},
+  {number:'11',name:'Live Class',icon:'fa-brands fa-paypal', url: '/dashboard/live_class'},
 ]; 
 
+// live_class
