@@ -9,7 +9,7 @@
 
   <div class="modal-body">
 <!-- (ngSubmit)="onSubmit()" -->
- <div>
+ <div *ngIf="user !== 'View'">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-3">
         <label for="exampleFormControlname" class="form-label">Course Name*: </label>
@@ -107,6 +107,34 @@
 </form>
  </div>
    
+
+  <div *ngIf="user == 'View'">
+    <div class="container text-center" style="background-color: lightblue;">
+      <div class="row row-cols-2">
+        <div class="col">Course Name</div>
+        <div class="col">{{patchData.title}}</div>
+        <div class="col">Video Details</div>
+        <div class="col">{{patchData.video_details}}</div>
+        <div class="col">Subtitle</div>
+        <div class="col">{{patchData.sub_title}}</div>
+        <div class="col">Price</div>
+        <div class="col">{{patchData.price}}</div>
+        <div class="col">Discount in Percentage</div>
+        <div class="col">{{patchData.discount}}</div>
+        <div class="col">Description</div>
+        <div class="col">{{patchData.description}}</div>
+     
+        <div class="col">Type</div>
+        <div class="col">{{patchData.type}}</div>
+        <div class="col">Status</div>
+        <div class="col">{{patchData.status}}</div>
+        <div class="col">Course Image</div>
+        <div class="col"><img [src]='patchData?.image' width="100px" ></div>
+      </div>
+    </div>
+
+  </div>
+
 
   </div>
  

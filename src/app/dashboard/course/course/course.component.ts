@@ -93,9 +93,28 @@ export class CourseComponent implements OnInit {
         (reason:any) => {}
       );
     }
+    viewDetail(data:any){
+      // console.log(data)
+      this.activeModal = this.modalService.open(CourseModalComponent, {
+        size: 'lg',
+        backdrop: 'static',
+        keyboard: false,
+      });
+      this.activeModal.componentInstance.user = 'View';
+      this.activeModal.componentInstance.patchData = data;
+  
+      //data transfer to child NgbModalRef
+      this.activeModal.result.then(
+        (result:any) => {
+          if (result == 'Edit') {
+            this.getList();
+          }
+        },
+        (reason:any) => {}
+      );
+    }
   
     deletes(param:any){
-      
       const activeModal = this.modalService.open(ConfirmModalComponent, {
         size: '',
         backdrop: 'static',
