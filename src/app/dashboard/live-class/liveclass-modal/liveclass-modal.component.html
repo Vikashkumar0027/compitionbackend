@@ -1,1 +1,81 @@
-<p>liveclass-modal works!</p>
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{user}} Live Class</h4>
+
+    <button type="button" class="btn btn-primary close" aria-label="Close" (click)="modalClose()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+
+  <div class="modal-body">
+<!-- (ngSubmit)="onSubmit()" -->
+ <div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="exampleFormControlname" class="form-label">Title: </label>
+        <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="title">
+      </div>
+      <div *ngIf="submitted && f['title'].errors">
+        <span style="color: red;" *ngIf="f['title'].errors['required'] ">Please enter Post Name</span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControldescription" class="form-label">Description: </label>
+        <textarea type="text" class="form-control" id="exampleFormControldescription" placeholder="" formControlName="description"></textarea>
+      </div>
+      <div *ngIf="submitted && f['description'].errors">
+        <span style="color: red;" *ngIf="f['description'].errors['required'] ">Please enter description</span>
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleFormControlvdid" class="form-label"> Youtube Video Id: </label>
+        <input type="text" class="form-control" id="exampleFormControlvdid" placeholder="" formControlName="videoId">
+      </div>
+      <div *ngIf="submitted && f['videoId'].errors">
+        <span style="color: red;" *ngIf="f['videoId'].errors['required'] ">Please enter Youtube Video Id</span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlorder" class="form-label"> Order Number: </label>
+        <input type="number" class="form-control" id="exampleFormControlorder" placeholder="" formControlName="order">
+      </div>
+      <div *ngIf="submitted && f['order'].errors">
+        <span style="color: red;" *ngIf="f['order'].errors['required'] ">Please enter order number</span>
+    </div>
+    
+
+    <!-- accept="image/*" -->
+    <div class="mb-3">
+      <label for="images" class="form-label">Thumbnail </label>
+      <input type="file" class="form-control" id="images" rows="3" formControlName="thumbnail" (change)="onFileChange($event)" accept="image/*">
+    </div>
+    <div *ngIf="submitted && f['thumbnail'].errors">
+      <span style="color: red;" *ngIf="f['thumbnail'].errors['required'] ">Please uploads thumbnail </span>
+  </div>
+  
+
+    <div class="mb-3">
+        <label cLabel for="exampleFormControlStatus">Status</label><br>
+        <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>
+          <option [disabled]="true">Select Status</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && f['status'].errors">
+        <span style="color: red;" *ngIf="f['status'].errors['required'] ">Please select Status</span>
+    </div>
+      <!-- <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+        Save</button> -->
+<div class="modal-footer">
+<div class="d-grid">
+    <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+        Save</button>
+  </div>
+
+</div>
+
+</form>
+ </div>
+   
+
+  </div>
+ 
