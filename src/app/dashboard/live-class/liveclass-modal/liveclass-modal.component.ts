@@ -152,22 +152,13 @@ export class LiveclassModalComponent implements OnInit {
       }
       // const data = this.form.value;
       console.log(this.form.value);
-  //     let formData = new FormData();  
-  // formData.append('thumbnail', this.file); 
-  // formData.append('title', this.form.value.title);
-  // formData.append('videoId', this.form.value.videoId);
-  // formData.append('description', this.form.value.description);
-  // formData.append('order', this.form.value.order);
-  // formData.append('status', this.form.value.status);
-
-  const formData = {
-    title: this.form.value.title,
-    thumbnail:this.form.value.thumbnail,
-    videoId:this.form.value.videoId,
-    description:this.form.value.description,
-    order:this.form.value.order,
-    status:this.form.value.status
-  }
+      let formData = new FormData();  
+  formData.append('thumbnail', this.file); 
+  formData.append('title', this.form.value.title);
+  formData.append('videoId', this.form.value.videoId);
+  formData.append('description', this.form.value.description);
+  formData.append('order', this.form.value.order);
+  formData.append('status', this.form.value.status);
   
       this.liveClassService.createLiveClass(formData).subscribe(res=>{
   
@@ -190,21 +181,15 @@ export class LiveclassModalComponent implements OnInit {
       }
       // const data = this.form.value;
       console.log(this.form.value)
-  //   let formData = new FormData();
-  // (this.file == undefined) ? formData.append('thumbnail', this.patchData.image) : formData.append('thumbnail', this.file);
+    let formData = new FormData();
+  (this.file == undefined) ? formData.append('thumbnail', this.patchData.thumbnail) : formData.append('thumbnail', this.file);
   
-  // formData.append('title', this.form.value.title);
-  // formData.append('videoId', this.form.value.videoId);
-  // formData.append('description', this.form.value.description);
-  // formData.append('status', this.form.value.status);
-  const formData = {
-    title: this.form.value.title,
-    thumbnail:this.form.value.thumbnail || 'its have to integrating part',
-    videoId:this.form.value.videoId,
-    description:this.form.value.description,
-    order:this.form.value.order,
-    status:this.form.value.status
-  }
+  formData.append('title', this.form.value.title);
+  formData.append('videoId', this.form.value.videoId);
+  formData.append('description', this.form.value.description);
+  formData.append('order', this.form.value.order);
+  formData.append('status', this.form.value.status);
+  
       const _id = this.patchData._id;
       this.liveClassService.liveclassUpdate(formData,_id).subscribe(res=>{
   
