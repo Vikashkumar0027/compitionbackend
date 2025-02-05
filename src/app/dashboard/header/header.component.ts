@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
     private profileService:ProfileService,
      private modalService: NgbModal,
       private privilageService:PrivilageService,
-      // private spinner: NgxSpinnerService
+
   ) { }
 
   ngOnInit(): void {

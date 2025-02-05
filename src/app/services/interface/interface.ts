@@ -118,7 +118,7 @@ export let deleteLive = domain+'admin/livestream/delete';
 export let selectSideBar = [
   {
     "module": "Dashboard",
-    "checked": false,
+    "checked": true,
   },
   {
     "module": "Sub Admin",

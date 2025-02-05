@@ -18,7 +18,7 @@ export class BookModalComponent implements OnInit {
    selectedItems:any[]=[];
    dropdownSettings={};
 
-  submit:boolean=true;
+  submit:boolean=false;
   @Input() public user:any;
   @Input() public patchData:any;
   // @Input() public subjectId:any;
@@ -126,7 +126,7 @@ setTimeout(() => {
 
  onSubmit() {
     this.submitted = true;
-    this.submit = false;
+    this.submit = true;
     console.log(this.form.value);
     this.todayFormateDate();
     if(this.user == 'Add'){
@@ -183,7 +183,7 @@ formData.append('language', this.form.value.language);
 formData.append('status', this.form.value.status);
 
     this.bookService.bookAdd(formData).subscribe(res=>{
-
+      this.submit = false;
       // console.log('data update',res)
       if(res.success ){
         this.global.showToast(res.response);
@@ -191,6 +191,7 @@ formData.append('status', this.form.value.status);
       }      
 
     },err=>{
+      this.submit = false;
       this.commonService.tokenOutOfValid(err);
       console.log(err);
     })
@@ -218,7 +219,7 @@ formData.append('status', this.form.value.status);
    
     const _id = this.patchData._id;
     this.bookService.bookUpdate(formData,_id).subscribe(res=>{
-
+      this.submit = false;
       // console.log('data update',res)
       if(res.success){
         this.global.showToast(res.response);
@@ -226,6 +227,7 @@ formData.append('status', this.form.value.status);
       }
 
     },err=>{
+      this.submit = false;
       this.commonService.tokenOutOfValid(err)
       console.log(err)
     })

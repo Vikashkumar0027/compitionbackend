@@ -36,7 +36,7 @@ export class ModalBatchComponent {
    selectedItems:any[]=[];
    dropdownSettings={};
 
-  submit:boolean=true;
+  submit:boolean=false;
   @Input() public user:any;
   @Input() public patchData:any;
   @Input() public onlineModalType:any;
@@ -181,7 +181,7 @@ setTimeout(() => {
 
  onSubmit() {
     this.submitted = true;
-    this.submit = false;
+    this.submit = true;
     console.log(this.form.value);
     if(this.user == 'Add'){
       this.addData();
@@ -193,7 +193,7 @@ setTimeout(() => {
 
   onSubjectSubmit() {
     this.submitted = true;
-    this.submit = false;
+    this.submit = true;
     console.log(this.subForm.value);
     if(this.user == 'Add'){
       this.addSubjectData();
@@ -206,6 +206,7 @@ setTimeout(() => {
 
   addData(){
       if(this.form.invalid){
+        this.submit = false;
       return;
     }
     console.log(this.form.value);
@@ -217,7 +218,7 @@ setTimeout(() => {
       description: this.form.value.description,
       status:this.form.value.status}; 
     this.onlineService.batchTestAdd(formData).subscribe(res=>{
-
+      this.submit = false;
       // console.log('data update',res)
       if(res.success ){
         this.global.showToast(res.response);
@@ -225,6 +226,7 @@ setTimeout(() => {
       }      
 
     },err=>{
+      this.submit = false;
       this.commonService.tokenOutOfValid(err);
       console.log(err);
     })
@@ -233,6 +235,7 @@ setTimeout(() => {
 
   editData(){
     if(this.form.invalid){
+      this.submit = false;
       return;
     }
     // const data = this.form.value;
@@ -248,7 +251,7 @@ const formData =  {
    
     const _id = this.patchData._id;
     this.onlineService.batchTestUpdate(formData,_id).subscribe(res=>{
-
+      this.submit = false;
       // console.log('data update',res)
       if(res.success){
         this.global.showToast(res.response);
@@ -256,6 +259,7 @@ const formData =  {
       }
 
     },err=>{
+      this.submit = false;
       this.commonService.tokenOutOfValid(err)
       console.log(err)
     })
@@ -263,12 +267,13 @@ const formData =  {
 
   addSubjectData(){
     if(this.subForm.invalid){
+      this.submit = false;
     return;
   }
   console.log(this.subForm.value);
   const subFormData ={name:this.subForm.value.name,batchId:this.testCourseId,status:this.subForm.value.status};
   this.onlineService.subjectTestAdd(subFormData).subscribe(res=>{
-
+    this.submit = false;
     // console.log('data update',res)
     if(res.success ){
       this.global.showToast(res.response);
@@ -276,6 +281,7 @@ const formData =  {
     }      
 
   },err=>{
+    this.submit = false;
     this.commonService.tokenOutOfValid(err);
     console.log(err);
   })
@@ -284,6 +290,7 @@ const formData =  {
 
   editSubjetData(){
     if(this.subForm.invalid){
+      this.submit = false;
       return;
     }
     // const data = this.form.value;
@@ -297,7 +304,7 @@ const formData = {name:this.subForm.value.name,batchId:this.testCourseId,status:
    
     const _id = this.patchData._id;
     this.onlineService.subjectTestUpdate(formData,_id).subscribe(res=>{
-
+      this.submit = false;
       // console.log('data update',res)
       if(res.success){
         this.global.showToast(res.response);
@@ -305,6 +312,7 @@ const formData = {name:this.subForm.value.name,batchId:this.testCourseId,status:
       }
 
     },err=>{
+      this.submit = false;
       this.commonService.tokenOutOfValid(err)
       console.log(err)
     })

@@ -19,9 +19,24 @@
         <span style="color: red;" *ngIf="f['title'].errors['required'] ">Please enter Course Name</span>
     </div>
 
+    <div class="mb-3">
+      <label cLabel for="exampleFormControlType">Type*</label><br>
+      <select cSelect id="exampleFormControlType" class="form-control" formControlName='type'>
+        <option [disabled]="true">Select Type</option>
+        <option value="free">Free Course</option>
+        <option value="paid">Paid Course</option>
+      </select>
+    </div>
+    <div *ngIf="submitted && f['type'].errors">
+      <span style="color: red;" *ngIf="f['type'].errors['required'] ">Please select type</span>
+  </div>
+
 
     <div class="mb-3">
         <label for="exampleFormCovideo_details" class="form-label">Video Details*: </label>
+        <div>
+          <label>Example:- 40 Downloadable Resources,Lifetime Access, 20hr Video</label>
+        </div>
         <input type="text" class="form-control" id="exampleFormCovideo_details"  placeholder="Please Enter Video Detail Seperated By Comma ','" formControlName="video_details">
       </div>
       <div *ngIf="submitted && f['video_details'].errors">
@@ -72,17 +87,9 @@
   
 
 
-    <div class="mb-3">
-        <label cLabel for="exampleFormControlType">Type*</label><br>
-        <select cSelect id="exampleFormControlType" class="form-control" formControlName='type'>
-          <option [disabled]="true">Select Type</option>
-          <option value="free">Free Course</option>
-          <option value="paid">Paid Course</option>
-        </select>
-      </div>
-      <div *ngIf="submitted && f['type'].errors">
-        <span style="color: red;" *ngIf="f['type'].errors['required'] ">Please select type</span>
-    </div>
+   
+
+
     <div class="mb-3">
         <label cLabel for="exampleFormControlStatus">Status*</label><br>
         <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>
@@ -98,8 +105,16 @@
         Save</button> -->
 <div class="modal-footer">
 <div class="d-grid">
-    <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
-        Save</button>
+    <!-- <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+        Save</button> -->
+        <button *ngIf="!submit" type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+          Save
+        </button>
+      <button *ngIf="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        </button>
   </div>
 
 </div>
