@@ -18,7 +18,7 @@ export class ModalSyllabusComponent {
    selectedItems:any[]=[];
    dropdownSettings={};
 
-  submit:boolean=true;
+  submit:boolean=false;
   @Input() public user:any;
   @Input() public patchData:any;
   // @Input() public subjectId:any;
@@ -121,7 +121,7 @@ setTimeout(() => {
 
  onSubmit() {
     this.submitted = true;
-    this.submit = false;
+    this.submit = true;
     console.log(this.form.value);
     if(this.user == 'Add'){
       // alert('add');
@@ -142,6 +142,7 @@ setTimeout(() => {
 
   addData(){
       if(this.form.invalid){
+        this.submit = false;
       return;
     }
     // const data = this.form.value;
@@ -155,7 +156,7 @@ formData.append('name', this.form.value.name);
 formData.append('status', this.form.value.status);
 
     this.syllabusService.syllabusCreate(formData).subscribe(res=>{
-
+      this.submit = false;
       // console.log('data update',res)
       if(res.success ){
         this.global.showToast(res.response);
@@ -163,6 +164,7 @@ formData.append('status', this.form.value.status);
       }      
 
     },err=>{
+      this.submit = false;
       this.commonService.tokenOutOfValid(err);
       console.log(err);
     })
@@ -171,6 +173,7 @@ formData.append('status', this.form.value.status);
 
   editData(){
     if(this.form.invalid){
+      this.submit = false;
       return;
     }
     // const data = this.form.value;
@@ -183,7 +186,7 @@ formData.append('status', this.form.value.status);
    
     const _id = this.patchData._id;
     this.syllabusService.syllabusUpdate(formData,_id).subscribe(res=>{
-
+      this.submit = false;
       // console.log('data update',res)
       if(res.success){
         this.global.showToast(res.response);
@@ -191,6 +194,7 @@ formData.append('status', this.form.value.status);
       }
 
     },err=>{
+      this.submit = false;
       this.commonService.tokenOutOfValid(err)
       console.log(err)
     })

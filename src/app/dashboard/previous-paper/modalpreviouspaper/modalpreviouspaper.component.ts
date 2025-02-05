@@ -18,7 +18,7 @@ export class ModalpreviouspaperComponent {
    selectedItems:any[]=[];
    dropdownSettings={};
 
-  submit:boolean=true;
+  submit:boolean=false;
   @Input() public user:any;
   @Input() public patchData:any;
   // @Input() public subjectId:any;
@@ -121,7 +121,7 @@ setTimeout(() => {
 
  onSubmit() {
     this.submitted = true;
-    this.submit = false;
+    this.submit = true;
     console.log(this.form.value);
     if(this.user == 'Add'){
       // alert('add');
@@ -142,6 +142,7 @@ setTimeout(() => {
 
   addData(){
       if(this.form.invalid){
+        this.submit = false;
       return;
     }
     // const data = this.form.value;
@@ -152,12 +153,14 @@ const formData =  {name:this.form.value.name,status:this.form.value.status};
 
     this.previousService.previousCreate(formData).subscribe(res=>{
       // console.log('data update',res)
+      this.submit = false;
       if(res.success ){
         this.global.showToast(res.response);
         this.activeModal.close('Add');
       }      
 
     },err=>{
+      this.submit = false;
       this.commonService.tokenOutOfValid(err);
       console.log(err);
     })
@@ -166,6 +169,7 @@ const formData =  {name:this.form.value.name,status:this.form.value.status};
 
   editData(){
     if(this.form.invalid){
+      this.submit = false;
       return;
     }
     // const data = this.form.value;
@@ -175,7 +179,7 @@ const formData =  {name:this.form.value.name,status:this.form.value.status};
    
     const _id = this.patchData._id;
     this.previousService.previousUpdate(formData,_id).subscribe(res=>{
-
+      this.submit = false;
       // console.log('data update',res)
       if(res.success){
         this.global.showToast(res.response);
@@ -183,6 +187,7 @@ const formData =  {name:this.form.value.name,status:this.form.value.status};
       }
 
     },err=>{
+      this.submit = false;
       this.commonService.tokenOutOfValid(err)
       console.log(err)
     })

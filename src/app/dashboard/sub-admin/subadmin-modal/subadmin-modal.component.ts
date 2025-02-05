@@ -17,7 +17,7 @@ export class SubadminModalComponent implements OnInit {
   userList:any[]=[];
    // second method of multi select
    selectedItems:any[]=[];
-   dropdownSettings={};
+   dropdownSettings:object={};
 
    selectedAccessArray:any[] = [];
    PrivilegeMenuListDataq:any[] = featureInterface.selectSideBar;
@@ -58,7 +58,7 @@ export class SubadminModalComponent implements OnInit {
 //   }
 // ]
 
-  submit:boolean=true;
+  submit:boolean=false;
   @Input() public user:any;
   @Input() public patchData:any;
   constructor(
@@ -209,7 +209,7 @@ setTimeout(() => {
 
  onSubmit() {
     this.submitted = true;
-    this.submit = false;
+    this.submit = true;
     console.log(this.form.value);
     if(this.form.invalid){
       return;
@@ -242,7 +242,7 @@ formData.append('password', this.form.value.password);
 formData.append('status', this.form.value.status);
 
     this.subadminService.createSubAdmin(formData).subscribe(res=>{
-
+      this.submit = false;
       // console.log('data update',res)
       if(res.success ){
         this.global.showToast(res.response);
@@ -250,6 +250,7 @@ formData.append('status', this.form.value.status);
       }      
 
     },err=>{
+      this.submit = false;
       this.commonService.tokenOutOfValid(err);
       console.log(err);
     })
@@ -279,7 +280,7 @@ formData.append('status', this.form.value.status);
    
     const _id = this.patchData._id;
     this.subadminService.subAdminUpdate(formData,_id).subscribe(res=>{
-
+      this.submit = false;
       // console.log('data update',res)
       if(res.success){
         this.global.showToast(res.response);
@@ -287,6 +288,7 @@ formData.append('status', this.form.value.status);
       }
 
     },err=>{
+      this.submit = false;
       this.commonService.tokenOutOfValid(err)
       console.log(err)
     })
