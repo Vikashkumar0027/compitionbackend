@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{user}} Chapter</h4>
+    <h4 class="modal-title" id="modal-basic-title">{{user}} Topics</h4>
 
     <button type="button" class="btn btn-primary close" aria-label="Close" (click)="modalClose()">
       <span aria-hidden="true">&times;</span>
@@ -12,13 +12,28 @@
  <div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-3">
-        <label for="exampleFormControlname" class="form-label">Chapter Name: </label>
+        <label for="exampleFormControlname" class="form-label">Topics Name: </label>
         <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="name">
       </div>
       <div *ngIf="submitted && f['name'].errors">
         <span style="color: red;" *ngIf="f['name'].errors['required'] ">Please enter Chapter Name</span>
     </div>
-  
+    <div class="mb-3">
+        <label for="exampleFormControlname" class="form-label">Video Id: </label>
+        <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="vdoid">
+      </div>
+      <div *ngIf="submitted && f['vdoid'].errors">
+        <span style="color: red;" *ngIf="f['vdoid'].errors['required'] ">Please enter video Id</span>
+    </div>
+
+    <!-- accept="image/*" -->
+    <div class="mb-3">
+      <label for="images" class="form-label">Note Pdf </label>
+      <input type="file" class="form-control" id="images" rows="3" formControlName="pdf"  (change)="onFileChange($event)" >
+    </div>
+    <div *ngIf="submitted && f['pdf'].errors">
+      <span style="color: red;" *ngIf="f['pdf'].errors['required'] ">Please uploads pdf note</span>
+  </div>
   
 
     <div class="mb-3">
@@ -32,7 +47,8 @@
       <div *ngIf="submitted && f['status'].errors">
         <span style="color: red;" *ngIf="f['status'].errors['required'] ">Please select Status</span>
     </div>
-   
+      <!-- <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+        Save</button> -->
 <div class="modal-footer">
 <div class="d-grid">
     <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >

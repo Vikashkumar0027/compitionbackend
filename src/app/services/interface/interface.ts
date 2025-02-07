@@ -24,6 +24,11 @@ const domain = 'http://43.225.53.245:4500/';
  export let chapterList = domain+'admin/chapter/list';
  export let chapterUpdate = domain+'admin/chapter/update';
  export let chapterDelete = domain+'admin/chapter/delete';
+//Chapter crude
+ export let topicsCreate = domain+'admin/topic/create';
+ export let topicsList = domain+'admin/topic/list';
+ export let topicsUpdate = domain+'admin/topic/update';
+ export let topicsDelete = domain+'admin/topic/delete';
  
  //  syllabus crude
  export let syllabusCreate = domain+'admin/syllabus/create';

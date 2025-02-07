@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmModalComponent } from '../../../common-component/confirm-modal/confirm-modal.component';
 import { AddsubjectComponent } from '../addsubject/addsubject.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonService } from '../../../services/common/common.service';
 import { GlobalService } from '../../../services/global/global.service';
@@ -167,9 +167,22 @@ export class SubjectComponent implements OnInit {
     }
 
     chapter(list:any){
+      
+         const data ={subjectId:list._id, courseId:this.courseId};
+            const navData:NavigationExtras = {
+              queryParams:{
+                data:JSON.stringify(data)
+              }
+            }
+            
+        //     this.route.navigate(['/','dashboard','chapter','topic'],navData);
       // dashboard/subject/chapter
-      this.route.navigate(['/','dashboard','subject','chapter',list._id]);
+      this.route.navigate(['/','dashboard','subject','chapter'],navData);
+      // this.route.navigate(['/','dashboard','subject','chapter',list._id]);
     }
 
+    goBackCouse(){
+      this.route.navigate(['/','dashboard','course']);
+    }
 
 }
