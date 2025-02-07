@@ -4,17 +4,19 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonService } from '../../../services/common/common.service';
 import { GlobalService } from '../../../services/global/global.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ChapterService } from '../../../services/chapter/chapter.service';
-import { AddchapterComponent } from '../addchapter/addchapter.component';
+import { ChapterService } from '../../../services/chapter/chapter.service';  
 import { ConfirmModalComponent } from '../../../common-component/confirm-modal/confirm-modal.component';
+import { TopicmodalComponent } from '../topicmodal/topicmodal.component';
+import { TopicsService } from '../../../services/topics/topics.service';
 
 @Component({
-  selector: 'app-chapter',
-  templateUrl: './chapter.component.html',
-  styleUrl: './chapter.component.css'
+  selector: 'app-topic',
+  templateUrl: './topic.component.html',
+  styleUrl: './topic.component.css'
 })
-export class ChapterComponent implements OnInit{
-  subjectId:any;
+export class TopicComponent implements OnInit{
+
+  chapterId:any;
   data:any[]=[];
   searchCompany:any;
   private activeModal:any;
@@ -26,19 +28,19 @@ export class ChapterComponent implements OnInit{
       // private userService:UserService,
       private commonService:CommonService,
       private global:GlobalService,
-      // private courseService:CourseService,
-      private chapterService:ChapterService,
+     
+      // private chapterService:ChapterService,
+      private topicService:TopicsService,
       private spinner: NgxSpinnerService,
-      private activatedRoute: ActivatedRoute
+      private activatedRoute: ActivatedRoute,
       )
     {}
-    moduleId:any;
+  moduleId:any;
     ngOnInit(): void {
       const data: any = this.activatedRoute.snapshot.queryParams;
       this.moduleId = JSON.parse(data.data);
-      this.subjectId = this.moduleId.subjectId;
-      // this.subjectId = this.activatedRoute.snapshot.paramMap.get('id');
-      console.log(this.subjectId);
+      this.chapterId = this.moduleId.chapterId;
+      console.log(this.moduleId);
       this.getList();
     }
   
@@ -46,7 +48,7 @@ export class ChapterComponent implements OnInit{
     getList(){
     try {
       this.spinner.show();
-      this.chapterService.chapterList(this.subjectId).subscribe(res=>{
+      this.topicService.topicsList(this.chapterId).subscribe(res=>{
       console.log(res);
       if(res.success){
         this.data=res.response;
@@ -62,13 +64,13 @@ export class ChapterComponent implements OnInit{
     }
   
     modalData(){
-      this.activeModal = this.modalService.open(AddchapterComponent, {
+      this.activeModal = this.modalService.open(TopicmodalComponent, {
         size: 'lg',
         backdrop: 'static',
         keyboard: false,
       });
       this.activeModal.componentInstance.user = 'Add';
-      this.activeModal.componentInstance.subjectId = this.subjectId;
+      this.activeModal.componentInstance.chapterId = this.chapterId;
   
       //data transfer to child NgbModalRef
       this.activeModal.result.then(
@@ -83,14 +85,14 @@ export class ChapterComponent implements OnInit{
   
     edit(data:any){
       // console.log(data)
-      this.activeModal = this.modalService.open(AddchapterComponent, {
+      this.activeModal = this.modalService.open(TopicmodalComponent, {
         size: 'lg',
         backdrop: 'static',
         keyboard: false,
       });
       this.activeModal.componentInstance.user = 'Edit';
       this.activeModal.componentInstance.patchData = data;
-      this.activeModal.componentInstance.subjectId = this.subjectId;
+      this.activeModal.componentInstance.chapterId = this.chapterId;
   
       //data transfer to child NgbModalRef
       this.activeModal.result.then(
@@ -154,7 +156,7 @@ export class ChapterComponent implements OnInit{
   
     async deletefunction(id:any){
       // alert(id)
-      this.chapterService.chapterDelete(id).subscribe(res => {
+      this.topicService.topicsDelete(id).subscribe(res => {
         // console.log(res);
         if(res.success){
           this.getList();
@@ -167,24 +169,25 @@ export class ChapterComponent implements OnInit{
   
     }
 
-    topics(list:any){
+    // chapter(list:any){
+    //   // dashboard/subject/chapter
+    //   this.route.navigate(['/','dashboard','subject','chapter',list._id]);
+    // }
+    
+    goBackChapter(){
       // dashboard/subject/chapter
-      // this.route.navigate(['/','dashboard','subject','chapter',list._id]);
-      console.log(list)
-      const data ={chapterId:list._id, subjetId:list.subjectId,courseId:this.moduleId.courseId};
+      console.log(this.moduleId)
+
+      const data ={subjectId:this.moduleId.subjetId, courseId:this.moduleId.courseId};
       const navData:NavigationExtras = {
         queryParams:{
           data:JSON.stringify(data)
         }
       }
       
-      this.route.navigate(['/','dashboard','chapter','topic'],navData);
-    }
+this.route.navigate(['/','dashboard','subject','chapter'],navData);
 
-    goSubject(){
-      // dashboard/subject/chapter
-      this.route.navigate(['/','dashboard','course','subject',this.moduleId.courseId]);
+      // this.route.navigate(['/','dashboard','subject','chapter',this.moduleId.subjetId]);
     }
-
 
 }

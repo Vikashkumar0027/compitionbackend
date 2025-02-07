@@ -2,15 +2,15 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonService } from '../../../services/common/common.service';
-import { ChapterService } from '../../../services/chapter/chapter.service';
 import { GlobalService } from '../../../services/global/global.service';
+import { TopicsService } from '../../../services/topics/topics.service';
 
 @Component({
-  selector: 'app-addchapter',
-  templateUrl: './addchapter.component.html',
-  styleUrl: './addchapter.component.css'
+  selector: 'app-topicmodal',
+  templateUrl: './topicmodal.component.html',
+  styleUrl: './topicmodal.component.css'
 })
-export class AddchapterComponent implements OnInit {
+export class TopicmodalComponent implements OnInit {
   submitted:boolean=false;
   form:FormGroup;
   userList:any[]=[];
@@ -21,17 +21,18 @@ export class AddchapterComponent implements OnInit {
   submit:boolean=true;
   @Input() public user:any;
   @Input() public patchData:any;
-  @Input() public subjectId:any;
+  @Input() public chapterId:any;
   constructor(
     private fb: FormBuilder,
     private activeModal: NgbActiveModal,
-    // private couseService:CourseService,
     private commonService:CommonService,
-    private chapterService:ChapterService,
-    private global:GlobalService,
+    private topicService:TopicsService,
+    private global:GlobalService
   ) { 
     this.form = this.fb.group({
       name: ['', Validators.required],
+      vdoid: ['', Validators.required],
+      pdf: ['', Validators.required],
       status:['active', Validators.required]
     });
   }
@@ -145,11 +146,17 @@ setTimeout(() => {
     }
     // const data = this.form.value;
     console.log(this.form.value);
+    let formData = new FormData();
 
+formData.append('pdf', this.file); 
+formData.append('name', this.form.value.name);
+formData.append('video', this.form.value.vdoid);
+formData.append('chapterId', this.chapterId);
+formData.append('status', this.form.value.status);
 
-const formData = { name:this.form.value.name, subjectId: this.subjectId, status: this.form.value.status };
+    this.topicService.topicsCreate(formData).subscribe(res=>{
 
-    this.chapterService.chapterCreate(formData).subscribe(res=>{
+      // console.log('data update',res)
       if(res.success ){
         this.global.showToast(res.response);
         this.activeModal.close('Add');
@@ -168,10 +175,16 @@ const formData = { name:this.form.value.name, subjectId: this.subjectId, status:
     }
     // const data = this.form.value;
     console.log(this.form.value)
-    const formData = { name:this.form.value.name, subjectId: this.subjectId, status: this.form.value.status };
+let formData = new FormData();
+(this.file == undefined) ? formData.append('pdf', this.patchData.pdf) : formData.append('pdf', this.file);
+
+formData.append('name', this.form.value.name);
+formData.append('video', this.form.value.vdoid);
+formData.append('chapterId', this.chapterId);
+formData.append('status', this.form.value.status);
    
     const _id = this.patchData._id;
-    this.chapterService.chapterUpdate(formData,_id).subscribe(res=>{
+    this.topicService.topicsUpdate(formData,_id).subscribe(res=>{
 
       // console.log('data update',res)
       if(res.success){
@@ -185,4 +198,3 @@ const formData = { name:this.form.value.name, subjectId: this.subjectId, status:
     })
   }
 }
-
