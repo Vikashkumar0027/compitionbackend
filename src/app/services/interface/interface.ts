@@ -128,7 +128,6 @@ export let selectSideBar = [
   {
     "module": "Sub Admin",
     "checked": false,
-  
   },
   {
     "module": "User",
