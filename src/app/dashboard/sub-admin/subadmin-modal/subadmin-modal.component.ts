@@ -229,6 +229,7 @@ setTimeout(() => {
 
   addData(){    
 let formData = new FormData();
+console.log(this.PrivilegeMenuListDataq);
 
 this.PrivilegeMenuListDataq.forEach((item, index) => {
   formData.append(`previleges[${index}][module]`, item.module);

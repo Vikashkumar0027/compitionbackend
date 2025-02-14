@@ -21,7 +21,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Privilege Title</th>
-                                    <th>Access</th>
+                                    <!-- <th>Access</th> -->
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -30,7 +30,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Privilege Title</th>
-                                    <th>Access</th>
+                                    <!-- <th>Access</th> -->
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -39,17 +39,15 @@
                                 <tr *ngFor="let pldata of PrivilegeListData; let i = index">
                                     <td>{{i+1}}</td>
                                     <td>{{pldata.title | titlecase }}</td>
-                                    <td>
+                                    <!-- <td>
                                         <ul *ngFor="let access of pldata.access"> <b>{{ access.name | titlecase}}</b>
-                                            <!-- <i class="text-success" *ngIf="access.checked"> &#10003;</i>
-                                            <i class="text-danger" *ngIf="!access.checked"> &#10007;</i> -->
                                             <li class="d-inline p-2" *ngFor="let option of access.options"> {{
                                                 option.name }}
                                                 <i class="text-success" *ngIf="option.checked">&#10003;</i>
                                                 <i class="text-danger" *ngIf="!option.checked">&#10007;</i>
                                             </li>
                                         </ul>
-                                    </td>
+                                    </td> -->
                                     <td [ngClass]="{
                                         'text-success': pldata.status === 'active',
                                         'text-danger': pldata.status === 'inactive'
