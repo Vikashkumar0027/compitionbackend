@@ -19,184 +19,7 @@ export class PrivilageModalComponent {
    PrivilegeMenuListDataq:any[] = [];
 
 
-  // PrivilegeMenuListDataq:any[] = [
-  //   {
-  //     "name": "Dashboard",
-  //     "checked": false,
-  //     "options": [
-  //       {
-  //         "name": "add",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "view",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "edit",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "delete",
-  //         "checked": false
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     "name": "Privilege",
-  //     "checked": false,
-  //     "options": [
-  //       {
-  //         "name": "add",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "view",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "edit",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "delete",
-  //         "checked": false
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     "name": "Role",
-  //     "checked": false,
-  //     "options": [
-  //       {
-  //         "name": "add",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "view",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "edit",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "delete",
-  //         "checked": false
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     "name": "User",
-  //     "checked": false,
-  //     "options": [
-  //       {
-  //         "name": "add",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "view",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "edit",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "delete",
-  //         "checked": false
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     "name": "Company",
-  //     "checked": false,
-  //     "options": [
-  //       {
-  //         "name": "add",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "view",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "edit",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "delete",
-  //         "checked": false
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     "name": "Subscription",
-  //     "checked": false,
-  //     "options": [
-  //       {
-  //         "name": "add",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "view",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "edit",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "delete",
-  //         "checked": false
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     "name": "Vendor",
-  //     "checked": false,
-  //     "options": [
-  //       {
-  //         "name": "add",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "view",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "edit",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "delete",
-  //         "checked": false
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     "name": "ContactUs",
-  //     "checked": false,
-  //     "options": [
-  //       {
-  //         "name": "add",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "view",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "edit",
-  //         "checked": false
-  //       },
-  //       {
-  //         "name": "delete",
-  //         "checked": false
-  //       }
-  //     ]
-  //   }
-  // ]
+  
   @Input() RoleListData: any;
 
   // privilegeService = inject(PrivilegeService);
@@ -240,22 +63,21 @@ get f(): { [key: string]: AbstractControl } {
 } 
 
 accessFn(selected:any){
-  const data = { 
-    name :selected.target.value,
-    checked:selected.target.checked,
-    options:[]
-    }
-    // this.selectedAccessArray.push(data);
-    const index = this.selectedAccessArray.findIndex(a => a.name === selected.target.value);
+ 
 
-    if(index !== -1){
-      this.selectedAccessArray[index].checked = selected.target.checked;
-      // isSelected[0].checked =!isSelected[0].checked;
-    }else{
-      this.selectedAccessArray.push(data);
-    }
-    console.log(this.selectedAccessArray);
+  const index = this.PrivilegeMenuListDataq.findIndex(a => a.module === selected.target.value);
+  
+      if(index !== -1){
+        this.PrivilegeMenuListDataq[index].checked = selected.target.checked;
+        
+      }else{
+        // this.selectedAccessArray.push(data);
+        this.PrivilegeMenuListDataq[index].checked = selected.target.checked;
+      }
+      console.log(this.PrivilegeMenuListDataq);
   }
+
+
   subAccessFn(access:any,option:any){
     const index = this.selectedAccessArray.findIndex(a => a.name === access);
     const optionData = { 
@@ -279,17 +101,18 @@ accessFn(selected:any){
 
 onSubmit(): void {
   this.submitted = true;
-
-  // console.log(this.privilegeForm.value);
+console.log(this.PrivilegeMenuListDataq);
+  console.log(this.privilegeForm.value);
   if (this.privilegeForm.invalid) {
     return;
   }
- const formData = {
-  name : this.privilegeForm.value.name,
-  access : this.selectedAccessArray,
-  status : (this.privilegeForm.value.status)?this.privilegeForm.value.status:"active",
-  // date: this.privilegeForm.value.date
-  }
+
+  const formData = { 
+    title:this.privilegeForm.value.name, 
+    privilege:this.PrivilegeMenuListDataq, 
+    status:this.privilegeForm.value.status }
+
+
 
   if(this.userType=='Edit'){
     this.editPrivilege(formData);
@@ -301,7 +124,7 @@ onSubmit(): void {
 
 addPrivilege(formData:any){
   this.privilegeService.PrivilegeAdd(formData).subscribe(res => {
-    // console.log(res);
+    console.log(res);
     if(res.success){
       this.activeModal.close('Add');
       // this.PrivilegeMenuListData = res.response;
@@ -332,11 +155,27 @@ editPrivilege(formData:any){
 }
 
   PatchDataForm(){
+    console.log(this.PatchData , this.PrivilegeMenuListDataq);
+    this.mergeAccessData(this.PatchData.privilege)
     this.privilegeForm.patchValue({
-      name: this.PatchData.name,
-      access: this.PatchData.access,
+      name: this.PatchData.title,
       status: this.PatchData.status
     })
+  }
+
+  mergeAccessData(previleges:any) {
+    this.PrivilegeMenuListDataq.forEach(menuItem => {
+      // Find matching module in selectedAccessArray
+      const selectedModule = previleges.find((item:any) => item.module === menuItem.module);
+      
+      // If a match is found, update the checked property, otherwise keep it as false
+      if(selectedModule) {
+        menuItem.checked = selectedModule.checked;
+      } else {
+        menuItem.checked = false;
+      }
+    });
+    console.log(this.PrivilegeMenuListDataq)
   }
 
   // onReset(): void {
