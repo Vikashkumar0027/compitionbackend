@@ -68,7 +68,7 @@ export class PrivilageComponent implements OnInit {
       backdrop: 'static',
       keyboard: false,
     });
-    this.activeModal.componentInstance.user = 'Add';
+    this.activeModal.componentInstance.userType = 'Add';
     this.activeModal.componentInstance.modalTitle = 'Add Privilege';
         this.activeModal.componentInstance.PrivilegeMenuListData = '';
         this.activeModal.componentInstance.RoleListData = 'RoleListData.response';
@@ -77,7 +77,7 @@ export class PrivilageComponent implements OnInit {
     this.activeModal.result.then(
       (result:any) => {
         if (result == 'Add') {
-          // this.getList();
+          this.PrivilegeListAll();
         }
       },
       (reason:any) => {}
@@ -117,37 +117,28 @@ export class PrivilageComponent implements OnInit {
   }
 
   async editPrivilege(data:any){
-  //   forkJoin({
-  //     PrivilegeMenuListData: this.privilegeService.PrivilegeMenuList(),
-  //     RoleListData: this.roleService.RoleList()
-  //   }).subscribe(
-  //     ({ PrivilegeMenuListData, RoleListData }) => {
-  //   this.activeModal = this.modalService.open(PrivilegemodelComponent, {
-  //     size: 'lg',
-  //     backdrop:'static',
-  //     keyboard: false,
-  //   });
-  //   this.activeModal.componentInstance.userType = 'Edit';
-  //   this.activeModal.componentInstance.modalTitle = 'Edit Privilege';
-  //   this.activeModal.componentInstance.PrivilegeMenuListData = PrivilegeMenuListData.response;
-  //   this.activeModal.componentInstance.RoleListData = RoleListData.response;
-  //   this.activeModal.componentInstance.PatchData = data;
+    console.log(data);
+    this.activeModal = this.modalService.open(PrivilageModalComponent, {
+      size: 'lg',
+      backdrop: 'static',
+      keyboard: false,
+    });
+    this.activeModal.componentInstance.userType = 'Edit';
+    this.activeModal.componentInstance.modalTitle = 'Edit Privilege';
+        this.activeModal.componentInstance.PrivilegeMenuListData = '';
+        // this.activeModal.componentInstance.RoleListData = 'RoleListData.response';
+        this.activeModal.componentInstance.PatchData = data;
 
-  //   //data transfer to child NgbModalRef
-  //   this.activeModal.result.then(
-  //     (result:any) => {
-  //       if (result == 'Edit') {
-  //         this.listOfPrivilege();  
-          
-  //       }
-  //     },
-  //     (reason:any) => {}
-  //   ); 
-  // },
-  //   error => {
-  //     console.error('Error fetching data:', error);
-  //   }
-  // );
+    //data transfer to child NgbModalRef
+    this.activeModal.result.then(
+      (result:any) => {
+        if (result == 'Edit') {
+          this.PrivilegeListAll();
+        }
+      },
+      (reason:any) => {}
+    );
+ 
   }
 
   async deletePrivilege(data:any){
@@ -163,16 +154,16 @@ export class PrivilageComponent implements OnInit {
   }
 
   delete(privilegeId:any){
-  //   this.privilegeService.PrivilegeDelete(privilegeId).subscribe(res => {
-  //     console.log(res);
-  //     if(res.success){
-  //       // this.RoleListData = res.response;
-  //       this.listOfPrivilege();  
-  //     }else{
-  //       console.log('Error',res.message);
-  //     }
-  //   }, error => {
-  //     console.log(error);
-  //   });
+    this.privilegeService.PrivilegeDelete(privilegeId).subscribe(res => {
+      console.log(res);
+      if(res.success){
+        // this.RoleListData = res.response;
+        this.PrivilegeListAll();
+      }else{
+        console.log('Error',res.message);
+      }
+    }, error => {
+      console.log(error);
+    });
   }
 }
