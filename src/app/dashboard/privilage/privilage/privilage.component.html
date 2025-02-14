@@ -38,7 +38,7 @@
                             <tbody>
                                 <tr *ngFor="let pldata of PrivilegeListData; let i = index">
                                     <td>{{i+1}}</td>
-                                    <td>{{pldata.name | titlecase }}</td>
+                                    <td>{{pldata.title | titlecase }}</td>
                                     <td>
                                         <ul *ngFor="let access of pldata.access"> <b>{{ access.name | titlecase}}</b>
                                             <!-- <i class="text-success" *ngIf="access.checked"> &#10003;</i>

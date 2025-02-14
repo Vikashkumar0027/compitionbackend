@@ -35,13 +35,17 @@ export class PrivilageService {
   }
 
 
+
+  // crude Previllage
+
+
+  PrivilegeListAll() : Observable<any> {
+    return this._http.get<any>( `${featureInterface.PrivilegeListAll}`);
+  }
   PrivilegeList() : Observable<any> {
     return this._http.get<any>( `${featureInterface.PrivilegeList}`);
   }
-
-  PrivilegeMenuList() : Observable<any> {
-    return this._http.get<any>( `${featureInterface.PrivilegeMenuList}`);
-  }
+  
   PrivilegeDelete(id: any)  : Observable<any>{
     return this._http.delete<any>( `${featureInterface.PrivilegeDelete}/${id}`);
   }
@@ -50,9 +54,9 @@ export class PrivilageService {
     return this._http.post<any>(`${featureInterface.PrivilegeAdd}`,param);
   }
  
-
- 
   PrivilegeUpdate(param: any,id:any) : Observable<any>{
     return this._http.patch<any>(`${featureInterface.PrivilegeUpdate}/${id}`,param);
   }
+
+
 }

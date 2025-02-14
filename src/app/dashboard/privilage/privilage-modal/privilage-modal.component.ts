@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { PrivilageService } from '../../../services/privilage/privilage.service';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import *as featureInterface from '../../../services/interface/interface'
 
 @Component({
   selector: 'app-privilage-modal',
@@ -13,184 +14,189 @@ export class PrivilageModalComponent {
   @Input() userType:any;
   @Input() modalTitle: string = '';
   @Input() PrivilegeMenuListData: any;
-  PrivilegeMenuListDataq:any[] = [
-    {
-      "name": "Dashboard",
-      "checked": false,
-      "options": [
-        {
-          "name": "add",
-          "checked": false
-        },
-        {
-          "name": "view",
-          "checked": false
-        },
-        {
-          "name": "edit",
-          "checked": false
-        },
-        {
-          "name": "delete",
-          "checked": false
-        }
-      ]
-    },
-    {
-      "name": "Privilege",
-      "checked": false,
-      "options": [
-        {
-          "name": "add",
-          "checked": false
-        },
-        {
-          "name": "view",
-          "checked": false
-        },
-        {
-          "name": "edit",
-          "checked": false
-        },
-        {
-          "name": "delete",
-          "checked": false
-        }
-      ]
-    },
-    {
-      "name": "Role",
-      "checked": false,
-      "options": [
-        {
-          "name": "add",
-          "checked": false
-        },
-        {
-          "name": "view",
-          "checked": false
-        },
-        {
-          "name": "edit",
-          "checked": false
-        },
-        {
-          "name": "delete",
-          "checked": false
-        }
-      ]
-    },
-    {
-      "name": "User",
-      "checked": false,
-      "options": [
-        {
-          "name": "add",
-          "checked": false
-        },
-        {
-          "name": "view",
-          "checked": false
-        },
-        {
-          "name": "edit",
-          "checked": false
-        },
-        {
-          "name": "delete",
-          "checked": false
-        }
-      ]
-    },
-    {
-      "name": "Company",
-      "checked": false,
-      "options": [
-        {
-          "name": "add",
-          "checked": false
-        },
-        {
-          "name": "view",
-          "checked": false
-        },
-        {
-          "name": "edit",
-          "checked": false
-        },
-        {
-          "name": "delete",
-          "checked": false
-        }
-      ]
-    },
-    {
-      "name": "Subscription",
-      "checked": false,
-      "options": [
-        {
-          "name": "add",
-          "checked": false
-        },
-        {
-          "name": "view",
-          "checked": false
-        },
-        {
-          "name": "edit",
-          "checked": false
-        },
-        {
-          "name": "delete",
-          "checked": false
-        }
-      ]
-    },
-    {
-      "name": "Vendor",
-      "checked": false,
-      "options": [
-        {
-          "name": "add",
-          "checked": false
-        },
-        {
-          "name": "view",
-          "checked": false
-        },
-        {
-          "name": "edit",
-          "checked": false
-        },
-        {
-          "name": "delete",
-          "checked": false
-        }
-      ]
-    },
-    {
-      "name": "ContactUs",
-      "checked": false,
-      "options": [
-        {
-          "name": "add",
-          "checked": false
-        },
-        {
-          "name": "view",
-          "checked": false
-        },
-        {
-          "name": "edit",
-          "checked": false
-        },
-        {
-          "name": "delete",
-          "checked": false
-        }
-      ]
-    }
-  ]
+  
+  //  PrivilegeMenuListDataq:any[] = featureInterface.selectSideBar;
+   PrivilegeMenuListDataq:any[] = [];
+
+
+  // PrivilegeMenuListDataq:any[] = [
+  //   {
+  //     "name": "Dashboard",
+  //     "checked": false,
+  //     "options": [
+  //       {
+  //         "name": "add",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "view",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "edit",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "delete",
+  //         "checked": false
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     "name": "Privilege",
+  //     "checked": false,
+  //     "options": [
+  //       {
+  //         "name": "add",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "view",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "edit",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "delete",
+  //         "checked": false
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     "name": "Role",
+  //     "checked": false,
+  //     "options": [
+  //       {
+  //         "name": "add",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "view",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "edit",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "delete",
+  //         "checked": false
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     "name": "User",
+  //     "checked": false,
+  //     "options": [
+  //       {
+  //         "name": "add",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "view",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "edit",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "delete",
+  //         "checked": false
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     "name": "Company",
+  //     "checked": false,
+  //     "options": [
+  //       {
+  //         "name": "add",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "view",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "edit",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "delete",
+  //         "checked": false
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     "name": "Subscription",
+  //     "checked": false,
+  //     "options": [
+  //       {
+  //         "name": "add",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "view",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "edit",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "delete",
+  //         "checked": false
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     "name": "Vendor",
+  //     "checked": false,
+  //     "options": [
+  //       {
+  //         "name": "add",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "view",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "edit",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "delete",
+  //         "checked": false
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     "name": "ContactUs",
+  //     "checked": false,
+  //     "options": [
+  //       {
+  //         "name": "add",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "view",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "edit",
+  //         "checked": false
+  //       },
+  //       {
+  //         "name": "delete",
+  //         "checked": false
+  //       }
+  //     ]
+  //   }
+  // ]
   @Input() RoleListData: any;
 
   // privilegeService = inject(PrivilegeService);
@@ -205,7 +211,10 @@ constructor(
   private activeModal: NgbActiveModal,
   private formBuilder: FormBuilder,
   private privilegeService:PrivilageService
-){} 
+){
+  this.PrivilegeMenuListDataq  = featureInterface.selectSideBar.filter(x => x.module !== 'Previlage' && x.module !== 'Sub Admin');
+  // console.log(data);
+} 
 
 
 
@@ -229,6 +238,7 @@ ngOnInit(): void {
 get f(): { [key: string]: AbstractControl } {
   return this.privilegeForm.controls;
 } 
+
 accessFn(selected:any){
   const data = { 
     name :selected.target.value,

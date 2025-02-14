@@ -53,12 +53,7 @@ const domain = 'http://43.225.53.245:4500/';
   export let postDelete = domain+'admin/post/delete';
 
 
-  /* Privilege CRUD*/
-export let PrivilegeList = domain+'';
-export let PrivilegeMenuList = domain+'';
-export let PrivilegeAdd = domain+'';
-export let PrivilegeUpdate = domain+'';
-export let PrivilegeDelete = domain+'';
+
 
 
 // Online Test = Bactch crude
@@ -104,6 +99,14 @@ export let bookView = domain+'admin/book/view';
 export let previlageAdminLst = domain+'admin/privilege/list';
 export let previlageLst = domain+'admin/adminprivilege';
 
+  /* Privilege CRUD*/
+  export let PrivilegeList = domain+'admin/adminprivilege/list';
+  export let PrivilegeListAll = domain+'admin/adminprivilege/list/all';
+  // export let PrivilegeMenuList = domain+'';
+  export let PrivilegeAdd = domain+'admin/privilege/create';
+  export let PrivilegeUpdate = domain+'admin/privilege/update';
+  export let PrivilegeDelete = domain+'admin/privilege/delete';
+
 
 // payment
 export let paymentLst = domain+'admin/payment/list';
@@ -124,6 +127,10 @@ export let selectSideBar = [
   {
     "module": "Dashboard",
     "checked": true,
+  },
+  {
+    "module": "Previlage",
+    "checked": false,
   },
   {
     "module": "Sub Admin",
@@ -170,6 +177,7 @@ export let selectSideBar = [
 
 export let sidebar = [
   {number:'1',name:'Dashboard',icon:'fa-solid fa-house', url: '/dashboard/home'},
+  {number:'2',name:'Previlage',icon:'fa-solid fa-users', url: '/dashboard/privilage'},
   {number:'2',name:'Sub Admin',icon:'fa-solid fa-users', url: '/dashboard/subAdmin'},
   // {number:'70',name:'Privilage',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/privilage'},
   {number:'7',name:'User',icon:'fa-regular fa-user', url: '/dashboard/user'},
