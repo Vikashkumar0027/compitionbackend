@@ -171,6 +171,14 @@ export let selectSideBar = [
   {
     "module": "Live Class",
     "checked": false,
+  },
+  {
+    "module": "Class",
+    "checked": false,
+  },
+  {
+    "module": "Fee",
+    "checked": false,
   }
 ]
 
@@ -189,6 +197,8 @@ export let sidebar = [
   {number:'9',name:'Book',icon:'fa-solid fa-book', url: '/dashboard/book'},
   {number:'10',name:'Payment',icon:'fa-brands fa-paypal', url: '/dashboard/payment'},
   {number:'11',name:'Live Class',icon:'fa-brands fa-paypal', url: '/dashboard/live_class'},
+  {number:'12',name:'Class',icon:'fa-brands fa-paypal', url: '/dashboard/class'},
+  {number:'13',name:'Fee',icon:'fa-brands fa-paypal', url: '/dashboard/fee'},
 ]; 
 
 // live_class
