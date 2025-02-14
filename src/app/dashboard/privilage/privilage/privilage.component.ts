@@ -14,11 +14,10 @@ export class PrivilageComponent implements OnInit {
   // roleService = inject(RoleService);
   private activeModal:any;
   PrivilegeListData: any [] = [];
-  PrivilegeMenuListData: any [] = [];
+ 
   RoleListData: any [] = [];
   heading:string = '';
   tableHeading:string = '';
-
   constructor(
     private modalService: NgbModal,
     private privilegeService:PrivilageService
@@ -29,8 +28,7 @@ export class PrivilageComponent implements OnInit {
   ngOnInit(): void {
       this.heading = 'Privilege';
       this.tableHeading = 'Privilege List';
-      this.listOfPrivilege();
-      // this.listOfPrivilegeMenu();
+      this.PrivilegeListAll();
   }
 
   listOfRoles(){
@@ -48,34 +46,22 @@ export class PrivilageComponent implements OnInit {
     //   console.log(error);
     // });
   }
-  listOfPrivilege(){
-    // this.privilegeService.PrivilegeList().subscribe(res => {
-    //   console.log(res);
-    //   if(res.success){
-    //     this.PrivilegeListData = res.response;
-        
-    //   }else{
-    //     console.log('No data found!',res.message);
-    //   }
-    //   // this.globalService.showToast('successfully logged in');
-    // }, error => {
-    //   console.log(error);
-    // });
+
+  PrivilegeListAll(){
+    this.privilegeService.PrivilegeListAll().subscribe(res => {
+      console.log(res);
+      if(res.success){
+        this.PrivilegeListData = res.response;
+      }else{
+        console.log('No data found!',res.message);
+      }
+      // this.globalService.showToast('successfully logged in');
+    }, error => {
+      console.log(error);
+    });
   }
-  listOfPrivilegeMenu(){
-    // this.privilegeService.PrivilegeMenuList().subscribe(res => {
-    //   console.log(res);
-    //   if(res.success){
-    //     this.PrivilegeMenuListData = res.response;
-        
-    //   }else{
-    //     console.log('No data found!',res.message);
-    //   }
-    //   // this.globalService.showToast('successfully logged in');
-    // }, error => {
-    //   console.log(error);
-    // });
-  }
+ 
+
   modalData(){ 
     this.activeModal = this.modalService.open(PrivilageModalComponent, {
       size: 'lg',
