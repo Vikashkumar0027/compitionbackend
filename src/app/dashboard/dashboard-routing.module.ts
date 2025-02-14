@@ -24,6 +24,8 @@ const routes: Routes = [
       {path: 'book',loadChildren: () =>import('./book/book.module').then((m) => m.BookModule),canActivate:[subadminGuard]} ,
       {path: 'payment',loadChildren: () =>import('./payment/payment.module').then((m) => m.PaymentModule),canActivate:[subadminGuard]} ,
       {path: 'live_class',loadChildren: () =>import('./live-class/live-class.module').then((m) => m.LiveClassModule),canActivate:[subadminGuard]} ,
+      {path: 'class',loadChildren: () =>import('./class/class.module').then((m) => m.ClassModule),canActivate:[subadminGuard]} ,
+      {path: 'fee',loadChildren: () =>import('./fee/fee.module').then((m) => m.FeeModule),canActivate:[subadminGuard]} ,
     ]
   },
   {path: '**', redirectTo: 'dashboard',pathMatch: 'full'}
