@@ -1,0 +1,79 @@
+<!-- <p>fee-modal works!</p> -->
+
+
+<div class="section">
+    <div class="modal-header">
+        <h4 class="modal-title text-capitalize" id="modal-basic-title">{{user}} Payment</h4>
+
+        <button type="button" class="btn btn-outline-primary px-3 ms-auto close" aria-label="Close"
+            (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <!-- <div class="mb-3">
+        <label cLabel for="exampleFormControlPrivilage">Privilage Access</label><br>
+        <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='previlage'>
+          <option [disabled]="true">Select privilage</option>
+          <option *ngFor="let lst of privilageList" [value]="lst._id">{{lst.title}}</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && f['previlage'].errors">
+        <span style="color: red;" *ngIf="f['previlage'].errors['required'] ">Please select Privilage</span>
+    </div> -->
+
+    <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="class">Class</label><br>
+                <select id="class" class="form-control" formControlName='class' [(ngModel)]="selectedOption"
+                    (change)="onSelectionChange($event)">
+                    <option [disabled]="true" value="">Select class</option>
+                    <option *ngFor="let list of classList" [value]="list.className">{{list.className}}</option>
+                    <option value="custom">Custom Value</option>
+                </select>
+                <div *ngIf="isCustom">
+                    <input type="text" [(ngModel)]="customValue" placeholder="Enter custom value" 
+                    class="form-control"/>
+                </div>
+
+                <div *ngIf="submitted && f['class'].errors">
+                    <small style="color: red;" *ngIf="f['class'].errors['required'] ">Please select class</small>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="payment" class="form-label">Payment</label>
+                <input type="number" class="form-control" id="payment" placeholder="Payment" formControlName="payment">
+
+                <div *ngIf="submitted && f['payment'].errors">
+                    <small style="color: red;" *ngIf="f['payment'].errors['required'] ">Please enter payment</small>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label cLabel for="exampleFormControlclass">Status</label><br>
+                <select cSelect id="exampleFormControlclass" class="form-control" formControlName='status'>
+                    <option [disabled]="true" value="">Select Status</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+
+                <div *ngIf="submitted && f['status'].errors">
+                    <small style="color: red;" *ngIf="f['status'].errors['required'] ">Please select status</small>
+                </div>
+            </div>
+
+            <div class="modal-footer mt-4">
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-outline-primary btn-login text-uppercase fw-bold">
+                        Save</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
