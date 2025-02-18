@@ -1,1 +1,84 @@
-<p>fee works!</p>
+<!-- <p>fee works!</p> -->
+
+
+<div class="container-fluid">
+    <!-- Breadcrumb for Navigation -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Fee</li>
+        </ol>
+    </nav>
+
+    <div class="row align-items-center">
+        <div class="col-md-4">
+            <h1 class="h3 mb-lg-3 text-gray-800">Payments</h1>
+        </div>
+        <div class="col-md-8 mb-3 text-md-end">
+            <button type="button" class="btn btn-outline-primary addclass" (click)="modalData()">Add Fee</button>
+        </div>
+    </div>
+
+    <!-- Card Section -->
+    <!-- <h1 class="h3 mb-3 text-gray-800">Company</h1> -->
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+
+                    <input type="text" class="form-control" placeholder="Search Fee Detail" aria-label="Search"
+                        name="searchCompany">
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Section -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="text-center">
+                        <tr>
+                            <th scope="col">S.N.</th>
+                            <th scope="col">Class</th>
+                            <th scope="col">Payment</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let list of feeList; let i = index">
+
+                            <th scope="row" class="text-center">{{i+1}} </th>
+                            <td class="text-center">{{list?.class}} </td>
+                            <td class="text-center">{{list?.payment}} </td>
+                            <td class="text-center"> {{list?.status}}</td>
+                            <td class="text-center">
+                                <button title="Edit" type="button" class="btn btn-outline-primary btn-sm m-1"
+                                    (click)="edit(list)">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <button title="Delete" type="button" class="btn btn-outline-danger btn-sm m-1"
+                                    (click)="delete(i)">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <ng-template #noDataFound>
+                    <div>
+                        No data found!.
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Loading Spinner -->
+<!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)" template="<img src='https://i.gifer.com/ZZ5H.gif' />">
+  </ngx-spinner> -->
