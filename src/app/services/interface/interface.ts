@@ -107,7 +107,6 @@ export let PrivilegeAdd = domain + 'admin/privilege/create';
 export let PrivilegeUpdate = domain + 'admin/privilege/update';
 export let PrivilegeDelete = domain + 'admin/privilege/delete';
 
-
 // payment
 export let paymentLst = domain + 'admin/payment/list';
 export let paymentView = domain + 'admin/payment/view';
@@ -122,7 +121,6 @@ export let patchLive = domain + 'admin/livestream/patch';
 export let deleteLive = domain + 'admin/livestream/delete';
 
 // class api
-
 export let classes = "http://localhost:5000/api/v1/addclass";
 
 export let selectSideBar = [
@@ -181,6 +179,10 @@ export let selectSideBar = [
   {
     "module": "Fee",
     "checked": false,
+  },
+  {
+    "module": "Admission",
+    "checked": false,
   }
 ]
 
@@ -201,6 +203,7 @@ export let sidebar = [
   { number: '11', name: 'Live Class', icon: 'fa-brands fa-paypal', url: '/dashboard/live_class' },
   { number: '12', name: 'Class', icon: 'fa-brands fa-paypal', url: '/dashboard/class' },
   { number: '13', name: 'Fee', icon: 'fa-brands fa-paypal', url: '/dashboard/fee' },
+  { number: '14', name: 'Admission', icon: 'fa-brands fa-paypal', url: '/dashboard/admission' },
 ];
 
 // live_class

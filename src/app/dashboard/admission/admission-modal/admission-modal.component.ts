@@ -1,0 +1,142 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { GlobalService } from '../../../services/global/global.service';
+
+
+@Component({
+  selector: 'app-admission-modal',
+  templateUrl: './admission-modal.component.html',
+  styleUrl: './admission-modal.component.css'
+})
+export class AdmissionModalComponent implements OnInit {
+  form: FormGroup;
+  submitted: boolean = false;
+
+  @Input() public user: any;
+  @Input() public patchData: any;
+
+  constructor(private activeModal: NgbActiveModal,
+    private fb: FormBuilder,
+    private global: GlobalService
+  ) {
+
+    this.form = this.fb.group({
+      admissionNumber: ['', Validators.required],
+      className: ['', Validators.required],
+      admissionFree: ['', Validators.required],
+      section: ['', Validators.required],
+      studentName: ['', Validators.required],
+      dob: ['', Validators.required],
+      admissionDate: ['', Validators.required],
+      gender: ['', Validators.required],
+      category: ['', Validators.required],
+      studentMobile: ['', Validators.required],
+      address: ['', Validators.required],
+      state: ['', Validators.required],
+      district: ['', Validators.required],
+      pinCode: ['', Validators.required],
+      transport: ['', Validators.required],
+      fatherName: ['', Validators.required],
+      motherName: ['', Validators.required],
+      localGardianName: ['', Validators.required],
+      parentAddress: ['', Validators.required],
+      parentNumber: ['', Validators.required],
+      relationStudents: ['', Validators.required],
+      fatherOccupation: ['', Validators.required],
+      withdrawalFileNumber: ['', Validators.required],
+      scholarRegistrationNo: ['', Validators.required],
+      lastSchoolName: ['', Validators.required],
+
+    });
+  }
+
+
+  ngOnInit(): void {
+    this.patchDataFunction()
+  }
+  get f() {
+    console.log(this.form.controls, "form");
+    return this.form.controls
+  }
+
+
+  modalClose() {
+    this.activeModal.close();
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    this.user == "Add" ? this.addData() : this.editData();
+    console.log(this.user);
+  }
+
+  addData() {
+    if (this.form.invalid) {
+      this.submitted = true;
+      return;
+    }
+    this.submitted = false;
+
+
+    let formData: any = new FormData();
+
+    Object.keys(this.form.value).forEach((key) => {
+      if (this.form.value[key]) {
+        formData.append(key, this.form.value[key]);
+        formData.append("studentImage", this.file);
+      }
+    });
+
+
+
+    if (formData) {
+      //do some work
+      this.global.showToast("data is get successfully")
+      this.activeModal.close('Edit');
+    }
+
+
+  }
+
+  private file: any;
+  onFileChange(event: any) {
+    this.file = event.target.files[0];
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (event: any) => {
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+    let fileList: FileList = event.target.files;
+    let file: File = fileList[0];
+  }
+
+
+
+  patchDataFunction() {
+    if (this.user == 'Edit') {
+      if (this.patchData) {
+        Object.keys(this.patchData).forEach((key) => {
+          if (this.form.controls[key]) {
+            this.form.controls[key].setValue(this.patchData[key]);
+          }
+        });
+      }
+    }
+  }
+
+
+
+  editData() {
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.global.showToast("Successfully patch data ");
+    this.activeModal.close('Edit');
+
+
+  }
+}
