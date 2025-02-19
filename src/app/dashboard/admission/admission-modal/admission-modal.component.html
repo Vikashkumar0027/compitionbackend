@@ -47,13 +47,26 @@
 
 
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">Admission Free</label>
-                        <input type="text" class="form-control" id="inputEmail4" formControlName="admissionFree"
-                            placeholder="Admission Free">
-                        <div id="emailHelp" class="form-text" *ngIf="submitted && f['admissionFree'].errors"><span
-                                style="color: red;" *ngIf="f['admissionFree'].errors['required'] ">Please Enter
+                        <label for="inputEmail4" class="form-label">Admission Fee</label>
+                        <input type="text" class="form-control" id="inputEmail4" formControlName="admissionFee"
+                            placeholder="Admission Fee">
+                        <div id="emailHelp" class="form-text" *ngIf="submitted && f['admissionFee'].errors"><span
+                                style="color: red;" *ngIf="f['admissionFee'].errors['required'] ">Please Enter
                                 Admission
-                                Free
+                                Fee
+                            </span>
+                        </div>
+
+                    </div>
+                    <!-- do some work -->
+                    <div class="col">
+                        <label for="inputEmail4" class="form-label">Roll No</label>
+                        <input type="text" class="form-control" id="inputroll" formControlName="rollNO"
+                            placeholder="Student Roll No">
+                        <div id="emailHelp" class="form-text" *ngIf="submitted && f['rollNO'].errors"><span
+                                style="color: red;" *ngIf="f['rollNO'].errors['required'] ">Please Enter
+                                student Roll No
+
                             </span>
                         </div>
 
@@ -62,7 +75,7 @@
 
                     <!-- section -->
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">Section</label>
+                        <label for="inputroll" class="form-label">Section</label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="section"
                             placeholder="Section">
                         <div id="emailHelp" class="form-text" *ngIf="submitted && f['section'].errors"><span
