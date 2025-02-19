@@ -11,16 +11,20 @@ export class ClassService {
 
 
   classlist(): Observable<any> {
-    return this.http.get<any>(`${featureInterface.classes}`);
+    return this.http.get<any>(`${featureInterface.classesList}`);
   }
+
   createClass(data: any): Observable<any> {
-    return this.http.post<any>(`${featureInterface.classes}`, data);
+    return this.http.post<any>(`${featureInterface.classesAdd}`, data);
   }
+
   deleteByiD(classId: any): Observable<any> {
-    return this.http.delete<any>(`${featureInterface.classes}/${classId}`);
+    return this.http.delete<any>(`${featureInterface.classesDelete}/${classId}`);
   }
+
   editByiD(data: any, classId: any): Observable<any> {
-    return this.http.put<any>(`${featureInterface.classes}/${classId}`, data);
+    return this.http.patch<any>(`${featureInterface.classesEdit}/${classId}`, data);
   }
+
 
 }

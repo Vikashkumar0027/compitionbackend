@@ -54,7 +54,7 @@ export class ClassComponent implements OnInit {
 
     this.classServive.classlist().subscribe((res) => {
       if (res.success) {
-        this.totalClasses = res.data;
+        this.totalClasses = res.response;
         console.log(this.totalClasses, "totals class");
       }
 

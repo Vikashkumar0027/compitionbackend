@@ -93,7 +93,7 @@ export class ClassModalComponent implements OnInit {
 
 
   editData() {
-    if (this.form.invalid) {
+    if(this.form.invalid) {
       return;
     }
 
@@ -103,9 +103,8 @@ export class ClassModalComponent implements OnInit {
     }
 
     const _id = this.patchData._id;
-
     this.classService.editByiD(formData, _id).subscribe((res) => {
-      if (res.success) {
+      if(res.success) {
         this.global.showToast(res.massage);
         this.activeModal.close('Edit');
       }
