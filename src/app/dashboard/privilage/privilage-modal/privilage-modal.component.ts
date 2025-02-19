@@ -63,8 +63,6 @@ get f(): { [key: string]: AbstractControl } {
 } 
 
 accessFn(selected:any){
- 
-
   const index = this.PrivilegeMenuListDataq.findIndex(a => a.module === selected.target.value);
   
       if(index !== -1){
@@ -74,6 +72,7 @@ accessFn(selected:any){
         // this.selectedAccessArray.push(data);
         this.PrivilegeMenuListDataq[index].checked = selected.target.checked;
       }
+
       console.log(this.PrivilegeMenuListDataq);
   }
 

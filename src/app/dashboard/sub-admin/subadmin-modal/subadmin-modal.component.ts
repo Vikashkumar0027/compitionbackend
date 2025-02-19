@@ -118,14 +118,14 @@ export class SubadminModalComponent implements OnInit {
      
       // this.PrivilegeMenuListDataq = this.patchData.previleges;
       // this.PrivilegeMenuListDataq = this.patchData.previleges;
-      this.mergeAccessData(this.patchData.previleges);
+      // this.mergeAccessData(this.patchData.previleges);
  
-      this.selectedItems =this.patchData.assign_to;
+      // this.selectedItems =this.patchData.assign_to;
       const patch = {
         name: this.patchData.name,
         phone: this.patchData.phone,
         email: this.patchData.email,
-        previlage: this.patchData.previlage,
+        previlage: this.patchData.previleges,
         status: this.patchData.status,
       };
       this.form.patchValue(patch);
@@ -256,7 +256,7 @@ formData.append('logo', this.file);
 formData.append('name', this.form.value.name);
 formData.append('email', this.form.value.email);
 formData.append('phone', this.form.value.phone);
-formData.append('previlegeId', this.form.value.previlage);
+formData.append('previleges', this.form.value.previlage);
 formData.append('password', this.form.value.password);
 formData.append('status', this.form.value.status);
 
@@ -295,7 +295,7 @@ formData.append('status', this.form.value.status);
       formData.append('name', this.form.value.name);
       formData.append('email', this.form.value.email);
       formData.append('phone', this.form.value.phone);
-      formData.append('previlegeId', this.form.value.previlage);
+      formData.append('previleges', this.form.value.previlage);
       formData.append('status', this.form.value.status);
    
     const _id = this.patchData._id;
