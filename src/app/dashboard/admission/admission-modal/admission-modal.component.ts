@@ -24,7 +24,8 @@ export class AdmissionModalComponent implements OnInit {
     this.form = this.fb.group({
       admissionNumber: ['', Validators.required],
       className: ['', Validators.required],
-      admissionFree: ['', Validators.required],
+      admissionFee: ['', Validators.required],
+      rollNO: ['', Validators.required],
       section: ['', Validators.required],
       studentName: ['', Validators.required],
       dob: ['', Validators.required],
@@ -136,7 +137,6 @@ export class AdmissionModalComponent implements OnInit {
 
     this.global.showToast("Successfully patch data ");
     this.activeModal.close('Edit');
-
 
   }
 }

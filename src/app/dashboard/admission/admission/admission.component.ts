@@ -4,6 +4,8 @@ import { GlobalService } from '../../../services/global/global.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AdmissionModalComponent } from '../admission-modal/admission-modal.component';
 import { Admission } from "../admissiondata";
+import { NgForm } from '@angular/forms';
+import { AdmissionviewComponent } from '../admissionview/admissionview.component';
 @Component({
   selector: 'app-admission',
   templateUrl: './admission.component.html',
@@ -13,14 +15,18 @@ export class AdmissionComponent {
 
   classId: any; // edit object id 
   AdmissionData: any[] = [];  // store all class list
+  submitted = false; //search data validate
+  viewDataId: any // admission view data id
+
   private activeModal: any;
+
 
   constructor(
     private modalService: NgbModal,
-    // private classServive: ClassService,
     private global: GlobalService
 
   ) {
+
 
   }
 
@@ -28,6 +34,19 @@ export class AdmissionComponent {
 
     this.AdmissionData = Admission
 
+  }
+
+
+  // search section logic 
+  onSubmit(searchData: any) {
+
+    if (searchData.value.studentName || searchData.value.searchAdmission || searchData.value.searchNumber || searchData.value.searchFname || searchData.value.searchMname) {
+
+      console.log("welcome ");
+    } else {
+
+      console.log("data is empty");
+    }
   }
 
 
@@ -50,9 +69,6 @@ export class AdmissionComponent {
 
   }
 
-
-
-
   // edit function in class component
   edit(list: any) {
     this.activeModal = this.modalService.open(AdmissionModalComponent, {
@@ -65,7 +81,6 @@ export class AdmissionComponent {
     this.activeModal.componentInstance.subjectId = this.classId;
     this.activeModal.result.then((result: any) => {
       if (result == "Edit") {
-
         //  do some work 
       }
     },
@@ -74,7 +89,6 @@ export class AdmissionComponent {
 
 
   }
-
 
 
   // delete function in class component
@@ -100,6 +114,28 @@ export class AdmissionComponent {
 
   }
 
+
+
+
+  viewData(AdmissionData: any) {
+    this.activeModal = this.modalService.open(AdmissionviewComponent, {
+      size: "lg",
+      backdrop: "static",
+      keyboard: false
+    })
+    this.activeModal.componentInstance.user = "view";
+    this.activeModal.componentInstance.patchData = AdmissionData;
+    // this.activeModal.componentInstance.subjectId = this.viewDataId;
+    this.activeModal.result.then((result: any) => {
+      if (result == "view") {
+        // do some work 
+
+      }
+    },
+      (reason: any) => { }
+    )
+
+  }
 
 
 
