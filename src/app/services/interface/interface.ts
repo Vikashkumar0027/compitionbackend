@@ -207,3 +207,7 @@ export let sidebar = [
 ];
 
 // live_class
+export let classesAdd = domain + 'admin/class/create';
+export let classesEdit = domain + 'admin/class/update';
+export let classesDelete = domain + 'admin/class/delete';
+export let classesList = domain + 'admin/class/list';
