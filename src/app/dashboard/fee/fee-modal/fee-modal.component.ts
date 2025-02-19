@@ -133,12 +133,10 @@ export class FeeModalComponent {
 
   }
 
-
-
   selectedOption: string = '';
   customValue: string = '';
   onSelectionChange(event: any) {
-    this.isCustom = event.target.value === 'custom';
+    this.isCustom = event.target.value === ' ';
   }
 
   addCustomOption() {
