@@ -23,19 +23,19 @@
     </div> -->
 
     <div class="modal-body">
+        <label for="class" *ngIf="isCustom">Class</label><br>
+        <div class="mb-3" *ngIf="isCustom">
+            <input type="text" [(ngModel)]="customValue" placeholder="Enter custom value" class="form-control" />
+        </div>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="mb-3">
+            <div class="mb-3" *ngIf="!isCustom">
                 <label for="class">Class</label><br>
                 <select id="class" class="form-control" formControlName='class' [(ngModel)]="selectedOption"
                     (change)="onSelectionChange($event)">
                     <option [disabled]="true" value="">Select class</option>
                     <option *ngFor="let list of classList" [value]="list.className">{{list.className}}</option>
-                    <option value="custom">Custom Value</option>
+                    <option value=" ">Custom Value</option>
                 </select>
-                <div *ngIf="isCustom">
-                    <input type="text" [(ngModel)]="customValue" placeholder="Enter custom value" 
-                    class="form-control"/>
-                </div>
 
                 <div *ngIf="submitted && f['class'].errors">
                     <small style="color: red;" *ngIf="f['class'].errors['required'] ">Please select class</small>
@@ -66,7 +66,8 @@
 
             <div class="modal-footer mt-4">
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-outline-primary btn-login text-uppercase fw-bold">
+                    <button type="submit" (click)="addCustomOption()"
+                        class="btn btn-outline-primary btn-login text-uppercase fw-bold">
                         Save</button>
                 </div>
 
@@ -75,5 +76,3 @@
         </form>
     </div>
 </div>
-
-
