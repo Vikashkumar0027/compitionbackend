@@ -211,3 +211,16 @@ export let classesAdd = domain + 'admin/class/create';
 export let classesEdit = domain + 'admin/class/update';
 export let classesDelete = domain + 'admin/class/delete';
 export let classesList = domain + 'admin/class/list';
+
+
+// Fee 
+export let feeAdd = domain + 'admin/fee/create';
+export let feeEdit = domain + 'admin/fee/update';
+export let feeDelete = domain + 'admin/fee/delete';
+export let feeList = domain + 'admin/fee/list';
+
+// admission
+export let admissionAdd = domain + 'admin/admission/create';
+export let admissionList = domain + 'admin/admission/list';
+export let admissionDelete = domain + 'admin/admission/delete';
+export let admissionUpdate = domain + 'admin/admission/update';
