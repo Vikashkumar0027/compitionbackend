@@ -26,6 +26,7 @@ const routes: Routes = [
       { path: 'live_class', loadChildren: () => import('./live-class/live-class.module').then((m) => m.LiveClassModule), canActivate: [subadminGuard] },
       { path: 'class', loadChildren: () => import('./class/class.module').then((m) => m.ClassModule), canActivate: [subadminGuard] },
       { path: 'fee', loadChildren: () => import('./fee/fee.module').then((m) => m.FeeModule), canActivate: [subadminGuard] },
+      { path: 'fee_deposit', loadChildren: () => import('./fee-deposit/fee-deposit.module').then((m) => m.FeeDepositModule), canActivate: [subadminGuard] },
 
 
       { path: 'admission', loadChildren: () => import('./admission/admission.module').then((m) => m.AdmissionModule), canActivate: [subadminGuard] },

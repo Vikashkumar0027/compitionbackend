@@ -183,7 +183,11 @@ export let selectSideBar = [
   {
     "module": "Admission",
     "checked": false,
-  }
+  },
+  {
+    "module": "Fee Deposit",
+    "checked": false,
+  },
 ]
 
 
@@ -204,6 +208,7 @@ export let sidebar = [
   { number: '12', name: 'Class', icon: 'fa-brands fa-paypal', url: '/dashboard/class' },
   { number: '13', name: 'Fee', icon: 'fa-brands fa-paypal', url: '/dashboard/fee' },
   { number: '14', name: 'Admission', icon: 'fa-brands fa-paypal', url: '/dashboard/admission' },
+  { number: '15', name: 'Fee Deposit', icon: 'fa-brands fa-paypal', url: '/dashboard/fee_deposit' },
 ];
 
 // live_class
