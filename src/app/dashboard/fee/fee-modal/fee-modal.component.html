@@ -23,20 +23,25 @@
     </div> -->
 
     <div class="modal-body">
-        <label for="class" *ngIf="isCustom">Class</label><br>
-        <div class="mb-3" *ngIf="isCustom">
+        <!-- <label for="class" *ngIf="isCustom">Class</label><br> -->
+        <!-- <div class="mb-3" *ngIf="isCustom">
             <input type="text" [(ngModel)]="customValue" placeholder="Enter custom value" class="form-control" />
-        </div>
+        </div> -->
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="mb-3" *ngIf="!isCustom">
-                <label for="class">Class</label><br>
-                <select id="class" class="form-control" formControlName='class' [(ngModel)]="selectedOption"
+            <div class="mb-3">
+                <label for="class">Fee Type</label><br>
+                <select id="class" class="form-control" formControlName='class'
                     (change)="onSelectionChange($event)">
                     <option [disabled]="true" value="">Select class</option>
                     <option *ngFor="let list of classList" [value]="list.className">{{list.className}}</option>
-                    <option value=" ">Custom Value</option>
+                    <option value="custom">Custom Value</option>
                 </select>
-
+                <div class="mb-3" *ngIf="isCustom">
+                    <input type="text" formControlName='custom'  placeholder="Enter custom value" class="form-control" />
+                    <div *ngIf="submitted && f['custom'].errors">
+                        <small style="color: red;" *ngIf="f['custom'].errors['required'] ">Please enter custom Fee Type</small>
+                    </div>   
+                </div>
                 <div *ngIf="submitted && f['class'].errors">
                     <small style="color: red;" *ngIf="f['class'].errors['required'] ">Please select class</small>
                 </div>
@@ -66,8 +71,7 @@
 
             <div class="modal-footer mt-4">
                 <div class="d-grid">
-                    <button type="submit" (click)="addCustomOption()"
-                        class="btn btn-outline-primary btn-login text-uppercase fw-bold">
+                    <button type="submit" class="btn btn-outline-primary btn-login text-uppercase fw-bold">
                         Save</button>
                 </div>
 

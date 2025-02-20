@@ -16,7 +16,7 @@ export class FeeComponent {
   totalClasses: any[] = [];  // store all class list
   private activeModal: any;
   feeType: any;
-  feeList: any[] = [ ]
+  feeList: any[] = []
 
   constructor(
     private modalService: NgbModal,
@@ -36,13 +36,14 @@ export class FeeComponent {
 
   modalData() {
     this.activeModal = this.modalService.open(FeeModalComponent, {
-      size: "lg",
+      size: "md",
       backdrop: "static",
       keyboard: false
     })
     this.activeModal.componentInstance.user = "Add";
+    this.activeModal.componentInstance.classList = this.totalClasses;
     this.activeModal.result.then((result: any) => {
-      if(result == "Add") {
+      if (result == "Add") {
         this.getfeeList();
       }
     },
@@ -81,13 +82,14 @@ export class FeeComponent {
   // edit function in class component
   edit(list: any) {
     this.activeModal = this.modalService.open(FeeModalComponent, {
-      size: "lg",
+      size: "md",
       backdrop: "static",
       keyboard: false,
     });
     this.activeModal.componentInstance.user = "Edit";
     this.activeModal.componentInstance.patchData = list;
-    this.activeModal.componentInstance.subjectId = this.classId;
+    this.activeModal.componentInstance.classList = this.totalClasses
+    // this.activeModal.componentInstance.subjectId = this.classId;
     this.activeModal.result.then((result: any) => {
       if (result == "Edit") {
         this.getfeeList();
@@ -100,57 +102,50 @@ export class FeeComponent {
   }
 
   // delete function in class component
-  //  pass the data or object id in params  
-  delete(ind: any) {
-    if (confirm("Are you sure for delete?")) {
-      this.feeList.splice(ind, 1);
+  // pass the data or object id in params  
+  delete(id: any) {
+    const activeModal = this.modalService.open(ConfirmModalComponent, {
+      size: '',
+      backdrop: 'static',
+      keyboard: false,
+    });
+    //data transfer to child
+    const contentObj = {
+      heading: 'Delete!',
+      message: 'Are you sure want to Delete ?',
+      cancel: 'Cancel',
+      ok: 'Delete'
     }
 
-    // const activeModal = this.modalService.open(ConfirmModalComponent, {
-    //   size: '',
-    //   backdrop: 'static',
-    //   keyboard: false,
-    // });
-    // //data transfer to child
-    // const contentObj = {
-    //   heading: 'Delete!',
-    //   message: 'Are you sure want to Delete ?',
-    //   cancel: 'Cancel',
-    //   ok: 'Delete'
-    // }
+    activeModal.componentInstance.modalContent = contentObj;
+    activeModal.componentInstance.resetpassword = false;
 
-    // activeModal.componentInstance.modalContent = contentObj;
-    // activeModal.componentInstance.resetpassword = false;
+    activeModal.result.then(
+      (result) => {
 
-    // activeModal.result.then(
-    //   (result) => {
-
-    //     if (result === 'Ok') {
-    //       // this.deletefunction(ind);
-    //     }
-    //   },
-    //   (reason) => { }
-    // );
+        if (result === 'Ok') {
+          this.deletefunction(id);
+        }
+      },
+      (reason) => { }
+    );
 
   }
-
-
-
 
   async deletefunction(_id: any) {
 
     this.cat_feeService.feeDelete(_id).subscribe(res => {
       // console.log(res);
       if (res.success) {
-        this.getclass()
-        this.globalService.showToast('Deleted');
+        this.getclass();
+        this.getfeeList();
+        this.globalService.showToast(res.response);
       }
     },
       (err) => {
         this.globalService.showToastErorr('something went wrong')
         console.log(err);
       })
-
   }
 
 }
