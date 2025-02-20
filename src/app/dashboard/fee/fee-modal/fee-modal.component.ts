@@ -15,17 +15,10 @@ export class FeeModalComponent {
   submitted: boolean = false; // form condition
   isCustom: boolean = false;
 
-  classList: any[] = [
-    { className: "12th", status: "Active" },
-    { className: "11th", status: "Active" },
-    { className: "10th", status: "Active" },
-    { className: "9th", status: "Active" },
-  ];
-
-
+  @Input() classList: any[] = [];
   @Input() public user: any // get data of class component
   @Input() public patchData: any // get data of class component
-  @Input() public classId: any // get data of class component
+  // @Input() public classId: any // get data of class component
 
   constructor(
     private activeModal: NgbActiveModal,
@@ -37,7 +30,8 @@ export class FeeModalComponent {
     this.form = this.fb.group({
       class: ['', Validators.required],
       payment: ['', Validators.required],
-      status: ['', Validators.required]
+      custom: [''],
+      status: ['Active', Validators.required]
     })
 
   }
@@ -65,11 +59,15 @@ export class FeeModalComponent {
 
   patchDataFunction() {
     if (this.user == 'Edit') {
-      console.log(this.user);
 
+      const classFilter = this.classList.filter(x=>x.className == this.patchData.name);
+      console.log(classFilter);
+      (classFilter.length) ? this.isCustom=false : this.isCustom = true;
+      // console.log(this.user);
       const patch = {
-        class: this.patchData.name,
-        fee: this.patchData.payment,
+        class: this.isCustom ? 'custom':this.patchData.name,
+        custom: this.patchData.name,
+        payment: this.patchData.fee,
         status: this.patchData.status,
       };
       this.form.patchValue(patch);
@@ -88,22 +86,21 @@ export class FeeModalComponent {
       return;
     }
     this.submitted = false;
+    console.log(this.form.value)
     // { "name": "test23", "fee": "100", "status": "active" }
     let formData = {
-      name: this.form.value.class,
+      name:this.isCustom?this.form.value.custom : this.form.value.class,
       fee: this.form.value.payment,
       status: this.form.value.status
     }
-    // this.activeModal.close("Add");
-    this.activeModal.close(formData);
-    this.form.reset();
-
 
     this.cat_feeService.feeAdd(formData).subscribe((res) => {
     if (res.success) {
-      this.global.showToast(res.massage);
-      this.activeModal.close("Add")
+      this.global.showToast(res.response);
+      this.activeModal.close("Add");
     }
+    },err => {
+      console.log(err);
     })
 
   }
@@ -122,7 +119,7 @@ export class FeeModalComponent {
     const _id = this.patchData._id;
     this.cat_feeService.feeEdit(formData, _id).subscribe((res) => {
       if (res.success) {
-        this.global.showToast(res.massage);
+        this.global.showToast(res.response);
         this.activeModal.close('Edit');
       }
     }, (error) => {
@@ -132,19 +129,33 @@ export class FeeModalComponent {
 
   }
 
-  selectedOption: string = '';
-  customValue: string = '';
+  // selectedOption: string = '';
+  // customValue: string = '';
+
   onSelectionChange(event: any) {
-    this.isCustom = event.target.value === ' ';
+    console.log(event.target.value)
+if(event.target.value == 'custom'){
+  this.isCustom=true;
+  const customControl:any = this.form.get('custom');
+  customControl.setValidators([Validators.required]);  
+  customControl.updateValueAndValidity();
+}else{
+  const customControl:any = this.form.get('custom');
+  customControl.setValidators([]);  
+  customControl.updateValueAndValidity();
+  this.isCustom=false;
+
+}
+
   }
 
   addCustomOption() {
-    if (this.customValue.trim()) {
-      this.classList.push(this.customValue);
-      this.selectedOption = this.customValue;
-      this.isCustom = false;
-      this.customValue = '';
-    }
+    // if (this.customValue.trim()) {
+    //   this.classList.push(this.customValue);
+    //   this.selectedOption = this.customValue;
+    //   this.isCustom = false;
+    //   this.customValue = '';
+    // }
   }
 
 
