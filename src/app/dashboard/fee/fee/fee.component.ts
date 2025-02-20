@@ -4,6 +4,7 @@ import { ClassService } from '../../../services/class/class.service';
 import { GlobalService } from '../../../services/global/global.service';
 import { FeeModalComponent } from '../fee-modal/fee-modal.component';
 import { ConfirmModalComponent } from '../../../common-component/confirm-modal/confirm-modal.component';
+import { CatFeeService } from '../../../services/cat_fee/cat-fee.service';
 
 @Component({
   selector: 'app-fee',
@@ -14,20 +15,18 @@ export class FeeComponent {
   classId: any; // edit object id 
   totalClasses: any[] = [];  // store all class list
   private activeModal: any;
-  feeType: any
-  feeList: any[] = [
-    { class: '10th', payment: 4000, status: 'Active' },
-    { class: '11th', payment: 3500, status: 'Active' },
-    { class: '12th', payment: 5000, status: 'Inactive' },
-  ]
+  feeType: any;
+  feeList: any[] = [ ]
 
   constructor(
     private modalService: NgbModal,
-    private classService: ClassService,
-    private globalService: GlobalService
+    private classServive: ClassService,
+    private globalService: GlobalService,
+    private cat_feeService: CatFeeService
 
   ) {
-    this.getclass()
+    this.getclass();
+    this.getfeeList();
   }
 
   ngOnInit(): void {
@@ -43,10 +42,8 @@ export class FeeComponent {
     })
     this.activeModal.componentInstance.user = "Add";
     this.activeModal.result.then((result: any) => {
-      if (result) {
-        // do some work 
-        // this.getclass()
-        this.feeList.push(result);
+      if(result == "Add") {
+        this.getfeeList();
       }
     },
       (reason: any) => { }
@@ -56,21 +53,29 @@ export class FeeComponent {
 
 
   // get class list 
-  getclass() {
-
-    this.classService.classlist().subscribe((res) => {
+  getfeeList() {
+    this.cat_feeService.feeList().subscribe((res) => {
       if (res.success) {
-        this.totalClasses = res.data;
+        this.feeList = res.response;
         console.log("Totals class:-", this.totalClasses);
       }
-
-      console.log(res.data, "Response data class list");
     }, (error) => {
       console.log(error, "Data is not patch ");
-      return null
     })
+  }
 
 
+  getclass() {
+    this.classServive.classlist().subscribe((res) => {
+      if (res.success) {
+        this.totalClasses = res.response;
+        console.log(this.totalClasses, "totals class");
+      }
+
+      console.log(res.data, "response data class list");
+    }, (error) => {
+      console.log(error, "data is not patch ");
+    });
   }
 
   // edit function in class component
@@ -85,8 +90,7 @@ export class FeeComponent {
     this.activeModal.componentInstance.subjectId = this.classId;
     this.activeModal.result.then((result: any) => {
       if (result == "Edit") {
-        this.getclass()
-        //  do some work 
+        this.getfeeList();
       }
     },
       (reason: any) => { }
@@ -135,7 +139,7 @@ export class FeeComponent {
 
   async deletefunction(_id: any) {
 
-    this.classService.deleteByiD(_id).subscribe(res => {
+    this.cat_feeService.feeDelete(_id).subscribe(res => {
       // console.log(res);
       if (res.success) {
         this.getclass()

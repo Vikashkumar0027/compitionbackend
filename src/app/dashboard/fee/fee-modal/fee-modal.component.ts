@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClassService } from '../../../services/class/class.service';
 import { GlobalService } from '../../../services/global/global.service';
+import { CatFeeService } from '../../../services/cat_fee/cat-fee.service';
 
 @Component({
   selector: 'app-fee-modal',
@@ -29,7 +30,7 @@ export class FeeModalComponent {
   constructor(
     private activeModal: NgbActiveModal,
     private fb: FormBuilder,
-    private classService: ClassService,
+    private cat_feeService: CatFeeService,
     private global: GlobalService
   ) {
 
@@ -56,9 +57,9 @@ export class FeeModalComponent {
 
   ngOnInit(): void {
     this.patchDataFunction();
-    this.classService.classlist().subscribe(res => {
-      this.classList = res.data;
-    })
+    // this.classService.classlist().subscribe(res => {
+    //   this.classList = res.data;
+    // })
   }
 
 
@@ -67,8 +68,8 @@ export class FeeModalComponent {
       console.log(this.user);
 
       const patch = {
-        class: this.patchData.class,
-        payment: this.patchData.payment,
+        class: this.patchData.name,
+        fee: this.patchData.payment,
         status: this.patchData.status,
       };
       this.form.patchValue(patch);
@@ -87,9 +88,10 @@ export class FeeModalComponent {
       return;
     }
     this.submitted = false;
+    // { "name": "test23", "fee": "100", "status": "active" }
     let formData = {
-      class: this.form.value.class,
-      payment: this.form.value.payment,
+      name: this.form.value.class,
+      fee: this.form.value.payment,
       status: this.form.value.status
     }
     // this.activeModal.close("Add");
@@ -97,13 +99,12 @@ export class FeeModalComponent {
     this.form.reset();
 
 
-    // this.classService.createClass(formData).subscribe((res) => {
-    // if (res.success) {
-    //   this.global.showToast(res.massage);
-    //   this.activeModal.close("Add")
-    //   this.classList.push(res.data)
-    // }
-    // })
+    this.cat_feeService.feeAdd(formData).subscribe((res) => {
+    if (res.success) {
+      this.global.showToast(res.massage);
+      this.activeModal.close("Add")
+    }
+    })
 
   }
 
@@ -114,14 +115,12 @@ export class FeeModalComponent {
     }
 
     let formData = {
-      class: this.form.value.class,
-      payment: this.form.value.payment,
+      name: this.form.value.class,
+      fee: this.form.value.payment,
       status: this.form.value.status
     }
-
     const _id = this.patchData._id;
-
-    this.classService.editByiD(formData, _id).subscribe((res) => {
+    this.cat_feeService.feeEdit(formData, _id).subscribe((res) => {
       if (res.success) {
         this.global.showToast(res.massage);
         this.activeModal.close('Edit');

@@ -41,7 +41,7 @@
                     <thead class="text-center">
                         <tr>
                             <th scope="col">S.N.</th>
-                            <th scope="col">Class</th>
+                            <th scope="col">Payment Type Name</th>
                             <th scope="col">Payment</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
@@ -51,8 +51,8 @@
                         <tr *ngFor="let list of feeList; let i = index">
 
                             <th scope="row" class="text-center">{{i+1}} </th>
-                            <td class="text-center">{{list?.class}} </td>
-                            <td class="text-center">{{list?.payment}} </td>
+                            <td class="text-center">{{list?.name}} </td>
+                            <td class="text-center">{{list?.fee}} </td>
                             <td class="text-center"> {{list?.status}}</td>
                             <td class="text-center">
                                 <button title="Edit" type="button" class="btn btn-outline-primary btn-sm m-1"
