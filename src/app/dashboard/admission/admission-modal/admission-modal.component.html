@@ -18,24 +18,15 @@
                 </div>
                 <div class="row row-cols-3 g-2  mt-3 ">
 
-                    <div class="col">
-                        <label for="inputEmail4" class="form-label">Admission no (Uniq Number)</label>
-                        <input type="text" class="form-control" id="inputEmail4" formControlName="admissionNumber"
-                            placeholder="Admission Number">
-                        <div id="emailHelp" class="form-text" *ngIf="submitted && f['admissionNumber'].errors"><span
-                                style="color: red;" *ngIf="f['admissionNumber'].errors['required'] ">Please enter
-                                Admission Number
-                            </span></div>
-                    </div>
 
 
 
                     <div class="col">
                         <label for="inputEmail4" class="form-label">Class Name</label>
-                        <select cSelect id="inputEmail4" class="form-control " formControlName='className'>
+                        <select cSelect id="inputEmail4" class="form-control " formControlName='classId'>
                             <option [disabled]="true">Select Class</option>
-                            <option value="11th">11th</option>
-                            <option value="12th">12th</option>
+                            <option *ngFor="let lst of totalClasses" [value]="lst._id">{{lst.className}}</option>
+
                         </select>
                         <div id="emailHelp" class="form-text" *ngIf="submitted && f['className'].errors"><span
                                 style="color: red;" *ngIf="f['className'].errors['required'] ">Please select
@@ -61,10 +52,10 @@
                     <!-- do some work -->
                     <div class="col">
                         <label for="inputEmail4" class="form-label">Roll No</label>
-                        <input type="text" class="form-control" id="inputroll" formControlName="rollNO"
+                        <input type="text" class="form-control" id="inputroll" formControlName="rollNo"
                             placeholder="Student Roll No">
-                        <div id="emailHelp" class="form-text" *ngIf="submitted && f['rollNO'].errors"><span
-                                style="color: red;" *ngIf="f['rollNO'].errors['required'] ">Please Enter
+                        <div id="emailHelp" class="form-text" *ngIf="submitted && f['rollNo'].errors"><span
+                                style="color: red;" *ngIf="f['rollNo'].errors['required'] ">Please Enter
                                 student Roll No
 
                             </span>
@@ -378,8 +369,8 @@
                     <!-- Withdrawal File number -->
                     <div class="col">
                         <label for="inputEmail4" class="form-label">Withdrawal File number</label>
-                        <input type="text" class="form-control" id="inputEmail4" formControlName="withdrawalFileNumber"
-                            placeholder="Withdrawal File number">
+                        <input type="number" class="form-control" id="inputEmail4"
+                            formControlName="withdrawalFileNumber" placeholder="Withdrawal File number">
                         <div *ngIf="submitted && f['withdrawalFileNumber'].errors">
                             <span style="color: red;" *ngIf="f['withdrawalFileNumber'].errors['required'] ">Please
                                 Withdrawal File Number

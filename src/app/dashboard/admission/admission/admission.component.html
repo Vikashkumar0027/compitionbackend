@@ -21,42 +21,43 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <form #searchData=ngForm (ngSubmit)="onSubmit(searchData)">
+            <form #searchData=ngForm (ngSubmit)="studentList(searchData)">
 
                 <div class="row row-cols-5 g-2 align-items-center">
                     <div class="col">
                         <input type="text" class="form-control" ngModel required placeholder="Student Name"
-                            aria-label="Search" name="studentName">
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control" ngModel required placeholder="Roll Number"
-                            aria-label="Search" name="rollNO">
-                    </div>
-
-                    <div class="col">
-                        <input type="text" class="form-control" ngModel required placeholder="Search Admission No"
-                            aria-label="Search" name="searchAdmission">
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control" ngModel required placeholder="Search Student No"
-                            aria-label="Search" name="searchNumber">
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control" ngModel required placeholder="Search Father Name"
-                            aria-label="Search" name="searchFname">
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control" ngModel required placeholder="Section Name"
-                            aria-label="Search" name="sectionName">
+                            aria-label="Search" name="name">
                     </div>
                     <div class="col">
                         <input type="text" class="form-control" ngModel required placeholder="Class Name"
                             aria-label="Search" name="className">
                     </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Roll Number"
+                            aria-label="Search" name="rollNO">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Unique Number"
+                            aria-label="Search" name="uniqueId">
+                    </div>
+
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Search Student No"
+                            aria-label="Search" name="MobileNo">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Search Father Name"
+                            aria-label="Search" name="FatherName">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Section Name"
+                            aria-label="Search" name="section">
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-outline-primary btn-login text-uppercase fw-bold">
+                        <button type="submit" class="btn btn-outline-primary btn-login text-capitalize">
                             Search Now</button>
                     </div>
 
@@ -71,34 +72,31 @@
                 <div class="container border-bottom border-1"
                     *ngFor="let AdmissionData of AdmissionData; let i = index">
                     <div class="row my-2">
-                        <div class="col-md-3 border-1 ">
-                            <figure class="figure">
-                                <img [src]="AdmissionData?.studentimg" class="figure-img w-100 img-fluid rounded"
-                                    alt="...">
+                        <div class="col-md-3 border-1 my-auto">
+                            <figure class="figure studentImgBox m-0">
+                                <img [src]="AdmissionData?.studentImage" class="figure-img  img-fluid rounded"
+                                    alt="student image">
                             </figure>
 
                             <ul class="p-0">
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Student Name :-</span>
                                     <span>{{AdmissionData?.studentName}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
-                                    <span>AdmisNo :-</span>
-                                    <span>{{AdmissionData?.admissionNumber}}</span>
-                                </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>StudentMobile :-</span>
                                     <span>{{AdmissionData?.studentMobile}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Gender :-</span>
                                     <span>{{AdmissionData?.gender}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>DOB :-</span>
                                     <span>{{AdmissionData?.dob}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>section Name :-</span>
                                     <span>{{AdmissionData?.section}}</span>
                                 </li>
@@ -109,43 +107,43 @@
                         </div>
                         <div class="col-md-3 border-1 ">
                             <ul class="p-0 ">
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Class Name :-</span>
-                                    <span>{{AdmissionData?.className}}</span>
+                                    <span>{{AdmissionData.classId?.className}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Admission Date :-</span>
                                     <span>{{AdmissionData?.admissionDate}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Admission Fee :-</span>
                                     <span>{{AdmissionData?.admissionFee}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Roll No :-</span>
-                                    <span>{{AdmissionData?.rollNO}}</span>
+                                    <span>{{AdmissionData?.rollNo}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Category :-</span>
                                     <span>{{AdmissionData?.category}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Address :-</span>
                                     <span>{{AdmissionData?.address}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>State :-</span>
                                     <span>{{AdmissionData?.state}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>District :-</span>
                                     <span>{{AdmissionData?.district}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Pin Code :-</span>
                                     <span>{{AdmissionData?.pinCode}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Transport:-</span>
                                     <span>{{AdmissionData?.transport}}</span>
                                 </li>
@@ -156,43 +154,43 @@
                         </div>
                         <div class="col-md-4 border-1 ">
                             <ul class="p-0 ">
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Parent Number :-</span>
                                     <span>{{AdmissionData?.parentNumber}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Father Name :-</span>
                                     <span>{{AdmissionData?.fatherName}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Mother Name :-</span>
                                     <span>{{AdmissionData?.motherName}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>localGardianName :-</span>
                                     <span>{{AdmissionData?.localGardianName}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Parent Address :-</span>
                                     <span>{{AdmissionData?.parentAddress}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Relation Students :-</span>
                                     <span>{{AdmissionData?.relationStudents}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Father Occupation :-</span>
                                     <span>{{AdmissionData?.fatherOccupation}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>WithdrawalNo:-</span>
                                     <span>{{AdmissionData?.withdrawalFileNumber}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Scholar Registration No:-</span>
                                     <span>{{AdmissionData?.scholarRegistrationNo}}</span>
                                 </li>
-                                <li class="d-flex justify-content-between px-2  list-unstyled">
+                                <li class="d-flex justify-content-between   list-unstyled">
                                     <span>Last School Name :-</span>
                                     <span>{{AdmissionData?.lastSchoolName}}</span>
                                 </li>
@@ -202,7 +200,7 @@
 
                         </div>
                         <div class="col-md-2  d-flex justify-content-center flex-column  align-items-center   ">
-                            <button class="btn btn-outline-success" (click)="edit(AdmissionData)"><i
+                            <button class="btn btn-outline-success" (click)="edit(AdmissionData, AdmissionData._id)"><i
                                     _ngcontent-ng-c2586479129="" class="fa-solid fa-pen-to-square"
                                     aria-hidden="true"></i></button> <br>
                             <button class="btn mt-2 btn-outline-danger" (click)="deletes(AdmissionData)"><i
