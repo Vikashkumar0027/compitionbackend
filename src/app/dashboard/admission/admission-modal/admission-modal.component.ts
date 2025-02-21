@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalService } from '../../../services/global/global.service';
+import { AdmissionService } from '../../../services/admission/admission.service';
+import { ClassService } from '../../../services/class/class.service';
 
 
 @Component({
@@ -15,17 +17,22 @@ export class AdmissionModalComponent implements OnInit {
 
   @Input() public user: any;
   @Input() public patchData: any;
+  @Input() public admissionId: any;
+
+  @Input() public totalClasses: any;
 
   constructor(private activeModal: NgbActiveModal,
     private fb: FormBuilder,
-    private global: GlobalService
+    private global: GlobalService,
+    private admissionService: AdmissionService,
+    private classServive: ClassService
   ) {
 
     this.form = this.fb.group({
-      admissionNumber: ['', Validators.required],
-      className: ['', Validators.required],
+
+      classId: ['', Validators.required],
       admissionFee: ['', Validators.required],
-      rollNO: ['', Validators.required],
+      rollNo: ['', Validators.required],
       section: ['', Validators.required],
       studentName: ['', Validators.required],
       dob: ['', Validators.required],
@@ -50,17 +57,21 @@ export class AdmissionModalComponent implements OnInit {
       lastSchoolName: ['', Validators.required],
 
     });
+
   }
 
 
   ngOnInit(): void {
     this.patchDataFunction()
+
+    if (this.user == 'Edit') {
+      this.getclass();
+    }
   }
   get f() {
     console.log(this.form.controls, "form");
     return this.form.controls
   }
-
 
   modalClose() {
     this.activeModal.close();
@@ -70,6 +81,7 @@ export class AdmissionModalComponent implements OnInit {
     this.submitted = true;
     this.user == "Add" ? this.addData() : this.editData();
     console.log(this.user);
+
   }
 
   addData() {
@@ -78,26 +90,29 @@ export class AdmissionModalComponent implements OnInit {
       return;
     }
     this.submitted = false;
-
-
     let formData: any = new FormData();
 
     Object.keys(this.form.value).forEach((key) => {
       if (this.form.value[key]) {
         formData.append(key, this.form.value[key]);
-        formData.append("studentImage", this.file);
       }
-    });
+    }
 
+    );
+    formData.append("studentImage", this.file);
 
 
     if (formData) {
-      //do some work
-      this.global.showToast("data is get successfully")
-      this.activeModal.close('Edit');
+      this.admissionService.AdmissionPost(formData).subscribe((res) => {
+        if (res.success) {
+          console.log(formData.value, "response value");
+          this.global.showToast(res.response)
+          this.activeModal.close('Add');
+        }
+      }, error => {
+        console.log(error);
+      })
     }
-
-
   }
 
   private file: any;
@@ -118,6 +133,7 @@ export class AdmissionModalComponent implements OnInit {
 
   patchDataFunction() {
     if (this.user == 'Edit') {
+      this.getclass();
       if (this.patchData) {
         Object.keys(this.patchData).forEach((key) => {
           if (this.form.controls[key]) {
@@ -125,18 +141,95 @@ export class AdmissionModalComponent implements OnInit {
           }
         });
       }
+
     }
   }
 
 
+
+  // editData() {
+  //   if (this.form.invalid) {
+  //     return;
+  //   }
+
+  //   let formData: any = new FormData();
+
+  //   Object.keys(this.form.value).forEach((key) => {
+  //     if (this.form.value[key]) {
+  //       formData.append(key, this.form.value[key]);
+  //     }
+  //   }
+  //   );
+
+  //   (this.file == undefined) ? formData.append('studentImage', this.patchData.studentImage) : formData.append('studentImage', this.file);
+
+
+
+  //   this.admissionService.AdmissionUpdate(this.admissionId, formData).subscribe((res) => {
+  //     if (res.success) {
+  //       this.global.showToast(res.response);
+  //       this.activeModal.close('Edit');
+  //     }
+
+  //   }, error => {
+  //     console.log(error);
+  //   })
+
+
+  // }
 
   editData() {
     if (this.form.invalid) {
       return;
     }
 
-    this.global.showToast("Successfully patch data ");
-    this.activeModal.close('Edit');
+    let formData: any = new FormData();
+
+    Object.keys(this.form.value).forEach((key) => {
+      let value = this.form.value[key];
+
+      // Check if classId is an object, then send only its _id
+      if (key === "classId" && typeof value === "object" && value?._id) {
+        formData.append(key, value._id);
+      } else if (value) {
+        formData.append(key, value);
+      }
+    });
+
+    (this.file == undefined)
+      ? formData.append('studentImage', this.patchData.studentImage)
+      : formData.append('studentImage', this.file);
+
+    this.admissionService.AdmissionUpdate(this.admissionId, formData).subscribe(
+      (res) => {
+        if (res.success) {
+          this.global.showToast(res.response);
+          this.activeModal.close('Edit');
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+
+
+  getclass() {
+
+    this.classServive.classlist().subscribe((res) => {
+      if (res.success) {
+        this.totalClasses = res.response;
+        console.log(this.totalClasses, "totals class");
+      }
+
+      console.log(res.data, "response data class list");
+    }, (error) => {
+      console.log(error, "data is not patch ");
+      return null
+    })
+
 
   }
+
 }

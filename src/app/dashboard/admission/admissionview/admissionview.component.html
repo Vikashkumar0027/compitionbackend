@@ -11,7 +11,7 @@
             <div class="row my-2">
                 <div class="col-md-4 border-1 ">
                     <figure class="figure">
-                        <img [src]="viewData?.studentimg" class="figure-img w-100 img-fluid rounded" alt="...">
+                        <img [src]="viewData?.studentImage" class="figure-img w-100 img-fluid rounded" alt="...">
                     </figure>
 
                     <ul class="p-0">
@@ -19,10 +19,7 @@
                             <span>Student Name :-</span>
                             <span>{{viewData?.studentName}}</span>
                         </li>
-                        <li class="d-flex justify-content-between px-2  list-unstyled">
-                            <span>AdmisNo :-</span>
-                            <span>{{viewData?.admissionNumber}}</span>
-                        </li>
+
                         <li class="d-flex justify-content-between px-2  list-unstyled">
                             <span>StudentMobile :-</span>
                             <span>{{viewData?.studentMobile}}</span>
@@ -48,7 +45,7 @@
                     <ul class="p-0 ">
                         <li class="d-flex justify-content-between px-2  list-unstyled">
                             <span>Class Name :-</span>
-                            <span>{{viewData?.className}}</span>
+                            <span>{{viewData.classId?.className}}</span>
                         </li>
                         <li class="d-flex justify-content-between px-2  list-unstyled">
                             <span>Admission Date :-</span>
@@ -60,7 +57,7 @@
                         </li>
                         <li class="d-flex justify-content-between px-2  list-unstyled">
                             <span>Roll No :-</span>
-                            <span>{{viewData?.rollNO}}</span>
+                            <span>{{viewData?.rollNo}}</span>
                         </li>
                         <li class="d-flex justify-content-between px-2  list-unstyled">
                             <span>Category :-</span>

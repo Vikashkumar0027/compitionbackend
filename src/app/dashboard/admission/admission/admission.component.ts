@@ -3,9 +3,11 @@ import { ConfirmModalComponent } from '../../../common-component/confirm-modal/c
 import { GlobalService } from '../../../services/global/global.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AdmissionModalComponent } from '../admission-modal/admission-modal.component';
-import { Admission } from "../admissiondata";
+
 import { NgForm } from '@angular/forms';
 import { AdmissionviewComponent } from '../admissionview/admissionview.component';
+import { AdmissionService } from '../../../services/admission/admission.service';
+import { ClassService } from '../../../services/class/class.service';
 @Component({
   selector: 'app-admission',
   templateUrl: './admission.component.html',
@@ -17,38 +19,56 @@ export class AdmissionComponent {
   AdmissionData: any[] = [];  // store all class list
   submitted = false; //search data validate
   viewDataId: any // admission view data id
-
+  formData: any;
+  totalClasses: any[] = [];
   private activeModal: any;
 
 
   constructor(
     private modalService: NgbModal,
-    private global: GlobalService
+    private global: GlobalService,
+    private admissionService: AdmissionService,
+    private classServive: ClassService
 
   ) {
-
-
+    const formData = { "className": "", "name": "", "rollNo": '', "uniqueId": "", "FatherName": "", "MobileNo": "", "section": "" };
+    this.studentList(formData);
+    this.getclass()
   }
 
   ngOnInit(): void {
 
-    this.AdmissionData = Admission
+  }
+
+  // class api list
+  getclass() {
+    this.classServive.classlist().subscribe((res) => {
+      if (res.success) {
+        this.totalClasses = res.response;
+        console.log(this.totalClasses, "totals class");
+      }
+
+      console.log(res.data, "response data class list");
+    }, (error) => {
+      console.log(error, "data is not patch ");
+      return null
+    })
+
 
   }
 
 
-  // search section logic 
-  onSubmit(searchData: any) {
-
-    if (searchData.value.studentName || searchData.value.searchAdmission || searchData.value.searchNumber || searchData.value.searchFname || searchData.value.searchMname) {
-
-      console.log("welcome ");
-    } else {
-
-      console.log("data is empty");
-    }
+  // search student list
+  studentList(formData: any) {
+    this.admissionService.AdmissionList(formData.value).subscribe(res => {
+      if (res.success) {
+        this.AdmissionData = res.response;
+      }
+      console.log(res, "admission data")
+    }, err => {
+      console.log(err)
+    })
   }
-
 
 
   modalData() {
@@ -58,9 +78,11 @@ export class AdmissionComponent {
       keyboard: false
     })
     this.activeModal.componentInstance.user = "Add";
+    this.activeModal.componentInstance.totalClasses = this.totalClasses;
     this.activeModal.result.then((result: any) => {
       if (result == "Add") {
         // do some work 
+        this.studentList(this.formData)
 
       }
     },
@@ -70,7 +92,7 @@ export class AdmissionComponent {
   }
 
   // edit function in class component
-  edit(list: any) {
+  edit(list: any, admissionId: any) {
     this.activeModal = this.modalService.open(AdmissionModalComponent, {
       size: "lg",
       backdrop: "static",
@@ -78,10 +100,10 @@ export class AdmissionComponent {
     });
     this.activeModal.componentInstance.user = "Edit";
     this.activeModal.componentInstance.patchData = list;
-    this.activeModal.componentInstance.subjectId = this.classId;
+    this.activeModal.componentInstance.admissionId = admissionId;
     this.activeModal.result.then((result: any) => {
       if (result == "Edit") {
-        //  do some work 
+        this.studentList(this.formData)
       }
     },
       (reason: any) => { }
@@ -108,12 +130,40 @@ export class AdmissionComponent {
       ok: 'Delete'
     }
 
+
     activeModal.componentInstance.modalContent = contentObj;
     activeModal.componentInstance.resetpassword = false;
+    activeModal.result.then(
+      (result) => {
 
+
+        if (result === 'Ok') {
+          this.deletefunction(param._id);
+          this.studentList(this.formData)
+        }
+      },
+      (reason) => { }
+    );
 
   }
 
+
+
+  async deletefunction(_id: any) {
+
+    this.admissionService.AdmissionDelete(_id).subscribe(res => {
+      // console.log(res);
+      if (res.success) {
+        this.global.showToast(res.response);
+        this.getclass()
+      }
+    },
+      (err) => {
+        this.global.showToastErorr('something went wrong')
+        console.log(err);
+      })
+
+  }
 
 
 

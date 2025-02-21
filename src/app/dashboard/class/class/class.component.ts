@@ -61,7 +61,6 @@ export class ClassComponent implements OnInit {
       console.log(res.data, "response data class list");
     }, (error) => {
       console.log(error, "data is not patch ");
-      return null
     })
 
 
