@@ -28,7 +28,7 @@ export class ClassModalComponent implements OnInit {
 
     this.form = this.fb.group({
       className: ['', Validators.required],
-      status: ["", Validators.required]
+      status: ["Active", Validators.required]
     })
 
   }
@@ -83,10 +83,12 @@ export class ClassModalComponent implements OnInit {
 
     this.classService.createClass(formData).subscribe((res) => {
       if (res.success) {
-        this.global.showToast(res.massage);
+        this.global.showToast(res.response);
         this.activeModal.close("Add")
 
       }
+    },err=>{
+      console.log(err);
     })
 
   }
@@ -105,7 +107,7 @@ export class ClassModalComponent implements OnInit {
     const _id = this.patchData._id;
     this.classService.editByiD(formData, _id).subscribe((res) => {
       if(res.success) {
-        this.global.showToast(res.massage);
+        this.global.showToast(res.response);
         this.activeModal.close('Edit');
       }
     }, (error) => {
