@@ -1,1 +1,140 @@
-<p>fee-deposit works!</p>
+<!-- <p>fee-deposit works!</p> -->
+
+<div class="container-fluid">
+    <!-- Breadcrumb for Navigation -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><span class="text-secondary">Fee-Deposit</span></li>
+        </ol>
+    </nav>
+
+    <div class="row align-items-center">
+        <div class="col-md-4">
+            <h1 class="h3 mb-lg-3 text-gray-800">fee-deposit</h1>
+        </div>
+    </div>
+
+    <!-- Card Section -->
+    <!-- <h1 class="h3 mb-3 text-gray-800">Company</h1> -->
+
+    <div class="card shadow mb-4">
+        <div class="card-header p-4">
+            <form #searchData=ngForm (ngSubmit)="studentList(searchData)">
+
+                <div class="row row-cols-5 g-2 align-items-center">
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Student Name"
+                            aria-label="Search" name="name">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Class Name"
+                            aria-label="Search" name="className">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Roll Number"
+                            aria-label="Search" name="rollNO">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Unique Number"
+                            aria-label="Search" name="uniqueId">
+                    </div>
+
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Search Student No"
+                            aria-label="Search" name="MobileNo">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Search Father Name"
+                            aria-label="Search" name="FatherName">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Section Name"
+                            aria-label="Search" name="section">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-outline-primary btn-login text-capitalize">
+                            Search Now</button>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+
+        <!-- Table Section -->
+        <div class="card-body p-4">
+            <div class="table-responsive">
+                <div class="container border-bottom border-1"
+                    *ngFor="let AdmissionData of AdmissionData; let i = index">
+                    <div class="row my-2">
+                        <div class="col-md-3 border-1 my-auto">
+                            <figure class="figure studentImgBox m-0">
+                                <img [src]="AdmissionData?.studentImage" class="figure-img  img-fluid rounded"
+                                    alt="student image">
+                            </figure>
+
+                        </div>
+                        <div class="col-md-4 border-1 me-4">
+                            <ul class="py-2">
+                                <li class="d-flex justify-content-between   list-unstyled">
+                                    <span class="fw-semibold">Student Name :-</span>
+                                    <span class="fw-semibold">{{AdmissionData?.studentName}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between   list-unstyled">
+                                    <span>Roll No :-</span>
+                                    <span>{{AdmissionData?.rollNo}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between   list-unstyled">
+                                    <span>Section Name :-</span>
+                                    <span>{{AdmissionData?.section}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between   list-unstyled">
+                                    <span>DOB :-</span>
+                                    <span>{{AdmissionData?.dob}}</span>
+                                </li>
+                              
+                            </ul>
+
+                        </div>
+                        <div class="col-md-4 border-1 ">
+                            <ul class="p-0 py-2">
+                              
+                                <li class="d-flex justify-content-between   list-unstyled">
+                                    <span>Father Name :-</span>
+                                    <span>{{AdmissionData?.fatherName}}</span>
+                                </li>
+                                    
+                                <li class="d-flex justify-content-between   list-unstyled">
+                                    <span>Mother Name :-</span>
+                                    <span>{{AdmissionData?.motherName}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between   list-unstyled">
+                                    <span>Father's Number :-</span>
+                                    <span>{{AdmissionData?.parentNumber}}</span>
+                                </li>
+                            
+                            </ul>
+
+                        </div>
+                      
+                    </div>
+                </div>
+
+
+                <ng-template #noDataFound>
+                    <div>
+                        No data found!.
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Spinner -->
+<!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)" template="<img src='https://i.gifer.com/ZZ5H.gif' />">
+  </ngx-spinner> -->
