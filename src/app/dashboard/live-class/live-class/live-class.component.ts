@@ -7,6 +7,7 @@ import { LiveclassService } from '../../../services/liveclass/liveclass.service'
 import { NgxSpinnerService } from 'ngx-spinner';
 import { LiveclassModalComponent } from '../liveclass-modal/liveclass-modal.component';
 import { ConfirmModalComponent } from '../../../common-component/confirm-modal/confirm-modal.component';
+import { CourseService } from '../../../services/course/course.service';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class LiveClassComponent implements OnInit {
   data:any[]=[];
     searchCompany:any;
     private activeModal:any;
+
+    courseList:any[]=[];
     
     // @ViewChild(LoginComponent) loginModaComponent: LoginComponent | undefined;
       constructor(
@@ -28,13 +31,38 @@ export class LiveClassComponent implements OnInit {
         private global:GlobalService,
         private liveClassService:LiveclassService,
         private spinner: NgxSpinnerService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+         private courseService:CourseService,
         )
       {}
     
       ngOnInit(): void {
         this.getList();
+        this.getCourese();
       }
+
+      getCourese(){
+        try {
+          this.spinner.show();
+          this.courseService.courseList().subscribe(res=>{
+          console.log(res);
+          if(res.success){
+            const data= res.response.filter((x:any)=>x.type == 'paid');
+            console.log(data);
+            this.courseList=data;
+          }
+          const allData = {_id:'all',title:'All'};
+          this.courseList.push(allData);
+          console.log(this.courseList);
+          this.spinner.hide();
+        },err=>{
+          this.spinner.hide();
+          this.commonService.tokenOutOfValid(err)
+        })
+        } catch (error) {
+          this.spinner.hide();
+        }
+        }
     
     
       getList(){
@@ -62,6 +90,7 @@ export class LiveClassComponent implements OnInit {
           keyboard: false,
         });
         this.activeModal.componentInstance.user = 'Add';
+        this.activeModal.componentInstance.courseList = this.courseList;
     
         //data transfer to child NgbModalRef
         this.activeModal.result.then(
@@ -83,6 +112,7 @@ export class LiveClassComponent implements OnInit {
         });
         this.activeModal.componentInstance.user = 'Edit';
         this.activeModal.componentInstance.patchData = data;
+        this.activeModal.componentInstance.courseList = this.courseList;
     
         //data transfer to child NgbModalRef
         this.activeModal.result.then(

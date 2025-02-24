@@ -11,58 +11,204 @@
 <!-- (ngSubmit)="onSubmit()" -->
  <div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
+    <!-- <div class="mb-3">
         <label for="exampleFormControlname" class="form-label">Title: </label>
         <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="title">
       </div>
       <div *ngIf="submitted && f['title'].errors">
         <span style="color: red;" *ngIf="f['title'].errors['required'] ">Please enter Post Name</span>
     </div>
+
     <div class="mb-3">
         <label for="exampleFormControldescription" class="form-label">Description: </label>
         <textarea type="text" class="form-control" id="exampleFormControldescription" placeholder="" formControlName="description"></textarea>
       </div>
       <div *ngIf="submitted && f['description'].errors">
         <span style="color: red;" *ngIf="f['description'].errors['required'] ">Please enter description</span>
+     </div> -->
+
+     <div class="row">
+      <!-- Title Field -->
+      <div class="col-md-6">
+          <div class="mb-3">
+              <label for="exampleFormControlname" class="form-label">Title: </label>
+              <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="title">
+          </div>
+          <div *ngIf="submitted && f['title'].errors">
+              <span style="color: red;" *ngIf="f['title'].errors['required']">Please enter Post Name</span>
+          </div>
+      </div>
+  
+      <!-- Description Field -->
+      <div class="col-md-6">
+          <div class="mb-3">
+              <label for="exampleFormControldescription" class="form-label">Description: </label>
+              <textarea type="text" class="form-control" id="exampleFormControldescription" placeholder="" formControlName="description"></textarea>
+          </div>
+          <div *ngIf="submitted && f['description'].errors">
+              <span style="color: red;" *ngIf="f['description'].errors['required']">Please enter description</span>
+          </div>
+      </div>
+  </div>
+  
+
+
+  <div class="row">
+    <!-- Title Field -->
+    <div class="col-md-6">
+      <div class="mb-3">
+        <label for="exampleFormControlmeetingTime" class="form-label">Meeting Start Time: </label>
+        <input type="datetime-local" class="form-control" id="exampleFormControlmeetingTime" placeholder="" formControlName="meetingTime">
+      </div>
+      <div *ngIf="submitted && f['meetingTime'].errors">
+        <span style="color: red;" *ngIf="f['meetingTime'].errors['required'] ">Please enter Meeting Timing</span>
+     </div>
     </div>
 
-    <div class="mb-3">
+
+    <div class="col-md-6">
+      <div class="mb-3">
+        <label cLabel for="exampleFormControlmeetingType">Meeting Type</label><br>
+        <select cSelect id="exampleFormControlmeetingType" class="form-control" formControlName='meetingType' (change)="onSelectionChange($event)">
+          <!-- <option [disabled]="true">Select Type</option> -->
+          <option value="youtube">Youtube Live </option>
+          <option value="zoomMeeting">Zoom Meeting</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && f['meetingType'].errors">
+        <span style="color: red;" *ngIf="f['meetingType'].errors['required'] ">Please select Meeting Type</span>
+    </div>
+    </div>
+  
+  
+  </div>
+   
+  <div class="row">
+   
+    <div class="col-md-6" *ngIf="!isYoutube">
+      <div class="mb-3">
         <label for="exampleFormControlvdid" class="form-label"> Youtube Video Id: </label>
         <input type="text" class="form-control" id="exampleFormControlvdid" placeholder="" formControlName="videoId">
       </div>
       <div *ngIf="submitted && f['videoId'].errors">
         <span style="color: red;" *ngIf="f['videoId'].errors['required'] ">Please enter Youtube Video Id</span>
     </div>
-    <div class="mb-3">
-        <label for="exampleFormControlorder" class="form-label"> Order Number: </label>
-        <input type="number" class="form-control" id="exampleFormControlorder" placeholder="" formControlName="order">
       </div>
-      <div *ngIf="submitted && f['order'].errors">
-        <span style="color: red;" *ngIf="f['order'].errors['required'] ">Please enter order number</span>
+    <div class="col-md-6" *ngIf="isYoutube">
+      <div class="mb-3"  >
+        <label for="exampleFormControlMeetingId" class="form-label"> Meeting Id: </label>
+        <input type="text" class="form-control" id="exampleFormControlMeetingId" placeholder="" formControlName="MeetingId">
+      </div>
+      <div *ngIf="submitted && f['MeetingId'].errors">
+        <span style="color: red;" *ngIf="f['MeetingId'].errors['required'] ">Please enter Zoom Meeting Id</span>
     </div>
+      </div>
+    <div class="col-md-6"  *ngIf="isYoutube">
+      <div class="mb-3" >
+        <label for="exampleFormControlvdid" class="form-label"> Passcode: </label>
+        <input type="text" class="form-control" id="exampleFormControlvdid" placeholder="" formControlName="passCode">
+      </div>
+      <div *ngIf="submitted && f['passCode'].errors">
+        <span style="color: red;" *ngIf="f['passCode'].errors['required'] ">Please enter Zoom PassCode</span>
+    </div>
+      </div>
+      </div>
+      <div class="mb-3">
+        <label>Live Class For:</label><br>
+    
+        <div class="d-flex flex-wrap gap-3">      
+            <div *ngFor="let list of courseList; let i = index">
+          <!-- <input 
+            type="checkbox" 
+            [value]="list?._id" 
+            [checked]="form.value?.courses[i]"
+            (change)="onCheckboxChange($event)"
+            id="{{list._id}}"
+          /> -->
+          <!-- <input 
+          type="checkbox" 
+          [value]="list._id" 
+          [checked]="form.value?.courses.includes(list._id)"
+          [disabled]="form.value?.courses.includes('all') && list._id !== 'all'"
+          (change)="onCheckboxChange($event, list._id)"
+          id="{{list._id}}"
+        /> -->
+
+        <!-- "selectedCourses.includes(list._id)"  -->
+        <input 
+        type="checkbox" 
+        [value]="list._id" 
+        [checked]="form.value.courses.includes(list._id)" 
+        (change)="onCheckboxChange($event)"
+      />
+      <!-- id="{{list._id}}" -->
+          {{ list.title }}
+        </div>
+      </div>
+      <div *ngIf="submitted && f['courses'].errors">
+        <span style="color: red;" *ngIf="f['courses'].errors['required'] ">Please check courses</span>
+    </div>
+      </div>
+
+      <div class="row">
+   
+        <div class="col-md-4">
+          <div class="mb-3">
+            <label for="exampleFormControlorder" class="form-label"> Order Number: </label>
+            <input type="number" class="form-control" id="exampleFormControlorder" placeholder="" formControlName="order">
+          </div>
+          <div *ngIf="submitted && f['order'].errors">
+            <span style="color: red;" *ngIf="f['order'].errors['required'] ">Please enter order number</span>
+        </div>
+          </div>
+        <!-- <div class="col-md-6"> -->
+          <!-- (change)="onSelectionChange($event)" -->
+          <!-- <div class="mb-3">
+            <label for="class">Live Class For </label><br>
+            <select id="class" class="form-control" formControlName='class' >
+                <option [disabled]="true" value="">All</option>
+                <option *ngFor="let list of courseList" [value]="list._id">{{list.title}}</option>
+            </select>
+            <div *ngIf="submitted && f['class'].errors">
+                <small style="color: red;" *ngIf="f['class'].errors['required'] ">Please select class</small>
+            </div>
+        </div> -->
+          <!-- </div> -->
+
+          <div class="col-md-4">
+            <div class="mb-3">
+              <label for="images" class="form-label">Thumbnail </label>
+              <input type="file" class="form-control" id="images" rows="3" formControlName="thumbnail" (change)="onFileChange($event)" accept="image/*">
+            </div>
+            <div *ngIf="submitted && f['thumbnail'].errors">
+              <span style="color: red;" *ngIf="f['thumbnail'].errors['required'] ">Please uploads thumbnail </span>
+          </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="mb-3">
+              <label cLabel for="exampleFormControlStatus">Status</label><br>
+              <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>
+                <option [disabled]="true">Select Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+            <div *ngIf="submitted && f['status'].errors">
+              <span style="color: red;" *ngIf="f['status'].errors['required'] ">Please select Status</span>
+          </div>
+          </div>
+
+          </div>
+  
+   
     
 
     <!-- accept="image/*" -->
-    <div class="mb-3">
-      <label for="images" class="form-label">Thumbnail </label>
-      <input type="file" class="form-control" id="images" rows="3" formControlName="thumbnail" (change)="onFileChange($event)" accept="image/*">
-    </div>
-    <div *ngIf="submitted && f['thumbnail'].errors">
-      <span style="color: red;" *ngIf="f['thumbnail'].errors['required'] ">Please uploads thumbnail </span>
-  </div>
+
   
 
-    <div class="mb-3">
-        <label cLabel for="exampleFormControlStatus">Status</label><br>
-        <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>
-          <option [disabled]="true">Select Status</option>
-          <option value="active">Active</option>
-          <option value="inactive">Inactive</option>
-        </select>
-      </div>
-      <div *ngIf="submitted && f['status'].errors">
-        <span style="color: red;" *ngIf="f['status'].errors['required'] ">Please select Status</span>
-    </div>
+   
       <!-- <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
         Save</button> -->
 <div class="modal-footer">

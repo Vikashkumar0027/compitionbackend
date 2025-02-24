@@ -35,7 +35,7 @@
         <th scope="col">#</th>
         <th scope="col">live title</th>
         <th scope="col">Thumbnail</th>
-        <th scope="col">Description</th>
+        <th scope="col">Detail</th>
         <th scope="col">Status</th>
         <th scope="col">Action</th>
               </tr>
@@ -44,11 +44,41 @@
         <tr *ngFor="let list of data let i = index; ">
           <th scope="row">{{i+1}}</th>
           <td>{{list?.title | titlecase }} </td>
-         
           <td>
             <img [src]="list?.thumbnail" width="150px" /><br>
           </td>
-          <td>{{list?.description}} </td>
+          <td>
+
+            <ul class="p-0">
+              <li class="d-flex justify-content-between   list-unstyled">
+                  <span>Meeting Timing :-</span>
+                  <span>{{list?.meetingTime | date: 'dd/MM/yyyy hh:mm a'}}</span>
+              </li>
+              <li class="d-flex justify-content-between   list-unstyled">
+                  <span>Description :-</span>
+                  <span>{{list?.description }}</span>
+              </li>
+              <li class="d-flex justify-content-between   list-unstyled">
+                  <span>Meeting Type :-</span>
+                  <span>{{list?.mettingType}}</span>
+              </li>
+              <li class="d-flex justify-content-between list-unstyled" *ngIf="list?.mettingType== 'youtube'">
+                  <span>Meeting Video Id :-</span>
+                  <span>{{list?.videoId}}</span>
+              </li>
+              <li class="d-flex justify-content-between list-unstyled"  *ngIf="list?.mettingType != 'youtube'">
+                  <span>Meeting Zoom Id :-</span>
+                  <span>{{list?.meetingId}}</span>
+              </li>
+              <li class="d-flex justify-content-between list-unstyled" *ngIf="list?.mettingType != 'youtube'">
+                  <span>Meeting Zoom Passcode :-</span>
+                  <span>{{list?.passCode}}</span>
+              </li>
+
+              </ul>
+
+          
+          </td>
           <td>{{list?.status}} </td>
    
          
