@@ -16,9 +16,9 @@ export class FeeModalComponent {
   isCustom: boolean = false;
 
   @Input() classList: any[] = [];
-  @Input() public user: any // get data of class component
-  @Input() public patchData: any // get data of class component
-  // @Input() public classId: any // get data of class component
+  @Input() public user: any // get data of fee component
+  @Input() public patchData: any // get data of fee component
+
 
   constructor(
     private activeModal: NgbActiveModal,
@@ -60,12 +60,12 @@ export class FeeModalComponent {
   patchDataFunction() {
     if (this.user == 'Edit') {
 
-      const classFilter = this.classList.filter(x=>x.className == this.patchData.name);
+      const classFilter = this.classList.filter(x => x.className == this.patchData.name);
       console.log(classFilter);
-      (classFilter.length) ? this.isCustom=false : this.isCustom = true;
+      (classFilter.length) ? this.isCustom = false : this.isCustom = true;
       // console.log(this.user);
       const patch = {
-        class: this.isCustom ? 'custom':this.patchData.name,
+        class: this.isCustom ? 'custom' : this.patchData.name,
         custom: this.patchData.name,
         payment: this.patchData.fee,
         status: this.patchData.status,
@@ -89,17 +89,17 @@ export class FeeModalComponent {
     console.log(this.form.value)
     // { "name": "test23", "fee": "100", "status": "active" }
     let formData = {
-      name:this.isCustom?this.form.value.custom : this.form.value.class,
+      name: this.isCustom ? this.form.value.custom : this.form.value.class,
       fee: this.form.value.payment,
       status: this.form.value.status
     }
 
     this.cat_feeService.feeAdd(formData).subscribe((res) => {
-    if (res.success) {
-      this.global.showToast(res.response);
-      this.activeModal.close("Add");
-    }
-    },err => {
+      if (res.success) {
+        this.global.showToast(res.response);
+        this.activeModal.close("Add");
+      }
+    }, err => {
       console.log(err);
     })
 
@@ -112,7 +112,7 @@ export class FeeModalComponent {
     }
 
     let formData = {
-      name: this.form.value.class,
+      name: this.isCustom ? this.form.value.custom : this.form.value.class,
       fee: this.form.value.payment,
       status: this.form.value.status
     }
@@ -129,33 +129,23 @@ export class FeeModalComponent {
 
   }
 
-  // selectedOption: string = '';
-  // customValue: string = '';
+
 
   onSelectionChange(event: any) {
     console.log(event.target.value)
-if(event.target.value == 'custom'){
-  this.isCustom=true;
-  const customControl:any = this.form.get('custom');
-  customControl.setValidators([Validators.required]);  
-  customControl.updateValueAndValidity();
-}else{
-  const customControl:any = this.form.get('custom');
-  customControl.setValidators([]);  
-  customControl.updateValueAndValidity();
-  this.isCustom=false;
+    if (event.target.value == 'custom') {
+      this.isCustom = true;
+      const customControl: any = this.form.get('custom');
+      customControl.setValidators([Validators.required]);
+      customControl.updateValueAndValidity();
+    } else {
+      const customControl: any = this.form.get('custom');
+      customControl.setValidators([]);
+      customControl.updateValueAndValidity();
+      this.isCustom = false;
 
-}
+    }
 
-  }
-
-  addCustomOption() {
-    // if (this.customValue.trim()) {
-    //   this.classList.push(this.customValue);
-    //   this.selectedOption = this.customValue;
-    //   this.isCustom = false;
-    //   this.customValue = '';
-    // }
   }
 
 

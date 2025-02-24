@@ -148,4 +148,12 @@ export class FeeComponent {
       })
   }
 
+  filteredFee:any;
+  search() {
+    // this.filteredFee = this.employeeList.filter((element) => {
+    //   return element.name.toLowerCase() == this.searchText.toLowerCase();
+    // });
+  }
+
+
 }
