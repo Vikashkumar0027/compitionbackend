@@ -106,7 +106,7 @@ export class AdmissionModalComponent implements OnInit {
       this.admissionService.AdmissionPost(formData).subscribe((res) => {
         if (res.success) {
           console.log(formData.value, "response value");
-          this.global.showToast(res.response)
+          this.global.showToast(res.response);
           this.activeModal.close('Add');
         }
       }, error => {

@@ -8,7 +8,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <div class="container">
+        <div class="container px-4">
 
 
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -16,7 +16,7 @@
                 <div class="text-center py-2 text-center bg-body-secondary">
                     <h5>Scholar Details</h5>
                 </div>
-                <div class="row row-cols-3 g-2  mt-3 ">
+                <div class="row row-cols-3 g-3  mt-3 ">
 
 
 
@@ -24,7 +24,7 @@
                     <div class="col">
                         <label for="inputEmail4" class="form-label">Class Name</label>
                         <select cSelect id="inputEmail4" class="form-control " formControlName='classId'>
-                            <option [disabled]="true">Select Class</option>
+                            <option [disabled]="true" value="">Select Class</option>
                             <option *ngFor="let lst of totalClasses" [value]="lst._id">{{lst.className}}</option>
 
                         </select>
@@ -173,7 +173,7 @@
                     <h5>Address Detail</h5>
                 </div>
 
-                <div class="row row-cols-3 g-2  mt-3 ">
+                <div class="row row-cols-3 g-3  mt-3 ">
                     <!-- Student Address -->
                     <div class="col">
                         <label for="inputEmail4" class="form-label">Student Address </label>
@@ -258,7 +258,7 @@
                     <h5>Parents Details</h5>
                 </div>
                 <!-- Father's Name -->
-                <div class="row row-cols-3 g-2  mt-3 ">
+                <div class="row row-cols-3 g-3  mt-3 ">
                     <div class="col">
                         <label for="inputEmail4" class="form-label">Father's Name </label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="fatherName"
@@ -365,7 +365,7 @@
                     <h5>Tranfer Certificate Details</h5>
                 </div>
 
-                <div class="row row-cols-3 g-2  my-3 ">
+                <div class="row row-cols-3 g-3  my-3 ">
                     <!-- Withdrawal File number -->
                     <div class="col">
                         <label for="inputEmail4" class="form-label">Withdrawal File number</label>

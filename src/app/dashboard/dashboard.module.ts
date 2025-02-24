@@ -22,6 +22,7 @@ import { CommonComponentModule } from '../common-component/common-component.modu
     HeaderComponent,
     SideNavComponent,
     HomeComponent,
+  
   ],
   imports: [
     CommonModule,
