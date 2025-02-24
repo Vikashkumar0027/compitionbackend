@@ -30,17 +30,17 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="mb-3">
                 <label for="class">Fee Type</label><br>
-                <select id="class" class="form-control" formControlName='class'
-                    (change)="onSelectionChange($event)">
+                <select id="class" class="form-control" formControlName='class' (change)="onSelectionChange($event)">
                     <option [disabled]="true" value="">Select class</option>
                     <option *ngFor="let list of classList" [value]="list.className">{{list.className}}</option>
                     <option value="custom">Custom Value</option>
                 </select>
                 <div class="mb-3" *ngIf="isCustom">
-                    <input type="text" formControlName='custom'  placeholder="Enter custom value" class="form-control" />
+                    <input type="text" formControlName='custom' placeholder="Enter custom value" class="form-control" />
                     <div *ngIf="submitted && f['custom'].errors">
-                        <small style="color: red;" *ngIf="f['custom'].errors['required'] ">Please enter custom Fee Type</small>
-                    </div>   
+                        <small style="color: red;" *ngIf="f['custom'].errors['required'] ">Please enter custom Fee
+                            Type</small>
+                    </div>
                 </div>
                 <div *ngIf="submitted && f['class'].errors">
                     <small style="color: red;" *ngIf="f['class'].errors['required'] ">Please select class</small>
