@@ -8,12 +8,12 @@ import { subadminGuard } from './guard/subadmin/subadmin.guard';
 // import { subadminGuard } from './guard/subadmin/subadmin.guard';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'login', pathMatch: 'full' },
-  {path:'login',component:LoginComponent,canActivate: [LoginGuard]},
-  {path:'signUp',component:SignupComponent},
-  {path:'dashboard',loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),canActivate: [DashboardGuard,subadminGuard]},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
+  { path: 'signUp', component: SignupComponent },
+  { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule), canActivate: [DashboardGuard, subadminGuard] },
 
- {path: '**', redirectTo: 'dashboard',pathMatch: 'full'}
+  { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 
 @NgModule({
