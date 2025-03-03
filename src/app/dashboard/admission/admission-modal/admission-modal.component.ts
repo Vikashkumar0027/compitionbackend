@@ -18,8 +18,8 @@ export class AdmissionModalComponent implements OnInit {
   @Input() public user: any;
   @Input() public patchData: any;
   @Input() public admissionId: any;
-
   @Input() public totalClasses: any;
+
 
   constructor(private activeModal: NgbActiveModal,
     private fb: FormBuilder,
@@ -31,15 +31,16 @@ export class AdmissionModalComponent implements OnInit {
     this.form = this.fb.group({
 
       classId: ['', Validators.required],
-      admissionFee: ['', Validators.required],
-      rollNo: ['', Validators.required],
-      section: ['', Validators.required],
+      admissionFee: [''],
+      rollNo: [''],
+      section: [''],
       studentName: ['', Validators.required],
       dob: ['', Validators.required],
-      admissionDate: ['', Validators.required],
+      // admissionDate: ['', Validators.required],
+      admissionDate: [new Date().toISOString().split('T')[0]],
       gender: ['', Validators.required],
       category: ['', Validators.required],
-      studentMobile: ['', Validators.required],
+      studentMobile: [''],
       address: ['', Validators.required],
       state: ['', Validators.required],
       district: ['', Validators.required],
@@ -47,14 +48,14 @@ export class AdmissionModalComponent implements OnInit {
       transport: ['', Validators.required],
       fatherName: ['', Validators.required],
       motherName: ['', Validators.required],
-      localGardianName: ['', Validators.required],
-      parentAddress: ['', Validators.required],
+      localGardianName: [''],
+      parentAddress: [''],
       parentNumber: ['', Validators.required],
       relationStudents: ['', Validators.required],
       fatherOccupation: ['', Validators.required],
-      withdrawalFileNumber: ['', Validators.required],
-      scholarRegistrationNo: ['', Validators.required],
-      lastSchoolName: ['', Validators.required],
+      withdrawalFileNumber: [''],
+      scholarRegistrationNo: [''],
+      lastSchoolName: [''],
 
     });
 
@@ -63,14 +64,13 @@ export class AdmissionModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.patchDataFunction()
-
     if (this.user == 'Edit') {
       this.getclass();
     }
+
   }
   get f() {
-    console.log(this.form.controls, "form");
-    return this.form.controls
+    return this.form.controls;
   }
 
   modalClose() {
@@ -80,8 +80,6 @@ export class AdmissionModalComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.user == "Add" ? this.addData() : this.editData();
-    console.log(this.user);
-
   }
 
   addData() {
@@ -89,6 +87,7 @@ export class AdmissionModalComponent implements OnInit {
       this.submitted = true;
       return;
     }
+
     this.submitted = false;
     let formData: any = new FormData();
 
@@ -231,5 +230,6 @@ export class AdmissionModalComponent implements OnInit {
 
 
   }
+
 
 }

@@ -15,8 +15,6 @@ export class AdmissionviewComponent implements OnInit {
   constructor(private activeModal: NgbActiveModal) {
     console.log(this.user);
     console.log(this.patchData, "patch data");
-
-
   }
 
   ngOnInit(): void {
