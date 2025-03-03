@@ -14,7 +14,7 @@ import { AddFeeComponent } from './add-fee/add-fee.component';
   ],
   imports: [
     CommonModule,FeeDepositRoutingModule,
-    ReactiveFormsModule, FormsModule
+    ReactiveFormsModule, FormsModule,
   ]
 })
 export class FeeDepositModule { }
