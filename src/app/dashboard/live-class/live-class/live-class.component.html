@@ -52,7 +52,7 @@
             <ul class="p-0">
               <li class="d-flex justify-content-between   list-unstyled">
                   <span>Meeting Timing :-</span>
-                  <span>{{list?.meetingTime | date: 'dd/MM/yyyy hh:mm a'}}</span>
+                  <span>{{list?.meetingTime | date:'dd/MM/yyyy hh:mm a':'UTC'}}</span>
               </li>
               <li class="d-flex justify-content-between   list-unstyled">
                   <span>Description :-</span>

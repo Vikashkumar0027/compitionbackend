@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FeeDepositComponent } from './fee-deposit/fee-deposit.component';
+import { AddFeeComponent } from './add-fee/add-fee.component';
 
 const routes: Routes = [
     {
@@ -9,6 +10,10 @@ const routes: Routes = [
         data: {
           title:'class'
         },
+      },
+      {
+        path: 'addFee/:feeId',
+        component: AddFeeComponent
       }
 ];
 
