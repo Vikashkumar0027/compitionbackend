@@ -24,45 +24,42 @@
 
                 <div class="row row-cols-4 g-3 align-items-center">
                     <div class="col">
-                        <input type="text" class="form-control" ngModel placeholder="Student Name"
-                            aria-label="Search" name="name">
+                        <input type="text" class="form-control" ngModel required placeholder="Unique Number"
+                            aria-label="Search" name="uniqueId">
                     </div>
-
-                    <!-- <div class="col">
-                    <input type="text" class="form-control" ngModel required placeholder="Class Name"
-                          aria-label="Search" name="className">
-                    </div> -->
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel placeholder="Student Name" aria-label="Search"
+                            name="name">
+                    </div>
 
                     <select class="col mx-1 selectClass" aria-label="Default select example" ngModel name="className">
                         <option [disabled]="true" value="">Class Name</option>
                         <option *ngFor="let class of totalClasses" [value]="class._id">{{class.className}}</option>
                     </select>
                     <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Section Name"
+                            aria-label="Search" name="section">
+                    </div>
+                    <div class="col">
                         <input type="text" class="form-control" ngModel required placeholder="Roll Number"
                             aria-label="Search" name="rollNo">
                     </div>
-                    <div class="col">
-                        <input type="text" class="form-control" ngModel required placeholder="Unique Number"
-                            aria-label="Search" name="uniqueId">
-                    </div>
+
 
                     <div class="col">
-                        <input type="text" class="form-control" ngModel required placeholder="Student No"
+                        <input type="text" class="form-control" ngModel required placeholder="Student Mobile_No"
                             aria-label="Search" name="MobileNo">
                     </div>
                     <div class="col">
                         <input type="text" class="form-control" ngModel required placeholder="Father Name"
                             aria-label="Search" name="FatherName">
                     </div>
-                    <div class="col">
-                        <input type="text" class="form-control" ngModel required placeholder="Section Name"
-                            aria-label="Search" name="section">
-                    </div>
+
                 </div>
 
-                <div class="modal-footer">
+                <div class="modal-footer mt-2">
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-outline-secondary btn-login text-capitalize">
+                        <button type="submit" class="btn btn-outline-secondary btn-login btn-sm text-capitalize">
                             Search Now</button>
                     </div>
 
@@ -71,8 +68,56 @@
 
         </div>
 
+        <div class="row row-cols-4 g-3 align-items-center p-4">
+            <div class="col">
+                <label for="name">Student List</label><br>
+                <select class="selectClass" id="name">
+                    <option [disabled]="true" value="">Select Student</option>
+                    <option *ngFor="let name of admission" [value]="name._id">{{name.studentName}}</option>
+                </select>
+            </div>
+            <div class="col">
+                <label for="year">Choose Year</label><br>
+                <select class="selectClass" id="year">
+                    <option value="">{{year}}</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                </select>
+            </div>
+
+            <div class="col">
+                <label for="month">Choose Month</label><br>
+                <select class="selectClass" name="month" id="cars">
+                    <option value="">{{month}}</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                </select>
+            </div>
+            <div class="col">
+                <label for="name">Select Fee Type</label><br>
+                <select class="selectClass" id="name">
+                    <option [disabled]="true" value="">Select Fee</option>
+                    <option *ngFor="let fee of feeType" [value]="fee._id">{{fee.name}}</option>
+                </select>
+            </div>
+
+        </div>
+
         <!-- Table Section -->
-        <div class="card-body p-3">
+        <!-- <div class="card-body p-3">
             <div class="table-responsive">
                 <div class="container border-bottom border-1"
                     *ngFor="let AdmissionData of AdmissionData; let i = index">
@@ -147,10 +192,6 @@
                     </div>
                 </ng-template>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
-
-<!-- Loading Spinner -->
-<!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)" template="<img src='https://i.gifer.com/ZZ5H.gif' />">
-  </ngx-spinner> -->
