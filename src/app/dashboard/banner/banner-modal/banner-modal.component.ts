@@ -2,16 +2,16 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonService } from '../../../services/common/common.service';
-import { SyllabusService } from '../../../services/syllabus/syllabus.service';
 import { GlobalService } from '../../../services/global/global.service';
+import { BannerService } from '../../../services/banner/banner.service';
 
 @Component({
-  selector: 'app-modal-syllabus',
-  templateUrl: './modal-syllabus.component.html',
-  styleUrl: './modal-syllabus.component.css'
+  selector: 'app-banner-modal',
+  templateUrl: './banner-modal.component.html',
+  styleUrl: './banner-modal.component.css'
 })
-export class ModalSyllabusComponent implements OnInit {
-  submitted:boolean=false;
+export class BannerModalComponent implements OnInit {
+submitted:boolean=false;
   form:FormGroup;
   userList:any[]=[];
    // second method of multi select
@@ -21,23 +21,27 @@ export class ModalSyllabusComponent implements OnInit {
   submit:boolean=false;
   @Input() public user:any;
   @Input() public patchData:any;
+  @Input() public testOnlineData:any;
+  @Input() public coursData:any;
   // @Input() public subjectId:any;
   constructor(
     private fb: FormBuilder,
     private activeModal: NgbActiveModal,
-    // private couseService:CourseService,
     private commonService:CommonService,
-
-    private syllabusService:SyllabusService,
-    private global:GlobalService
+    private global:GlobalService,
+    private bannerService:BannerService
   ) { 
     this.form = this.fb.group({
-      name: ['', Validators.required],
-      pdf: ['', Validators.required],
+      title: ['', Validators.required],
+      bannerType: ['', Validators.required],
+      courseId: [''],
+      testId: [''],
+      thumbnail: ['', Validators.required],
       status:['active', Validators.required]
     });
   }
 
+ 
   ngOnInit(): void {
    
     // this.getUserList();
@@ -64,14 +68,20 @@ export class ModalSyllabusComponent implements OnInit {
     // console.log(items);
   }
 
+
+
   patchDataFunction(){
     if(this.user == 'Edit'){
       console.log(this.user);
+      console.log(this.patchData);
 
       // this.form.get('password')?.setValidators([]); // Clear validators for password image: this.patchData.status,
 
       const patch = {
-        name: this.patchData.name,
+        title: this.patchData.title,
+        bannerType: this.patchData.bannerType,
+        courseId: this.patchData.courseId,
+        testId: this.patchData.testId,
         status: this.patchData.status,
       };
       this.form.patchValue(patch);
@@ -151,11 +161,19 @@ setTimeout(() => {
 
 // (this.file == undefined) ? formData.append('image', '') : formData.append('image', this.file);
 
-formData.append('pdf', this.file); 
-formData.append('name', this.form.value.name);
+formData.append('thumbnail', this.file); 
+formData.append('title', this.form.value.title);
+formData.append('bannerType', this.form.value.bannerType);
+
+(this.isBannerCourse === 'course') 
+  ? formData.append('courseId', this.form.value.courseId) 
+  : (this.isBannerCourse === 'testSeries') 
+    ? formData.append('testId', this.form.value.testId) 
+    : null;
+
 formData.append('status', this.form.value.status);
 
-    this.syllabusService.syllabusCreate(formData).subscribe(res=>{
+    this.bannerService.bannerAdd(formData).subscribe(res=>{
       this.submit = false;
       // console.log('data update',res)
       if(res.success ){
@@ -179,13 +197,22 @@ formData.append('status', this.form.value.status);
     // const data = this.form.value;
     console.log(this.form.value)
 let formData = new FormData();
-(this.file == undefined) ? formData.append('pdf', this.patchData.pdf) : formData.append('pdf', this.file);
+(this.file == undefined) ? formData.append('thumbnail', this.patchData.pdf) : formData.append('thumbnail', this.file);
 
-formData.append('name', this.form.value.name);
+// formData.append('thumbnail', this.file); 
+formData.append('title', this.form.value.title);
+formData.append('bannerType', this.form.value.bannerType);
+
+(this.isBannerCourse === 'course') 
+  ? formData.append('courseId', this.form.value.courseId) 
+  : (this.isBannerCourse === 'testSeries') 
+    ? formData.append('testId', this.form.value.testId) 
+    : null;
+
 formData.append('status', this.form.value.status);
    
     const _id = this.patchData._id;
-    this.syllabusService.syllabusUpdate(formData,_id).subscribe(res=>{
+    this.bannerService.bannerUpdate(formData,_id).subscribe(res=>{
       this.submit = false;
       // console.log('data update',res)
       if(res.success){
@@ -199,4 +226,51 @@ formData.append('status', this.form.value.status);
       console.log(err)
     })
   }
+
+  isBannerCourse:any='none';
+
+  onSelectionChange(event: any) {
+    console.log(event.target.value);
+    this.isBannerCourse = event.target.value;
+
+  //  if(event.target.value == ''){
+
+  //  }else{ courseId: ['', Validators.required],
+      // testId: ['', Validators.required],
+
+  //  }
+
+if(event.target.value == 'course'){
+  const courseId:any = this.form.get('courseId');
+  const testId:any = this.form.get('testId');
+
+  courseId.setValidators([Validators.required]);  
+  courseId.updateValueAndValidity();
+
+  testId.setValidators([]);  
+  testId.updateValueAndValidity();
+}else if(event.target.value == 'testSeries'){
+
+  const testId:any = this.form.get('testId');
+  const courseId:any = this.form.get('courseId');
+
+  testId.setValidators([Validators.required]);  
+  testId.updateValueAndValidity();
+
+  courseId.setValidators([]);  
+  courseId.updateValueAndValidity();
+}else{
+  const testId:any = this.form.get('testId');
+  const courseId:any = this.form.get('courseId');
+
+  testId.setValidators([]);  
+  testId.updateValueAndValidity();
+
+  courseId.setValidators([]);  
+  courseId.updateValueAndValidity();
+}
+
+  }
+
+
 }

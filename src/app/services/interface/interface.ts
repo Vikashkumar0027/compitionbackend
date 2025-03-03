@@ -188,6 +188,10 @@ export let selectSideBar = [
     "module": "Fee Deposit",
     "checked": false,
   },
+  {
+    "module": "Banner",
+    "checked": false,
+  },
 ]
 
 
@@ -198,17 +202,21 @@ export let sidebar = [
   // {number:'70',name:'Privilage',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/privilage'},
   { number: '7', name: 'User', icon: 'fa-regular fa-user', url: '/dashboard/user' },
   { number: '3', name: 'Course', icon: 'fa-solid fa-folder-open', url: '/dashboard/course' },
+  { number: '16', name: 'Banner', icon: 'fa-regular fa-images', url: '/dashboard/banner' },
   { number: '4', name: 'Syllabus', icon: 'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/syllabus' },
   { number: '5', name: 'Previous Paper', icon: 'fa-solid fa-business-time', url: '/dashboard/previous_paper' },
   { number: '6', name: 'Post', icon: 'fa-brands fa-instagram', url: '/dashboard/post' },
   { number: '8', name: 'Online Test', icon: 'fa-regular fa-pen-to-square', url: '/dashboard/online-test' },
   { number: '9', name: 'Book', icon: 'fa-solid fa-book', url: '/dashboard/book' },
   { number: '10', name: 'Payment', icon: 'fa-brands fa-paypal', url: '/dashboard/payment' },
-  { number: '11', name: 'Live Class', icon: 'fa-brands fa-paypal', url: '/dashboard/live_class' },
-  { number: '12', name: 'Class', icon: 'fa-brands fa-paypal', url: '/dashboard/class' },
-  { number: '13', name: 'Fee', icon: 'fa-brands fa-paypal', url: '/dashboard/fee' },
-  { number: '14', name: 'Admission', icon: 'fa-brands fa-paypal', url: '/dashboard/admission' },
-  { number: '15', name: 'Fee Deposit', icon: 'fa-brands fa-paypal', url: '/dashboard/fee_deposit' },
+  { number: '11', name: 'Live Class', icon: 'fa-regular fa-file-video', url: '/dashboard/live_class' },
+
+  // school Module  <i class="fa-solid fa-indian-rupee-sign"></i>
+
+  { number: '12', name: 'Class', icon: 'fa-solid fa-layer-group', url: '/dashboard/class' },
+  { number: '13', name: 'Fee', icon: 'fa-solid fa-money-bill-1-wave', url: '/dashboard/fee' },
+  { number: '14', name: 'Admission', icon: 'fa-solid fa-user-tie', url: '/dashboard/admission' },
+  { number: '15', name: 'Fee Deposit', icon: 'fa-solid fa-indian-rupee-sign', url: '/dashboard/fee_deposit' },
 ];
 
 // live_class
@@ -229,3 +237,9 @@ export let admissionAdd = domain + 'admin/admission/create';
 export let admissionList = domain + 'admin/admission/list';
 export let admissionDelete = domain + 'admin/admission/delete';
 export let admissionUpdate = domain + 'admin/admission/update';
+
+// Banner
+export let bannerAdd = domain + 'admin/banner/create';
+export let bannerList = domain + 'admin/banner/list';
+export let bannerDelete = domain + 'admin/banner/delete';
+export let bannerUpdate = domain + 'admin/banner/update';
