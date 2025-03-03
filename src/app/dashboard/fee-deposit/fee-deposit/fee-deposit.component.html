@@ -62,18 +62,17 @@
                         <button type="submit" class="btn btn-outline-secondary btn-login btn-sm text-capitalize">
                             Search Now</button>
                     </div>
-
                 </div>
             </form>
 
         </div>
 
-        <div class="row row-cols-4 g-3 align-items-center p-4">
+        <div class="row row-cols-4 g-3 align-items-center p-4" *ngIf="isShow">
             <div class="col">
                 <label for="name">Student List</label><br>
                 <select class="selectClass" id="name">
                     <option [disabled]="true" value="">Select Student</option>
-                    <option *ngFor="let name of admission" [value]="name._id">{{name.studentName}}</option>
+                    <option *ngFor="let name of AdmissionData" [value]="name._id">{{name.studentName}}</option>
                 </select>
             </div>
             <div class="col">

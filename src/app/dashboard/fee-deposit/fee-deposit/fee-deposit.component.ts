@@ -21,6 +21,7 @@ export class FeeDepositComponent {
   month: any;
   feeType: any;
   totalClasses: any[] = [];
+  isShow: boolean = false;
 
   Month: any[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -75,16 +76,20 @@ export class FeeDepositComponent {
   // search student list
   studentList(formData: any) {
     console.log(formData.value)
+    const formValue = formData.value;
     this.admissionService.AdmissionList(formData.value).subscribe(res => {
-      if (res.success) {
+      const resValue = res.response[0];
+      if ( formValue.uniqueId == resValue.uniqueId || formValue.name == resValue.studentName || formValue.className == resValue.classId || formValue.section == resValue.section || formValue.rollNo == resValue.rollNo || formValue.MobileNo == resValue.studentMobile || formValue.FatherName == resValue.fatherName) {
         this.AdmissionData = res.response;
+        this.isShow = true;
       }
-      console.log(res, "admission data");
+      console.log(res, "Admission data");
+      
     }, err => {
       console.log(err);
     })
   }
-
+  
 
   feeDeposit(admission: any) {
     this.router.navigate(['/', 'dashboard', 'fee_deposit', 'addFee', admission._id]);
