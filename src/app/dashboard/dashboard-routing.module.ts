@@ -30,6 +30,7 @@ const routes: Routes = [
 
 
       { path: 'admission', loadChildren: () => import('./admission/admission.module').then((m) => m.AdmissionModule), canActivate: [subadminGuard] },
+      { path: 'banner', loadChildren: () => import('./banner/banner.module').then((m) => m.BannerModule), canActivate: [subadminGuard] },
     ]
   },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
