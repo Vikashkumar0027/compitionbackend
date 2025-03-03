@@ -18,18 +18,14 @@
                 </div>
                 <div class="row row-cols-3 g-3  mt-3 ">
 
-
-
-
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">Class Name</label>
+                        <label for="inputEmail4" class="form-label">Class Name *</label>
                         <select cSelect id="inputEmail4" class="form-control " formControlName='classId'>
                             <option [disabled]="true" value="">Select Class</option>
                             <option *ngFor="let lst of totalClasses" [value]="lst._id">{{lst.className}}</option>
-
                         </select>
-                        <div id="emailHelp" class="form-text" *ngIf="submitted && f['className'].errors"><span
-                                style="color: red;" *ngIf="f['className'].errors['required'] ">Please select
+                        <div id="emailHelp" class="form-text" *ngIf="submitted && f['classId'].errors"><span
+                                style="color: red;" *ngIf="f['classId'].errors['required'] ">Please select
                                 class Name
                             </span>
                         </div>
@@ -38,28 +34,28 @@
 
 
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">Admission Fee</label>
+                        <label for="inputEmail4" class="form-label"> Admission Fee</label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="admissionFee"
-                            placeholder="Admission Fee">
-                        <div id="emailHelp" class="form-text" *ngIf="submitted && f['admissionFee'].errors"><span
+                            placeholder="Enter Admission Fee">
+                        <!-- <div id="emailHelp" class="form-text" *ngIf="submitted && f['admissionFee'].errors"><span
                                 style="color: red;" *ngIf="f['admissionFee'].errors['required'] ">Please Enter
                                 Admission
                                 Fee
                             </span>
-                        </div>
+                        </div> -->
 
                     </div>
                     <!-- do some work -->
                     <div class="col">
                         <label for="inputEmail4" class="form-label">Roll No</label>
                         <input type="text" class="form-control" id="inputroll" formControlName="rollNo"
-                            placeholder="Student Roll No">
-                        <div id="emailHelp" class="form-text" *ngIf="submitted && f['rollNo'].errors"><span
+                            placeholder=" Enter Student Roll No">
+                        <!-- <div id="emailHelp" class="form-text" *ngIf="submitted && f['rollNo'].errors"><span
                                 style="color: red;" *ngIf="f['rollNo'].errors['required'] ">Please Enter
                                 student Roll No
 
                             </span>
-                        </div>
+                        </div> -->
 
                     </div>
 
@@ -68,19 +64,19 @@
                     <div class="col">
                         <label for="inputroll" class="form-label">Section</label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="section"
-                            placeholder="Section">
-                        <div id="emailHelp" class="form-text" *ngIf="submitted && f['section'].errors"><span
+                            placeholder="A">
+                        <!-- <div id="emailHelp" class="form-text" *ngIf="submitted && f['section'].errors"><span
                                 style="color: red;" *ngIf="f['section'].errors['required'] ">Please Enter section
                                 Free
                             </span>
-                        </div>
+                        </div> -->
 
                     </div>
 
 
                     <!-- student Name -->
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">Student name</label>
+                        <label for="inputEmail4" class="form-label">Student name *</label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="studentName"
                             placeholder="Student Name">
                         <div id="emailHelp" class="form-text" *ngIf="submitted && f['studentName'].errors"><span
@@ -102,7 +98,7 @@
 
                     <!-- date of Birth -->
                     <div class="col">
-                        <label for="inputEmail4" class="form-label"> Date Of Birth</label>
+                        <label for="inputEmail4" class="form-label"> Date Of Birth *</label>
                         <input type="date" class="form-control" id="inputEmail4" formControlName="dob"
                             placeholder="Date Of Birth">
                         <div id="emailHelp" class="form-text" *ngIf="submitted && f['dob'].errors"><span
@@ -114,7 +110,7 @@
 
                     <!--  Admission date -->
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">Admission Date</label>
+                        <label for="inputEmail4" class="form-label">Admission Date *</label>
                         <input type="date" class="form-control" id="inputEmail4" formControlName="admissionDate"
                             placeholder="Admission Date">
                         <div id="emailHelp" class="form-text" *ngIf="submitted && f['admissionDate'].errors"><span
@@ -127,9 +123,9 @@
 
                     <!-- Gender -->
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">Gender</label>
+                        <label for="inputEmail4" class="form-label">Gender *</label>
                         <select cSelect id="inputEmail4" class="form-control " formControlName='gender'>
-                            <option [disabled]="true">Select Gender</option>
+                            <option [disabled]="true" value="">Select Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
@@ -141,10 +137,29 @@
                     </div>
 
                     <!-- Category -->
-                    <div class="col">
+                    <!-- <div class="col">
                         <label for="inputEmail4" class="form-label">Category ( SST, OBC/General ) </label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="category"
                             placeholder="Category (SST,OBC/General)">
+                        <div id="emailHelp" class="form-text" *ngIf="submitted && f['category'].errors"><span
+                                style="color: red;" *ngIf="f['category'].errors['required'] ">Please Enter the
+                                category
+                            </span>
+                        </div>
+                        Ansari
+
+                    </div> -->
+                    <div class="col">
+                        <label for="inputEmail4" class="form-label">Category ( SST, OBC/General ) * </label>
+                        <select cSelect id="inputEmail4" class="form-control " formControlName='category'>
+                            <option [disabled]="true" value="">Select Category</option>
+                            <option value="male">ST</option>
+                            <option value="male">SC</option>
+                            <option value="female">OBC</option>
+                            <option value="female">EWS</option>
+                            <option value="female">UR
+                                (GEN) </option>
+                        </select>
                         <div id="emailHelp" class="form-text" *ngIf="submitted && f['category'].errors"><span
                                 style="color: red;" *ngIf="f['category'].errors['required'] ">Please Enter the
                                 category
@@ -155,9 +170,9 @@
 
                     <!-- Student Number -->
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">Student Number </label>
+                        <label for="inputEmail4" class="form-label"> Student Number </label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="studentMobile"
-                            placeholder="Student Number">
+                            placeholder="9494444444">
                         <div id="emailHelp" class="form-text" *ngIf="submitted && f['studentMobile'].errors"><span
                                 style="color: red;" *ngIf="f['studentMobile'].errors['required'] ">Please Enter the
                                 Student Mobile
@@ -176,9 +191,9 @@
                 <div class="row row-cols-3 g-3  mt-3 ">
                     <!-- Student Address -->
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">Student Address </label>
+                        <label for="inputEmail4" class="form-label">Student Address *</label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="address"
-                            placeholder="Student Address">
+                            placeholder="Enter Student Address">
                         <div id="emailHelp" class="form-text" *ngIf="submitted && f['address'].errors"><span
                                 style="color: red;" *ngIf="f['address'].errors['required'] ">Please Enter address
 
@@ -188,9 +203,9 @@
 
                     <!-- State name -->
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">State</label>
+                        <label for="inputEmail4" class="form-label">State *</label>
                         <select cSelect id="inputEmail4" class="form-control " formControlName='state'>
-                            <option [disabled]="true">Select State</option>
+                            <option [disabled]="true" value="">Select State</option>
                             <option value="Bihar">Bihar</option>
                             <option value="AndhraPradesh">Andhra Pradesh</option>
                             <option value="ArunachalPradesh">Arunachal Pradesh</option>
@@ -216,9 +231,9 @@
 
                     <!-- District -->
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">District</label>
+                        <label for="inputEmail4" class="form-label">District *</label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="district"
-                            placeholder="District">
+                            placeholder="Enter District">
                         <div id="emailHelp" class="form-text" *ngIf="submitted && f['district'].errors"><span
                                 style="color: red;" *ngIf="f['district'].errors['required'] ">Please Enter district
                             </span>
@@ -228,9 +243,9 @@
 
                     <!-- Pin Code -->
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">Pin Code</label>
+                        <label for="inputEmail4" class="form-label">Pin Code *</label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="pinCode"
-                            placeholder="Pin-Code">
+                            placeholder="Enter Pin-Code">
                         <div id="emailHelp" class="form-text" *ngIf="submitted && f['pinCode'].errors"><span
                                 style="color: red;" *ngIf="f['pinCode'].errors['required'] ">Please Enter Pin Code
                             </span>
@@ -239,9 +254,9 @@
 
                     <!-- Transport -->
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">Transport</label>
+                        <label for="inputEmail4" class="form-label">Transport *</label>
                         <select cSelect id="inputEmail4" class="form-control " formControlName='transport'>
-                            <option [disabled]="true">Select State</option>
+                            <option [disabled]="true" value="">Select State</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
@@ -260,9 +275,9 @@
                 <!-- Father's Name -->
                 <div class="row row-cols-3 g-3  mt-3 ">
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">Father's Name </label>
+                        <label for="inputEmail4" class="form-label">Father's Name *</label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="fatherName"
-                            placeholder="Father's Name">
+                            placeholder="Enter Father's Name">
                         <div id="emailHelp" class="form-text" *ngIf="submitted && f['fatherName'].errors"><span
                                 style="color: red;" *ngIf="f['fatherName'].errors['required'] ">Please Enter
                                 FatherName
@@ -273,9 +288,9 @@
 
                     <!-- Mother's Name -->
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">Mother's Name </label>
+                        <label for="inputEmail4" class="form-label">Mother's Name *</label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="motherName"
-                            placeholder="Mother's  Name">
+                            placeholder="Enter Mother's  Name">
                         <div *ngIf="submitted && f['motherName'].errors">
                             <span style="color: red;" *ngIf="f['motherName'].errors['required'] ">Please Enter
                                 Mother
@@ -289,46 +304,46 @@
                     <div class="col">
                         <label for="inputEmail4" class="form-label">Local Gardian name</label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="localGardianName"
-                            placeholder="Local Gardian Name">
-                        <div *ngIf="submitted && f['localGardianName'].errors">
+                            placeholder="Enter Local Gardian Name">
+                        <!-- <div *ngIf="submitted && f['localGardianName'].errors">
                             <span style="color: red;" *ngIf="f['localGardianName'].errors['required'] ">Please Enter
                                 local
                                 Gardian Name
                             </span>
-                        </div>
+                        </div> -->
                     </div>
 
                     <!-- Parent Address -->
                     <div class="col">
                         <label for="inputEmail4" class="form-label">Parent Address</label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="parentAddress"
-                            placeholder="Parent Address">
-                        <div *ngIf="submitted && f['parentAddress'].errors">
+                            placeholder="Enter Parent Address">
+                        <!-- <div *ngIf="submitted && f['parentAddress'].errors">
                             <span style="color: red;" *ngIf="f['parentAddress'].errors['required'] ">Please Enter
                                 Parent
                                 Address
                             </span>
-                        </div>
+                        </div> -->
                     </div>
 
                     <!-- Parent Phone No -->
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">Parent Phone No</label>
+                        <label for="inputEmail4" class="form-label">Parent Phone No *</label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="parentNumber"
-                            placeholder="Parent Phone No">
+                            placeholder=" Enter Phone No">
                         <div *ngIf="submitted && f['parentNumber'].errors">
                             <span style="color: red;" *ngIf="f['parentNumber'].errors['required'] ">Please Enter
                                 Parent
-                                Phone Number
+                                Number
                             </span>
                         </div>
                     </div>
 
                     <!-- Relation With Students -->
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">Relation With Students</label>
+                        <label for="inputEmail4" class="form-label">Relation With Students *</label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="relationStudents"
-                            placeholder="Relation With Students">
+                            placeholder="Enter Relation With Students">
                         <div *ngIf="submitted && f['relationStudents'].errors">
                             <span style="color: red;" *ngIf="f['relationStudents'].errors['required'] ">Please Enter
                                 Relation Students
@@ -339,9 +354,9 @@
 
                     <!-- Father's Occupation -->
                     <div class="col">
-                        <label for="inputEmail4" class="form-label">Father's Occupation</label>
+                        <label for="inputEmail4" class="form-label">Father's Occupation *</label>
                         <select cSelect id="inputEmail4" class="form-control " formControlName='fatherOccupation'>
-                            <option [disabled]="true">Select Father's Occupation</option>
+                            <option [disabled]="true" value="">Select Father's Occupation</option>
                             <option value="Businessman">Businessman </option>
                             <option value="Farmer">Farmer </option>
                             <option value="Teacher">Teacher </option>
@@ -370,12 +385,12 @@
                     <div class="col">
                         <label for="inputEmail4" class="form-label">Withdrawal File number</label>
                         <input type="number" class="form-control" id="inputEmail4"
-                            formControlName="withdrawalFileNumber" placeholder="Withdrawal File number">
-                        <div *ngIf="submitted && f['withdrawalFileNumber'].errors">
+                            formControlName="withdrawalFileNumber" placeholder="Enter Withdrawal File number">
+                        <!-- <div *ngIf="submitted && f['withdrawalFileNumber'].errors">
                             <span style="color: red;" *ngIf="f['withdrawalFileNumber'].errors['required'] ">Please
                                 Withdrawal File Number
                             </span>
-                        </div>
+                        </div> -->
                     </div>
 
 
@@ -383,25 +398,25 @@
                     <div class="col">
                         <label for="inputEmail4" class="form-label">Scholar Registration No</label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="scholarRegistrationNo"
-                            placeholder="Scholar Registration No">
-                        <div *ngIf="submitted && f['scholarRegistrationNo'].errors">
+                            placeholder="Enter Scholar Registration No">
+                        <!-- <div *ngIf="submitted && f['scholarRegistrationNo'].errors">
                             <span style="color: red;" *ngIf="f['scholarRegistrationNo'].errors['required'] ">Please
                                 Enter
                                 scholar Registration No
                             </span>
-                        </div>
+                        </div> -->
                     </div>
 
                     <!-- Last School Name -->
                     <div class="col">
                         <label for="inputEmail4" class="form-label">Last School Name </label>
                         <input type="text" class="form-control" id="inputEmail4" formControlName="lastSchoolName"
-                            placeholder="Last School Name">
-                        <div *ngIf="submitted && f['lastSchoolName'].errors">
+                            placeholder="Enter Last School Name">
+                        <!-- <div *ngIf="submitted && f['lastSchoolName'].errors">
                             <span style="color: red;" *ngIf="f['lastSchoolName'].errors['required'] ">Please Enter
                                 Last School Name
                             </span>
-                        </div>
+                        </div> -->
                     </div>
 
 
