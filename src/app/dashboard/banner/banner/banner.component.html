@@ -50,7 +50,7 @@
           <td>{{list?.title | titlecase}} </td>
           <td>
             <!-- {{list?.bannerType}} -->
-            {{ list?.bannerType === 'none' ? 'None' : (list?.bannerType === 'course' ? 'Course' : (list?.bannerType === 'test' ? 'Test Series' : 'Unknown')) }}
+            {{ list?.bannerType === 'none' ? 'None' : (list?.bannerType === 'course' ? 'Course' : (list?.bannerType === 'testSeries' ? 'Test Series' : 'Unknown')) }}
           </td>
           <td>
             <img [src]="list?.thumbnail" width="200px" />

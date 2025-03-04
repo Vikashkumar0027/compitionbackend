@@ -1,73 +1,75 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{user}} Banner</h4>
+  <h4 class="modal-title" id="modal-basic-title">{{user}} Banner</h4>
 
-    <button type="button" class="btn btn-primary close" aria-label="Close" (click)="modalClose()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+  <button type="button" class="btn btn-primary close" aria-label="Close" (click)="modalClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 
 
-  <div class="modal-body">
-<!-- (ngSubmit)="onSubmit()" -->
- <div>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
+<div class="modal-body">
+  <!-- (ngSubmit)="onSubmit()" -->
+  <div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
         <label for="exampleFormControlname" class="form-label">Banner Name* </label>
         <input type="text" class="form-control" id="exampleFormControlname" placeholder="" formControlName="title">
       </div>
       <div *ngIf="submitted && f['title'].errors">
         <span style="color: red;" *ngIf="f['title'].errors['required'] ">Please enter Chapter Name</span>
-    </div>
+      </div>
 
-    <div class="mb-3">
-      <label cLabel for="exampleFormControlStatus">banner Type*</label><br>
-      <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='bannerType' (change)="onSelectionChange($event)">
-        <option value="">Select Banner For</option>
-        <option value="course">Course</option>
-        <option value="testSeries">Test Series</option>
-        <option value="none">None</option>
-      </select>
-    </div>
-    <div *ngIf="submitted && f['bannerType'].errors">
-      <span style="color: red;" *ngIf="f['bannerType'].errors['required'] ">Please select banner Type</span>
-  </div>
+      <div class="mb-3">
+        <label cLabel for="exampleFormControlStatus">banner Type*</label><br>
+        <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='bannerType'
+          (change)="onSelectionChange($event)">
+          <option value="">Select Banner For</option>
+          <option value="course">Course</option>
+          <option value="testSeries">Test Series</option>
+          <option value="none">None</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && f['bannerType'].errors">
+        <span style="color: red;" *ngIf="f['bannerType'].errors['required'] ">Please select banner Type</span>
+      </div>
 
-    <div class="mb-3" *ngIf="isBannerCourse== 'course'">
-      <label cLabel for="exampleFormControlStatus">Banner for Courses</label><br>
-      <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='courseId'>
-        <option value="">Select Course</option>
-        <option *ngFor="let list of coursData" [value]="list._id">{{list?.title}}({{list?.type}})</option>
-        <!-- <option value="testSeries">Test Series</option> -->
-      </select>
-    </div>
-    <div *ngIf="submitted && f['courseId'].errors">
-      <span style="color: red;" *ngIf="f['courseId'].errors['required'] ">Please select Course</span>
-  </div>
+      <div class="mb-3" *ngIf="isBannerCourse== 'course'">
+        <label cLabel for="exampleFormControlStatus">Banner for Courses</label><br>
+        <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='courseId'>
+          <option value="">Select Course</option>
+          <option *ngFor="let list of coursData" [value]="list._id">{{list?.title}}({{list?.type}})</option>
+          <!-- <option value="testSeries">Test Series</option> -->
+        </select>
+      </div>
+      <div *ngIf="submitted && f['courseId'].errors">
+        <span style="color: red;" *ngIf="f['courseId'].errors['required'] ">Please select Course</span>
+      </div>
 
-    <div class="mb-3" *ngIf="isBannerCourse== 'testSeries'">
-      <label cLabel for="exampleFormControlStatus">Banner for Test Series*</label><br>
-      <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='testId'>
-        <option value="">Select Test</option>
-        <option *ngFor="let list of testOnlineData" [value]="list._id">{{list?.name}}({{list?.type}})</option>
-        <!-- <option value="testSeries">Test Series</option> -->
-      </select>
-    </div>
-    <div *ngIf="submitted && f['testId'].errors">
-      <span style="color: red;" *ngIf="f['testId'].errors['required'] ">Please select Online Test Batch</span>
-  </div>
-    
+      <div class="mb-3" *ngIf="isBannerCourse== 'testSeries'">
+        <label cLabel for="exampleFormControlStatus">Banner for Test Series*</label><br>
+        <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='testId'>
+          <option value="">Select Test</option>
+          <option *ngFor="let list of testOnlineData" [value]="list._id">{{list?.name}}({{list?.type}})</option>
+          <!-- <option value="testSeries">Test Series</option> -->
+        </select>
+      </div>
+      <div *ngIf="submitted && f['testId'].errors">
+        <span style="color: red;" *ngIf="f['testId'].errors['required'] ">Please select Online Test Batch</span>
+      </div>
 
-    <!-- accept="image/*" -->
-    <div class="mb-3">
-      <label for="images" class="form-label">Banner Thumbnail<span *ngIf="user == 'Add'">*</span> </label>
-      <input type="file" class="form-control" id="images" rows="3" formControlName="thumbnail" (change)="onFileChange($event)" >
-    </div>
-    <div *ngIf="submitted && f['thumbnail'].errors">
-      <span style="color: red;" *ngIf="f['thumbnail'].errors['required'] ">Please uploads pdf note</span>
-  </div>
-  
 
-    <div class="mb-3">
+      <!-- accept="image/*" -->
+      <div class="mb-3">
+        <label for="images" class="form-label">Banner Thumbnail<span *ngIf="user == 'Add'">*</span> </label>
+        <input type="file" class="form-control" id="images" rows="3" formControlName="thumbnail"
+          (change)="onFileChange($event)">
+      </div>
+      <div *ngIf="submitted && f['thumbnail'].errors">
+        <span style="color: red;" *ngIf="f['thumbnail'].errors['required'] ">Please uploads pdf note</span>
+      </div>
+
+
+      <div class="mb-3">
         <label cLabel for="exampleFormControlStatus">Status*</label><br>
         <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>
           <option [disabled]="true">Select Status</option>
@@ -77,28 +79,27 @@
       </div>
       <div *ngIf="submitted && f['status'].errors">
         <span style="color: red;" *ngIf="f['status'].errors['required'] ">Please select Status</span>
-    </div>
+      </div>
       <!-- <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
         Save</button> -->
-<div class="modal-footer">
-<div class="d-grid">
-    <!-- <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
+      <div class="modal-footer">
+        <div class="d-grid">
+          <!-- <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
         Save</button> -->
-        <button *ngIf="!submit" type="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
-          Save
-        </button>
-      <button *ngIf="submit" class="btn btn-primary btn-login text-uppercase fw-bold" >
-        <div class="spinner-border" role="status">
-          <span class="visually-hidden">Loading...</span>
+          <button *ngIf="!submit" type="submit" class="btn btn-primary btn-login text-uppercase fw-bold">
+            Save
+          </button>
+          <button *ngIf="submit" class="btn btn-primary btn-login text-uppercase fw-bold">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </button>
         </div>
-        </button>
+
+      </div>
+
+    </form>
   </div>
+
 
 </div>
-
-</form>
- </div>
-   
-
-  </div>
- 

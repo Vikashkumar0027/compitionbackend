@@ -91,6 +91,9 @@
             </div>
             <div class="col" *ngIf="isSelectStudent">
                 <label for="month">Choose Month</label><br>
+ <!--
+                <select class="selectClass" name="month" id="month">   -->
+
                 <div class="dilogbox">
                     <angular2-multiselect [data]="dropdownMonthList" [(ngModel)]="selectedMonths"
                         [settings]="dropdownSettings" (onSelect)="onMonthSelect($event)"
@@ -99,6 +102,7 @@
                 </div>
 
                 <!-- <select class="selectClass" name="month" id="cars">
+
                     <option value="">{{month}}</option>
                     <option value="April">April</option>
                     <option value="May">May</option>
