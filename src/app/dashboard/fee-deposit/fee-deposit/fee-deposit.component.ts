@@ -23,6 +23,11 @@ export class FeeDepositComponent {
   totalClasses: any[] = [];
   isShow: boolean = false;
 
+  dropdownList: any[] = [];
+  selectedItems: any[] = [];
+  dropdownSettings: any = {};
+
+
   Month: any[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   constructor(
@@ -33,8 +38,7 @@ export class FeeDepositComponent {
     private router: Router
 
   ) {
-    const formData = { "className": "", "name": "", "rollNo": "", "uniqueId": "", "FatherName": "", "MobileNo": "", "section": "" };
-    // this.studentList(formData);
+
     this.getclass();
   }
 
@@ -48,14 +52,56 @@ export class FeeDepositComponent {
       console.log(res, "admission data");
     })
     this.feeService.feeList().subscribe(res => {
-      console.log('feeList:-', res.response);
-      this.feeType = res.response;
+      if (res.success) {
+        this.dropdownList = res.response.map((items: any) => ({
+          id: items._id,
+          itemName: items.name
+        }));
+        // console.log('feeList:-', this.dropdownList);
+      }
     })
 
-    const date = new Date();
-    this.year = date.getFullYear();
-    this.month = this.Month[date.getMonth()];
+    // const date = new Date();
+    // this.year = date.getFullYear();
+    // this.month = this.Month[date.getMonth()];
+
+    this.selectedItems = [
+
+    ];
+    this.dropdownSettings = {
+      singleSelection: false,
+      text: "Select Fee Types",
+      unSelectAllText: 'UnSelect All',
+      enableSearchFilter: false,
+      selectAllText: "Select All",
+      classes: "myclass custom-class",
+      // maxHeight: 300,
+      badgeShowLimit: 2,
+      addNewButtonText: "Add",
+      showCheckbox: true,
+      noDataLabel: 'No Data Available',
+
+    };
   }
+
+  // selector npm i angular2-multiselect-dropdown
+
+  onItemSelect(item: any) {
+    console.log(item);
+    console.log(this.selectedItems);
+  }
+  OnItemDeSelect(item: any) {
+    console.log(item);
+    console.log(this.selectedItems);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
+  }
+  onDeSelectAll(items: any) {
+    console.log(items);
+  }
+
+
 
   // class api list
   getclass() {
@@ -79,21 +125,23 @@ export class FeeDepositComponent {
     const formValue = formData.value;
     this.admissionService.AdmissionList(formData.value).subscribe(res => {
       const resValue = res.response[0];
-      if ( formValue.uniqueId == resValue.uniqueId || formValue.name == resValue.studentName || formValue.className == resValue.classId || formValue.section == resValue.section || formValue.rollNo == resValue.rollNo || formValue.MobileNo == resValue.studentMobile || formValue.FatherName == resValue.fatherName) {
+      if (formValue.uniqueId == resValue.uniqueId || formValue.name == resValue.studentName || formValue.className == resValue.classId || formValue.section == resValue.section || formValue.rollNo == resValue.rollNo || formValue.MobileNo == resValue.studentMobile || formValue.FatherName == resValue.fatherName) {
         this.AdmissionData = res.response;
         this.isShow = true;
       }
       console.log(res, "Admission data");
-      
+
     }, err => {
       console.log(err);
     })
   }
-  
+
 
   feeDeposit(admission: any) {
     this.router.navigate(['/', 'dashboard', 'fee_deposit', 'addFee', admission._id]);
   }
+
+
 
 }
 
