@@ -6,6 +6,13 @@
     border: 1px solid rgb(218, 214, 214);
 }
 
+
+.dropdown-list .animated .fadeIn .tagToBody {
+    width: 212px;
+    bottom: unset;
+    left: 1027.38px;
+    top: 224.6502px !important;
+
 li{
     list-style: none;
 }
