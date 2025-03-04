@@ -17,18 +17,24 @@ export class FeeDepositComponent {
   submitted = false; //search data validate
   viewDataId: any // admission view data id
   formData: any;
-  year: any;
   month: any;
   feeType: any;
   totalClasses: any[] = [];
   isShow: boolean = false;
-
+  isSelectStudent: boolean = false;
+  // multi selector fee type
   dropdownList: any[] = [];
   selectedItems: any[] = [];
   dropdownSettings: any = {};
 
+  // multi selector months 
+  dropdownMonthList: any[] = [];
+  selectedMonths: any[] = [];
+  dropdownMonthSettings: any = {};
 
-  Month: any[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  // current date 
+  currentYear: number = new Date().getFullYear();
+  year: number = this.currentYear;
 
   constructor(
     private admissionService: AdmissionService,
@@ -40,6 +46,7 @@ export class FeeDepositComponent {
   ) {
 
     this.getclass();
+
   }
 
   ngOnInit(): void {
@@ -48,7 +55,6 @@ export class FeeDepositComponent {
       if (res.success) {
         this.admission = res.response;
       }
-
       console.log(res, "admission data");
     })
     this.feeService.feeList().subscribe(res => {
@@ -57,17 +63,13 @@ export class FeeDepositComponent {
           id: items._id,
           itemName: items.name
         }));
-        // console.log('feeList:-', this.dropdownList);
       }
     })
 
-    // const date = new Date();
-    // this.year = date.getFullYear();
-    // this.month = this.Month[date.getMonth()];
 
-    this.selectedItems = [
 
-    ];
+    this.selectedItems = [];
+
     this.dropdownSettings = {
       singleSelection: false,
       text: "Select Fee Types",
@@ -80,12 +82,47 @@ export class FeeDepositComponent {
       addNewButtonText: "Add",
       showCheckbox: true,
       noDataLabel: 'No Data Available',
-
     };
+
+
+
+    // multi  selector field  months
+    this.selectedMonths = [];
+    console.log(this.selectedMonths, "months selected");
+    this.dropdownMonthList = [
+      { "id": 1, "itemName": "January", },
+      { "id": 2, "itemName": "February", },
+      { "id": 3, "itemName": "March", },
+      { "id": 4, "itemName": "April", },
+      { "id": 5, "itemName": "May", },
+      { "id": 6, "itemName": "June", },
+      { "id": 7, "itemName": "July", },
+      { "id": 8, "itemName": "August", },
+      { "id": 9, "itemName": "September", },
+      { "id": 10, "itemName": "October", },
+      { "id": 11, "itemName": "November", },
+      { "id": 12, "itemName": "December", },
+    ]
+
+    this.dropdownMonthSettings = {
+      singleSelection: false,
+      text: "Select Months",
+      unSelectAllText: 'UnSelect All',
+      enableSearchFilter: false,
+      selectAllText: "Select All",
+      classes: "myclass custom-class",
+      // maxHeight: 300,
+      badgeShowLimit: 2,
+      addNewButtonText: "Add",
+      showCheckbox: true,
+      noDataLabel: 'No Data Available',
+    };
+
+
+
   }
 
-  // selector npm i angular2-multiselect-dropdown
-
+  // multi  selector field  
   onItemSelect(item: any) {
     console.log(item);
     console.log(this.selectedItems);
@@ -100,6 +137,26 @@ export class FeeDepositComponent {
   onDeSelectAll(items: any) {
     console.log(items);
   }
+
+
+  // multi  selector field  months
+
+  onMonthSelect(item: any) {
+    console.log(item);
+    console.log(this.selectedItems, "months selects");
+  }
+  OnMonthDeSelect(item: any) {
+    console.log(item);
+    console.log(this.selectedItems, "months deselects");
+  }
+  onMonthSelectAll(items: any) {
+    console.log(items, "all selected");
+  }
+  onMonthDeSelectAll(items: any) {
+    console.log(items, "all deselected");
+  }
+
+
 
 
 
@@ -118,7 +175,6 @@ export class FeeDepositComponent {
 
   }
 
-
   // search student list
   studentList(formData: any) {
     console.log(formData.value)
@@ -128,6 +184,13 @@ export class FeeDepositComponent {
       if (formValue.uniqueId == resValue.uniqueId || formValue.name == resValue.studentName || formValue.className == resValue.classId || formValue.section == resValue.section || formValue.rollNo == resValue.rollNo || formValue.MobileNo == resValue.studentMobile || formValue.FatherName == resValue.fatherName) {
         this.AdmissionData = res.response;
         this.isShow = true;
+
+        if (formValue.uniqueId == resValue.uniqueId) {
+          this.isSelectStudent = true;
+        } else {
+          this.isSelectStudent = false;
+        }
+
       }
       console.log(res, "Admission data");
 
@@ -136,11 +199,11 @@ export class FeeDepositComponent {
     })
   }
 
-
   feeDeposit(admission: any) {
     this.router.navigate(['/', 'dashboard', 'fee_deposit', 'addFee', admission._id]);
   }
 
+  // onSelectionChange() {
 
 
 }
