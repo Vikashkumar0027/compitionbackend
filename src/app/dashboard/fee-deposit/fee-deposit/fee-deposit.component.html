@@ -67,7 +67,7 @@
 
         </div>
 
-        <div class="row row-cols-4 g-3 align-items-center p-4" *ngIf="isShow">
+        <div class="row row-cols-4 g-3 align-items-center border-bottom p-4" *ngIf="isShow">
             <div class="col">
                 <label for="name">Student List</label><br>
                 <select class="selectClass" id="name">
@@ -117,6 +117,134 @@
                 <!-- card selector -->
 
             </div>
+
+        </div>
+
+
+        <div class="row align-items-center p-3">
+            <div class="col-md-8">
+                <ul *ngFor="let list of AdmissionData">
+                    <li>
+                        <div class="feecontent d-flex justify-content-between">
+                            <div class="fw-semibold">Student Name</div>
+                            <div> {{list.studentName}}</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feecontent d-flex justify-content-between">
+                            <div>Sibling Details(option)</div>
+                            <div> <input type="text" class="inpt"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feecontent d-flex justify-content-between">
+                            <div>Father's Name</div>
+                            <div>{{list.fatherName}}</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feecontent d-flex justify-content-between">
+                            <div>Class</div>
+                            <div>{{list.classId.className}}</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feecontent d-flex justify-content-between">
+                            <div>Fee For Month</div>
+                            <div></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feecontent d-flex justify-content-between">
+                            <div>Old Balance</div>
+                            <div><input type="text" class="bInpt"></div>
+                        </div>
+                    </li>
+                    <hr>
+                    <li>
+                        <div class="feecontent d-flex justify-content-between">
+                            <div>Total Amount</div>
+                            <div><input type="text" placeholder="0.00" class="bInpt"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feecontent d-flex justify-content-between">
+                            <div>Late Fee/Last Due</div>
+                            <div><input type="text" placeholder="0" class="inpt"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feecontent d-flex justify-content-between">
+                            <div>Concession(.)</div>
+                            <div><input type="text" placeholder="0" class="inpt"></div>
+                        </div>
+                    </li>
+                    <li class="fw-semibold">
+                        <div class="feecontent d-flex justify-content-between">
+                            <div>Grand Total</div>
+                            <div><input type="text" placeholder="0" class="bInpt"></div>
+                        </div>
+                    </li>
+                    <li class="fw-semibold">
+                        <div class="feecontent d-flex justify-content-between">
+                            <div>Recevied Amount</div>
+                            <div><input type="text" class="inpt"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feecontent d-flex justify-content-between">
+                            <div>Balance</div>
+                            <div><input type="text" placeholder="0" class="bInpt"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feecontent d-flex justify-content-between">
+                            <div>Payment Mode</div>
+                            <div>
+                                <select name="p-mode" class="inpt">
+                                    <option value="">-Select-</option>
+                                    <option value="online">Online</option>
+                                    <option value="offline">Offline</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li>
+                        <div class="feecontent d-flex justify-content-between">
+                            <div>Remark/Detail</div>
+                            <div><input type="text" class="inpt"></div>
+                        </div>
+                    </li>
+                    <div class="float-end">
+                        <button type="submit" class="submit btn btn-success btn-sm">SUBMIT</button>
+                    </div>
+                </ul>
+               
+            </div>
+            <!-- <div class="col-md-6"> -->
+            <!-- <ul *ngFor="let list of AdmissionData">
+                    <li> 
+                     <div class="feecontent d-flex justify-content-between" >
+                        <div>Student Name</div> <div> {{list.studentName}}</div>
+                     </div>
+                    </li>
+                    <li><input type="text"></li>
+                    <li>{{list.fatherName}}</li>
+                    <li>{{list.classId.className}}</li>
+                    <li><input type="text"></li>
+                    <li><input type="text"></li>
+                    <li><input type="text"></li>
+                    <li><input type="text"></li>
+                    <li><input type="text"></li>
+                    <li><input type="text"></li>
+                    <li><input type="text"></li>
+                    <li><input type="text"></li>
+                    <li><input type="text"></li>
+                    <li><input type="text"></li>
+                </ul> -->
+            <!-- </div> -->
+
 
         </div>
 
