@@ -12,22 +12,25 @@
     bottom: unset;
     left: 1027.38px;
     top: 224.6502px !important;
+}
 
-li{
+li {
     list-style: none;
 }
 
-.feecontent{
+.feecontent {
     margin-bottom: 15px;
 }
-.inpt{
+
+.inpt {
     border: 1px solid rgb(218, 216, 216);
     width: 250px;
     padding: 1px 5px;
     font-size: 14px;
 }
-.bInpt{
-    background-color:  rgb(236, 233, 233);
+
+.bInpt {
+    background-color: rgb(236, 233, 233);
     border: none;
     padding: 1px 5px;
     font-size: 14px;
