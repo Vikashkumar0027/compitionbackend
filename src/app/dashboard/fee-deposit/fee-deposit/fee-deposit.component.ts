@@ -22,6 +22,7 @@ export class FeeDepositComponent {
   totalClasses: any[] = [];
   isShow: boolean = false;
   isSelectStudent: boolean = false;
+  studentselectDatails: any = {};
   // multi selector fee type
   dropdownList: any[] = [];
   selectedItems: any[] = [];
@@ -88,6 +89,7 @@ export class FeeDepositComponent {
 
     // multi  selector field  months
     this.selectedMonths = [];
+    console.log(this.selectedMonths, "selected months");
     console.log(this.selectedMonths, "months selected");
     this.dropdownMonthList = [
       { "id": 1, "itemName": "January", },
@@ -111,7 +113,7 @@ export class FeeDepositComponent {
       enableSearchFilter: false,
       selectAllText: "Select All",
       classes: "myclass custom-class",
-      // maxHeight: 300,
+      maxHeight: 300,
       badgeShowLimit: 2,
       addNewButtonText: "Add",
       showCheckbox: true,
@@ -150,10 +152,10 @@ export class FeeDepositComponent {
     console.log(this.selectedItems, "months deselects");
   }
   onMonthSelectAll(items: any) {
-    console.log(items, "all selected");
+    console.log(items.length, "all selected");
   }
   onMonthDeSelectAll(items: any) {
-    console.log(items, "all deselected");
+    console.log(items.length, "all deselected");
   }
 
 
@@ -183,6 +185,7 @@ export class FeeDepositComponent {
       const resValue = res.response[0];
       if (formValue.uniqueId == resValue.uniqueId || formValue.name == resValue.studentName || formValue.className == resValue.classId || formValue.section == resValue.section || formValue.rollNo == resValue.rollNo || formValue.MobileNo == resValue.studentMobile || formValue.FatherName == resValue.fatherName) {
         this.AdmissionData = res.response;
+        console.log(this.AdmissionData, "hello admission");
         this.isShow = true;
 
         if (formValue.uniqueId == resValue.uniqueId) {
@@ -203,7 +206,17 @@ export class FeeDepositComponent {
     this.router.navigate(['/', 'dashboard', 'fee_deposit', 'addFee', admission._id]);
   }
 
-  // onSelectionChange() {
+  onSelectionChange(event: any) {
+    if (event.target.value) {
+      console.log(event.target.value, "hello admin");
+
+      const studentselectDatails = this.AdmissionData.filter((x) => x._id == event.target.value);
+
+      this.studentselectDatails = studentselectDatails[0]
+      console.log(this.studentselectDatails);
+      this.isSelectStudent = true;
+    }
+  }
 
 
 }
