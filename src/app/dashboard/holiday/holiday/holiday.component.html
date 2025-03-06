@@ -1,39 +1,38 @@
 <!-- <p>holiday works!</p> -->
 
 <div>
-    <div class="w-50 float-start">
-        <h4 class="holiday">Holiday details of school:-</h4>
-    </div>
-    <div class="m-3 w-25 float-end">
-        <button class="btn btn-outline-success" (click)="holidayModal()">Holiday</button>
-    </div>
+  <div class="w-50 float-start">
+    <h4 class="holiday text-capitalize">Holiday details of school:-</h4>
+  </div>
+  <div class="m-3 w-25 float-end">
+    <button class="btn btn-outline-success" (click)="holidayModal()">Add Holiday</button>
+  </div>
 
-    <table class="table">
-        <thead >
-          <tr class="text-center">
-            <th scope="col">#</th>
-            <th scope="col">Date</th>
-            <th scope="col">Name</th>
-            <th scope="col">Status</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="text-center" *ngFor="let list of holidayData; let i = index;">
-            <th scope="row">{{i+1}}</th>
-            <td>{{list.date}}</td>
-            <td>{{list.name}}</td>
-            <td>{{list.status}}</td>
-            <td>
-                <button class="btn btn-outline-secondary btn-sm">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                </button>
-                <button class="btn btn-outline-danger btn-sm ms-1">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <table class="table table-striped">
+    <thead>
+      <tr class="text-center">
+        <th scope="col">#</th>
+        <th scope="col">Holiday Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="text-center" *ngFor="let list of holidayData; let i = index;">
+        <th scope="row">{{i+1}}</th>
+        <td class="text-capitalize">{{list.holidayName}}</td>
+        <td>{{list.date}}</td>
+        <td>{{list.status}}</td>
+        <td>
+          <button class="btn btn-outline-secondary btn-sm" (click)="editHoliday(list)">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </button>
+          <button class="btn btn-outline-danger btn-sm ms-2" (click)="deleteHoliday(list._id)">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
