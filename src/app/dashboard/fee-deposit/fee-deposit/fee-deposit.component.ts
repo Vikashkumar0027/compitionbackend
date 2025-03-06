@@ -33,6 +33,18 @@ export class FeeDepositComponent {
   selectedMonths: any[] = [];
   dropdownMonthSettings: any = {};
 
+  // fee calculate 
+
+  // TotalFee: any;
+  totalFeeSum: any = 0;
+  totalDepositFee: any = 0;
+  totalReceivedAmount: any = 0;
+  concessionFee: any = 0;
+  totalConcession: any = 0;
+  ReceivedAmount: any = 0;
+
+
+
   // current date 
   currentYear: number = new Date().getFullYear();
   year: number = this.currentYear;
@@ -62,15 +74,17 @@ export class FeeDepositComponent {
       if (res.success) {
         this.dropdownList = res.response.map((items: any) => ({
           id: items._id,
-          itemName: items.name
+          itemName: items.name,
+          fee: items.fee
         }));
+
+
       }
     })
 
 
 
     this.selectedItems = [];
-
     this.dropdownSettings = {
       singleSelection: false,
       text: "Select Fee Types",
@@ -78,7 +92,6 @@ export class FeeDepositComponent {
       enableSearchFilter: false,
       selectAllText: "Select All",
       classes: "myclass custom-class",
-      // maxHeight: 300,
       badgeShowLimit: 2,
       addNewButtonText: "Add",
       showCheckbox: true,
@@ -89,8 +102,8 @@ export class FeeDepositComponent {
 
     // multi  selector field  months
     this.selectedMonths = [];
-    console.log(this.selectedMonths, "selected months");
-    console.log(this.selectedMonths, "months selected");
+
+
     this.dropdownMonthList = [
       { "id": 1, "itemName": "January", },
       { "id": 2, "itemName": "February", },
@@ -125,39 +138,81 @@ export class FeeDepositComponent {
   }
 
   // multi  selector field  
+
   onItemSelect(item: any) {
-    console.log(item);
-    console.log(this.selectedItems);
+    this.sumCalculate();
+    this.multiCalculate();
+
+
   }
   OnItemDeSelect(item: any) {
-    console.log(item);
-    console.log(this.selectedItems);
+    this.sumCalculate();
+    this.multiCalculate();
   }
   onSelectAll(items: any) {
-    console.log(items);
+    this.sumCalculate();
+    this.multiCalculate();
+
   }
   onDeSelectAll(items: any) {
-    console.log(items);
+    this.sumCalculate();
+    this.multiCalculate();
   }
 
+
+  multiCalculate() {
+    this.totalDepositFee = this.selectedMonths.length * this.totalFeeSum;
+    this.onConcession()
+    this.onReceivedAmount();
+  }
+
+  sumCalculate() {
+    this.totalFeeSum = this.selectedItems.reduce((acc, num) => acc + num.fee, 0);
+    this.onConcession();
+    this.onReceivedAmount();
+  }
+
+
+  onConcession() {
+    this.onReceivedAmount();
+    if (this.concessionFee < this.totalDepositFee) {
+      this.totalConcession = this.totalDepositFee - this.concessionFee; // Direct calculation
+    } else {
+      this.totalConcession = this.totalDepositFee;
+    }
+  }
+
+  balance: any = 0;
+  onReceivedAmount() {
+    if (this.totalConcession >= this.totalReceivedAmount) {
+      this.ReceivedAmount = this.totalConcession - this.totalReceivedAmount;
+
+    } else {
+      if (this.ReceivedAmount = 0) {
+        this.balance = this.ReceivedAmount - this.totalConcession;
+      }
+      // this.ReceivedAmount = 0;
+    }
+
+  }
 
   // multi  selector field  months
-
   onMonthSelect(item: any) {
-    console.log(item);
-    console.log(this.selectedItems, "months selects");
+    this.multiCalculate();
+
   }
   OnMonthDeSelect(item: any) {
-    console.log(item);
-    console.log(this.selectedItems, "months deselects");
+    this.multiCalculate();
+
   }
   onMonthSelectAll(items: any) {
-    console.log(items.length, "all selected");
+    this.multiCalculate();
+
   }
   onMonthDeSelectAll(items: any) {
-    console.log(items.length, "all deselected");
-  }
+    this.multiCalculate();
 
+  }
 
 
 
@@ -189,7 +244,9 @@ export class FeeDepositComponent {
         this.isShow = true;
 
         if (formValue.uniqueId == resValue.uniqueId) {
+          this.onUniqueIdChange(formValue.uniqueId)
           this.isSelectStudent = true;
+
         } else {
           this.isSelectStudent = false;
         }
@@ -218,6 +275,11 @@ export class FeeDepositComponent {
     }
   }
 
+  onUniqueIdChange(uniqueId: any) {
+    const studentselectDatails = this.AdmissionData.filter((x) => x.uniqueId == uniqueId);
+    this.studentselectDatails = studentselectDatails[0];
+
+  }
 
 }
 

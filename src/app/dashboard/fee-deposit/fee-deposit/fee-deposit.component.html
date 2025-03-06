@@ -11,7 +11,7 @@
 
     <div class="row align-items-center">
         <div class="col-md-4">
-            <h1 class="h3 mb-lg-3 text-gray-800">fee-deposit</h1>
+            <h1 class="h3 mb-lg-3 text-gray-800">Fee-Deposit</h1>
         </div>
     </div>
 
@@ -71,7 +71,8 @@
 
             <div class="col" *ngIf="isSelectStudent">
                 <label for="name">Student List</label><br>
-                <input type="text" [value]="AdmissionData[0]?.studentName">
+                <input type="text" [value]="AdmissionData[0]?.studentName"
+                    (click)="onUniqueIdChange(AdmissionData[0]?.uniqueId)">
             </div>
 
             <div class="col" *ngIf="!isSelectStudent">
@@ -137,7 +138,7 @@
                     <li>
                         <div class="feecontent d-flex justify-content-between">
                             <div class="fw-semibold col-md-4">Student Name</div>
-                            <div class="col-md-4"> {{studentselectDatails.studentName}}</div>
+                            <div class="col-md-4 text-capitalize"> {{studentselectDatails.studentName}}</div>
                         </div>
                     </li>
                     <li>
@@ -149,7 +150,7 @@
                     <li>
                         <div class="feecontent d-flex justify-content-between">
                             <div class="col-md-4">Father's Name</div>
-                            <div class="col-md-4">{{studentselectDatails.fatherName}}</div>
+                            <div class="col-md-4 text-capitalize">{{studentselectDatails.fatherName}}</div>
                         </div>
                     </li>
                     <li>
@@ -160,8 +161,10 @@
                     </li>
                     <li>
                         <div class="feecontent d-flex justify-content-between">
-                            <div>Fee For Month</div>
-                            <div></div>
+                            <div class="col-md-4">Fee For Months</div>
+                            <div *ngFor="let monthList of selectedMonths" class="d-block">
+                                <p> {{monthList.itemName | slice: 0 : 3}}</p>
+                            </div>
                         </div>
                     </li>
                     <li>
@@ -173,8 +176,8 @@
                     <hr>
                     <li>
                         <div class="feecontent d-flex justify-content-between">
-                            <div>Total Amount</div>
-                            <div><input type="text" placeholder="0.00" class="bInpt"></div>
+                            <div class="col-md-4">Total Amount</div>
+                            <div class="col-md-4"> {{totalDepositFee}}</div>
                         </div>
                     </li>
                     <li>
@@ -185,26 +188,44 @@
                     </li>
                     <li>
                         <div class="feecontent d-flex justify-content-between">
+                            <div>Current Due</div>
+
+                            <div><input type="text" placeholder="0" [disabled]="true" readonly
+                                    value="{{ReceivedAmount}}" class="inpt">
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feecontent d-flex justify-content-between">
                             <div>Concession(.)</div>
-                            <div><input type="text" placeholder="0" class="inpt"></div>
+                            <div>
+
+                                <input type="number" placeholder="0" [(ngModel)]="concessionFee" class="inpt"
+                                    (keyup)="onConcession()">
+
+                            </div>
                         </div>
                     </li>
                     <li class="fw-semibold">
                         <div class="feecontent d-flex justify-content-between">
-                            <div>Grand Total</div>
-                            <div><input type="text" placeholder="0" class="bInpt"></div>
+                            <div>Grand Total </div>
+                            <div><input type="text" placeholder="0" [disabled]="true" readonly
+                                    value="{{totalConcession}}" class="bInpt">
+                            </div>
                         </div>
                     </li>
                     <li class="fw-semibold">
                         <div class="feecontent d-flex justify-content-between">
-                            <div>Recevied Amount</div>
-                            <div><input type="text" class="inpt"></div>
+                            <div>Received Amount</div>
+                            <!-- <div><input type="text" [(ngModel)]="totalReceivedAmount" class="inpt"></div> -->
+                            <div><input type="text" [(ngModel)]="totalReceivedAmount" (keyup)="onReceivedAmount()"
+                                    class="inpt"></div>
                         </div>
                     </li>
                     <li>
                         <div class="feecontent d-flex justify-content-between">
                             <div>Balance</div>
-                            <div><input type="text" placeholder="0" class="bInpt"></div>
+                            <div><input type="text" placeholder="0" value="{{balance}}" class="bInpt"></div>
                         </div>
                     </li>
                     <li>
