@@ -248,3 +248,9 @@ export let bannerAdd = domain + 'admin/banner/create';
 export let bannerList = domain + 'admin/banner/list';
 export let bannerDelete = domain + 'admin/banner/delete';
 export let bannerUpdate = domain + 'admin/banner/update';
+
+// Holiday
+export let holidayAdd = domain + 'admin/holiday/create';
+export let holidayList = domain + 'admin/holiday/list';
+export let holidayDelete = domain + 'admin/holiday/delete';
+export let holidayUpdate = domain + 'admin/holiday/update';
