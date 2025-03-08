@@ -32,6 +32,7 @@ const routes: Routes = [
       { path: 'admission', loadChildren: () => import('./admission/admission.module').then((m) => m.AdmissionModule), canActivate: [subadminGuard] },
       { path: 'banner', loadChildren: () => import('./banner/banner.module').then((m) => m.BannerModule), canActivate: [subadminGuard] },
       { path: 'holiday', loadChildren: () => import('./holiday/holiday.module').then((m) => m.HolidayModule), canActivate: [subadminGuard] },
+      { path: 'attendance', loadChildren: () => import('./attendance/attendance.module').then((m) => m.AttendanceModule), canActivate: [subadminGuard] },
     ]
   },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }

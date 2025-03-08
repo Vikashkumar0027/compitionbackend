@@ -14,8 +14,8 @@ export class HolidayComponent {
 
   private activeModal: any;
   holiList: any;
+  holidayData: any[] = [];
 
-  holidayData: any[] = []
   constructor(
     private modalService: NgbModal,
     private holidayService: HolidayService,
