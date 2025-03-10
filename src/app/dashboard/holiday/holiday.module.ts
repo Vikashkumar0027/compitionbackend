@@ -5,6 +5,7 @@ import { HolidayRoutingModule } from './holiday-routing.module';
 import { HolidayComponent } from './holiday/holiday.component';
 import { HolidayModalComponent } from './holiday-modal/holiday-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     HolidayRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ]
 })
 export class HolidayModule { }
