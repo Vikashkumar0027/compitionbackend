@@ -196,6 +196,10 @@ export let selectSideBar = [
     "module": "Holiday",
     "checked": false,
   },
+  {
+    "module": "Staff",
+    "checked": false,
+  },
 ]
 
 
@@ -222,6 +226,7 @@ export let sidebar = [
   { number: '14', name: 'Admission', icon: 'fa-solid fa-user-tie', url: '/dashboard/admission' },
   { number: '15', name: 'Fee Deposit', icon: 'fa-solid fa-indian-rupee-sign', url: '/dashboard/fee_deposit' },
   { number: '16', name: 'Holiday', icon: 'fa-solid fa-mug-hot', url: '/dashboard/holiday' },
+  { number: '17', name: 'Staff', icon: 'fa-solid fa-person-cane', url: '/dashboard/staff' },
 ];
 
 // live_class

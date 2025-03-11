@@ -1,0 +1,175 @@
+<div class="modal-header">
+    <h4 class="modal-title text-capitalize" id="modal-basic-title"> Staff Registration {{user}}</h4>
+
+    <button type="button" class="btn btn-outline-primary px-3 ms-auto close" aria-label="Close" (click)="modalClose()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="container px-4">
+
+
+
+
+    <div class="container mt-4">
+        <form [formGroup]="staffForm" (ngSubmit)="onSubmit()">
+            <div class="row row-cols-3 g-2 mt-3">
+
+                <div class="col">
+                    <label class="form-label">Staff Name</label>
+                    <input type="text" class="form-control" formControlName="staffName">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Unique ID</label>
+                    <input type="text" class="form-control" formControlName="uniqueId">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" formControlName="dob">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Father's Name</label>
+                    <input type="text" class="form-control" formControlName="fatherName">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Gender</label>
+                    <select class="form-select" formControlName="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Date of Joining</label>
+                    <input type="date" class="form-control" formControlName="dateOfJoining">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Primary Contact</label>
+                    <input type="text" class="form-control" formControlName="primaryNumber">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Secondary Contact</label>
+                    <input type="text" class="form-control" formControlName="secondaryNumber">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" formControlName="email">
+                </div>
+
+
+
+                <div class="col">
+                    <label class="form-label">Qualification</label>
+                    <input type="text" class="form-control" formControlName="qualification">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Teaching Subjects (comma-separated)</label>
+                    <input type="text" class="form-control" formControlName="teachingSubjects">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Designation</label>
+                    <input type="text" class="form-control" formControlName="designation">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Experience (Years)</label>
+                    <input type="number" class="form-control" formControlName="experience">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Basic Salary</label>
+                    <input type="number" class="form-control" formControlName="basicSalary">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Aadhar Number</label>
+                    <input type="text" class="form-control" formControlName="aadharNo">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">PAN Number</label>
+                    <input type="text" class="form-control" formControlName="panNo">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">PF Number</label>
+                    <input type="text" class="form-control" formControlName="pfNo">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Status</label>
+                    <select class="form-select" formControlName="status">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Profile Photo (URL)</label>
+                    <input type="text" class="form-control" formControlName="photo">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Last School</label>
+                    <input type="text" class="form-control" formControlName="lastSchool">
+                </div>
+                <div class="col">
+                    <label class="form-label">Address</label>
+                    <textarea class="form-control" formControlName="address"></textarea>
+                </div>
+                <div class="col">
+                    <label class="form-label">Comments</label>
+                    <textarea class="form-control" formControlName="comments"></textarea>
+                </div>
+
+            </div>
+
+            <h4 class="mt-4">Bank Details</h4>
+            <div class="row row-cols-3 g-3 mt-3">
+
+                <div class="col">
+                    <label class="form-label">Bank Name</label>
+                    <input type="text" class="form-control" formControlName="bankDetails.bankName">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Account Number</label>
+                    <input type="text" class="form-control" formControlName="bankDetails.accountNumber">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Branch</label>
+                    <input type="text" class="form-control" formControlName="bankDetails.branch">
+                </div>
+
+                <div class="col">
+                    <label class="form-label">IFSC Code</label>
+                    <input type="text" class="form-control" formControlName="bankDetails.ifscCode">
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <div class="d-grid">
+                    <button type="submit" (click)="onSubmit()"
+                        class="btn btn-outline-primary btn-login text-uppercase fw-bold">
+                        Save</button>
+                </div>
+
+            </div>
+        </form>
+
+
+    </div>
+
+
+</div>

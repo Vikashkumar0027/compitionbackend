@@ -1,0 +1,127 @@
+<div class="modal-header">
+    <h4 class="modal-title text-capitalize" id="modal-basic-title"> Staff View</h4>
+
+    <button type="button" class="btn btn-outline-primary px-3 ms-auto close" aria-label="Close" (click)="modalClose()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="container">
+    <div class="row my-2">
+
+        <div class="col-md-4 border-1">
+            <figure class="figure studentImgBox m-0">
+                <img [src]="Staff?.photo" class="figure-img  img-fluid rounded" alt="student image">
+            </figure>
+
+            <ul class="p-0">
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Staff Id :-</span>
+                    <span>{{Staff?.uniqueId}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Staff Name :-</span>
+                    <span>{{Staff?.staffName}}</span>
+                </li>
+
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Primary Number :-</span>
+                    <span>{{Staff?.primaryNumber}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>secondary Number :-</span>
+                    <span>{{Staff?.secondaryNumber}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Gender :-</span>
+                    <span>{{Staff?.gender}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Date Of Joining :-</span>
+                    <span>{{Staff?.dateOfJoining}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Qualification :-</span>
+                    <span>{{Staff?.qualification}}</span>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="col-md-4 border-1 ">
+            <ul class="p-0 ">
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Teaching Subjects :-</span>
+                    <span>{{Staff.teachingSubjects[0]}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Designation :-</span>
+                    <span>{{Staff?.designation}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Email:-</span>
+                    <span>{{Staff?.email}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Experience :-</span>
+                    <span>{{Staff?.experience}}</span>
+                </li>
+
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Basic Salary :-</span>
+                    <span>{{Staff?.basicSalary}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Aadhar No :-</span>
+                    <span>{{Staff?.aadharNo}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Pan No :-</span>
+                    <span>{{Staff?.panNo}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Pf No:-</span>
+                    <span>{{Staff?.pfNo}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Status:-</span>
+                    <span>{{Staff?.status}}</span>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="col-md-4 border-1 ">
+            <ul class="p-0 ">
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>last School:-</span>
+                    <span>{{Staff?.lastSchool}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Comments:-</span>
+                    <span>{{Staff?.comments}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Bank Details :-</span>
+                    <span>{{Staff?.bankDetails.bankName}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Account Number :-</span>
+                    <span>{{Staff?.bankDetails.accountNumber}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Branch :-</span>
+                    <span>{{Staff?.bankDetails.branch}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>IFSC Code :-</span>
+                    <span>{{Staff?.bankDetails.ifscCode}}</span>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+    </div>
+</div>
