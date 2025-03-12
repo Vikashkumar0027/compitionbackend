@@ -1,0 +1,150 @@
+<!-- <p>attendance works!</p> -->
+
+
+<div class="container-fluid">
+    <!-- Breadcrumb for Navigation -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><span class="text-secondary">Attendance</span></li>
+        </ol>
+    </nav>
+
+    <div class="row align-items-center">
+        <div class="col-md-4">
+            <h1 class="h3 mb-lg-3 text-gray-800"> Attendance</h1>
+        </div>
+        <div class="col-md-8 mb-3 text-md-end">
+            <button type="button" class="btn btn-outline-primary" (click)="modalData()">Attendance</button>
+        </div>
+    </div>
+
+    <!-- Card Section -->
+    <!-- <h1 class="h3 mb-3 text-gray-800">Company</h1> -->
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <form #searchData=ngForm (ngSubmit)="attendanceList(searchData)">
+
+                <div class="row row-cols-5 g-2 align-items-center">
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Student Name"
+                            aria-label="Search" name="name">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Class Name"
+                            aria-label="Search" name="className">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Roll Number"
+                            aria-label="Search" name="rollNO">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Unique Number"
+                            aria-label="Search" name="uniqueId">
+                    </div>
+
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Search Student No"
+                            aria-label="Search" name="MobileNo">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Search Father Name"
+                            aria-label="Search" name="FatherName">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Section Name"
+                            aria-label="Search" name="section">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-outline-primary btn-login text-capitalize">
+                            Search Now</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Table Section -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <div class="container-fluid border-bottom border-1" *ngFor="let list of attendanceData; let i = index">
+                    <div class="row my-2">
+
+                        <div class="col-md-3 border-1 border-end">
+                            <figure class="figure studentImgBox m-0">
+                                <img [src]="list?.studentImage" class="figure-img  img-fluid rounded"
+                                    alt="student image">
+                                    <li class="d-flex justify-content-between list-unstyled">
+                                        <span class="fw-semibold">Student Id :-</span>
+                                        <span class="fw-semibold">{{list?.uniqueId}}</span>
+                                    </li>
+                            </figure>
+                                                     
+                        </div>
+
+                        <div class="col-md-4 border-1 border-end">
+                            <ul class="p-0"> 
+                                <li class="d-flex justify-content-between list-unstyled mb-3">
+                                    <span>Student Name :-</span>
+                                    <span>{{list?.studentName}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled mb-3">
+                                    <span>Class Name :-</span>
+                                    <span>{{list.classId?.className}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled mb-3">
+                                    <span>Roll No :-</span>
+                                    <span>{{list?.rollNo}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Section Name :-</span>
+                                    <span>{{list?.section}}</span>
+                                </li>
+                               
+                            </ul>
+                        </div>
+
+                        <div class="col-md-4 border-1">
+                       
+                            <li class="d-flex justify-content-between list-unstyled mb-3">
+                                <span>Student Number :-</span>
+                                <span>{{list?.studentMobile}}</span>
+                            </li>
+                            <li class="d-flex justify-content-between list-unstyled mb-3">
+                                <span>Gender :-</span>
+                                <span>{{list?.gender}}</span>
+                            </li>
+                            <li class="d-flex justify-content-between list-unstyled mb-3">
+                                <span>DOB :-</span>
+                                <span>{{list?.dob}}</span>
+                            </li>
+                            <li class="d-flex justify-content-between list-unstyled mb-3">
+                                <span>Address :-</span>
+                                <span>{{list?.address}}</span>
+                            </li>
+                        </div>
+
+                        <div class="col-md-1 d-flex justify-content-center flex-column align-items-center">
+                            <button class="btn btn-outline-success btn-sm" (click)="edit(list, list._id)"><i
+                                    _ngcontent-ng-c2586479129="" class="fa-solid fa-pen-to-square"
+                                    aria-hidden="true"></i></button> <br>
+                            <button class="btn mt-2 btn-outline-danger btn-sm" (click)="delete(list)"><i
+                                    _ngcontent-ng-c2586479129="" class="fa-solid fa-trash-can"
+                                    aria-hidden="true"></i></button> <br>
+                        </div>
+                    </div>
+                </div>
+
+
+                <ng-template #noDataFound>
+                    <div>
+                        No data found!.
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
