@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title text-capitalize" id="modal-basic-title"> Staff View</h4>
+    <h4 class="modal-title text-capitalize" id="modal-basic-title">Staff View</h4>
 
     <button type="button" class="btn btn-outline-primary px-3 ms-auto close" aria-label="Close" (click)="modalClose()">
         <span aria-hidden="true">&times;</span>
@@ -32,6 +32,11 @@
                     <span>secondary Number :-</span>
                     <span>{{Staff?.secondaryNumber}}</span>
                 </li>
+            </ul>
+        </div>
+
+        <div class="col-md-4 border-1 ">
+            <ul class="p-0 ">
                 <li class="d-flex justify-content-between list-unstyled">
                     <span>Gender :-</span>
                     <span>{{Staff?.gender}}</span>
@@ -44,12 +49,6 @@
                     <span>Qualification :-</span>
                     <span>{{Staff?.qualification}}</span>
                 </li>
-
-            </ul>
-        </div>
-
-        <div class="col-md-4 border-1 ">
-            <ul class="p-0 ">
                 <li class="d-flex justify-content-between list-unstyled">
                     <span>Teaching Subjects :-</span>
                     <span>{{Staff.teachingSubjects[0]}}</span>
@@ -74,18 +73,6 @@
                 <li class="d-flex justify-content-between list-unstyled">
                     <span>Aadhar No :-</span>
                     <span>{{Staff?.aadharNo}}</span>
-                </li>
-                <li class="d-flex justify-content-between list-unstyled">
-                    <span>Pan No :-</span>
-                    <span>{{Staff?.panNo}}</span>
-                </li>
-                <li class="d-flex justify-content-between list-unstyled">
-                    <span>Pf No:-</span>
-                    <span>{{Staff?.pfNo}}</span>
-                </li>
-                <li class="d-flex justify-content-between list-unstyled">
-                    <span>Status:-</span>
-                    <span>{{Staff?.status}}</span>
                 </li>
             </ul>
 
@@ -117,7 +104,18 @@
                     <span>IFSC Code :-</span>
                     <span>{{Staff?.bankDetails.ifscCode}}</span>
                 </li>
-
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Pan No :-</span>
+                    <span>{{Staff?.panNo}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Pf No:-</span>
+                    <span>{{Staff?.pfNo}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Status:-</span>
+                    <span>{{Staff?.status}}</span>
+                </li>
             </ul>
 
         </div>
