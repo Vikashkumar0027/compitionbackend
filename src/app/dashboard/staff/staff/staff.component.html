@@ -1,0 +1,205 @@
+<div class="container-fluid">
+    <!-- Breadcrumb for Navigation -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Staff</a></li>
+        </ol>
+    </nav>
+
+    <div class="row align-items-center">
+        <div class="col-md-4">
+            <h1 class="h3 mb-lg-3 text-gray-800"> Staff</h1>
+        </div>
+        <div class="col-md-8 mb-3 text-md-end">
+            <button type="button" class="btn btn-outline-primary btn-sm " (click)="modalData()">New Staff</button>
+        </div>
+    </div>
+
+    <!-- Card Section -->
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <form #searchData=ngForm (ngSubmit)="searchStaff(searchData)">
+
+                <div class="row row-cols-5 g-2 align-items-center">
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Search Staff Name*"
+                            aria-label="Search" name="staffName">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Search Father Name"
+                            aria-label="Search" name="FatherName">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Search Husband Name"
+                            aria-label="Search" name="HusbandName">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Search Unique Number"
+                            aria-label="Search" name="uniqueId">
+                    </div>
+
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Search Staff No"
+                            aria-label="Search" name="MobileNo">
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-sm btn-outline-primary mt-2 btn-login text-capitalize">
+                            Search Now</button>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+
+        <!-- Table Section -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <div class="container-fluid border-bottom border-1" *ngFor="let Staff of StaffList; let i = index">
+                    <div class="row my-2">
+
+                        <div class="col-md-5 border-1">
+                            <figure class="figure studentImgBox m-0">
+                                <img [src]="Staff?.photo" class="figure-img  img-fluid rounded" alt="student image">
+                            </figure>
+
+                            <ul class="p-0">
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Staff Id :-</span>
+                                    <span>{{Staff?.uniqueId}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Staff Name :-</span>
+                                    <span>{{Staff?.staffName}}</span>
+                                </li>
+
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Primary Number :-</span>
+                                    <span>{{Staff?.primaryNumber}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>secondary Number :-</span>
+                                    <span>{{Staff?.secondaryNumber}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Gender :-</span>
+                                    <span>{{Staff?.gender}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Date Of Joining :-</span>
+                                    <span>{{Staff?.dateOfJoining}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Qualification :-</span>
+                                    <span>{{Staff?.qualification}}</span>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div class="col-md-5 border-1 ">
+                            <ul class="p-0 ">
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Teaching Subjects :-</span>
+                                    <span>{{Staff.teachingSubjects[0]}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Designation :-</span>
+                                    <span>{{Staff?.designation}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Email:-</span>
+                                    <span>{{Staff?.email}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Experience :-</span>
+                                    <span>{{Staff?.experience}}</span>
+                                </li>
+
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Basic Salary :-</span>
+                                    <span>{{Staff?.basicSalary}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Aadhar No :-</span>
+                                    <span>{{Staff?.aadharNo}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Pan No :-</span>
+                                    <span>{{Staff?.panNo}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Pf No:-</span>
+                                    <span>{{Staff?.pfNo}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Status:-</span>
+                                    <span>{{Staff?.status}}</span>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <!-- <div class="col-md-4 border-1 ">
+                            <ul class="p-0 ">
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>last School:-</span>
+                                    <span>{{Staff?.lastSchool}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Comments:-</span>
+                                    <span>{{Staff?.comments}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Bank Details :-</span>
+                                    <span>{{Staff?.bankDetails.bankName}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Account Number :-</span>
+                                    <span>{{Staff?.bankDetails.accountNumber}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>Branch :-</span>
+                                    <span>{{Staff?.bankDetails.branch}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span>IFSC Code :-</span>
+                                    <span>{{Staff?.bankDetails.ifscCode}}</span>
+                                </li>
+
+                            </ul>
+
+                        </div> -->
+
+                        <div class="col-md-2  d-flex justify-content-center flex-column  align-items-center   ">
+                            <button class="btn btn-outline-success" (click)="edit(Staff, Staff._id)"><i
+                                    _ngcontent-ng-c2586479129="" class="fa-solid fa-pen-to-square"
+                                    aria-hidden="true"></i></button> <br>
+                            <button class="btn mt-2 btn-outline-danger" (click)="deletes(Staff)"><i
+                                    _ngcontent-ng-c2586479129="" class="fa-solid fa-trash-can"
+                                    aria-hidden="true"></i></button> <br>
+                            <button class="btn mt-2 btn-outline-info" (click)="viewData(Staff)">View</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <ng-template #noDataFound>
+                    <div>
+                        No data found!.
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Spinner -->
+<!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)" template="<img src='https://i.gifer.com/ZZ5H.gif' />">
+  </ngx-spinner> -->

@@ -197,6 +197,10 @@ export let selectSideBar = [
     "checked": false,
   },
   {
+    "module": "Staff",
+     "checked": false, 
+  },
+  {
     "module": "Attendance",
     "checked": false,
   },
@@ -206,7 +210,7 @@ export let selectSideBar = [
 export let sidebar = [
   { number: '1', name: 'Dashboard', icon: 'fa-solid fa-house', url: '/dashboard/home' },
   { number: '2', name: 'Previlage', icon: 'fa-solid fa-users', url: '/dashboard/privilage' },
-  { number: '2', name: 'Sub Admin', icon: 'fa-solid fa-users', url: '/dashboard/subAdmin' },
+  { number: '20', name: 'Sub Admin', icon: 'fa-solid fa-users', url: '/dashboard/subAdmin' },
   // {number:'70',name:'Privilage',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/privilage'},
   { number: '7', name: 'User', icon: 'fa-regular fa-user', url: '/dashboard/user' },
   { number: '3', name: 'Course', icon: 'fa-solid fa-folder-open', url: '/dashboard/course' },
@@ -225,8 +229,12 @@ export let sidebar = [
   { number: '13', name: 'Fee', icon: 'fa-solid fa-money-bill-1-wave', url: '/dashboard/fee' },
   { number: '14', name: 'Admission', icon: 'fa-solid fa-user-tie', url: '/dashboard/admission' },
   { number: '15', name: 'Fee Deposit', icon: 'fa-solid fa-indian-rupee-sign', url: '/dashboard/fee_deposit' },
-  { number: '16', name: 'Holiday', icon: 'fa-solid fa-mug-hot', url: '/dashboard/holiday' },
-  { number: '17', name: 'Attendance', icon: 'fa-solid fa-person', url: '/dashboard/attendance' },
+  { number: '17', name: 'Holiday', icon: 'fa-solid fa-mug-hot', url: '/dashboard/holiday' },
+
+  { number: '18', name: 'Staff', icon: 'fa-solid fa-person-cane', url: '/dashboard/staff' },
+
+  { number: '19', name: 'Attendance', icon: 'fa-solid fa-person', url: '/dashboard/attendance' },
+
 ];
 
 // live_class
