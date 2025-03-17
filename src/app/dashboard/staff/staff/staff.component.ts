@@ -64,7 +64,7 @@ export class StaffComponent {
 
 
 
-  edit(list: any, admissionId: any) {
+  edit(list: any, staffId: any) {
     this.activeModal = this.modalService.open(StaffModalComponent, {
       size: "lg",
       backdrop: "static",
@@ -72,7 +72,7 @@ export class StaffComponent {
     });
     this.activeModal.componentInstance.user = "Edit";
     this.activeModal.componentInstance.patchData = list;
-    this.activeModal.componentInstance.admissionId = admissionId;
+    this.activeModal.componentInstance.staffId = staffId;
     this.activeModal.result.then((result: any) => {
       if (result == "Edit") {
         this.staffList();
@@ -81,6 +81,7 @@ export class StaffComponent {
       (reason: any) => { }
     )
 
+    
 
   }
 
