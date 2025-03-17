@@ -10,6 +10,7 @@ export class StaffViewComponent implements OnInit {
   @Input() public user: any;
   @Input() public patchData: any;
   Staff: any;
+  date: any;
 
   constructor(private activeModal: NgbActiveModal) {
 
@@ -27,7 +28,8 @@ export class StaffViewComponent implements OnInit {
     if (this.user == 'view') {
       if (this.patchData) {
         this.Staff = this.patchData
-
+        // console.log('Views:-',this.patchData);
+        this.date = this.Staff.date;
       }
     }
   }

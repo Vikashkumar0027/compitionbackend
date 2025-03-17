@@ -18,7 +18,7 @@
 }
 
 ul li span:first-child {
-    font-weight: bold;
+    font-weight: 500;
     font-size: 13px;
     text-transform: capitalize;
 }
@@ -27,7 +27,6 @@ ul li span:last-child {
     text-transform: capitalize;
     font-size: 12px;
 }
-
 
 .studentImgBox img {
     height: 150px !important;

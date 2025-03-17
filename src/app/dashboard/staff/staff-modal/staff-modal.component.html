@@ -21,8 +21,8 @@
                 </div>
 
                 <div class="col">
-                    <label class="form-label">Unique ID</label>
-                    <input type="text" class="form-control" formControlName="uniqueId">
+                    <label class="form-label">Husband Name</label>
+                    <input type="text" class="form-control" formControlName="husbandName">
                 </div>
 
                 <div class="col">
@@ -50,12 +50,12 @@
 
                 <div class="col">
                     <label class="form-label">Primary Contact</label>
-                    <input type="text" class="form-control" formControlName="primaryNumber">
+                    <input type="number" class="form-control" formControlName="primaryNumber">
                 </div>
 
                 <div class="col">
                     <label class="form-label">Secondary Contact</label>
-                    <input type="text" class="form-control" formControlName="secondaryNumber">
+                    <input type="number" class="form-control" formControlName="secondaryNumber">
                 </div>
 
                 <div class="col">
@@ -63,16 +63,14 @@
                     <input type="email" class="form-control" formControlName="email">
                 </div>
 
-
-
                 <div class="col">
                     <label class="form-label">Qualification</label>
                     <input type="text" class="form-control" formControlName="qualification">
                 </div>
 
                 <div class="col">
-                    <label class="form-label">Teaching Subjects (comma-separated)</label>
-                    <input type="text" class="form-control" formControlName="teachingSubjects">
+                    <label class="form-label">Teaching Subjects <span class="comma">(comma-separated)</span></label>
+                    <input type="text" class="form-control" formControlName="teachingSubject">
                 </div>
 
                 <div class="col">
@@ -81,7 +79,7 @@
                 </div>
 
                 <div class="col">
-                    <label class="form-label">Experience (Years)</label>
+                    <label class="form-label">Experience<small>(Years)</small></label>
                     <input type="number" class="form-control" formControlName="experience">
                 </div>
 
@@ -92,12 +90,12 @@
 
                 <div class="col">
                     <label class="form-label">Aadhar Number</label>
-                    <input type="text" class="form-control" formControlName="aadharNo">
+                    <input type="number" class="form-control" formControlName="adharNo">
                 </div>
 
                 <div class="col">
                     <label class="form-label">PAN Number</label>
-                    <input type="text" class="form-control" formControlName="panNo">
+                    <input type="text" class="form-control" formControlName="pan">
                 </div>
 
                 <div class="col">
@@ -113,56 +111,56 @@
                     </select>
                 </div>
 
-                <div class="col">
-                    <label class="form-label">Profile Photo (URL)</label>
-                    <input type="text" class="form-control" formControlName="photo">
-                    <!-- <input type="file" class="form-control" id="inputEmail4" placeholder="Student Image"
-                    formControlName="studentImage" (change)="onFileChange($event)" accept="image/*"> -->
+                <div class="col-md-5 me-5">
+                    <label class="form-label">Profile Photo</label>
+                    <!-- <input type="text" class="form-control" formControlName="photo"> -->
+                    <input type="file" class="form-control" id="inputEmail4" placeholder="Student Image"
+                    formControlName="studentImage" (change)="onFileChange($event)" accept="image/*">
                 </div>
 
-                <div class="col">
+                <div class="col-md-5 ms-5">
                     <label class="form-label">Last School</label>
                     <input type="text" class="form-control" formControlName="lastSchool">
                 </div>
-                <div class="col">
+                <div class="col-md-5 me-5">
                     <label class="form-label">Address</label>
                     <textarea class="form-control" formControlName="address"></textarea>
                 </div>
-                <div class="col">
+                <div class="col-md-5 ms-5">
                     <label class="form-label">Comments</label>
                     <textarea class="form-control" formControlName="comments"></textarea>
                 </div>
 
             </div>
 
-            <h4 class="mt-4">Bank Details</h4>
-            <div class="row row-cols-3 g-3 mt-3">
+            <h4 class="mt-4" >Bank Details:-</h4>
+            <div class="row row-cols-2 g-3 mt-2">
 
                 <div class="col">
                     <label class="form-label">Bank Name</label>
-                    <input type="text" class="form-control" formControlName="bankDetails.bankName">
+                    <input type="text" class="form-control" formControlName="bankName">
                 </div>
 
                 <div class="col">
                     <label class="form-label">Account Number</label>
-                    <input type="text" class="form-control" formControlName="bankDetails.accountNumber">
+                    <input type="number" class="form-control" formControlName="accountNo">
                 </div>
 
                 <div class="col">
                     <label class="form-label">Branch</label>
-                    <input type="text" class="form-control" formControlName="bankDetails.branch">
+                    <input type="text" class="form-control" formControlName="branch">
                 </div>
 
                 <div class="col">
                     <label class="form-label">IFSC Code</label>
-                    <input type="text" class="form-control" formControlName="bankDetails.ifscCode">
+                    <input type="text" class="form-control" formControlName="ifsc">
                 </div>
 
             </div>
 
-            <div class="modal-footer">
+            <div class="modal-footer mt-3">
                 <div class="d-grid">
-                    <button type="submit" (click)="onSubmit()"
+                    <button type="submit"
                         class="btn btn-outline-primary btn-login text-uppercase fw-bold">
                         Save</button>
                 </div>
