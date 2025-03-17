@@ -62,17 +62,17 @@
         <div class="card-body">
             <div class="table-responsive">
                 <div class="container-fluid border-bottom border-1" *ngFor="let Staff of totalStaff; let i = index">
-                    <div class="row my-2">
+                    <div class="row my-4">
 
                         <div class="col-md-5 border-1">
                             <figure class="figure studentImgBox m-0">
-                                <img [src]="Staff?.photo" class="figure-img  img-fluid rounded" alt="student image">
+                                <img [src]="Staff?.image" class="figure-img  img-fluid rounded" alt="student image">
                             </figure>
 
                             <ul class="p-0">
                                 <li class="d-flex justify-content-between list-unstyled">
-                                    <span>Staff Id :-</span>
-                                    <span>{{Staff?.compID}}</span>
+                                    <span class="fw-bold">Staff Id :-</span>
+                                    <span class="fw-bold">{{Staff?.compID}}</span>
                                 </li>
                                 <li class="d-flex justify-content-between list-unstyled">
                                     <span>Staff Name :-</span>
@@ -87,6 +87,13 @@
                                     <span>secondary Number :-</span>
                                     <span>{{Staff?.secondaryNumber}}</span>
                                 </li>
+                             
+
+                            </ul>
+                        </div>
+
+                        <div class="col-md-5 border-1 ">
+                            <ul class="p-0 ">
                                 <li class="d-flex justify-content-between list-unstyled">
                                     <span>Gender :-</span>
                                     <span>{{Staff?.gender}}</span>
@@ -99,15 +106,9 @@
                                     <span>Qualification :-</span>
                                     <span>{{Staff?.qualification}}</span>
                                 </li>
-
-                            </ul>
-                        </div>
-
-                        <div class="col-md-5 border-1 ">
-                            <ul class="p-0 ">
                                 <li class="d-flex justify-content-between list-unstyled">
                                     <span>Teaching Subjects :-</span>
-                                    <span>{{Staff.teachingSubjects[0]}}</span>
+                                    <span>{{Staff.teachingSubject}}</span>
                                 </li>
                                 <li class="d-flex justify-content-between list-unstyled">
                                     <span>Designation :-</span>
@@ -128,11 +129,11 @@
                                 </li>
                                 <li class="d-flex justify-content-between list-unstyled">
                                     <span>Aadhar No :-</span>
-                                    <span>{{Staff?.aadharNo}}</span>
+                                    <span>{{Staff?.adharNo}}</span>
                                 </li>
                                 <li class="d-flex justify-content-between list-unstyled">
                                     <span>Pan No :-</span>
-                                    <span>{{Staff?.panNo}}</span>
+                                    <span>{{Staff?.pan}}</span>
                                 </li>
                                 <li class="d-flex justify-content-between list-unstyled">
                                     <span>Pf No:-</span>
@@ -184,7 +185,9 @@
                             <button class="btn mt-2 btn-outline-danger" (click)="deletes(Staff)"><i
                                     _ngcontent-ng-c2586479129="" class="fa-solid fa-trash-can"
                                     aria-hidden="true"></i></button> <br>
-                            <button class="btn mt-2 btn-outline-info" (click)="viewData(Staff)">View</button>
+                            <button class="btn mt-2 btn-outline-info" (click)="viewData(Staff)">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                 </div>

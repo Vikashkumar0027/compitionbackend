@@ -17,6 +17,7 @@ export class StaffModalComponent implements OnInit {
 
   staffForm: any;
   submitted: boolean = false;
+  totalStaff:any;
 
   constructor(
     private activeModal: NgbActiveModal,
@@ -29,7 +30,7 @@ export class StaffModalComponent implements OnInit {
   ngOnInit(): void {
     this.staffForm = this.fb.group({
       staffName: ['', Validators.required],
-      uniqueId: ['', Validators.required],
+      husbandName: ['', Validators.required],
       dob: ['', Validators.required],
       fatherName: [''],
       gender: ['', Validators.required],
@@ -38,24 +39,23 @@ export class StaffModalComponent implements OnInit {
       primaryNumber: ['', Validators.required],
       secondaryNumber: [''],
       qualification: [''],
-      teachingSubjects: [''],
+      teachingSubject: [''],
       designation: [''],
       email: [''],
       experience: [''],
       basicSalary: [''],
-      aadharNo: ['', Validators.required],
-      panNo: [''],
+      adharNo: ['', Validators.required],
+      pan: [''],
       pfNo: [''],
-      status: ['', Validators.required],
+      status: ['Active', Validators.required],
       photo: [''],
       lastSchool: [''],
       comments: [''],
-      bankDetails: this.fb.group({
-        bankName: [''],
-        accountNumber: [''],
-        branch: [''],
-        ifscCode: ['']
-      })
+      bankName: [''],
+      accountNo: [''],
+      branch: [''],
+      ifsc: ['']
+
     });
   }
 
@@ -74,14 +74,17 @@ export class StaffModalComponent implements OnInit {
     let formData: any = new FormData();
 
     Object.keys(this.staffForm.value).forEach((key) => {
-      if (this.staffForm.value[key]) {
-        formData.append(key, this.staffForm.value[key]);
+      console.log(key);
+      if (key == 'photo') {
+        formData.append("image", this.file);
+      } else {
+        if (this.staffForm.value[key]) {
+          formData.append(key, this.staffForm.value[key]);
+        }
       }
     }
 
     );
-    // formData.append("studentImage", this.file);
-
 
     if (formData) {
       this.staffService.staffAdd(formData).subscribe((res) => {
@@ -96,8 +99,70 @@ export class StaffModalComponent implements OnInit {
     }
   }
 
-  editData() {
+  getStaff() {
 
+    this.staffService.staffList().subscribe((res) => {
+      if (res.success) {
+        this.totalStaff = res.response;
+        console.log("Totals Staff", this.totalStaff);
+      }
+
+      console.log(res.data, "response data class list");
+    }, (error) => {
+      console.log(error, "data is not patch ");
+      return null
+    })
+
+
+  }
+
+  editData() {
+      if (this.staffForm.invalid) {
+        return;
+      }
+  
+      let formData: any = new FormData();
+  
+      Object.keys(this.staffForm.value).forEach((key) => {
+        let value = this.staffForm.value[key];
+  
+        // Check if classId is an object, then send only its _id
+        if (key === "classId" && typeof value === "object" && value?._id) {
+          formData.append(key, value._id);
+        } else if (value) {
+          formData.append(key, value);
+        }
+      });
+  
+      (this.file == undefined)
+        ? formData.append('studentImage', this.patchData.studentImage)
+        : formData.append('studentImage', this.file);
+  
+      this.staffService.staffUpdate(this.admissionId, formData).subscribe(
+        (res) => {
+          if (res.success) {
+            this.globalService.showToast(res.response);
+            this.activeModal.close('Edit');
+          }
+        }, (error) => {
+          console.log(error);
+        }
+      );
+  }
+
+
+  patchDataFunction() {
+    if (this.user == 'Edit') {
+      this.getStaff();
+      if (this.patchData) {
+        Object.keys(this.patchData).forEach((key) => {
+          if (this.staffForm.controls[key]) {
+            this.staffForm.controls[key].setValue(this.patchData[key]);
+          }
+        });
+      }
+
+    }
   }
 
   get f() {
@@ -116,7 +181,7 @@ export class StaffModalComponent implements OnInit {
 
     let fileList: FileList = event.target.files;
     let file: File = fileList[0];
-   }
+  }
   modalClose() {
     this.activeModal.close();
   }

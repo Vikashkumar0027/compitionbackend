@@ -5,6 +5,7 @@ import { StaffModalComponent } from '../staff-modal/staff-modal.component';
 import { ConfirmModalComponent } from '../../../common-component/confirm-modal/confirm-modal.component';
 import { StaffViewComponent } from '../staff-view/staff-view.component';
 import { StaffService } from '../../../services/staff/staff.service';
+import { GlobalService } from '../../../services/global/global.service';
 @Component({
   selector: 'app-staff',
   templateUrl: './staff.component.html',
@@ -19,7 +20,8 @@ export class StaffComponent {
 
   constructor(
     private modalService: NgbModal,
-    private staffService: StaffService
+    private staffService: StaffService,
+    private globalService: GlobalService
   ) {
     console.log(this.totalStaff, "total staff");
     this.staffList();
@@ -62,6 +64,27 @@ export class StaffComponent {
 
 
 
+  edit(list: any, admissionId: any) {
+    this.activeModal = this.modalService.open(StaffModalComponent, {
+      size: "lg",
+      backdrop: "static",
+      keyboard: false,
+    });
+    this.activeModal.componentInstance.user = "Edit";
+    this.activeModal.componentInstance.patchData = list;
+    this.activeModal.componentInstance.admissionId = admissionId;
+    this.activeModal.result.then((result: any) => {
+      if (result == "Edit") {
+        this.staffList();
+      }
+    },
+      (reason: any) => { }
+    )
+
+
+  }
+
+
   deletes(param: any) {
 
     const activeModal = this.modalService.open(ConfirmModalComponent, {
@@ -83,8 +106,7 @@ export class StaffComponent {
       (result) => {
 
         if (result === 'Ok') {
-          // this.deletefunction(param._id);
-          // this.studentList(this.formData)
+          this.deletefunction(param._id);
         }
       },
       (reason) => { }
@@ -92,25 +114,21 @@ export class StaffComponent {
 
   }
 
-  edit(list: any, admissionId: any) {
-    this.activeModal = this.modalService.open(StaffModalComponent, {
-      size: "lg",
-      backdrop: "static",
-      keyboard: false,
-    });
-    this.activeModal.componentInstance.user = "Edit";
-    this.activeModal.componentInstance.patchData = list;
-    this.activeModal.componentInstance.admissionId = admissionId;
-    this.activeModal.result.then((result: any) => {
-      if (result == "Edit") {
-        // this.studentList(this.formData)
-      }
-    },
-      (reason: any) => { }
-    )
+  async deletefunction(_id: any) {
 
+    this.staffService.staffDelete(_id).subscribe(res => {
+      // console.log(res);
+      if (res.success) {
+        this.globalService.showToast(res.response);
+        this.staffList();
+      }
+    }, (err) => {
+      this.globalService.showToastErorr('something went wrong')
+      console.log(err);
+    })
 
   }
+
 
   viewData(staffView: any) {
     this.activeModal = this.modalService.open(StaffViewComponent, {

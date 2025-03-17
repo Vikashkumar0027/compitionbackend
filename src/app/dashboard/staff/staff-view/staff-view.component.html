@@ -6,22 +6,34 @@
     </button>
 </div>
 
-<div class="container">
+<div class="container p-4">
     <div class="row my-2">
 
-        <div class="col-md-4 border-1">
+        <div class="col-md-4 border-1 line">
             <figure class="figure studentImgBox m-0">
-                <img [src]="Staff?.photo" class="figure-img  img-fluid rounded" alt="student image">
+                <img [src]="Staff?.image" class="figure-img  img-fluid rounded" alt="student image">
             </figure>
 
             <ul class="p-0">
                 <li class="d-flex justify-content-between list-unstyled">
-                    <span>Staff Id :-</span>
-                    <span>{{Staff?.uniqueId}}</span>
+                    <span class="fw-bold">Staff Id :-</span>
+                    <span class="fw-bold compId">{{Staff?.compID}}</span>
                 </li>
                 <li class="d-flex justify-content-between list-unstyled">
                     <span>Staff Name :-</span>
                     <span>{{Staff?.staffName}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Father's Name :-</span>
+                    <span>{{Staff?.fatherName}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Spouse Name :-</span>
+                    <span>{{Staff?.husbandName}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>DOB :-</span>
+                    <span>{{Staff?.dob}}</span>
                 </li>
 
                 <li class="d-flex justify-content-between list-unstyled">
@@ -29,13 +41,14 @@
                     <span>{{Staff?.primaryNumber}}</span>
                 </li>
                 <li class="d-flex justify-content-between list-unstyled">
-                    <span>secondary Number :-</span>
+                    <span>Secondary Number :-</span>
                     <span>{{Staff?.secondaryNumber}}</span>
                 </li>
+
             </ul>
         </div>
 
-        <div class="col-md-4 border-1 ">
+        <div class="col-md-4 border-1 line">
             <ul class="p-0 ">
                 <li class="d-flex justify-content-between list-unstyled">
                     <span>Gender :-</span>
@@ -51,7 +64,7 @@
                 </li>
                 <li class="d-flex justify-content-between list-unstyled">
                     <span>Teaching Subjects :-</span>
-                    <span>{{Staff.teachingSubjects[0]}}</span>
+                    <span>{{Staff.teachingSubject}}</span>
                 </li>
                 <li class="d-flex justify-content-between list-unstyled">
                     <span>Designation :-</span>
@@ -72,41 +85,48 @@
                 </li>
                 <li class="d-flex justify-content-between list-unstyled">
                     <span>Aadhar No :-</span>
-                    <span>{{Staff?.aadharNo}}</span>
+                    <span>{{Staff?.adharNo}}</span>
+                </li>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>last School:-</span>
+                    <span>{{Staff?.lastSchool}}</span>
                 </li>
             </ul>
 
         </div>
 
-        <div class="col-md-4 border-1 ">
+        <div class="col-md-4 border-1 line">
             <ul class="p-0 ">
-                <li class="d-flex justify-content-between list-unstyled">
-                    <span>last School:-</span>
-                    <span>{{Staff?.lastSchool}}</span>
-                </li>
+
                 <li class="d-flex justify-content-between list-unstyled">
                     <span>Comments:-</span>
                     <span>{{Staff?.comments}}</span>
                 </li>
                 <li class="d-flex justify-content-between list-unstyled">
-                    <span>Bank Details :-</span>
-                    <span>{{Staff?.bankDetails.bankName}}</span>
+                    <span>Address:-</span>
+                    <span>{{Staff?.address}}</span>
+                </li>
+
+                <small class="fw-semibold text-primary">Bank Details:-</small>
+                <li class="d-flex justify-content-between list-unstyled">
+                    <span>Bank Name :-</span>
+                    <span>{{Staff?.bankName}}</span>
                 </li>
                 <li class="d-flex justify-content-between list-unstyled">
                     <span>Account Number :-</span>
-                    <span>{{Staff?.bankDetails.accountNumber}}</span>
+                    <span>{{Staff?.accountNo}}</span>
                 </li>
                 <li class="d-flex justify-content-between list-unstyled">
                     <span>Branch :-</span>
-                    <span>{{Staff?.bankDetails.branch}}</span>
+                    <span>{{Staff?.branch}}</span>
                 </li>
                 <li class="d-flex justify-content-between list-unstyled">
                     <span>IFSC Code :-</span>
-                    <span>{{Staff?.bankDetails.ifscCode}}</span>
+                    <span>{{Staff?.ifsc}}</span>
                 </li>
                 <li class="d-flex justify-content-between list-unstyled">
                     <span>Pan No :-</span>
-                    <span>{{Staff?.panNo}}</span>
+                    <span>{{Staff?.pan}}</span>
                 </li>
                 <li class="d-flex justify-content-between list-unstyled">
                     <span>Pf No:-</span>
@@ -117,9 +137,8 @@
                     <span>{{Staff?.status}}</span>
                 </li>
             </ul>
-
+            <small class="date float-end">Date:- {{date}}</small>
         </div>
-
 
     </div>
 </div>
