@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StaffModalComponent } from '../staff-modal/staff-modal.component';
 import { ConfirmModalComponent } from '../../../common-component/confirm-modal/confirm-modal.component';
 import { StaffViewComponent } from '../staff-view/staff-view.component';
+import { StaffService } from '../../../services/staff/staff.service';
 @Component({
   selector: 'app-staff',
   templateUrl: './staff.component.html',
@@ -16,8 +17,24 @@ export class StaffComponent {
   TotalsStaffList: any[] = [];
   private activeModal: any;
 
-  constructor(private modalService: NgbModal) {
-    console.log(this.StaffList, "total staff");
+  constructor(
+    private modalService: NgbModal,
+    private staffService: StaffService
+  ) {
+    console.log(this.totalStaff, "total staff");
+    this.staffList();
+  }
+
+  // staff list
+  staffList() {
+    this.staffService.staffList().subscribe(res => {
+      if (res.success) {
+        this.totalStaff = res.response;
+      }
+      console.log(res, "admission data")
+    }, err => {
+      console.log(err)
+    })
   }
 
   modalData() {
@@ -30,7 +47,7 @@ export class StaffComponent {
     this.activeModal.componentInstance.totalClasses = this.TotalsStaffList;
     this.activeModal.result.then((result: any) => {
       if (result == "Add") {
-
+        this.staffList();
       }
     },
       (reason: any) => { }
@@ -64,7 +81,6 @@ export class StaffComponent {
     activeModal.componentInstance.resetpassword = false;
     activeModal.result.then(
       (result) => {
-
 
         if (result === 'Ok') {
           // this.deletefunction(param._id);
@@ -107,7 +123,7 @@ export class StaffComponent {
     // this.activeModal.componentInstance.subjectId = this.viewDataId;
     this.activeModal.result.then((result: any) => {
       if (result == "view") {
-        // do some work 
+        this.getStaff();
 
       }
     },
@@ -115,4 +131,14 @@ export class StaffComponent {
     )
 
   }
+
+  getStaff() {
+    this.staffService.staffList().subscribe(res => {
+      console.log("StaffList:-", res.response);
+      this.totalStaff = res.response;
+    }, err => {
+      console.log(err);
+    })
+  }
+
 }

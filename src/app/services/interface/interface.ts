@@ -230,9 +230,7 @@ export let sidebar = [
   { number: '14', name: 'Admission', icon: 'fa-solid fa-user-tie', url: '/dashboard/admission' },
   { number: '15', name: 'Fee Deposit', icon: 'fa-solid fa-indian-rupee-sign', url: '/dashboard/fee_deposit' },
   { number: '17', name: 'Holiday', icon: 'fa-solid fa-mug-hot', url: '/dashboard/holiday' },
-
   { number: '18', name: 'Staff', icon: 'fa-solid fa-person-cane', url: '/dashboard/staff' },
-
   { number: '19', name: 'Attendance', icon: 'fa-solid fa-person', url: '/dashboard/attendance' },
 
 ];
@@ -267,3 +265,9 @@ export let holidayAdd = domain + 'admin/holiday/create';
 export let holidayList = domain + 'admin/holiday/list';
 export let holidayDelete = domain + 'admin/holiday/delete';
 export let holidayUpdate = domain + 'admin/holiday/update';
+
+// Staff
+export let staffAdd = domain + 'admin/staff/create';
+export let staffList = domain + 'admin/staff/list';
+export let staffDelete = domain + 'admin/staff/delete';
+export let staffUpdate = domain + 'admin/staff/update';

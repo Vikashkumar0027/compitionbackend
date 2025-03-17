@@ -61,7 +61,7 @@
         <!-- Table Section -->
         <div class="card-body">
             <div class="table-responsive">
-                <div class="container-fluid border-bottom border-1" *ngFor="let Staff of StaffList; let i = index">
+                <div class="container-fluid border-bottom border-1" *ngFor="let Staff of totalStaff; let i = index">
                     <div class="row my-2">
 
                         <div class="col-md-5 border-1">
@@ -72,7 +72,7 @@
                             <ul class="p-0">
                                 <li class="d-flex justify-content-between list-unstyled">
                                     <span>Staff Id :-</span>
-                                    <span>{{Staff?.uniqueId}}</span>
+                                    <span>{{Staff?.compID}}</span>
                                 </li>
                                 <li class="d-flex justify-content-between list-unstyled">
                                     <span>Staff Name :-</span>
