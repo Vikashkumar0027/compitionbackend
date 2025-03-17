@@ -12,7 +12,7 @@ import { GlobalService } from '../../../services/global/global.service';
 export class StaffModalComponent implements OnInit {
   @Input() public user: any;
   @Input() public patchData: any;
-  @Input() public admissionId: any;
+  @Input() public staffId: any;
 
 
   staffForm: any;
@@ -25,16 +25,16 @@ export class StaffModalComponent implements OnInit {
     private globalService: GlobalService,
     private fb: FormBuilder
   ) {
-
+// console.log(this.patchData, "StaffList");
   }
   ngOnInit(): void {
     this.staffForm = this.fb.group({
       staffName: ['', Validators.required],
-      husbandName: ['', Validators.required],
+      husbandName: [''],
       dob: ['', Validators.required],
       fatherName: [''],
-      gender: ['', Validators.required],
-      dateOfJoining: ['', Validators.required],
+      gender: [''],
+      dateOfJoining: [''],
       address: [''],
       primaryNumber: ['', Validators.required],
       secondaryNumber: [''],
@@ -44,19 +44,21 @@ export class StaffModalComponent implements OnInit {
       email: [''],
       experience: [''],
       basicSalary: [''],
-      adharNo: ['', Validators.required],
+      adharNo: [''],
       pan: [''],
       pfNo: [''],
-      status: ['Active', Validators.required],
+      status: ['Active'],
       photo: [''],
       lastSchool: [''],
-      comments: [''],
+      // comment: [''],
       bankName: [''],
       accountNo: [''],
       branch: [''],
       ifsc: ['']
 
     });
+
+    this.patchDataFunction();
   }
 
   onSubmit() {
@@ -116,29 +118,31 @@ export class StaffModalComponent implements OnInit {
 
   }
 
+
+
   editData() {
       if (this.staffForm.invalid) {
         return;
       }
   
-      let formData: any = new FormData();
+      let staffData: any = new FormData();
   
       Object.keys(this.staffForm.value).forEach((key) => {
         let value = this.staffForm.value[key];
   
         // Check if classId is an object, then send only its _id
-        if (key === "classId" && typeof value === "object" && value?._id) {
-          formData.append(key, value._id);
+        if (key == 'photo' && value?._id) {
+          staffData.append(key, value._id);
         } else if (value) {
-          formData.append(key, value);
+          staffData.append(key, value);
         }
       });
   
       (this.file == undefined)
-        ? formData.append('studentImage', this.patchData.studentImage)
-        : formData.append('studentImage', this.file);
+        ? staffData.append('image', this.patchData.image)
+        : staffData.append('image', this.file);
   
-      this.staffService.staffUpdate(this.admissionId, formData).subscribe(
+      this.staffService.staffUpdate(staffData, this.staffId).subscribe(
         (res) => {
           if (res.success) {
             this.globalService.showToast(res.response);
@@ -155,6 +159,8 @@ export class StaffModalComponent implements OnInit {
     if (this.user == 'Edit') {
       this.getStaff();
       if (this.patchData) {
+
+        console.log(this.patchData, "patch data ")
         Object.keys(this.patchData).forEach((key) => {
           if (this.staffForm.controls[key]) {
             this.staffForm.controls[key].setValue(this.patchData[key]);
