@@ -1,0 +1,105 @@
+<!-- <p>fee works!</p> -->
+
+
+<div class="container-fluid">
+    <!-- Breadcrumb for Navigation -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Staff</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><span class="text-secondary"> Attendance</span></li>
+        </ol>
+    </nav>
+
+    <div class="row align-items-center">
+        <div class="col-md-4">
+            <h1 class="h3 mb-lg-3 text-gray-800">Staff Attendance</h1>
+        </div>
+
+    </div>
+
+    <!-- Card Section -->
+    <!-- <h1 class="h3 mb-3 text-gray-800">Company</h1> -->
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row align-items-center">
+                <div class="col-md-8 d-inline">
+                    <input type="text" class="form-control" placeholder="Search Staff Name" aria-label="Search"
+                        name="searchCompany">
+
+                </div>
+                <div class="col-md-4 text-end"> <button type="button" class="btn btn-outline-primary addclass"
+                        (click)="searchStaff()">Search</button></div>
+            </div>
+        </div>
+
+        <!-- Table Section -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="text-center">
+                        <tr>
+                            <th scope="col">S.N.</th>
+                            <th scope="col">Staff Name </th>
+                            <th scope="col">Staff Phone </th>
+                            <th scope="col">Designation </th>
+                            <th scope="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" [ngModel]="checkData" type="checkbox" value=""
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        All Present
+                                    </label>
+                                </div>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let list of attendance; let i = index">
+
+                            <th scope="row" class="text-center">{{i+1}} </th>
+
+                            <td class="text-center d-flex justify-content-evenly">
+                                <figure class="figure studentImgBox m-0">
+                                    <img [src]="list.image" class="rounded-circle" alt="Image" width="50" height="50">
+                                </figure>
+                                <span class="text-capitalize  align-baseline">{{list?.staffName}} <br>
+                                    {{list.compID}} </span>
+                            </td>
+
+                            <td class="text-center text-capitalize">{{list?.primaryNumber}} </td>
+                            <td class="text-center text-capitalize">{{list?.designation}} </td>
+                            <td class="text-center">
+                                <!-- <p>{{staffAttendances }}, para</p>(ngModelChange)="onSelect($event) -->
+                                <select class="form-select" [(ngModel)]="list.attendance"
+                                    (ngModelChange)="staffAttendances($event,list._id)"
+                                    aria-label="Default select example">
+                                    <option disabled value="">status</option>
+                                    <option value="Present">Present</option>
+                                    <option value="Absent">Absent</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-success float-end" (click)="onSubmit()">save</button>
+                <ng-template #noDataFound>
+                    <div>
+                        No data found!.
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Loading Spinner -->
+<!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)" template="<img src='https://i.gifer.com/ZZ5H.gif' />">
+  </ngx-spinner> -->
+
+
+<td>
+
+</td>

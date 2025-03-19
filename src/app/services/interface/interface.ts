@@ -198,7 +198,11 @@ export let selectSideBar = [
   },
   {
     "module": "Staff",
-     "checked": false, 
+    "checked": false,
+  },
+  {
+    "module": "staffattendance",
+    "checked": false,
   },
   {
     "module": "Attendance",
@@ -231,7 +235,8 @@ export let sidebar = [
   { number: '15', name: 'Fee Deposit', icon: 'fa-solid fa-indian-rupee-sign', url: '/dashboard/fee_deposit' },
   { number: '17', name: 'Holiday', icon: 'fa-solid fa-mug-hot', url: '/dashboard/holiday' },
   { number: '18', name: 'Staff', icon: 'fa-solid fa-person-cane', url: '/dashboard/staff' },
-  { number: '19', name: 'Attendance', icon: 'fa-solid fa-person', url: '/dashboard/attendance' },
+  { number: '19', name: 'Staff Attendance', icon: 'fa-solid fa-person-cane', url: '/dashboard/staffattendance' },
+  { number: '20', name: 'Attendance', icon: 'fa-solid fa-person', url: '/dashboard/attendance' },
 
 ];
 
