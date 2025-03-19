@@ -33,7 +33,7 @@ export class AdmissionComponent {
   ) {
     const formData = { "className": "", "name": "", "rollNo": '', "uniqueId": "", "FatherName": "", "MobileNo": "", "section": "" };
     this.studentList(formData);
-    this.getclass()
+    this.getclass();
   }
 
   ngOnInit(): void {

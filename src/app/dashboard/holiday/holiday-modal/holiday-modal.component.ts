@@ -9,15 +9,15 @@ import { GlobalService } from '../../../services/global/global.service';
   templateUrl: './holiday-modal.component.html',
   styleUrl: './holiday-modal.component.css'
 })
-export class HolidayModalComponent implements OnInit{
+export class HolidayModalComponent implements OnInit {
 
   form: FormGroup;
   submitted: boolean = false;
-isDate:boolean = false;
+  isDate: boolean = false;
 
   @Input() holiList: [] = []
   @Input() public user: any
-  @Input() public patchData:any
+  @Input() public patchData: any
   constructor(
     private activeModal: NgbActiveModal,
     private fb: FormBuilder,
@@ -37,15 +37,15 @@ isDate:boolean = false;
       } else {
         console.log('Today is not available in the modelList.');
       }
-     }, 1000);
+    }, 1000);
   }
 
   ngOnInit(): void {
     this.patchDataFunction();
   }
 
-  calender(){
-    this.isDate  = !this.isDate
+  calender() {
+    this.isDate = !this.isDate
   }
 
   modelList: NgbDate[] = [
@@ -113,7 +113,7 @@ isDate:boolean = false;
 
   patchDataFunction() {
     if (this.user == 'Edit') {
-      const patch  = {
+      const patch = {
         name: this.patchData.holidayName,
         date: this.patchData.date[0],
         status: this.patchData.status,
