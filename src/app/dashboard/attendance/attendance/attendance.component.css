@@ -1,0 +1,23 @@
+.selectClass {
+    height: 38px;
+    width: 220px;
+    color: rgb(95, 94, 94);
+    border-radius: 6px;
+    border: 1px solid rgb(218, 214, 214);
+}
+.form-check{
+    margin-right: 10px;
+}
+.form-check .form-check-input {
+    float: right;
+    margin-right: 8px;
+}
+.form-select{
+    width: 110px;
+    float: right;
+    margin-right: 5px;
+}
+.uniqueId{
+    font-size: 12px;
+    font-weight: 500;
+}

@@ -10,61 +10,57 @@
         </ol>
     </nav>
 
-    <div class="row align-items-center">
-        <div class="col-md-4">
-            <h1 class="h3 mb-lg-3 text-gray-800"> Attendance</h1>
-        </div>
-        <div class="col-md-8 mb-3 text-md-end">
-            <button type="button" class="btn btn-outline-primary" (click)="modalData()">Attendance</button>
-        </div>
-    </div>
 
     <!-- Card Section -->
     <!-- <h1 class="h3 mb-3 text-gray-800">Company</h1> -->
 
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
+        <div class="card-header p-4">
             <form #searchData=ngForm (ngSubmit)="attendanceList(searchData)">
 
-                <div class="row row-cols-5 g-2 align-items-center">
-                    <div class="col">
-                        <input type="text" class="form-control" ngModel required placeholder="Student Name"
-                            aria-label="Search" name="name">
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control" ngModel required placeholder="Class Name"
-                            aria-label="Search" name="className">
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control" ngModel required placeholder="Roll Number"
-                            aria-label="Search" name="rollNO">
-                    </div>
+                <div class="row row-cols-4 g-3 align-items-center">
                     <div class="col">
                         <input type="text" class="form-control" ngModel required placeholder="Unique Number"
                             aria-label="Search" name="uniqueId">
                     </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel placeholder="Student Name" aria-label="Search"
+                            name="name">
+                    </div>
 
-                    <div class="col">
-                        <input type="text" class="form-control" ngModel required placeholder="Search Student No"
-                            aria-label="Search" name="MobileNo">
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control" ngModel required placeholder="Search Father Name"
-                            aria-label="Search" name="FatherName">
-                    </div>
+                    <select class="col mx-1 selectClass" aria-label="Default select example" ngModel name="className">
+                        <option [disabled]="true" value="">Class Name</option>
+                        <option *ngFor="let class of totalClasses" [value]="class._id">{{class.className}}</option>
+                    </select>
                     <div class="col">
                         <input type="text" class="form-control" ngModel required placeholder="Section Name"
                             aria-label="Search" name="section">
                     </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Roll Number"
+                            aria-label="Search" name="rollNo">
+                    </div>
+
+
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Student Mobile_No"
+                            aria-label="Search" name="MobileNo">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Father Name"
+                            aria-label="Search" name="FatherName">
+                    </div>
 
                 </div>
-                <div class="modal-footer">
+
+                <div class="modal-footer mt-2">
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-outline-primary btn-login text-capitalize">
+                        <button type="submit" class="btn btn-outline-secondary btn-login btn-sm text-capitalize">
                             Search Now</button>
                     </div>
                 </div>
             </form>
+
         </div>
 
         <!-- Table Section -->
@@ -77,16 +73,16 @@
                             <figure class="figure studentImgBox m-0">
                                 <img [src]="list?.studentImage" class="figure-img  img-fluid rounded"
                                     alt="student image">
-                                    <li class="d-flex justify-content-between list-unstyled">
-                                        <span class="fw-semibold">Student Id :-</span>
-                                        <span class="fw-semibold">{{list?.uniqueId}}</span>
-                                    </li>
+                                <li class="d-flex justify-content-between list-unstyled">
+                                    <span class="fw-semibold">Student Id :-</span>
+                                    <span class="fw-semibold">{{list?.uniqueId}}</span>
+                                </li>
                             </figure>
-                                                     
+
                         </div>
 
                         <div class="col-md-4 border-1 border-end">
-                            <ul class="p-0"> 
+                            <ul class="p-0">
                                 <li class="d-flex justify-content-between list-unstyled mb-3">
                                     <span>Student Name :-</span>
                                     <span>{{list?.studentName}}</span>
@@ -103,12 +99,12 @@
                                     <span>Section Name :-</span>
                                     <span>{{list?.section}}</span>
                                 </li>
-                               
+
                             </ul>
                         </div>
 
                         <div class="col-md-4 border-1">
-                       
+
                             <li class="d-flex justify-content-between list-unstyled mb-3">
                                 <span>Student Number :-</span>
                                 <span>{{list?.studentMobile}}</span>
@@ -146,5 +142,57 @@
                 </ng-template>
             </div>
         </div>
+
+
+        <div class="table">
+            <table class="table table-striped">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col">#</th>
+                        <th scope="col"><span>Student Name</span><br><span>UniqueId</span> </th>
+                        <th scope="col">Class/Section</th>
+                        <th scope="col">Father's Name</th>
+                        <th scope="col">Mobile_No</th>
+                        <th scope="col">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input">
+                                <label class="form-check-label">Select All</label>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center" *ngFor="let list of AdmissionData; let i = index;">
+                        <th scope="row">{{i+1}}</th>
+
+                        <td class="text-capitalize">
+                            <figure class="figure studentImgBox m-0 p-0">
+                                <img [src]="list.studentImage" class="rounded-circle" alt="student image" width="40"
+                                    height="40">
+                            </figure>
+                            <div class="float-end">
+                                <span class="fw-semibold">{{list.studentName}}</span><br>
+                                <span class="uniqueId">{{list.uniqueId}}</span>
+                            </div>
+                        </td>
+                        <td class="">{{list.classId.className}} ({{list.section}})</td>
+                        <td>{{list.fatherName}}</td>
+                        <td>{{list.studentMobile}}</td>
+                        <td>
+                            <select class="form-select" [(ngModel)]="attendance"
+                                (ngModelChange)="studentAttendance($event, list._id)" aria-label="Default select example">
+                                <option value="" selected disabled>Select</option>
+                                <option value="Present">Present</option>
+                                <option value="Absent">Absent</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <button class="btn btn-outline-success btn-sm fw-semibold float-end me-4 px-4">Save</button>
+            </div>
+        </div>
+
     </div>
 </div>

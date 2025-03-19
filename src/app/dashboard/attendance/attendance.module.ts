@@ -3,16 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { AttendanceRoutingModule } from './attendance-routing.module';
 import { AttendanceComponent } from './attendance/attendance.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 
 @NgModule({
   declarations: [
-    AttendanceComponent
+    AttendanceComponent,
   ],
   imports: [
     CommonModule, FormsModule,
-    AttendanceRoutingModule
+    AttendanceRoutingModule,
+    ReactiveFormsModule,
+    AngularMultiSelectModule
   ]
 })
 export class AttendanceModule { }

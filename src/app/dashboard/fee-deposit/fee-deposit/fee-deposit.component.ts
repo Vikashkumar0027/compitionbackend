@@ -102,8 +102,6 @@ export class FeeDepositComponent {
 
     // multi  selector field  months
     this.selectedMonths = [];
-
-
     this.dropdownMonthList = [
       { "id": 1, "itemName": "January", },
       { "id": 2, "itemName": "February", },
@@ -278,7 +276,6 @@ export class FeeDepositComponent {
   onUniqueIdChange(uniqueId: any) {
     const studentselectDatails = this.AdmissionData.filter((x) => x.uniqueId == uniqueId);
     this.studentselectDatails = studentselectDatails[0];
-
   }
 
 }

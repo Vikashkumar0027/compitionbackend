@@ -276,3 +276,10 @@ export let staffAdd = domain + 'admin/staff/create';
 export let staffList = domain + 'admin/staff/list';
 export let staffDelete = domain + 'admin/staff/delete';
 export let staffUpdate = domain + 'admin/staff/update';
+
+
+// Attendance
+export let attendanceAdd = domain + 'admin/attendence/create';
+export let attendanceList = domain + 'admin/attendence/list';
+export let attendanceDelete = domain + 'admin/attendence/delete';
+export let attendanceUpdate = domain + 'admin/attendence/update';
