@@ -12,7 +12,6 @@
 
 
     <!-- Card Section -->
-    <!-- <h1 class="h3 mb-3 text-gray-800">Company</h1> -->
 
     <div class="card shadow mb-4">
         <div class="card-header p-4">
@@ -63,87 +62,8 @@
 
         </div>
 
+
         <!-- Table Section -->
-        <div class="card-body">
-            <div class="table-responsive">
-                <div class="container-fluid border-bottom border-1" *ngFor="let list of attendanceData; let i = index">
-                    <div class="row my-2">
-
-                        <div class="col-md-3 border-1 border-end">
-                            <figure class="figure studentImgBox m-0">
-                                <img [src]="list?.studentImage" class="figure-img  img-fluid rounded"
-                                    alt="student image">
-                                <li class="d-flex justify-content-between list-unstyled">
-                                    <span class="fw-semibold">Student Id :-</span>
-                                    <span class="fw-semibold">{{list?.uniqueId}}</span>
-                                </li>
-                            </figure>
-
-                        </div>
-
-                        <div class="col-md-4 border-1 border-end">
-                            <ul class="p-0">
-                                <li class="d-flex justify-content-between list-unstyled mb-3">
-                                    <span>Student Name :-</span>
-                                    <span>{{list?.studentName}}</span>
-                                </li>
-                                <li class="d-flex justify-content-between list-unstyled mb-3">
-                                    <span>Class Name :-</span>
-                                    <span>{{list.classId?.className}}</span>
-                                </li>
-                                <li class="d-flex justify-content-between list-unstyled mb-3">
-                                    <span>Roll No :-</span>
-                                    <span>{{list?.rollNo}}</span>
-                                </li>
-                                <li class="d-flex justify-content-between list-unstyled">
-                                    <span>Section Name :-</span>
-                                    <span>{{list?.section}}</span>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                        <div class="col-md-4 border-1">
-
-                            <li class="d-flex justify-content-between list-unstyled mb-3">
-                                <span>Student Number :-</span>
-                                <span>{{list?.studentMobile}}</span>
-                            </li>
-                            <li class="d-flex justify-content-between list-unstyled mb-3">
-                                <span>Gender :-</span>
-                                <span>{{list?.gender}}</span>
-                            </li>
-                            <li class="d-flex justify-content-between list-unstyled mb-3">
-                                <span>DOB :-</span>
-                                <span>{{list?.dob}}</span>
-                            </li>
-                            <li class="d-flex justify-content-between list-unstyled mb-3">
-                                <span>Address :-</span>
-                                <span>{{list?.address}}</span>
-                            </li>
-                        </div>
-
-                        <div class="col-md-1 d-flex justify-content-center flex-column align-items-center">
-                            <button class="btn btn-outline-success btn-sm" (click)="edit(list, list._id)"><i
-                                    _ngcontent-ng-c2586479129="" class="fa-solid fa-pen-to-square"
-                                    aria-hidden="true"></i></button> <br>
-                            <button class="btn mt-2 btn-outline-danger btn-sm" (click)="delete(list)"><i
-                                    _ngcontent-ng-c2586479129="" class="fa-solid fa-trash-can"
-                                    aria-hidden="true"></i></button> <br>
-                        </div>
-                    </div>
-                </div>
-
-
-                <ng-template #noDataFound>
-                    <div>
-                        No data found!.
-                    </div>
-                </ng-template>
-            </div>
-        </div>
-
-
         <div class="table">
             <table class="table table-striped">
                 <thead>
@@ -155,7 +75,8 @@
                         <th scope="col">Mobile_No</th>
                         <th scope="col">
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input">
+                                <input type="checkbox" [checked]="isChecked" class="form-check-input"
+                                    (change)="allPresent($event)">
                                 <label class="form-check-label">Select All</label>
                             </div>
                         </th>
@@ -179,9 +100,10 @@
                         <td>{{list.fatherName}}</td>
                         <td>{{list.studentMobile}}</td>
                         <td>
-                            <select class="form-select" [(ngModel)]="attendance"
-                                (ngModelChange)="studentAttendance($event, list._id)" aria-label="Default select example">
-                                <option value="" selected disabled>Select</option>
+                            <select class="form-select" [(ngModel)]="list.attendance"
+                                (ngModelChange)="studentAttendance($event, list._id)"
+                                aria-label="Default select example">
+                                <option value="" disabled>Select </option>
                                 <option value="Present">Present</option>
                                 <option value="Absent">Absent</option>
                             </select>
@@ -190,7 +112,8 @@
                 </tbody>
             </table>
             <div>
-                <button class="btn btn-outline-success btn-sm fw-semibold float-end me-4 px-4">Save</button>
+                <button class="btn btn-outline-success btn-sm fw-semibold float-end me-4 px-4"
+                    (click)="onSubmit()">Save</button>
             </div>
         </div>
 
