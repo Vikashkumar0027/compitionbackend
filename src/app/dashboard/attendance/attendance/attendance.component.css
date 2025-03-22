@@ -6,11 +6,11 @@
     border: 1px solid rgb(218, 214, 214);
 }
 .form-check{
-    margin-right: 10px;
+    margin-right: 9px;
 }
 .form-check .form-check-input {
     float: right;
-    margin-right: 8px;
+    /* margin-right: 8px; */
 }
 .form-select{
     width: 110px;
@@ -21,3 +21,4 @@
     font-size: 12px;
     font-weight: 500;
 }
+

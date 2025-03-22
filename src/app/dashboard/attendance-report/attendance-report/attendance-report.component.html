@@ -1,0 +1,113 @@
+<!-- <p>attendance-report works!</p> -->
+
+
+<div class="container-fluid">
+    <!-- Breadcrumb for Navigation -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><span class="text-secondary">Attendance</span></li>
+        </ol>
+    </nav>
+
+
+    <!-- Card Section -->
+
+    <div class="card shadow mb-3">
+        <div class="card-header p-4 ">
+            <form #searchData=ngForm (ngSubmit)="searchAttendance(searchData)">
+
+                <div class="row row-cols-3 g-3 align-items-center">
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Unique Number"
+                            aria-label="Search" name="uniqueId">
+                    </div>
+                    <!-- <div class="col">
+                        <input type="text" class="form-control" ngModel placeholder="Student Name" aria-label="Search"
+                            name="name">
+                    </div> -->
+
+                    <select class="col mx-1 mx-4 selectClass" aria-label="Default select example" ngModel name="className">
+                        <option [disabled]="true" value="">Class Name</option>
+                        <option *ngFor="let class of totalClasses" [value]="class._id">{{class.className}}</option>
+                    </select>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Section Name"
+                            aria-label="Search" name="section">
+                    </div>
+
+                    <!-- <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Roll Number"
+                            aria-label="Search" name="rollNo">
+                    </div> -->
+                    <!-- <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Student Mobile_No"
+                            aria-label="Search" name="MobileNo">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" ngModel required placeholder="Father Name"
+                            aria-label="Search" name="FatherName">
+                    </div> -->
+
+                </div>
+
+                <div class="modal-footer mt-2">
+                    <div class="d-grid my-3">
+                        <button type="submit" class="btn btn-outline-secondary btn-login btn-sm text-capitalize">
+                            Search Now</button>
+                    </div>
+
+                    <button class="btn btn-outline-danger btn-sm" (click)="view()">viewComp</button>
+                </div>
+            </form>
+
+        </div>
+
+          <!-- Table Section -->
+            <div class="table">
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Student Name</th>
+                            <th scope="col">Class/Section</th>
+                            <th scope="col">Father's Name</th>
+                            <th scope="col">Mobile_No</th>
+                            <th scope="col">Attendance</th>
+                            <th scope="col">Action</th>              
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center" *ngFor="let list of attendanceData; let i = index;">
+                            <th scope="row">{{i+1}}</th>
+
+                            <td class="text-capitalize">
+                                <!-- <figure class="figure studentImgBox m-0 p-0">
+                                    <img [src]="list.studentImage" class="rounded-circle" alt="student image" width="40"
+                                        height="40">
+                                </figure> -->
+                                <div class="float-end">
+                                    <span class="fw-semibold">{{list?.name}}</span><br>
+                                    <span class="uniqueId">{{list?.uniqueId}}</span>
+                                </div>
+                            </td>
+                            <td class="">{{list?.class}} ({{list.section}})</td>
+                            <td>{{list?.fatherName}}</td>
+                            <td>{{list?.studentMobile}}</td>
+                            <td>{{list?.attendance.status}}</td>
+                            <td>
+                            <div class="col-md-2 ms-4">
+                                <button class="btn btn-outline-success btn-sm" (click)="edit(list, list._id)"><i
+                                        _ngcontent-ng-c2586479129="" class="fa-solid fa-pen-to-square"
+                                        aria-hidden="true"></i></button> <br>
+                                        <button class="btn mt-2 btn-outline-danger btn-sm" (click)="delete(list)"><i
+                                            _ngcontent-ng-c2586479129="" class="fa-solid fa-trash-can"
+                                            aria-hidden="true"></i></button> <br>
+                                
+                            </div>
+                        </td>
+                        </tr>
+                    </tbody>
+                </table>
+    
+            </div>

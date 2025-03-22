@@ -208,6 +208,10 @@ export let selectSideBar = [
     "module": "Attendance",
     "checked": false,
   },
+  {
+    "module": "Attendance Report",
+    "checked": false,
+  },
 ]
 
 
@@ -236,7 +240,8 @@ export let sidebar = [
   { number: '17', name: 'Holiday', icon: 'fa-solid fa-mug-hot', url: '/dashboard/holiday' },
   { number: '18', name: 'Staff', icon: 'fa-solid fa-person-cane', url: '/dashboard/staff' },
   { number: '19', name: 'Staff Attendance', icon: 'fa-solid fa-person-cane', url: '/dashboard/staffattendance' },
-  { number: '20', name: 'Attendance', icon: 'fa-solid fa-person', url: '/dashboard/attendance' },
+  { number: '21', name: 'Attendance', icon: 'fa-solid fa-person', url: '/dashboard/attendance' },
+  { number: '22', name: 'Attendance Report', icon: 'fa-solid fa-clipboard-user', url: '/dashboard/attendanceReport' },
 
 ];
 
@@ -283,3 +288,4 @@ export let attendanceAdd = domain + 'admin/attendence/create';
 export let attendanceList = domain + 'admin/attendence/list';
 export let attendanceDelete = domain + 'admin/attendence/delete';
 export let attendanceUpdate = domain + 'admin/attendence/update';
+export let attendanceView = domain + 'admin/attendence/view';

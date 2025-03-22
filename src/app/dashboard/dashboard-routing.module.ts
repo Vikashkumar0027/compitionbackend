@@ -37,6 +37,7 @@ const routes: Routes = [
       { path: 'staffattendance', loadChildren: () => import('./staff-attendance/staff-attendance.module').then((m) => m.StaffAttendanceModule), canActivate: [subadminGuard] },
 
       { path: 'attendance', loadChildren: () => import('./attendance/attendance.module').then((m) => m.AttendanceModule), canActivate: [subadminGuard] },
+      { path: 'attendanceReport', loadChildren: () => import('./attendance-report/attendance-report.module').then((m) => m.AttendanceReportModule), canActivate: [subadminGuard] },
 
     ]
   },

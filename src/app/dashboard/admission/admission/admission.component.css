@@ -32,11 +32,18 @@ ul li span:last-child {
 }
 
 
-
 .studentImgBox img {
     width: 150px !important;
     height: 150px !important;
     background-size: cover;
     background-position: center;
 
+}
+
+.selectClass {
+    height: 38px;
+    width: 220px;
+    color: rgb(95, 94, 94);
+    border-radius: 6px;
+    border: 1px solid rgb(218, 214, 214);
 }
