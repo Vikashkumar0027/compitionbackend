@@ -23,15 +23,19 @@
         <div class="card-header py-3">
             <form #searchData=ngForm (ngSubmit)="studentList(searchData)">
 
-                <div class="row row-cols-5 g-2 align-items-center">
+                <div class="row row-cols-5 g-3 align-items-center">
                     <div class="col">
                         <input type="text" class="form-control" ngModel required placeholder="Student Name"
                             aria-label="Search" name="name">
                     </div>
-                    <div class="col">
+                    <!-- <div class="col">
                         <input type="text" class="form-control" ngModel required placeholder="Class Name"
                             aria-label="Search" name="className">
-                    </div>
+                    </div> -->
+                    <select class="col mx-1 selectClass" aria-label="Default select example" ngModel name="className">
+                        <option [disabled]="true" value="">Class Name</option>
+                        <option *ngFor="let class of totalClasses" [value]="class._id">{{class.className}}</option>
+                    </select>
                     <div class="col">
                         <input type="text" class="form-control" ngModel required placeholder="Roll Number"
                             aria-label="Search" name="rollNO">

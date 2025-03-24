@@ -1,0 +1,7 @@
+.selectClass {
+    height: 38px;
+    max-width: 250px;
+    color: rgb(95, 94, 94);
+    border-radius: 6px;
+    border: 1px solid rgb(218, 214, 214);
+}

@@ -15,7 +15,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-header p-4">
-            <form #searchData=ngForm (ngSubmit)="attendanceList(searchData)">
+            <form #searchData=ngForm (ngSubmit)="getStudent(searchData)">
 
                 <div class="row row-cols-4 g-3 align-items-center">
                     <div class="col">
@@ -75,9 +75,9 @@
                         <th scope="col">Mobile_No</th>
                         <th scope="col">
                             <div class="form-check">
+                                <label class="form-check-label">Select All</label>
                                 <input type="checkbox" [checked]="isChecked" class="form-check-input"
                                     (change)="allPresent($event)">
-                                <label class="form-check-label">Select All</label>
                             </div>
                         </th>
                     </tr>
@@ -119,3 +119,5 @@
 
     </div>
 </div>
+
+

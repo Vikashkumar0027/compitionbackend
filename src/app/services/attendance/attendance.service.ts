@@ -25,4 +25,7 @@ export class AttendanceService {
   attendanceDelete(id: any): Observable<any> {
     return this.http.delete<any>(`${attendanceIf.attendanceDelete}/${id}`);
   }
+  attendanceView(id: any): Observable<any> {
+    return this.http.delete<any>(`${attendanceIf.attendanceView}/${id}`);
+  }
 }

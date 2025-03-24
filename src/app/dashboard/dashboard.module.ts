@@ -10,6 +10,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { HomeComponent } from './home/home.component';
 import { CommonComponentModule } from '../common-component/common-component.module';
 
+
 // import { TestBatchComponent } from './onlineTest/test-batch/test-batch.component';
 // import { TestSubjectComponent } from './onlineTest/test-subject/test-subject.component';
 // import { TestSetListComponent } from './onlineTest/test-set-list/test-set-list.component';
@@ -22,7 +23,7 @@ import { CommonComponentModule } from '../common-component/common-component.modu
     HeaderComponent,
     SideNavComponent,
     HomeComponent,
-  
+      
   ],
   imports: [
     CommonModule,

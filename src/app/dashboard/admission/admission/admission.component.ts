@@ -4,7 +4,6 @@ import { GlobalService } from '../../../services/global/global.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AdmissionModalComponent } from '../admission-modal/admission-modal.component';
 
-import { NgForm } from '@angular/forms';
 import { AdmissionviewComponent } from '../admissionview/admissionview.component';
 import { AdmissionService } from '../../../services/admission/admission.service';
 import { ClassService } from '../../../services/class/class.service';

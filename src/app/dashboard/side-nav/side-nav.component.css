@@ -65,3 +65,8 @@
     width: 100%;
 }
 
+.side-nav-content {
+    height: 100vh;
+    overflow: scroll;
+    scrollbar-width: none;
+  }
