@@ -1,12 +1,35 @@
 <div class="side-nav-content">
-
-    <ul class="nav-list" [ngClass]="{'nav-List-open':sideNavStatus}" >
-      <li class="nav-list-item" *ngFor="let item of list">
-          <a class="nav-link" [routerLink]="[item.url]" (click)="routes(item.url)" [class.active]="router==item.url" >
-            <i class="{{item.icon}}" [routerLink]="[item.url]" ></i>
-            <span>{{item.name}}</span>
-          </a>
+  <ul class="nav-list" [ngClass]="{ 'nav-List-open': sideNavStatus }">
+    
+    <!-- Loop through grouped sections -->
+    <ng-container *ngFor="let group of list | keyvalue">
+      
+      <!-- Group Heading -->
+      <hr *ngIf="!sideNavStatus" class="my-2" />
+      <li 
+        class="nav-group-title text-uppercase fw-bold px-3 py-2 text-warning small"
+        *ngIf="!sideNavStatus"
+      >
+        {{ group.value.title }}
       </li>
-    </ul>
 
+      <!-- Child Items -->
+      <li
+        class="nav-list-item"
+        *ngFor="let item of group.value.items"
+      >
+        <a
+          class="nav-link d-flex align-items-center px-3 py-2"
+          [routerLink]="[item.url]"
+          (click)="routes(item.url)"
+          [class.active]="router === item.url"
+        >
+          <i class="{{ item.icon }} me-2" title="{{ item.name }}"></i>
+          <span *ngIf="!sideNavStatus">{{ item.name }}</span>
+        </a>
+      </li>
+
+    </ng-container>
+  </ul>
 </div>
+

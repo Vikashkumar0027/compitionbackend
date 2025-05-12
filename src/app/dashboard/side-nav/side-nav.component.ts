@@ -99,12 +99,15 @@ export class SideNavComponent implements OnInit {
 
  async ngOnInit() {
   this.list = await this.commonService.previlageListApiDatat();
+  
     this.sidenavService.realSideBarAccess.subscribe(async res => {
       if(res.length || res){
-        this.list = res;
+        this.list = this.makeGroupList(res);
+        
       }else{
-        this.list = await this.commonService.previlageListApiDatat();
-        console.log(this.list)
+        let lisOfSidbar = await this.commonService.previlageListApiDatat();
+        // console.log(this.list)
+        this.list = this.makeGroupList(lisOfSidbar);
       }
 
     // if(!this.list.length){
@@ -124,6 +127,16 @@ export class SideNavComponent implements OnInit {
      })
   }
 
+  makeGroupList(res:any): any[] {
+    let groupedSidebar = res.reduce((groups :any, item:any) => {
+      if (!groups[item.group_slug]) {
+        groups[item.group_slug] = { title: item.group_name, icon: item.icon, items: [] };
+      }
+      groups[item.group_slug].items.push(item);
+      return groups;
+    }, {});
+    return Object.values(groupedSidebar);
+  }
   //  filterList(list: any[], list2: any[]) {l
   //   return list.filter(item => {
   //     const list2Item = list2.find(l2Item => l2Item.module === item.name);

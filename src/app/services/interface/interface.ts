@@ -124,126 +124,107 @@ export let deleteLive = domain + 'admin/livestream/delete';
 export let classes = "http://localhost:5000/api/v1/addclass";
 
 export let selectSideBar = [
-  {
-    "module": "Dashboard",
-    "checked": true,
-  },
-  {
-    "module": "Previlage",
-    "checked": false,
-  },
-  {
-    "module": "Sub Admin",
-    "checked": false,
-  },
-  {
-    "module": "User",
-    "checked": false,
-  },
-  {
-    "module": "Course",
-    "checked": false,
-  },
-  {
-    "module": "Syllabus",
-    "checked": false,
-  },
-  {
-    "module": "Previous Paper",
-    "checked": false,
-  },
-  {
-    "module": "Post",
-    "checked": false,
-  },
-  {
-    "module": "Online Test",
-    "checked": false,
-  },
-  {
-    "module": "Book",
-    "checked": false,
-  },
-  {
-    "module": "Payment",
-    "checked": false,
-  },
-  {
-    "module": "Live Class",
-    "checked": false,
-  },
-  {
-    "module": "Class",
-    "checked": false,
-  },
-  {
-    "module": "Fee",
-    "checked": false,
-  },
-  {
-    "module": "Admission",
-    "checked": false,
-  },
-  {
-    "module": "Fee Deposit",
-    "checked": false,
-  },
-  {
-    "module": "Banner",
-    "checked": false,
-  },
-  {
-    "module": "Holiday",
-    "checked": false,
-  },
-  {
-    "module": "Staff",
-    "checked": false,
-  },
-  {
-    "module": "staffattendance",
-    "checked": false,
-  },
-  {
-    "module": "Attendance",
-    "checked": false,
-  },
-  {
-    "module": "Attendance Report",
-    "checked": false,
-  },
-]
+  { module: "Dashboard", checked: true },
+  { module: "Privilege", checked: false },
+  { module: "Sub Admin", checked: false },
+  { module: "User", checked: false },
+  { module: "Course", checked: false },
+  { module: "Syllabus", checked: false },
+  { module: "Previous Paper", checked: false },
+  { module: "Post", checked: false },
+  { module: "Online Test", checked: false },
+  { module: "Book", checked: false },
+  { module: "Payment", checked: false },
+  { module: "Live Class", checked: false },
+  { module: "Class", checked: false },
+  { module: "Fee", checked: false },
+  { module: "Admission", checked: false },
+  { module: "Fee Deposit", checked: false },
+  { module: "Banner", checked: false },
+  { module: "Holiday", checked: false },
+  { module: "Staff", checked: false },
+  { module: "staffattendance", checked: false },
+  { module: "Attendance", checked: false },
+  { module: "Attendance Report", checked: false },
+];
 
 
 export let sidebar = [
-  { number: '1', name: 'Dashboard', icon: 'fa-solid fa-house', url: '/dashboard/home' },
-  { number: '2', name: 'Previlage', icon: 'fa-solid fa-users', url: '/dashboard/privilage' },
-  { number: '20', name: 'Sub Admin', icon: 'fa-solid fa-users', url: '/dashboard/subAdmin' },
-  // {number:'70',name:'Privilage',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/privilage'},
-  { number: '7', name: 'User', icon: 'fa-regular fa-user', url: '/dashboard/user' },
-  { number: '3', name: 'Course', icon: 'fa-solid fa-folder-open', url: '/dashboard/course' },
-  { number: '16', name: 'Banner', icon: 'fa-regular fa-images', url: '/dashboard/banner' },
-  { number: '4', name: 'Syllabus', icon: 'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/syllabus' },
-  { number: '5', name: 'Previous Paper', icon: 'fa-solid fa-business-time', url: '/dashboard/previous_paper' },
-  { number: '6', name: 'Post', icon: 'fa-brands fa-instagram', url: '/dashboard/post' },
-  { number: '8', name: 'Online Test', icon: 'fa-regular fa-pen-to-square', url: '/dashboard/online-test' },
-  { number: '9', name: 'Book', icon: 'fa-solid fa-book', url: '/dashboard/book' },
-  { number: '10', name: 'Payment', icon: 'fa-brands fa-paypal', url: '/dashboard/payment' },
-  { number: '11', name: 'Live Class', icon: 'fa-regular fa-file-video', url: '/dashboard/live_class' },
+  // Platform Overview
+  { number: '1', name: 'Dashboard', icon: 'fa-solid fa-house', url: '/dashboard/home', group_name: 'Platform Overview', group_slug: 'platform_overview' },
 
-  // school Module  <i class="fa-solid fa-indian-rupee-sign"></i>
+  // Access Control
+  { number: '2', name: 'Privilege', icon: 'fa-solid fa-users', url: '/dashboard/privilage', group_name: 'Access Control', group_slug: 'access_control' },
+  { number: '20', name: 'Sub Admin', icon: 'fa-solid fa-users', url: '/dashboard/subAdmin', group_name: 'Access Control', group_slug: 'access_control' },
+  { number: '7', name: 'User', icon: 'fa-regular fa-user', url: '/dashboard/user', group_name: 'Access Control', group_slug: 'access_control' },
 
-  { number: '12', name: 'Class', icon: 'fa-solid fa-layer-group', url: '/dashboard/class' },
-  { number: '13', name: 'Fee', icon: 'fa-solid fa-money-bill-1-wave', url: '/dashboard/fee' },
-  { number: '14', name: 'Admission', icon: 'fa-solid fa-user-tie', url: '/dashboard/admission' },
-  { number: '15', name: 'Fee Deposit', icon: 'fa-solid fa-indian-rupee-sign', url: '/dashboard/fee_deposit' },
-  { number: '17', name: 'Holiday', icon: 'fa-solid fa-mug-hot', url: '/dashboard/holiday' },
-  { number: '18', name: 'Staff', icon: 'fa-solid fa-person-cane', url: '/dashboard/staff' },
-  { number: '19', name: 'Staff Attendance', icon: 'fa-solid fa-person-cane', url: '/dashboard/staffattendance' },
-  { number: '21', name: 'Attendance', icon: 'fa-solid fa-person', url: '/dashboard/attendance' },
-  { number: '22', name: 'Attendance Report', icon: 'fa-solid fa-clipboard-user', url: '/dashboard/attendanceReport' },
+  // Academic Content
+  { number: '3', name: 'Course', icon: 'fa-solid fa-folder-open', url: '/dashboard/course', group_name: 'Academic Content', group_slug: 'academic_content' },
+  { number: '16', name: 'Banner', icon: 'fa-regular fa-images', url: '/dashboard/banner', group_name: 'Academic Content', group_slug: 'academic_content' },
+  { number: '4', name: 'Syllabus', icon: 'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/syllabus', group_name: 'Academic Content', group_slug: 'academic_content' },
+  { number: '5', name: 'Previous Paper', icon: 'fa-solid fa-business-time', url: '/dashboard/previous_paper', group_name: 'Academic Content', group_slug: 'academic_content' },
+  { number: '6', name: 'Post', icon: 'fa-brands fa-instagram', url: '/dashboard/post', group_name: 'Academic Content', group_slug: 'academic_content' },
+  { number: '8', name: 'Online Test', icon: 'fa-regular fa-pen-to-square', url: '/dashboard/online-test', group_name: 'Academic Content', group_slug: 'academic_content' },
+  { number: '9', name: 'Book', icon: 'fa-solid fa-book', url: '/dashboard/book', group_name: 'Academic Content', group_slug: 'academic_content' },
 
+  // Institution Management
+  { number: '12', name: 'Class', icon: 'fa-solid fa-layer-group', url: '/dashboard/class', group_name: 'Institution Management', group_slug: 'institution_managment' },
+  { number: '14', name: 'Admission', icon: 'fa-solid fa-user-tie', url: '/dashboard/admission', group_name: 'Institution Management', group_slug: 'institution_managment' },
+  { number: '17', name: 'Holiday', icon: 'fa-solid fa-mug-hot', url: '/dashboard/holiday', group_name: 'Institution Management', group_slug: 'institution_managment' },
+  { number: '18', name: 'Staff', icon: 'fa-solid fa-person-cane', url: '/dashboard/staff', group_name: 'Institution Management', group_slug: 'institution_managment' },
+  { number: '19', name: 'Staff Attendance', icon: 'fa-solid fa-person-cane', url: '/dashboard/staffattendance', group_name: 'Institution Management', group_slug: 'institution_managment' },
+
+  // Finance
+  { number: '13', name: 'Fee', icon: 'fa-solid fa-money-bill-1-wave', url: '/dashboard/fee', group_name: 'Finance', group_slug: 'finance' },
+  { number: '15', name: 'Fee Deposit', icon: 'fa-solid fa-indian-rupee-sign', url: '/dashboard/fee_deposit', group_name: 'Finance', group_slug: 'finance' },
+  { number: '10', name: 'Payment', icon: 'fa-brands fa-paypal', url: '/dashboard/payment', group_name: 'Finance', group_slug: 'finance' },
+
+  // Live & Attendance
+  { number: '11', name: 'Live Class', icon: 'fa-regular fa-file-video', url: '/dashboard/live_class', group_name: 'Live & Attendance', group_slug: 'live' },
+  { number: '21', name: 'Attendance', icon: 'fa-solid fa-person', url: '/dashboard/attendance', group_name: 'Live & Attendance', group_slug: 'live' },
+  { number: '22', name: 'Attendance Report', icon: 'fa-solid fa-clipboard-user', url: '/dashboard/attendanceReport', group_name: 'Live & Attendance', group_slug: 'live' },
+
+  // Recommended (Post-MVP, Disabled by Default)
+  // { number: '30', name: 'Institutions', icon: 'fa-solid fa-building', url: '/dashboard/institutions', group_name: 'Super Admin Tools', disabled: true },
+  // { number: '31', name: 'Custom Domains', icon: 'fa-solid fa-globe', url: '/dashboard/custom-domains', group_name: 'Super Admin Tools', disabled: true },
+  // { number: '32', name: 'Subscription Plans', icon: 'fa-solid fa-credit-card', url: '/dashboard/plans', group_name: 'Monetization', disabled: true },
+  // { number: '33', name: 'Billing Overview', icon: 'fa-solid fa-file-invoice-dollar', url: '/dashboard/billing', group_name: 'Monetization', disabled: true },
+  // { number: '34', name: 'Feature Toggle', icon: 'fa-solid fa-toggle-on', url: '/dashboard/feature-toggle', group_name: 'System Config', disabled: true },
+  // { number: '35', name: 'Audit Logs', icon: 'fa-solid fa-clipboard-list', url: '/dashboard/audit-logs', group_name: 'System Config', disabled: true },
+  // { number: '36', name: 'System Settings', icon: 'fa-solid fa-cog', url: '/dashboard/system-settings', group_name: 'System Config', disabled: true },
+  // { number: '37', name: 'Support Tickets', icon: 'fa-solid fa-headset', url: '/dashboard/support', group_name: 'Support & Feedback', disabled: true },
 ];
+
+
+// export let sidebar = [
+//   { number: '1', name: 'Dashboard', icon: 'fa-solid fa-house', url: '/dashboard/home' },
+//   { number: '2', name: 'Previlage', icon: 'fa-solid fa-users', url: '/dashboard/privilage' },
+//   { number: '20', name: 'Sub Admin', icon: 'fa-solid fa-users', url: '/dashboard/subAdmin' },
+//   // {number:'70',name:'Privilage',icon:'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/privilage'},
+//   { number: '7', name: 'User', icon: 'fa-regular fa-user', url: '/dashboard/user' },
+//   { number: '3', name: 'Course', icon: 'fa-solid fa-folder-open', url: '/dashboard/course' },
+//   { number: '16', name: 'Banner', icon: 'fa-regular fa-images', url: '/dashboard/banner' },
+//   { number: '4', name: 'Syllabus', icon: 'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/syllabus' },
+//   { number: '5', name: 'Previous Paper', icon: 'fa-solid fa-business-time', url: '/dashboard/previous_paper' },
+//   { number: '6', name: 'Post', icon: 'fa-brands fa-instagram', url: '/dashboard/post' },
+//   { number: '8', name: 'Online Test', icon: 'fa-regular fa-pen-to-square', url: '/dashboard/online-test' },
+//   { number: '9', name: 'Book', icon: 'fa-solid fa-book', url: '/dashboard/book' },
+//   { number: '10', name: 'Payment', icon: 'fa-brands fa-paypal', url: '/dashboard/payment' },
+//   { number: '11', name: 'Live Class', icon: 'fa-regular fa-file-video', url: '/dashboard/live_class' },
+
+//   // school Module  <i class="fa-solid fa-indian-rupee-sign"></i>
+
+//   { number: '12', name: 'Class', icon: 'fa-solid fa-layer-group', url: '/dashboard/class' },
+//   { number: '13', name: 'Fee', icon: 'fa-solid fa-money-bill-1-wave', url: '/dashboard/fee' },
+//   { number: '14', name: 'Admission', icon: 'fa-solid fa-user-tie', url: '/dashboard/admission' },
+//   { number: '15', name: 'Fee Deposit', icon: 'fa-solid fa-indian-rupee-sign', url: '/dashboard/fee_deposit' },
+//   { number: '17', name: 'Holiday', icon: 'fa-solid fa-mug-hot', url: '/dashboard/holiday' },
+//   { number: '18', name: 'Staff', icon: 'fa-solid fa-person-cane', url: '/dashboard/staff' },
+//   { number: '19', name: 'Staff Attendance', icon: 'fa-solid fa-person-cane', url: '/dashboard/staffattendance' },
+//   { number: '21', name: 'Attendance', icon: 'fa-solid fa-person', url: '/dashboard/attendance' },
+//   { number: '22', name: 'Attendance Report', icon: 'fa-solid fa-clipboard-user', url: '/dashboard/attendanceReport' },
+
+// ];
 
 // live_class
 export let classesAdd = domain + 'admin/class/create';

@@ -23,7 +23,7 @@ export class CommonService {
   token:any;
   sliderAccess: any[] = [];
   list:any[] = featureInterface.sidebar;
- allSIdeModule:any[]= featureInterface.selectSideBar;
+  allSIdeModule:any[]= featureInterface.selectSideBar;
   tokens:any
   constructor( private route:Router,
     private global:GlobalService,
@@ -80,12 +80,11 @@ export class CommonService {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         this.privalageService.previlageLst().subscribe((res) => {
-          console.log(res);
+          // console.log(res);
           // try {
             (decodedToken.data.type == "SubAdmin") ?
               this.sliderAccess =  this.filterList(this.list, res.response[0].previleges) :
-         this.sliderAccess = this.list;
-            
+              this.sliderAccess = this.list;
             this.sidenavService.udateRealSideBarData(this.sliderAccess);
             resolve(this.sliderAccess); // Return the filtered access list
           // } catch (error) {
