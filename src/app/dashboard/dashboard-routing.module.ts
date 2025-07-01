@@ -15,6 +15,7 @@ const routes: Routes = [
       { path: 'course/subject/:id', loadChildren: () => import('./subject/subject.module').then((m) => m.SubjectModule) },
       { path: 'subject/chapter', loadChildren: () => import('./chapter/chapter.module').then((m) => m.ChapterModule) },
       { path: 'chapter/topic', loadChildren: () => import('./topics/topics.module').then((m) => m.TopicsModule) },
+      { path: 'Pdf', loadChildren: () => import('./paid-pdf/paid-pdf.module').then((m) => m.PaidPdfModule) },
       { path: 'syllabus', loadChildren: () => import('./syllabus/syllabus.module').then((m) => m.SyllabusModule), canActivate: [subadminGuard] },
       { path: 'previous_paper', loadChildren: () => import('./previous-paper/previous-paper.module').then((m) => m.PreviousPaperModule), canActivate: [subadminGuard] },
       { path: 'post', loadChildren: () => import('./post/post.module').then((m) => m.PostModule), canActivate: [subadminGuard] },

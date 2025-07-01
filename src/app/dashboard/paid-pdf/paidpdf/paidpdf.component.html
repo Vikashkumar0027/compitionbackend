@@ -1,0 +1,97 @@
+<div class="container-fluid">
+    <!-- Breadcrumb for Navigation -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Paid Pdf</li>
+      </ol>
+    </nav>
+
+    <div class="row align-items-center">
+      <div class="col-md-4">
+        <h1 class="h3 mb-lg-3 text-gray-800"> Pdf</h1>
+      </div>
+      <div class="col-md-8 mb-3 text-md-end">
+        <button type="button" class="btn btn-outline-primary" (click)="modalData()">Add Pdf</button>
+      </div>
+    </div>
+  
+    <!-- Card Section -->
+    <!-- <h1 class="h3 mb-3 text-gray-800">Company</h1> -->
+  
+    <div class="card shadow mb-4">
+      <!-- <div class="card-header py-3">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+  
+            <input type="text" class="form-control" placeholder="Search Company" aria-label="Search" name="searchCompany">
+  
+          </div>
+        </div>
+      </div> -->
+  
+      <!-- Table Section -->
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Thumbnail</th>
+        <th scope="col">Price</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+        <tr *ngFor="let list of bannerData let i = index; ">
+          <th scope="row">{{i+1}}</th>
+          <td>{{list?.title | titlecase}} </td>
+          <td>{{list?.description}}</td>
+          <td>
+            <img [src]="list?.thumbnail" width="200px" />
+            <!-- <i class="fa-solid fa-file-pdf"></i> -->
+            <a class="btn btn-outline-primary" [href]="list.pdf" target="_blank" title="View Notes"><i class="fa-solid fa-file-pdf"></i></a> 
+          </td>
+
+          <td>
+          <p>Price:-{{list?.mrp}}</p>  
+          <p>Discount:-{{list?.discount}}%</p>  
+          </td>
+          
+          <td class="text-start">
+            <button *ngIf="list?.status === 'active'" class="btn btn-outline-success btn-sm m-1"
+              title="Subscription Done">
+              <i class="fa-solid fa-check"></i> Active
+            </button>
+            <button *ngIf="list?.status === 'inactive'" class="btn btn-outline-danger btn-sm m-1"
+              title="Subscription Not Done">
+              <i class="fa-solid fa-xmark"></i> Inactive
+            </button>
+          </td>
+          <td>
+            <button title="Edit" type="button" class="btn btn-outline-primary btn-sm m-1" (click)="edit(list)">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button title="Delete" type="button" class="btn btn-outline-danger btn-sm m-1" (click)="deletes(list)">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+            <!-- <button title="Delete" type="button" class="btn btn-outline-info btn-sm m-1" (click)="chapter(list)">
+              Chapter
+            </button> -->
+
+          </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Loading Spinner -->
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)" template="<img src='https://i.gifer.com/ZZ5H.gif' />">
+  </ngx-spinner>

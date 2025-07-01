@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   islogin:boolean=false;
   submitted:boolean=false;
   form: FormGroup;
-
+// inder@gmail.com
   id:any;
   loginData:any
   constructor(
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     private commonService:CommonService
   ){
     this.form = this.fb.group({
-      email:new FormControl('inder@gmail.com',[Validators.required]),
+      email:new FormControl('',[Validators.required]),
       password:new FormControl('',[Validators.required,Validators.minLength(3)])
     })
   }

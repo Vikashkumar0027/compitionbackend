@@ -52,6 +52,11 @@ export let postList = domain + 'admin/post/list';
 export let postUpdate = domain + 'admin/post/update';
 export let postDelete = domain + 'admin/post/delete';
 
+//paid Pdf
+export let pdfAdd = domain + 'admin/pdf/create';
+export let pdfList = domain + 'admin/pdf/list';
+export let pdfUpdate = domain + 'admin/pdf/patch';
+export let pdfDelete = domain + 'admin/pdf/delete';
 
 
 
@@ -204,6 +209,10 @@ export let selectSideBar = [
     "module": "Attendance",
     "checked": false,
   },
+  {
+    "module": "Pdf",
+    "checked": false,
+  },
 ]
 
 
@@ -215,6 +224,7 @@ export let sidebar = [
   { number: '7', name: 'User', icon: 'fa-regular fa-user', url: '/dashboard/user' },
   { number: '3', name: 'Course', icon: 'fa-solid fa-folder-open', url: '/dashboard/course' },
   { number: '16', name: 'Banner', icon: 'fa-regular fa-images', url: '/dashboard/banner' },
+  { number: '21', name: 'Pdf', icon: 'fa-solid fa-file-pdf', url: '/dashboard/Pdf' },
   { number: '4', name: 'Syllabus', icon: 'fa-sharp fa-solid fa-clipboard-list', url: '/dashboard/syllabus' },
   { number: '5', name: 'Previous Paper', icon: 'fa-solid fa-business-time', url: '/dashboard/previous_paper' },
   { number: '6', name: 'Post', icon: 'fa-brands fa-instagram', url: '/dashboard/post' },
@@ -223,7 +233,7 @@ export let sidebar = [
   { number: '10', name: 'Payment', icon: 'fa-brands fa-paypal', url: '/dashboard/payment' },
   { number: '11', name: 'Live Class', icon: 'fa-regular fa-file-video', url: '/dashboard/live_class' },
 
-  // school Module  <i class="fa-solid fa-indian-rupee-sign"></i>
+  // school Module  <i class="fa-solid fa-indian-rupee-sign"></i> <i class="fa-solid fa-file-pdf"></i>
 
   { number: '12', name: 'Class', icon: 'fa-solid fa-layer-group', url: '/dashboard/class' },
   { number: '13', name: 'Fee', icon: 'fa-solid fa-money-bill-1-wave', url: '/dashboard/fee' },
