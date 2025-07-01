@@ -1,0 +1,53 @@
+<div class="section">
+    <div class="modal-header">
+        <h4 class="modal-title text-capitalize" id="modal-basic-title">{{user}} Class</h4>
+
+        <button type="button" class="btn btn-outline-primary px-3 ms-auto close" aria-label="Close"
+            (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
+    <div class="modal-body">
+        <!-- (ngSubmit)="onSubmit()" -->
+        <div>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="exampleFormControlname" class="form-label">Class Name </label>
+                    <input type="text" class="form-control" id="exampleFormControlname" placeholder="Class Name"
+                        formControlName="className">
+
+                </div>
+                <div *ngIf="submitted && f['className'].errors">
+                    <span style="color: red;" *ngIf="f['className'].errors['required'] ">Please enter Class
+                        Name</span>
+                </div>
+
+                <div class="mb-3">
+                    <label cLabel for="exampleFormControlclass">Status</label><br>
+                    <select cSelect id="exampleFormControlclass" class="form-control " formControlName='status'>
+                        <option [disabled]="true">Select Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+
+                    <div *ngIf="submitted && f['status'].errors">
+                        <span style="color: red;" *ngIf="f['status'].errors['required'] ">Please select status</span>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-outline-primary btn-login text-uppercase fw-bold">
+                            Save</button>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+</div>

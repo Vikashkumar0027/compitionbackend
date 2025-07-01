@@ -6,6 +6,7 @@ import { GlobalService } from '../../../services/global/global.service';
 import { SubAdminService } from '../../../services/subAdmin/sub-admin.service';
 
 import *as featureInterface from '../../../services/interface/interface'
+import { PrivilageService } from '../../../services/privilage/privilage.service';
 @Component({
   selector: 'app-subadmin-modal',
   templateUrl: './subadmin-modal.component.html',
@@ -17,6 +18,7 @@ export class SubadminModalComponent implements OnInit {
   userList:any[]=[];
    // second method of multi select
    selectedItems:any[]=[];
+   privilageList:any[]=[];
    dropdownSettings:object={};
 
    selectedAccessArray:any[] = [];
@@ -66,14 +68,17 @@ export class SubadminModalComponent implements OnInit {
     private activeModal: NgbActiveModal,
     private subadminService:SubAdminService,
     private commonService:CommonService,
-    private global:GlobalService
+    private global:GlobalService,
+    private privilageService:PrivilageService
   ) { 
     this.form = this.fb.group({
       name: ['', Validators.required],
       email:new FormControl('',[Validators.required]),
       phone:new FormControl('',[Validators.required]),
       password:new FormControl('',[Validators.required]),
+      previlage:new FormControl('',[Validators.required]),
       status:new FormControl('active',[Validators.required]),
+
       labDocument:new FormControl(''),
     });
   }
@@ -82,12 +87,23 @@ export class SubadminModalComponent implements OnInit {
    
     // this.getUserList();
     this.patchDataFunction();
+    this.privilegeList();
 
   }
 
+
+  privilegeList(){
+    this.privilageService.PrivilegeList().subscribe(res=>{
+      console.log(res);
+      if(res.success){
+        this.privilageList = res.response;
+      }
+    },err=>{
+      console.log(err);
+    })
+  }
+
  
-
-
   onDeSelectAll(items:any){
     // console.log(items);
   }
@@ -102,13 +118,14 @@ export class SubadminModalComponent implements OnInit {
      
       // this.PrivilegeMenuListDataq = this.patchData.previleges;
       // this.PrivilegeMenuListDataq = this.patchData.previleges;
-      this.mergeAccessData(this.patchData.previleges);
+      // this.mergeAccessData(this.patchData.previleges);
  
-      this.selectedItems =this.patchData.assign_to;
+      // this.selectedItems =this.patchData.assign_to;
       const patch = {
         name: this.patchData.name,
         phone: this.patchData.phone,
         email: this.patchData.email,
+        previlage: this.patchData.previleges,
         status: this.patchData.status,
       };
       this.form.patchValue(patch);
@@ -231,14 +248,15 @@ setTimeout(() => {
 let formData = new FormData();
 console.log(this.PrivilegeMenuListDataq);
 
-this.PrivilegeMenuListDataq.forEach((item, index) => {
-  formData.append(`previleges[${index}][module]`, item.module);
-  formData.append(`previleges[${index}][checked]`, item.checked.toString());
-});
+// this.PrivilegeMenuListDataq.forEach((item, index) => {
+//   formData.append(`previleges[${index}][module]`, item.module);
+//   formData.append(`previleges[${index}][checked]`, item.checked.toString());
+// });
 formData.append('logo', this.file);
 formData.append('name', this.form.value.name);
 formData.append('email', this.form.value.email);
 formData.append('phone', this.form.value.phone);
+formData.append('previleges', this.form.value.previlage);
 formData.append('password', this.form.value.password);
 formData.append('status', this.form.value.status);
 
@@ -264,10 +282,10 @@ formData.append('status', this.form.value.status);
 
     (this.file == undefined) ? formData.append('logo', this.patchData.logo) : formData.append('logo', this.file);
 
-    this.PrivilegeMenuListDataq.forEach((item, index) => {
-      formData.append(`previleges[${index}][module]`, item.module); // Correct dynamic key construction
-      formData.append(`previleges[${index}][checked]`, item.checked.toString()); // Convert boolean to string
-    });
+    // this.PrivilegeMenuListDataq.forEach((item, index) => {
+    //   formData.append(`previleges[${index}][module]`, item.module); // Correct dynamic key construction
+    //   formData.append(`previleges[${index}][checked]`, item.checked.toString()); // Convert boolean to string
+    // });
 
     // this.selectedAccessArray.forEach(item => {
     //   formData.append('previleges[]', item);
@@ -277,6 +295,7 @@ formData.append('status', this.form.value.status);
       formData.append('name', this.form.value.name);
       formData.append('email', this.form.value.email);
       formData.append('phone', this.form.value.phone);
+      formData.append('previleges', this.form.value.previlage);
       formData.append('status', this.form.value.status);
    
     const _id = this.patchData._id;

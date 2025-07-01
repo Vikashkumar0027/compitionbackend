@@ -36,7 +36,7 @@
                 <div class="form-group form-check border-bottom border-primary"
                 *ngFor="let lst of PrivilegeMenuListDataq; let i = index">
                 <input type="checkbox" class="form-check-input" id="{{lst?.module|lowercase}}" [value]="lst?.module"
-                    (click)="accessFn($event)" [checked]="lst?.checked">
+                    (click)="accessFn($event)" [checked]="lst?.checked" [disabled]="i === 0">
                 <label class="form-check-label fw-bold" for="{{lst?.module|lowercase}}">
                     {{lst?.module | titlecase}}
                 </label>

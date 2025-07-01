@@ -1,0 +1,154 @@
+<div class="modal-header">
+    <h4 class="modal-title text-capitalize" id="modal-basic-title"> Admission View</h4>
+
+    <button type="button" class="btn btn-outline-primary px-3 ms-auto close" aria-label="Close" (click)="modalClose()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="card-body">
+    <div class="table-responsive">
+        <div class="container border-bottom border-1">
+            <div class="row my-2">
+                <div class="col-md-4 border-1 ">
+                    <figure class="figure">
+                        <img [src]="viewData?.studentImage" class="figure-img w-100 img-fluid rounded" alt="...">
+                    </figure>
+
+                    <ul class="p-0">
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>student Id:-</span>
+                            <span>{{viewData?.uniqueId}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Student Name :-</span>
+                            <span>{{viewData?.studentName}}</span>
+                        </li>
+
+
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>StudentMobile :-</span>
+                            <span>{{viewData?.studentMobile}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Gender :-</span>
+                            <span>{{viewData?.gender}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>DOB :-</span>
+                            <span>{{viewData?.dob}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>section Name :-</span>
+                            <span>{{viewData?.section}}</span>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+                <div class="col-md-4 border-1 ">
+                    <ul class="p-0 ">
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Class Name :-</span>
+                            <span>{{viewData.classId?.className}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Admission Date :-</span>
+                            <span>{{viewData?.admissionDate}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Admission Fee :-</span>
+                            <span>{{viewData?.admissionFee}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Roll No :-</span>
+                            <span>{{viewData?.rollNo}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Category :-</span>
+                            <span>{{viewData?.category}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Address :-</span>
+                            <span>{{viewData?.address}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>State :-</span>
+                            <span>{{viewData?.state}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>District :-</span>
+                            <span>{{viewData?.district}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Pin Code :-</span>
+                            <span>{{viewData?.pinCode}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Transport:-</span>
+                            <span>{{viewData?.transport}}</span>
+                        </li>
+
+
+                    </ul>
+
+                </div>
+                <div class="col-md-4 border-1 ">
+                    <ul class="p-0 ">
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Parent Number :-</span>
+                            <span>{{viewData?.parentNumber}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Father Name :-</span>
+                            <span>{{viewData?.fatherName}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Mother Name :-</span>
+                            <span>{{viewData?.motherName}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>localGardianName :-</span>
+                            <span>{{viewData?.localGardianName}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Parent Address :-</span>
+                            <span>{{viewData?.parentAddress}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Relation Students :-</span>
+                            <span>{{viewData?.relationStudents}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Father Occupation :-</span>
+                            <span>{{viewData?.fatherOccupation}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>WithdrawalNo:-</span>
+                            <span>{{viewData?.withdrawalFileNumber}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Scholar Registration No:-</span>
+                            <span>{{viewData?.scholarRegistrationNo}}</span>
+                        </li>
+                        <li class="d-flex justify-content-between px-2  list-unstyled">
+                            <span>Last School Name :-</span>
+                            <span>{{viewData?.lastSchoolName}}</span>
+                        </li>
+
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <ng-template #noDataFound>
+            <div>
+                No data found!.
+            </div>
+        </ng-template>
+    </div>
+</div>

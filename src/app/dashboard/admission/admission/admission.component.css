@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    gap: 0px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.item:nth-child(1),
+.item:nth-child(2),
+.item:nth-child(3) {
+    flex-basis: 241px;
+    border: 1px solid black;
+    /* text-align: center; */
+}
+
+.item:nth-child(4) {
+    /* width: 100px; */
+    border: 1px solid black;
+
+}
+
+ul li span:first-child {
+    font-weight: bold;
+    font-size: 13px;
+    text-transform: capitalize;
+}
+
+ul li span:last-child {
+    text-transform: capitalize;
+    font-size: 12px;
+}
+
+
+
+.studentImgBox img {
+    width: 150px !important;
+    height: 150px !important;
+    background-size: cover;
+    background-position: center;
+
+}

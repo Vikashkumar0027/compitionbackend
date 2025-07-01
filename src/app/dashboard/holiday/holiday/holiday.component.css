@@ -1,0 +1,11 @@
+.holiday{
+    color: indianred;
+}
+
+.table{
+    height: 65vh;
+    width: 100%;
+    overflow: auto;
+    scrollbar-width: none;
+}
+

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonService } from '../../../services/common/common.service';
@@ -10,7 +10,7 @@ import { GlobalService } from '../../../services/global/global.service';
   templateUrl: './modal-syllabus.component.html',
   styleUrl: './modal-syllabus.component.css'
 })
-export class ModalSyllabusComponent {
+export class ModalSyllabusComponent implements OnInit {
   submitted:boolean=false;
   form:FormGroup;
   userList:any[]=[];
