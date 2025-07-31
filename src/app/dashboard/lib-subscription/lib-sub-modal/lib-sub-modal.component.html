@@ -1,0 +1,68 @@
+<!-- <p>fee-modal works!</p> -->
+
+
+<div class="section">
+    <div class="modal-header">
+        <h4 class="modal-title text-capitalize" id="modal-basic-title">{{user}} Subscription Plan</h4>
+
+        <button type="button" class="btn btn-outline-primary px-3 ms-auto close" aria-label="Close"
+            (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+   
+
+    <div class="modal-body">
+       
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Name" formControlName="name">
+
+                <div *ngIf="submitted && f['name'].errors">
+                    <small style="color: red;" *ngIf="f['name'].errors['required'] ">Please enter Subscription Name</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class="form-control" id="price" placeholder="Price" formControlName="price">
+
+                <div *ngIf="submitted && f['price'].errors">
+                    <small style="color: red;" *ngIf="f['price'].errors['required'] ">Please enter price</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="duration" class="form-label">Duration</label>
+                <input type="number" class="form-control" id="duration" placeholder="Duration" formControlName="duration">
+
+                <div *ngIf="submitted && f['duration'].errors">
+                    <small style="color: red;" *ngIf="f['duration'].errors['required'] ">Please enter duration</small>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label cLabel for="exampleFormControlstatus">Status</label><br>
+                <select cSelect id="exampleFormControlstatus" class="form-control" formControlName='status'>
+                    <option [disabled]="true" value="">Select Status</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+
+                <div *ngIf="submitted && f['status'].errors">
+                    <small style="color: red;" *ngIf="f['status'].errors['required'] ">Please select status</small>
+                </div>
+            </div>
+
+            <div class="modal-footer mt-4">
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-outline-primary btn-login text-uppercase fw-bold">
+                        Save</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>

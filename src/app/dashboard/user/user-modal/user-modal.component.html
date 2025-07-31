@@ -54,6 +54,18 @@
   
 
     <div class="mb-3">
+        <label cLabel for="exampleFormControlGender">Gender*</label><br>
+        <select cSelect id="exampleFormControlGender" class="form-control" formControlName='gender'>
+          <option [disabled]="true">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && f['gender'].errors">
+        <span style="color: red;" *ngIf="f['gender'].errors['required'] ">Please select Gender</span>
+    </div>
+
+    <div class="mb-3">
         <label cLabel for="exampleFormControlStatus">Status*</label><br>
         <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>
           <option [disabled]="true">Select Status</option>

@@ -37,6 +37,7 @@ const routes: Routes = [
       { path: 'staff', loadChildren: () => import('./staff/staff.module').then((m) => m.StaffModule), canActivate: [subadminGuard] },
 
       { path: 'attendance', loadChildren: () => import('./attendance/attendance.module').then((m) => m.AttendanceModule), canActivate: [subadminGuard] },
+      { path: 'Library_sub', loadChildren: () => import('./lib-subscription/lib-subscription.module').then((m) => m.LibSubscriptionModule), canActivate: [subadminGuard] },
 
     ]
   },

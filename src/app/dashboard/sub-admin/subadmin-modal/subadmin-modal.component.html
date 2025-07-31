@@ -79,6 +79,19 @@
     </div>
 
     <div class="mb-3">
+        <label cLabel for="exampleFormControlcompType">Company Type</label><br>
+        <select cSelect id="exampleFormControlcompType" class="form-control" formControlName='compType'>
+          <option [disabled]="true">Select Company Type</option>
+          <option value="competition">Competition</option>
+          <option value="school">School</option>
+          <option value="librarian">library</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && f['compType'].errors">
+        <span style="color: red;" *ngIf="f['compType'].errors['required'] ">Please select company Type</span>
+    </div>
+
+    <div class="mb-3">
         <label cLabel for="exampleFormControlStatus">Status</label><br>
         <select cSelect id="exampleFormControlStatus" class="form-control" formControlName='status'>
           <option [disabled]="true">Select Status</option>

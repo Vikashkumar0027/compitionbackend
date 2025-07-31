@@ -213,6 +213,10 @@ export let selectSideBar = [
     "module": "Pdf",
     "checked": false,
   },
+  {
+    "module": "Library Plan",
+    "checked": false,
+  },
 ]
 
 
@@ -244,6 +248,7 @@ export let sidebar = [
   { number: '18', name: 'Staff', icon: 'fa-solid fa-person-cane', url: '/dashboard/staff' },
 
   { number: '19', name: 'Attendance', icon: 'fa-solid fa-person', url: '/dashboard/attendance' },
+  { number: '22', name: 'Library Plan', icon: 'fa-solid fa-money-bill-1-wave', url: '/dashboard/Library_sub'},
 
 ];
 
@@ -277,3 +282,9 @@ export let holidayAdd = domain + 'admin/holiday/create';
 export let holidayList = domain + 'admin/holiday/list';
 export let holidayDelete = domain + 'admin/holiday/delete';
 export let holidayUpdate = domain + 'admin/holiday/update';
+
+// LibrarySubscription
+export let librarySubAdd = domain + 'admin/subscription/create';
+export let librarySubList = domain + 'admin/subscription/list';
+export let librarySubDelete = domain + 'admin/subscription/delete';
+export let librarySubUpdate = domain + 'admin/subscription/update';
