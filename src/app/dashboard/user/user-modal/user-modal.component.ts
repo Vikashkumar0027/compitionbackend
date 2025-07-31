@@ -35,6 +35,7 @@ export class UserModalComponent {
       name: ['', Validators.required],
       email: ['', Validators.required],
       number: ['', Validators.required],
+      gender: ['', Validators.required],
       password: ['', Validators.required],
       image: ['', Validators.required],
       status:['active', Validators.required]
@@ -78,6 +79,7 @@ export class UserModalComponent {
         email: this.patchData.email,
         number: this.patchData.number,
         status: this.patchData.status,
+        gender: this.patchData?.gender,
       };
       this.form.patchValue(patch);
     }
@@ -166,6 +168,7 @@ formData.append('email', this.form.value.email);
 formData.append('number', this.form.value.number);
 formData.append('password', this.form.value.password);
 formData.append('status', this.form.value.status);
+formData.append('gender', this.form.value.gender);
 
     this.userService.userAdd(formData).subscribe(res=>{
       this.submit = false;
@@ -196,6 +199,7 @@ let formData = new FormData();
 formData.append('name', this.form.value.name);
 formData.append('email', this.form.value.email);
 formData.append('number', this.form.value.number);
+formData.append('gender', this.form.value.gender);
 formData.append('status', this.form.value.status);
    
     const _id = this.patchData._id;

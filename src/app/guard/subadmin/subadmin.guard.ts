@@ -94,7 +94,6 @@ export class subadminGuard implements CanActivate {
    
 
     if(!this.sliderAccess.length){
- 
    this.sliderAccess = await this.commonService.previlageListApiDatat();
     }
 

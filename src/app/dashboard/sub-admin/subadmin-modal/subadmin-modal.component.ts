@@ -78,7 +78,7 @@ export class SubadminModalComponent implements OnInit {
       password:new FormControl('',[Validators.required]),
       previlage:new FormControl('',[Validators.required]),
       status:new FormControl('active',[Validators.required]),
-
+      compType:new FormControl('',[Validators.required]),
       labDocument:new FormControl(''),
     });
   }
@@ -122,11 +122,12 @@ export class SubadminModalComponent implements OnInit {
  
       // this.selectedItems =this.patchData.assign_to;
       const patch = {
-        name: this.patchData.name,
-        phone: this.patchData.phone,
-        email: this.patchData.email,
-        previlage: this.patchData.previleges,
-        status: this.patchData.status,
+        name: this.patchData?.name,
+        phone: this.patchData?.phone,
+        email: this.patchData?.email,
+        previlage: this.patchData?.previleges,
+        status: this.patchData?.status,
+        compType: this.patchData?.compType,
       };
       this.form.patchValue(patch);
     }
@@ -258,6 +259,7 @@ formData.append('email', this.form.value.email);
 formData.append('phone', this.form.value.phone);
 formData.append('previleges', this.form.value.previlage);
 formData.append('password', this.form.value.password);
+formData.append('compType', this.form.value.compType);
 formData.append('status', this.form.value.status);
 
     this.subadminService.createSubAdmin(formData).subscribe(res=>{
@@ -297,6 +299,7 @@ formData.append('status', this.form.value.status);
       formData.append('phone', this.form.value.phone);
       formData.append('previleges', this.form.value.previlage);
       formData.append('status', this.form.value.status);
+      formData.append('compType', this.form.value.compType);
    
     const _id = this.patchData._id;
     this.subadminService.subAdminUpdate(formData,_id).subscribe(res=>{
